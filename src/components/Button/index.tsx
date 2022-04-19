@@ -14,7 +14,8 @@ import {useTheme} from '../Theme';
 export interface IButtonProps extends PressableProps {
   size?: 'mini' | 'small' | 'medium' | 'large';
   shape?: 'flat' | 'round' | 'circle';
-  type?: 'primary' | 'secondary';
+  type?: 'contained' | 'outlined';
+  color?: 'primary' | 'secondary';
   disabled?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -27,7 +28,8 @@ const Button: React.FC<IButtonProps> = ({
   children,
   leftIcon,
   rightIcon,
-  type = 'primary',
+  type = 'contained',
+  color = 'primary',
   size = 'medium',
   shape = 'round',
   textStyle,
@@ -35,7 +37,7 @@ const Button: React.FC<IButtonProps> = ({
   ...rest
 }) => {
   const {theme} = useTheme();
-  const styles = getStyles(theme, type, size);
+  const styles = getStyles(theme, color, size, type);
 
   const renderIcon = (
     position: 'leftIcon' | 'rightIcon',

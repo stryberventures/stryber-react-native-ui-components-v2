@@ -1,26 +1,69 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
 import {ThemeType} from '../Theme';
 import {IButtonProps} from './index';
 
+interface IButtonTypeStyle {
+  button: ViewStyle;
+  buttonPressed: ViewStyle;
+  text: TextStyle;
+}
+
 export const getStyles = (
   theme: ThemeType,
-  type: IButtonProps['type'],
+  color: IButtonProps['color'],
   size: IButtonProps['size'],
-) =>
-  StyleSheet.create({
+  type: IButtonProps['type'],
+) => {
+  //Generate different styles based on button type
+  const buttonTypeStyle = (): IButtonTypeStyle => {
+    const containedStyle: IButtonTypeStyle = {
+      button: {
+        backgroundColor: theme[color!].main,
+      },
+      buttonPressed: {
+        backgroundColor: theme[color!].dark,
+      },
+      text: {
+        color: theme.primary.contrast,
+      },
+    };
+    switch (type) {
+      case 'contained':
+        return containedStyle;
+      case 'outlined':
+        return {
+          button: {
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            borderColor: theme[color!].main,
+          },
+          buttonPressed: {
+            backgroundColor: theme[color!].light,
+            borderWidth: 0,
+          },
+          text: {
+            color: theme[color!].main,
+          },
+        };
+      default:
+        return containedStyle;
+    }
+  };
+
+  return StyleSheet.create({
     button: {
-      backgroundColor: theme[type!].main,
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'row',
+      ...buttonTypeStyle().button,
     },
     buttonPressed: {
-      backgroundColor: theme[type!].dark,
+      ...buttonTypeStyle().buttonPressed,
     },
     text: {
-      color: theme.primary.contrast,
       fontSize: size === 'mini' ? 10 : 16,
       fontWeight: '700',
+      ...buttonTypeStyle().text,
     },
     disabled: {
       opacity: 0.3,
@@ -61,3 +104,4 @@ export const getStyles = (
       borderRadius: 100,
     },
   });
+};

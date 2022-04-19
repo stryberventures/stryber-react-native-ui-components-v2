@@ -33,15 +33,22 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   children: 'Primary',
-  type: 'primary',
+  color: 'primary',
   size: 'medium',
   shape: 'round',
+  type: 'contained',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   children: 'Secondary',
-  type: 'secondary',
+  color: 'secondary',
+};
+
+export const Outlined = Template.bind({});
+Outlined.args = {
+  children: 'Outlined',
+  type: 'outlined',
 };
 
 export const Mini = Template.bind({});
