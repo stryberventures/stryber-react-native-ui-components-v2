@@ -1,0 +1,65 @@
+import * as React from 'react';
+import {
+  Pressable,
+  PressableProps,
+  ViewStyle,
+  TextStyle,
+  StyleProp,
+  Text,
+  View,
+} from 'react-native';
+import {getStyles} from './styles';
+import {useTheme} from '../Theme';
+
+export interface IButtonProps extends PressableProps {
+  size?: 'mini' | 'small' | 'medium' | 'large';
+  shape?: 'flat' | 'round' | 'circle';
+  type?: 'primary' | 'secondary';
+  disabled?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+}
+
+const Button: React.FC<IButtonProps> = ({
+  style,
+  children,
+  leftIcon,
+  rightIcon,
+  type = 'primary',
+  size = 'medium',
+  shape = 'round',
+  textStyle,
+  disabled = false,
+  ...rest
+}) => {
+  const {theme} = useTheme();
+  const styles = getStyles(theme, type, size);
+
+  const renderIcon = (
+    position: 'leftIcon' | 'rightIcon',
+    icon?: React.ReactNode,
+  ) => icon && <View style={styles[position]}>{icon}</View>;
+
+  return (
+    <Pressable
+      style={({pressed}) => [
+        styles.button,
+        styles[size],
+        styles[shape],
+        pressed && styles.buttonPressed,
+        disabled && styles.disabled,
+        style,
+      ]}
+      disabled={disabled}
+      {...rest}
+    >
+      {renderIcon('leftIcon', leftIcon)}
+      <Text style={[styles.text, textStyle]}>{children}</Text>
+      {renderIcon('rightIcon', rightIcon)}
+    </Pressable>
+  );
+};
+
+export default Button;
