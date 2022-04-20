@@ -1,5 +1,6 @@
 import React, {useCallback, useContext, useMemo, useState} from 'react';
 import merge from 'lodash/merge';
+import {StyleSheet} from 'react-native';
 
 import {defaultTheme} from './defaultTheme';
 
@@ -49,3 +50,20 @@ export const ThemeProvider = React.memo<IThemeProvider>(
 );
 
 export const useTheme = () => useContext(Context);
+
+export const createUseStyles = <
+  T extends StyleSheet.NamedStyles<T> | StyleSheet.NamedStyles<any>
+>(
+  styles: ((theme: ThemeType, ...args: any) => T) | T,
+) => {
+  const useStyles = (...args: any): T | StyleSheet.NamedStyles<T> => {
+    const {theme} = useContext(Context);
+
+    if (typeof styles === 'function') {
+      return StyleSheet.create(styles(theme, ...args));
+    }
+    return StyleSheet.create(styles);
+  };
+
+  return useStyles;
+};

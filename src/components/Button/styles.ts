@@ -1,5 +1,5 @@
-import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
-import {ThemeType} from '../Theme';
+import {TextStyle, ViewStyle} from 'react-native';
+import {createUseStyles} from '../Theme';
 import {IButtonProps} from './index';
 
 interface IButtonTypeStyle {
@@ -8,100 +8,102 @@ interface IButtonTypeStyle {
   text: TextStyle;
 }
 
-export const getStyles = (
-  theme: ThemeType,
-  color: IButtonProps['color'],
-  size: IButtonProps['size'],
-  type: IButtonProps['type'],
-) => {
-  //Generate different styles based on button type
-  const buttonTypeStyle = (): IButtonTypeStyle => {
-    const containedStyle: IButtonTypeStyle = {
+export const useStyles = createUseStyles(
+  (
+    theme,
+    color: IButtonProps['color'],
+    size: IButtonProps['size'],
+    type: IButtonProps['type'],
+  ) => {
+    //Generate different styles based on button type
+    const buttonTypeStyle = (): IButtonTypeStyle => {
+      const containedStyle: IButtonTypeStyle = {
+        button: {
+          backgroundColor: theme[color!].main,
+        },
+        buttonPressed: {
+          backgroundColor: theme[color!].dark,
+        },
+        text: {
+          color: theme.primary.contrast,
+        },
+      };
+      switch (type) {
+        case 'contained':
+          return containedStyle;
+        case 'outlined':
+          return {
+            button: {
+              backgroundColor: 'transparent',
+              borderWidth: 2,
+              borderColor: theme[color!].main,
+            },
+            buttonPressed: {
+              backgroundColor: theme[color!].light,
+              borderWidth: 0,
+            },
+            text: {
+              color: theme[color!].main,
+            },
+          };
+        default:
+          return containedStyle;
+      }
+    };
+
+    return {
       button: {
-        backgroundColor: theme[color!].main,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        ...buttonTypeStyle().button,
       },
       buttonPressed: {
-        backgroundColor: theme[color!].dark,
+        ...buttonTypeStyle().buttonPressed,
       },
       text: {
-        color: theme.primary.contrast,
+        fontSize: size === 'mini' ? 10 : 16,
+        fontWeight: '700',
+        ...buttonTypeStyle().text,
+      },
+      disabled: {
+        opacity: 0.3,
+      },
+      mini: {
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+      },
+      small: {
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+      },
+      medium: {
+        paddingHorizontal: 24,
+        paddingVertical: 16,
+      },
+      large: {
+        paddingHorizontal: 32,
+        paddingVertical: 24,
+      },
+      leftIcon: {
+        width: size === 'mini' ? 14 : 20,
+        height: size === 'mini' ? 14 : 20,
+        marginRight: 10,
+      },
+      rightIcon: {
+        width: size === 'mini' ? 14 : 20,
+        height: size === 'mini' ? 14 : 20,
+        marginLeft: 10,
+      },
+      flat: {
+        borderRadius: 0,
+      },
+      round: {
+        borderRadius: 4,
+      },
+      circle: {
+        borderRadius: 100,
       },
     };
-    switch (type) {
-      case 'contained':
-        return containedStyle;
-      case 'outlined':
-        return {
-          button: {
-            backgroundColor: 'transparent',
-            borderWidth: 2,
-            borderColor: theme[color!].main,
-          },
-          buttonPressed: {
-            backgroundColor: theme[color!].light,
-            borderWidth: 0,
-          },
-          text: {
-            color: theme[color!].main,
-          },
-        };
-      default:
-        return containedStyle;
-    }
-  };
-
-  return StyleSheet.create({
-    button: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'row',
-      ...buttonTypeStyle().button,
-    },
-    buttonPressed: {
-      ...buttonTypeStyle().buttonPressed,
-    },
-    text: {
-      fontSize: size === 'mini' ? 10 : 16,
-      fontWeight: '700',
-      ...buttonTypeStyle().text,
-    },
-    disabled: {
-      opacity: 0.3,
-    },
-    mini: {
-      paddingHorizontal: 8,
-      paddingVertical: 4,
-    },
-    small: {
-      paddingHorizontal: 16,
-      paddingVertical: 8,
-    },
-    medium: {
-      paddingHorizontal: 24,
-      paddingVertical: 16,
-    },
-    large: {
-      paddingHorizontal: 32,
-      paddingVertical: 24,
-    },
-    leftIcon: {
-      width: size === 'mini' ? 14 : 20,
-      height: size === 'mini' ? 14 : 20,
-      marginRight: 10,
-    },
-    rightIcon: {
-      width: size === 'mini' ? 14 : 20,
-      height: size === 'mini' ? 14 : 20,
-      marginLeft: 10,
-    },
-    flat: {
-      borderRadius: 0,
-    },
-    round: {
-      borderRadius: 4,
-    },
-    circle: {
-      borderRadius: 100,
-    },
-  });
-};
+  },
+);
