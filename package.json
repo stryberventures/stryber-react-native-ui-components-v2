@@ -15,9 +15,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "start-storybook-web": "./node_modules/@storybook/react/bin/index.js",
-    "build-storybook-web": "./node_modules/@storybook/react/bin/build.js",
-    "storybook-web": "yarn run start-storybook-web"
+    "tsc-compile": "tsc --noemit"
   },
   "dependencies": {
     "lodash": "^4.17.21",
