@@ -8,8 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {getStyles} from './styles';
-import {useTheme} from '../Theme';
+import {useStyles} from './styles';
 
 export interface IButtonProps extends PressableProps {
   size?: 'mini' | 'small' | 'medium' | 'large';
@@ -36,8 +35,7 @@ const Button: React.FC<IButtonProps> = ({
   disabled = false,
   ...rest
 }) => {
-  const {theme} = useTheme();
-  const styles = getStyles(theme, color, size, type);
+  const styles = useStyles(color, size, type);
 
   const renderIcon = (
     position: 'leftIcon' | 'rightIcon',
