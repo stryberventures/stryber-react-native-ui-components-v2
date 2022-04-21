@@ -30,8 +30,8 @@ export default {
 
 const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Contained = Template.bind({});
+Contained.args = {
   children: 'Primary',
   color: 'primary',
   size: 'medium',
@@ -39,16 +39,16 @@ Primary.args = {
   type: 'contained',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  children: 'Secondary',
-  color: 'secondary',
-};
-
 export const Outlined = Template.bind({});
 Outlined.args = {
   children: 'Outlined',
   type: 'outlined',
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  children: 'Secondary',
+  color: 'secondary',
 };
 
 export const Mini = Template.bind({});
