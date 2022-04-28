@@ -1,8 +1,8 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Button from '.';
-import {View} from 'react-native';
 import * as Icons from '../Icons';
+import CenterView from '../../storybook/preview/CenterView';
 
 export default {
   title: 'Button',
@@ -10,19 +10,7 @@ export default {
   argTypes: {
     onPress: {action: 'pressed the button'},
   },
-  decorators: [
-    Story => (
-      <View
-        style={{
-          justifyContent: 'center',
-          height: '100%',
-          paddingHorizontal: 20,
-        }}
-      >
-        <Story />
-      </View>
-    ),
-  ],
+  decorators: [CenterView],
   args: {
     children: 'Button',
   },

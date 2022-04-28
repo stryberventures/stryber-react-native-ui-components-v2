@@ -15,7 +15,7 @@ it('should pass theme colors', () => {
   const buttonTestId = 'test-button';
   const screen = render(
     <ThemeProvider initial={newTheme}>
-      <Button type="contained" testID={buttonTestId}>
+      <Button variant="contained" testID={buttonTestId}>
         Button
       </Button>
     </ThemeProvider>,

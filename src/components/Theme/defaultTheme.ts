@@ -12,9 +12,23 @@ export const defaultTheme = {
     contrast: '#FFF',
   },
   text: {
-    primary: '',
-    secondary: '',
-    disabled: '',
-    hint: '',
+    primary: '#101828',
+    secondary: '#344054',
+    disabled: '#D2D2D2',
+    hint: '#667085',
+  },
+  error: {
+    main: '#EC726B',
+    light: '#FBDCDA',
+    dark: '#D92C20',
+    contrast: '#000',
+  },
+  border: {
+    main: '#D0D5DD',
+    light: '#E7EAF9',
+  },
+  background: {
+    main: '#FFF',
+    disabled: '#FCFCFD',
   },
 };

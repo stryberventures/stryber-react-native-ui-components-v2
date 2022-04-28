@@ -13,7 +13,7 @@ export const useStyles = createUseStyles(
     theme,
     color: IButtonProps['color'],
     size: IButtonProps['size'],
-    type: IButtonProps['type'],
+    variant: IButtonProps['variant'],
   ) => {
     //Generate different styles based on button type
     const buttonTypeStyle = (): IButtonTypeStyle => {
@@ -28,7 +28,7 @@ export const useStyles = createUseStyles(
           color: theme.primary.contrast,
         },
       };
-      switch (type) {
+      switch (variant) {
         case 'contained':
           return containedStyle;
         case 'outlined':
