@@ -51,7 +51,6 @@ const Input: React.FC<IInputProps> = ({
 
   const handleFocus = () => inputRef.current!.focus();
 
-  /** Getting values from Form context (if the field is wrapped inside a form */
   const {
     fieldError,
     fieldValue,
@@ -60,10 +59,8 @@ const Input: React.FC<IInputProps> = ({
     updateFormTouched,
   } = useFormContext(name);
 
-  /** Getting error message from form errors */
   const errorMessage = fieldError || error;
 
-  /** Setting the internal value of the field from form initial values or from value provided to the field */
   const [internalValue, setInternalValue] = useState(fieldValue || value);
 
   /** Wrappers to merge form and props methods */
@@ -71,34 +68,23 @@ const Input: React.FC<IInputProps> = ({
     e: NativeSyntheticEvent<TextInputFocusEventData>,
   ) => {
     const {text: targetValue} = e.nativeEvent;
-    /** Internal value update */
-    setInternalValue(() => targetValue);
-    /** Passthrough to form context */
+    setInternalValue(targetValue);
     updateFormValue(name, targetValue);
-    /** Independent callback */
     onChange && onChange(e);
   };
   const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setIsFocused(true);
-    /** Independent callback */
     onFocus && onFocus(e);
   };
   const onBlurWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setIsFocused(false);
-    /** Passthrough to form context */
     updateFormTouched(name, true);
-    /** Independent callback */
     onBlur && onBlur(e);
   };
 
-  /** On mount/unmount logic */
   useEffect(() => {
-    /** On mount */
-    /** Update form with internal value on mount */
     updateFormValue(name, internalValue, true);
     return () => {
-      /** On unmount */
-      /** Clear Form value if needed */
       clearFormValueOnUnmount && unsetFormValue(name);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

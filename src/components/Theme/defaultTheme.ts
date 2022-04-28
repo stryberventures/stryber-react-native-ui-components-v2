@@ -23,12 +23,11 @@ export const defaultTheme = {
     dark: '#D92C20',
     contrast: '#000',
   },
-  border: {
-    main: '#D0D5DD',
-    light: '#E7EAF9',
-  },
   background: {
     main: '#FFF',
     disabled: '#FCFCFD',
+  },
+  divider: {
+    main: '#D0D5DD',
   },
 };

@@ -29,7 +29,6 @@ export const FormContext: React.Context<IFormContext> = React.createContext(
   defaultFormContextValues,
 );
 
-/** Form props */
 export interface IFormProps {
   onSubmit?: (formData: any) => void;
   onReset?: (formData: any) => void;
@@ -118,7 +117,6 @@ const Form: FC<IFormProps> = ({
     updateFormTouched(name, false);
   };
 
-  /** Wrappers */
   const onSubmitFormWrapper = () => {
     if (Object.keys(formErrors).length > 0) {
       /** Set everything to "touched" to highlight errors on submit */
@@ -128,21 +126,17 @@ const Form: FC<IFormProps> = ({
           {},
         ),
       );
-      /** External callback */
       onError && onError(formErrors, formValues);
     } else {
-      /** External callback */
       onSubmit && onSubmit(formValues);
     }
   };
   const onResetFormWrapper = () => {
     setFormValues(() => initialValues || {});
     setFormSessionId(id => id + 1);
-    /** External callback */
     onReset && onReset(formValues);
   };
 
-  /** Mount / unmount logic */
   useEffect(() => {
     /** Running first validation on mount */
     validate(formValues);

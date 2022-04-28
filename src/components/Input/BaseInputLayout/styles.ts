@@ -10,7 +10,7 @@ const inputConstants = {
 export default createUseStyles((theme, inputSize: IInputSize) => ({
   baseInput: {
     borderWidth: inputConstants.BORDER_WIDTH,
-    borderColor: theme.border.main,
+    borderColor: theme.divider.main,
     borderRadius: 4,
     paddingHorizontal: 8,
     paddingVertical: 5,
@@ -18,7 +18,7 @@ export default createUseStyles((theme, inputSize: IInputSize) => ({
     zIndex: 2,
   },
   baseInputFocused: {
-    borderColor: theme.primary.light,
+    borderColor: theme.primary.main,
   },
   label: {
     color: theme.text.secondary,
@@ -27,7 +27,7 @@ export default createUseStyles((theme, inputSize: IInputSize) => ({
     position: 'absolute',
     width: inputSize.width + inputConstants.OUTLINE_SIZE,
     height: inputSize.height + inputConstants.OUTLINE_SIZE,
-    backgroundColor: theme.border.light,
+    backgroundColor: theme.primary.light,
     borderRadius: 4,
     left: -4,
     top: -4,
