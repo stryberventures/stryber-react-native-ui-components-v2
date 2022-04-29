@@ -4,7 +4,7 @@ import Button from '../../../components/Button';
 import {TouchableOpacity, View, Text} from 'react-native';
 import {useStyles} from './styles';
 
-const initTheme = {colors: {primary: '#ea3590'}};
+const initTheme = {primary: {main: '#ea3590'}};
 
 const themeVariants = [
   {primary: {main: '#ea3590'}},
@@ -19,8 +19,9 @@ const ThemePreview = () => {
   const styles = useStyles(theme);
 
   const renderThemeVariants = () =>
-    themeVariants.map(themeVariant => (
+    themeVariants.map((themeVariant, i) => (
       <TouchableOpacity
+        key={i}
         //eslint-disable-next-line react-native/no-inline-styles
         style={{
           width: 50,

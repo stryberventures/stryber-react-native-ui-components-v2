@@ -7,14 +7,17 @@ import {
   StyleProp,
   Text,
   View,
+  GestureResponderEvent,
 } from 'react-native';
 import {useStyles} from './styles';
+import {useFormContext} from '../Form';
 
 export interface IButtonProps extends PressableProps {
   size?: 'mini' | 'small' | 'medium' | 'large';
   shape?: 'flat' | 'round' | 'circle';
-  type?: 'contained' | 'outlined';
+  variant?: 'contained' | 'outlined';
   color?: 'primary' | 'secondary';
+  type?: 'submit' | 'reset';
   disabled?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -27,20 +30,34 @@ const Button: React.FC<IButtonProps> = ({
   children,
   leftIcon,
   rightIcon,
-  type = 'contained',
+  variant = 'contained',
   color = 'primary',
   size = 'medium',
   shape = 'round',
   textStyle,
   disabled = false,
+  onPress,
+  type,
   ...rest
 }) => {
-  const styles = useStyles(color, size, type);
+  const {handleSubmit, handleReset} = useFormContext();
+  const styles = useStyles(color, size, variant);
 
   const renderIcon = (
     position: 'leftIcon' | 'rightIcon',
     icon?: React.ReactNode,
   ) => icon && <View style={styles[position]}>{icon}</View>;
+
+  const handlePress = (e: GestureResponderEvent) => {
+    switch (type) {
+      case 'submit':
+        return handleSubmit();
+      case 'reset':
+        return handleReset();
+      default:
+        return onPress && onPress(e);
+    }
+  };
 
   return (
     <Pressable
@@ -53,6 +70,7 @@ const Button: React.FC<IButtonProps> = ({
         style,
       ]}
       disabled={disabled}
+      onPress={handlePress}
       {...rest}
     >
       {renderIcon('leftIcon', leftIcon)}
