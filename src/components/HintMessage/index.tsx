@@ -1,18 +1,26 @@
 import React from 'react';
 import useStyles from './styles';
-import {Text} from 'react-native';
+import {Text, TextProps} from 'react-native';
 
-interface IHintMessageProps {
+interface IHintMessageProps extends TextProps {
   disabled?: boolean;
   message?: string;
 }
 
-const HintMessage: React.FC<IHintMessageProps> = ({message, disabled}) => {
+const HintMessage: React.FC<IHintMessageProps> = ({
+  message,
+  disabled,
+  style,
+  ...rest
+}) => {
   const styles = useStyles();
 
   if (message) {
     return (
-      <Text style={[styles.hint, disabled && styles.disabledHint]}>
+      <Text
+        style={[styles.hint, disabled && styles.disabledHint, style]}
+        {...rest}
+      >
         {message}
       </Text>
     );

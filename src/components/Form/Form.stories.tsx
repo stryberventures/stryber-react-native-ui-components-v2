@@ -7,6 +7,7 @@ import Form from '.';
 import Button from '../Button';
 import {View} from 'react-native';
 import ExternalFormControl from '../../storybook/preview/ExternalFormControl';
+import RadioButton from '../RadioButton';
 
 export default {
   title: 'Form',
@@ -21,12 +22,15 @@ const Template: ComponentStory<typeof Form> = ({
 }) => {
   return (
     <Form {...rest}>
+      <RadioButton name="radio" value="option 1" placeholder="Option 1" />
+      <RadioButton name="radio" value="option 2" placeholder="Option 2" />
+      <RadioButton name="radio" value="option 3" placeholder="Option 3" />
       <Input
         name="email"
         placeholder="Email"
         label="Email"
         // eslint-disable-next-line react-native/no-inline-styles
-        style={{marginBottom: 20}}
+        style={{marginVertical: 20}}
       />
       <Input name="password" placeholder="Password" label="Password" />
       <View
