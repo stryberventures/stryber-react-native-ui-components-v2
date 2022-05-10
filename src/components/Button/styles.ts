@@ -16,7 +16,7 @@ export const useStyles = createUseStyles(
     variant: IButtonProps['variant'],
   ) => {
     //Generate different styles based on button type
-    const buttonTypeStyle = (): IButtonTypeStyle => {
+    const buttonVariantStyle = (): IButtonTypeStyle => {
       const containedStyle: IButtonTypeStyle = {
         button: {
           backgroundColor: theme[color!].main,
@@ -56,15 +56,15 @@ export const useStyles = createUseStyles(
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        ...buttonTypeStyle().button,
+        ...buttonVariantStyle().button,
       },
       buttonPressed: {
-        ...buttonTypeStyle().buttonPressed,
+        ...buttonVariantStyle().buttonPressed,
       },
       text: {
         fontSize: size === 'mini' ? 10 : 16,
         fontWeight: '700',
-        ...buttonTypeStyle().text,
+        ...buttonVariantStyle().text,
       },
       disabled: {
         opacity: 0.3,

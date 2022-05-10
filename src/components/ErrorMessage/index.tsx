@@ -1,16 +1,24 @@
 import React from 'react';
 import useStyles from './styles';
-import {Text} from 'react-native';
+import {Text, TextProps} from 'react-native';
 
-interface IErrorMessageProps {
+interface IErrorMessageProps extends TextProps {
   error?: string;
 }
 
-const ErrorMessage: React.FC<IErrorMessageProps> = ({error}) => {
+const ErrorMessage: React.FC<IErrorMessageProps> = ({
+  error,
+  style,
+  ...rest
+}) => {
   const styles = useStyles();
 
   if (error) {
-    return <Text style={styles.error}>{error}</Text>;
+    return (
+      <Text style={[styles.error, style]} {...rest}>
+        {error}
+      </Text>
+    );
   }
   return null;
 };

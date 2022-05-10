@@ -24,13 +24,13 @@ Contained.args = {
   color: 'primary',
   size: 'medium',
   shape: 'round',
-  type: 'contained',
+  variant: 'contained',
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
   children: 'Outlined',
-  type: 'outlined',
+  variant: 'outlined',
 };
 
 export const Secondary = Template.bind({});
