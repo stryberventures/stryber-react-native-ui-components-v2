@@ -42,7 +42,7 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
     unsetFormValue,
   } = useFormContext(name);
 
-  const checkedValue = fieldValue === value ? true : undefined;
+  const checkedValue = fieldValue === value;
   const errorMessage = fieldError || error;
 
   const [isPressed, setIsPressed] = useState(false);
