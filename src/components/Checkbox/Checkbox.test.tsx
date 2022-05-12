@@ -1,29 +1,29 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import RadioButton from '.';
+import Checkbox from '.';
 
 it('renders', () => {
-  render(<RadioButton value="option" />);
+  render(<Checkbox />);
 });
 
 it('displays label', () => {
   const label = 'Radio button';
-  const {getByText} = render(<RadioButton value="option" label={label} />);
+  const {getByText} = render(<Checkbox label={label} />);
 
   getByText(label);
 });
 
 it('displays error', () => {
   const error = 'Radio error';
-  const {getByText} = render(<RadioButton value="option" error={error} />);
+  const {getByText} = render(<Checkbox error={error} />);
 
   getByText(error);
 });
 
 it('displays hint', () => {
   const hint = 'Radio hint';
-  const {getByText} = render(<RadioButton value="option" hint={hint} />);
+  const {getByText} = render(<Checkbox hint={hint} />);
 
   getByText(hint);
 });
@@ -32,7 +32,7 @@ it('fires onChange', () => {
   const onChange = jest.fn();
   const testId = 'radio';
   const {getByTestId} = render(
-    <RadioButton testID={testId} value="option" onChange={onChange} />,
+    <Checkbox testID={testId} onChange={onChange} />,
   );
   const radioButton = getByTestId(testId);
   fireEvent.press(radioButton);
