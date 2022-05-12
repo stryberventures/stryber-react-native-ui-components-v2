@@ -1,0 +1,10 @@
+{
+  "name": "@stryberventures/gaia-react-native.icons",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "react-native": ">=0.68.0",
+    "react": ">=17.0.2",
+    "react-native-svg": ">=12.3.0",
+    "@stryberventures/gaia-react-native.theme": ">=0.0.1"
+  }
+}

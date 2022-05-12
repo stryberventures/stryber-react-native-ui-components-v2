@@ -1,0 +1,9 @@
+{
+  "name": "@stryberventures/gaia-react-native.form",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "react-native": ">=0.68.0",
+    "react": ">=17.0.2",
+    "yup": ">= 0.32.11"
+  }
+}

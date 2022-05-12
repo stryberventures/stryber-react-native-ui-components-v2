@@ -1,0 +1,12 @@
+{
+  "name": "@stryberventures/gaia-react-native",
+  "components": {
+    "Button": "button",
+    "Theme": "theme",
+    "Form": "form",
+    "Input": "input",
+    "TextArea": "textarea",
+    "RadioButton": "radiobutton",
+    "Icons": "icons"
+  }
+}
