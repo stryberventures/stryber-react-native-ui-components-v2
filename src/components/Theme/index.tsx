@@ -52,11 +52,12 @@ export const ThemeProvider = React.memo<IThemeProvider>(
 export const useTheme = () => useContext(Context);
 
 export const createUseStyles = <
-  T extends StyleSheet.NamedStyles<T> | StyleSheet.NamedStyles<any>
+  T extends StyleSheet.NamedStyles<T> | StyleSheet.NamedStyles<any>,
+  P extends any[]
 >(
-  styles: ((theme: ThemeType, ...args: any) => T) | T,
+  styles: ((theme: ThemeType, ...args: P) => T) | T,
 ) => {
-  const useStyles = (...args: any): T | StyleSheet.NamedStyles<T> => {
+  const useStyles = (...args: P): T | StyleSheet.NamedStyles<T> => {
     const {theme} = useContext(Context);
 
     if (typeof styles === 'function') {

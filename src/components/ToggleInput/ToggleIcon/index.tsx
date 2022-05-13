@@ -2,32 +2,34 @@ import React from 'react';
 import useStyles from './styles';
 import {View, ViewProps} from 'react-native';
 import {CheckIcon} from '../../Icons';
-import {IRadioButtonProps} from '../index';
+import {IToggleInputProps} from '../index';
 
 const CHECK_ICON_SIZE = {
   medium: {width: 12, height: 10},
   small: {width: 8, height: 6},
 };
 
-interface IRadioButtonIconProps extends ViewProps {
+export interface ToggleIconProps extends ViewProps {
   checked?: boolean;
   isPressed: boolean;
-  variant?: IRadioButtonProps['variant'];
-  size?: IRadioButtonProps['size'];
+  variant: IToggleInputProps['variant'];
+  iconVariant?: IToggleInputProps['iconVariant'];
+  size?: IToggleInputProps['size'];
 }
 
-const RadioButtonIcon: React.FC<IRadioButtonIconProps> = ({
+const ToggleIcon: React.FC<ToggleIconProps> = ({
   isPressed,
   checked,
-  variant = 'round',
+  iconVariant = 'round',
   style,
   size = 'medium',
+  variant,
   ...rest
 }) => {
   const styles = useStyles(size);
 
   const getIcon = () => {
-    if (variant === 'check') {
+    if (iconVariant === 'check') {
       return <CheckIcon {...CHECK_ICON_SIZE[size]} />;
     }
     return <View style={styles.checkedIcon} />;
@@ -38,6 +40,7 @@ const RadioButtonIcon: React.FC<IRadioButtonIconProps> = ({
       style={[
         styles.container,
         styles[size],
+        styles[variant],
         isPressed && !checked && styles.pressed,
         checked && styles.checked,
         isPressed && checked && styles.pressedChecked,
@@ -50,4 +53,4 @@ const RadioButtonIcon: React.FC<IRadioButtonIconProps> = ({
   );
 };
 
-export default RadioButtonIcon;
+export default ToggleIcon;

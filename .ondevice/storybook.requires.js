@@ -29,6 +29,7 @@ argsEnhancers.forEach((enhancer) => addArgsEnhancer(enhancer));
 const getStories = () => {
   return [
     require("../src/components/Button/Button.stories.tsx"),
+    require("../src/components/Checkbox/Checkbox.stories.tsx"),
     require("../src/components/Form/Form.stories.tsx"),
     require("../src/components/Input/Input.stories.tsx"),
     require("../src/components/RadioButton/RadioButton.stories.tsx"),

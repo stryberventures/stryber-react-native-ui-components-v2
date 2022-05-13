@@ -1,36 +1,33 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {PressableProps, StyleProp, ViewStyle} from 'react-native';
-
 import {useFormContext} from '../Form';
 import ToggleInput, {IToggleInputProps} from '../ToggleInput';
 
-export interface IRadioButtonProps extends PressableProps {
+export interface ICheckboxProps extends PressableProps {
   name?: string;
-  value: any;
   label?: string;
   checked?: boolean;
-  onChange?: (value: any) => void;
+  onChange?: (checked: boolean) => void;
   error?: string;
   disabled?: boolean;
-  iconVariant?: IToggleInputProps['iconVariant'];
-  style?: StyleProp<ViewStyle>;
   size?: IToggleInputProps['size'];
+  style?: StyleProp<ViewStyle>;
   hint?: string;
   clearFormValueOnUnmount?: boolean;
+  controlled?: boolean;
 }
 
-const RadioButton: React.FC<IRadioButtonProps> = ({
-  value,
-  name = 'unnamed',
-  iconVariant = 'round',
-  disabled,
-  hint,
-  error,
-  label,
-  size = 'medium',
+const Checkbox: React.FC<ICheckboxProps> = ({
   checked,
+  name = 'unnamed',
+  error,
   onChange,
   clearFormValueOnUnmount,
+  disabled,
+  size = 'medium',
+  label,
+  hint,
+  controlled,
   ...rest
 }) => {
   const {
@@ -41,19 +38,18 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
     updateFormTouched,
   } = useFormContext(name);
 
-  const checkedValue = fieldValue === value;
+  const [internalValue, setInternalValue] = useState(fieldValue || checked);
   const errorMessage = fieldError || error;
 
   const onChangeWrapper = () => {
-    updateFormValue(name, value);
-    onChange && onChange(value);
+    setInternalValue(!internalValue);
+    updateFormValue(name, !internalValue);
+    onChange && onChange(!internalValue);
     updateFormTouched(name, true);
   };
 
   useEffect(() => {
-    if (checked) {
-      updateFormValue(name, value, true);
-    }
+    updateFormValue(name, !!checked, true);
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };
@@ -62,18 +58,18 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
 
   return (
     <ToggleInput
-      label={label}
-      checked={checkedValue}
-      variant="radio"
-      iconVariant={iconVariant}
-      error={errorMessage}
+      iconVariant="check"
+      variant="checkbox"
       onChange={onChangeWrapper}
+      error={errorMessage}
+      checked={controlled ? checked : internalValue}
       disabled={disabled}
       size={size}
+      label={label}
       hint={hint}
       {...rest}
     />
   );
 };
 
-export default RadioButton;
+export default Checkbox;

@@ -8,6 +8,7 @@ import Button from '../Button';
 import {View} from 'react-native';
 import ExternalFormControl from '../../storybook/preview/ExternalFormControl';
 import RadioButton from '../RadioButton';
+import Checkbox from '../Checkbox';
 
 export default {
   title: 'Form',
@@ -22,9 +23,10 @@ const Template: ComponentStory<typeof Form> = ({
 }) => {
   return (
     <Form {...rest}>
-      <RadioButton name="radio" value="option 1" placeholder="Option 1" />
-      <RadioButton name="radio" value="option 2" placeholder="Option 2" />
-      <RadioButton name="radio" value="option 3" placeholder="Option 3" />
+      <RadioButton name="radio" value="option 1" label="Option 1" />
+      <RadioButton name="radio" value="option 2" label="Option 2" />
+      <RadioButton name="radio" value="option 3" label="Option 3" />
+      <Checkbox name="checkbox" label="Stay logged in" />
       <Input
         name="email"
         placeholder="Email"
@@ -84,4 +86,5 @@ WithValidation.args = {
   }),
 };
 
+// @ts-ignore
 export const ExternalControl = ExternalFormControl;
