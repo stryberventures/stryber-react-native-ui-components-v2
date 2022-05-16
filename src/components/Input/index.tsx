@@ -10,7 +10,7 @@ import {
   TextStyle,
 } from 'react-native';
 import {useFormContext} from '../Form';
-import BaseInputLayout from './BaseInputLayout';
+import BaseInputLayout, {IBaseInputLayoutProps} from './BaseInputLayout';
 import {useTheme} from '../Theme';
 
 export interface IInputProps extends TextInputProps {
@@ -24,6 +24,7 @@ export interface IInputProps extends TextInputProps {
   inputStyle?: StyleProp<TextStyle>;
   disabled?: boolean;
   controlled?: boolean;
+  color?: IBaseInputLayoutProps['color'];
 }
 
 const Input: React.FC<IInputProps> = ({

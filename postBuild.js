@@ -13,6 +13,7 @@ const componentsList = Object.keys(components);
 
 async function postBuild() {
   try {
+    await fs.remove(buildDir);
     await moveComponentsFiles();
     await replacePaths();
     await fs.remove(webpackBuildDir);
