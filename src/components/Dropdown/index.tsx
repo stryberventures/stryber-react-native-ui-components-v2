@@ -77,7 +77,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
           disabled && styles.disabledText,
         ]}
       >
-        {value ? value : placeholder}
+        {value || placeholder}
       </Text>
     </BaseInputLayout>
   );

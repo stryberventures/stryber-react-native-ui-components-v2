@@ -1,5 +1,5 @@
 {
-  "name": "@stryberventures/gaia-react-native.button",
+  "name": "@stryberventures/gaia-react-native.dropdown",
   "version": "0.0.1",
   "peerDependencies": {
     "react-native": ">=0.68.0",
