@@ -8,6 +8,7 @@
     "TextArea": "textarea",
     "RadioButton": "radiobutton",
     "Icons": "icons",
-    "Checkbox": "checkbox"
+    "Checkbox": "checkbox",
+    "Dropdown": "dropdown"
   }
 }
