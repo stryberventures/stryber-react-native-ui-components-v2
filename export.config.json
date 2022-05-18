@@ -6,9 +6,10 @@
     "Form": "form",
     "Input": "input",
     "TextArea": "textarea",
-    "RadioButton": "radiobutton",
+    "RadioButton": "radio-button",
     "Icons": "icons",
     "Checkbox": "checkbox",
-    "Dropdown": "dropdown"
+    "Dropdown": "dropdown",
+    "TextLink": "text-link"
   }
 }

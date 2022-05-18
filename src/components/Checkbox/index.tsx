@@ -1,18 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {PressableProps, StyleProp, ViewStyle} from 'react-native';
 import {useFormContext} from '../Form';
 import ToggleInput, {IToggleInputProps} from '../ToggleInput';
 
-export interface ICheckboxProps extends PressableProps {
+export interface ICheckboxProps
+  extends Omit<IToggleInputProps, 'onChange' | 'variant' | 'iconVariant'> {
   name?: string;
-  label?: string;
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
-  error?: string;
-  disabled?: boolean;
-  size?: IToggleInputProps['size'];
-  style?: StyleProp<ViewStyle>;
-  hint?: string;
+  onChange?: (checked?: boolean) => void;
   clearFormValueOnUnmount?: boolean;
   controlled?: boolean;
 }
@@ -49,7 +42,7 @@ const Checkbox: React.FC<ICheckboxProps> = ({
   };
 
   useEffect(() => {
-    updateFormValue(name, !!checked, true);
+    updateFormValue(name, checked, true);
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };

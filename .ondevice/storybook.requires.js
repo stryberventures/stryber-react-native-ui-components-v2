@@ -30,6 +30,7 @@ const getStories = () => {
     require("../src/components/Input/Input.stories.tsx"),
     require("../src/components/RadioButton/RadioButton.stories.tsx"),
     require("../src/components/TextArea/TextArea.stories.tsx"),
+    require("../src/components/TextLink/TextLink.stories.tsx"),
     require("../src/components/Theme/Theme.stories.tsx"),
   ];
 };

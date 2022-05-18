@@ -1,39 +1,41 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
-import Button from '.';
+import TextLink from '.';
 import {Icons} from '../../index';
 
-it('should be rendered', () => {
+it('should be rendered with text', () => {
   const label = 'Test button';
-  const {getByText} = render(<Button>{label}</Button>);
+  const {getByText} = render(<TextLink>{label}</TextLink>);
   expect(getByText(label)).toBeTruthy();
 });
 
 it('should call onPress handler', () => {
   const onPress = jest.fn();
-  const label = 'Button';
-  const screen = render(<Button onPress={onPress}>{label}</Button>);
-  const button = screen.getByText(label);
-  fireEvent.press(button);
+  const label = 'TextLink';
+  const screen = render(<TextLink onPress={onPress}>{label}</TextLink>);
+  const textLink = screen.getByText(label);
+  fireEvent.press(textLink);
   expect(onPress).toHaveBeenCalled();
 });
 
 it('should not call onPress handler when disabled', () => {
   const onPress = jest.fn();
-  const label = 'Button';
+  const label = 'TextLink';
   const screen = render(
-    <Button onPress={onPress} disabled={true}>
+    <TextLink onPress={onPress} disabled={true}>
       {label}
-    </Button>,
+    </TextLink>,
   );
-  const button = screen.getByText(label);
-  fireEvent.press(button);
+  const textLink = screen.getByText(label);
+  fireEvent.press(textLink);
   expect(onPress).not.toHaveBeenCalled();
 });
 
 it('should contain the icon', () => {
   const screen = render(
-    <Button iconRight={<Icons.InfoIcon testID="test-svg" />}>Button</Button>,
+    <TextLink iconRight={<Icons.InfoIcon testID="test-svg" />}>
+      Button
+    </TextLink>,
   );
   const icon = screen.getByTestId('test-svg');
   expect(icon).toBeTruthy();

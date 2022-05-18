@@ -15,10 +15,12 @@ export interface ToggleIconProps extends ViewProps {
   variant: IToggleInputProps['variant'];
   iconVariant?: IToggleInputProps['iconVariant'];
   size?: IToggleInputProps['size'];
+  color?: 'primary' | 'secondary';
 }
 
 const ToggleIcon: React.FC<ToggleIconProps> = ({
   isPressed,
+  color = 'primary',
   checked,
   iconVariant = 'round',
   style,
@@ -26,7 +28,7 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
   variant,
   ...rest
 }) => {
-  const styles = useStyles(size);
+  const styles = useStyles(size, color);
 
   const getIcon = () => {
     if (iconVariant === 'check') {

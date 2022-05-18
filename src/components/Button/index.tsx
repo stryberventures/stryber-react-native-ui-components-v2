@@ -19,8 +19,8 @@ export interface IButtonProps extends PressableProps {
   color?: 'primary' | 'secondary';
   type?: 'submit' | 'reset';
   disabled?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
 }
@@ -28,8 +28,8 @@ export interface IButtonProps extends PressableProps {
 const Button: React.FC<IButtonProps> = ({
   style,
   children,
-  leftIcon,
-  rightIcon,
+  iconLeft,
+  iconRight,
   variant = 'contained',
   color = 'primary',
   size = 'medium',
@@ -73,9 +73,9 @@ const Button: React.FC<IButtonProps> = ({
       onPress={handlePress}
       {...rest}
     >
-      {renderIcon('leftIcon', leftIcon)}
+      {renderIcon('leftIcon', iconLeft)}
       <Text style={[styles.text, textStyle]}>{children}</Text>
-      {renderIcon('rightIcon', rightIcon)}
+      {renderIcon('rightIcon', iconRight)}
     </Pressable>
   );
 };

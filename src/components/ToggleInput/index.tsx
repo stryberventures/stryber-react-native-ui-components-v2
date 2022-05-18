@@ -8,7 +8,7 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import ToggleIcon from './ToggleIcon';
+import ToggleIcon, {ToggleIconProps} from './ToggleIcon';
 import HintMessage from '../HintMessage';
 import ErrorMessage from '../ErrorMessage';
 
@@ -23,6 +23,7 @@ export interface IToggleInputProps extends PressableProps {
   hint?: string;
   variant: 'radio' | 'checkbox';
   iconVariant: 'round' | 'check';
+  color?: ToggleIconProps['color'];
 }
 
 const ToggleInput: React.FC<IToggleInputProps> = ({
@@ -37,6 +38,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
   style,
   variant,
   iconVariant,
+  color,
   ...rest
 }) => {
   const [isPressed, setIsPressed] = useState(false);
@@ -61,6 +63,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
           isPressed={isPressed}
           iconVariant={iconVariant}
           size={size}
+          color={color}
         />
         <Text style={styles.toggleInputText}>{label}</Text>
       </View>

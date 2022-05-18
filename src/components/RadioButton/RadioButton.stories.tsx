@@ -20,11 +20,19 @@ const Template: ComponentStory<typeof RadioButton> = args => (
   </Form>
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   onChange: value => {
     console.log(value);
   },
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  onChange: value => {
+    console.log(value);
+  },
+  color: 'secondary',
 };
 
 export const Check = Template.bind({});
