@@ -1,21 +1,13 @@
 import React, {useEffect} from 'react';
-import {PressableProps, StyleProp, ViewStyle} from 'react-native';
 
 import {useFormContext} from '../Form';
 import ToggleInput, {IToggleInputProps} from '../ToggleInput';
 
-export interface IRadioButtonProps extends PressableProps {
+export interface IRadioButtonProps
+  extends Omit<IToggleInputProps, 'onChange' | 'variant'> {
   name?: string;
   value: any;
-  label?: string;
-  checked?: boolean;
-  onChange?: (value: any) => void;
-  error?: string;
-  disabled?: boolean;
-  iconVariant?: IToggleInputProps['iconVariant'];
-  style?: StyleProp<ViewStyle>;
-  size?: IToggleInputProps['size'];
-  hint?: string;
+  onChange?: (value?: any) => void;
   clearFormValueOnUnmount?: boolean;
 }
 

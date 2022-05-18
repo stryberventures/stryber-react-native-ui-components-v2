@@ -71,12 +71,12 @@ Flat.args = {
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
-  leftIcon: <Icons.InfoIcon />,
+  iconLeft: <Icons.InfoIcon />,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
-  rightIcon: <Icons.InfoIcon />,
+  iconRight: <Icons.InfoIcon />,
 };
 
 export const Disabled = Template.bind({});

@@ -16,11 +16,19 @@ const Template: ComponentStory<typeof Checkbox> = args => (
   <Checkbox {...args} label="Checkbox" />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   onChange: value => {
     console.log(value);
   },
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  onChange: value => {
+    console.log(value);
+  },
+  color: 'secondary',
 };
 
 export const Small = Template.bind({});
