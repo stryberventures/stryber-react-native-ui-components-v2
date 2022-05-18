@@ -61,7 +61,7 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@react-native-community/slider": "^4.2.1",
     "@storybook/addon-actions": "~6.4",
-    "@storybook/addon-essentials": "~6.3",
+    "@storybook/addon-essentials": "~6.4",
     "@storybook/addon-links": "~6.3",
     "@storybook/addon-ondevice-actions": "next",
     "@storybook/addon-ondevice-backgrounds": "next",
