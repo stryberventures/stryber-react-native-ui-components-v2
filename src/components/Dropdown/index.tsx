@@ -4,16 +4,21 @@ import {
   GestureResponderEvent,
   Modal,
   Pressable,
+  StyleProp,
   Text,
   View,
+  ViewStyle,
 } from 'react-native';
 import BaseInputLayout, {IBaseInputLayoutProps} from '../Input/BaseInputLayout';
 import {ArrowDownIcon} from '../Icons';
 import {useTheme} from '../Theme';
+import {validateInputValueLength} from '../../utils';
 
 export interface IDropdownProps extends IBaseInputLayoutProps {
   value?: string;
   placeholder?: string;
+  dropdownStyle?: StyleProp<ViewStyle>;
+  onChange?: (open: boolean) => void;
 }
 
 export interface IDropdownPosition {
@@ -28,6 +33,8 @@ const Dropdown: React.FC<IDropdownProps> = ({
   onPress,
   disabled,
   children,
+  dropdownStyle,
+  onChange,
   ...rest
 }) => {
   const {theme} = useTheme();
@@ -40,18 +47,24 @@ const Dropdown: React.FC<IDropdownProps> = ({
   });
   const styles = useStyles(dropdownPosition);
 
-  const openDropdown = (event: GestureResponderEvent) => {
+  const handleOpen = (event: GestureResponderEvent) => {
     dropdownInputRef.current!.measure((x, y, width, height, pageX, pageY) => {
       setDropdownPosition({top: pageY + height, left: pageX, width});
     });
     setVisible(true);
+    onChange && onChange(true);
     onPress && onPress(event);
+  };
+
+  const handleClose = () => {
+    setVisible(false);
+    onChange && onChange(false);
   };
 
   const renderDropdown = () => (
     <Modal visible={visible} transparent animationType="none">
-      <Pressable style={styles.overlay} onPress={() => setVisible(false)} />
-      <View style={styles.dropdown}>{children}</View>
+      <Pressable style={styles.overlay} onPress={handleClose} />
+      <View style={[styles.dropdown, dropdownStyle]}>{children}</View>
     </Modal>
   );
 
@@ -59,7 +72,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
     <BaseInputLayout
       isFocused={visible}
       ref={dropdownInputRef}
-      onPress={openDropdown}
+      onPress={handleOpen}
       rightContent={
         <ArrowDownIcon
           fill={disabled ? theme.divider.main : undefined}
@@ -77,7 +90,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
           disabled && styles.disabledText,
         ]}
       >
-        {value || placeholder}
+        {validateInputValueLength(value) || placeholder}
       </Text>
     </BaseInputLayout>
   );

@@ -28,6 +28,7 @@ const getStories = () => {
     require("../src/components/Dropdown/Dropdown.stories.tsx"),
     require("../src/components/Form/Form.stories.tsx"),
     require("../src/components/Input/Input.stories.tsx"),
+    require("../src/components/Multiselect/Multiselect.stories.tsx"),
     require("../src/components/RadioButton/RadioButton.stories.tsx"),
     require("../src/components/TextArea/TextArea.stories.tsx"),
     require("../src/components/TextLink/TextLink.stories.tsx"),

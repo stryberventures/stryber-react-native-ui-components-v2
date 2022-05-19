@@ -42,7 +42,7 @@ const Checkbox: React.FC<ICheckboxProps> = ({
   };
 
   useEffect(() => {
-    updateFormValue(name, checked, true);
+    updateFormValue(name, internalValue, true);
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };

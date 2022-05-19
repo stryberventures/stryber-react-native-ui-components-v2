@@ -3,7 +3,7 @@ import {render} from '@testing-library/react-native';
 
 import Input from '.';
 
-it('renders default elements', () => {
+it('renders with placeholder', () => {
   const label = 'Email';
   const placeholder = 'Type your email';
   const {getByText, getByPlaceholderText} = render(

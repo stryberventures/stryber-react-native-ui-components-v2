@@ -3,7 +3,7 @@ import * as yup from 'yup';
 
 export interface IFormContext {
   updateFormValue: (name: string, data: any, init?: boolean) => void;
-  updateFormTouched: (name: string, data: any) => void;
+  updateFormTouched: (name: string, isTouched: boolean) => void;
   unsetFormValue: (name: any) => void;
   formValues: any;
   formErrors: any;
@@ -96,7 +96,7 @@ const Form: FC<IFormProps> = ({
       validate(newFormValues);
 
       /** Sending on change callback (if it was provided) */
-      !init && onChange && onChange({...newFormValues});
+      !init && onChange && onChange(newFormValues);
 
       return newFormValues;
     });

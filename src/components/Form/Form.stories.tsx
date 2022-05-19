@@ -9,6 +9,7 @@ import {View} from 'react-native';
 import ExternalFormControl from '../../storybook/preview/ExternalFormControl';
 import RadioButton from '../RadioButton';
 import Checkbox from '../Checkbox';
+import Multiselect, {IMultiselectOption} from '../Multiselect';
 
 export default {
   title: 'Form',
@@ -16,13 +17,29 @@ export default {
   decorators: [CenterView],
 } as ComponentMeta<typeof Form>;
 
+const multiselectOptions: IMultiselectOption[] = [
+  {label: 'One', value: 'one'},
+  {label: 'Two', value: 'two'},
+  {label: 'Three for length testing', value: 'three'},
+  {label: 'Four', value: 'four'},
+  {label: 'Five', value: 'five'},
+  {label: 'Six', value: 'six'},
+];
+
 const Template: ComponentStory<typeof Form> = ({
   // removed onValidateAsync from props(web storybook error)
   onValidateAsync: _,
+  onValidate: _1,
   ...rest
 }) => {
   return (
     <Form {...rest}>
+      <Multiselect
+        label="Multiselect"
+        placeholder="multiselect"
+        name="multiselect"
+        options={multiselectOptions}
+      />
       <RadioButton name="radio" value="option 1" label="Option 1" />
       <RadioButton name="radio" value="option 2" label="Option 2" />
       <RadioButton name="radio" value="option 3" label="Option 3" />
@@ -68,7 +85,13 @@ WithInitialValues.args = {
   onReset: (formData: any) => {
     console.log('onReset external', formData);
   },
-  initialValues: {email: 'myemail@example.com', password: 'mypassword'},
+  initialValues: {
+    email: 'myemail@example.com',
+    password: 'mypassword',
+    multiselect: ['one', 'two'],
+    checkbox: true,
+    radio: 'option 2',
+  },
 };
 
 export const WithValidation = Template.bind({});
@@ -79,10 +102,12 @@ WithValidation.args = {
   onReset: (formData: any) => {
     console.log('onReset external', formData);
   },
-  initialValues: {email: 'myemail@example.com', password: 'mypassword'},
   validationSchema: yup.object({
     email: yup.string().email(),
     password: yup.string().required(),
+    radio: yup.string().required(),
+    checkbox: yup.boolean().required(),
+    multiselect: yup.array().min(1).required(),
   }),
 };
 
