@@ -6,9 +6,6 @@ import CenterView from '../../storybook/preview/CenterView';
 export default {
   title: 'Checkbox',
   component: Checkbox,
-  argTypes: {
-    onPress: {action: 'RadioButton pressed'},
-  },
   decorators: [CenterView],
 } as ComponentMeta<typeof Checkbox>;
 

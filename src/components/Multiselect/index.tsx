@@ -43,7 +43,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     updateFormValue,
     updateFormTouched,
   } = useFormContext(name);
-  const [selectedOptions, setSelectedOptions] = useState(
+  const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>(
     fieldValue || initSelectedOptions,
   );
   const errorMessage = fieldError || error;
@@ -67,7 +67,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   };
 
   const handleChange = (formValues: FormValuesType) => {
-    const pickedOptions: IMultiselectOption[] = [];
+    const pickedOptions: (string | number)[] = [];
     for (const key in formValues) {
       if (formValues[key]) {
         const selectedOption = options.find(option => option.label === key);
