@@ -90,7 +90,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
           disabled && styles.disabledText,
         ]}
       >
-        {validateInputValueLength(value) || placeholder}
+        {(!!value && validateInputValueLength(value)) || placeholder}
       </Text>
     </BaseInputLayout>
   );
