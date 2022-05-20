@@ -7,7 +7,7 @@ import Form, {useFormContext} from '../Form';
 
 export interface IMultiselectOption {
   label: string;
-  value: any;
+  value: string | number;
 }
 
 export interface IMultiselectProps
