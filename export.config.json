@@ -10,6 +10,7 @@
     "Icons": "icons",
     "Checkbox": "checkbox",
     "Dropdown": "dropdown",
-    "TextLink": "text-link"
+    "TextLink": "text-link",
+    "Multiselect": "multiselect"
   }
 }

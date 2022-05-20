@@ -46,3 +46,10 @@ Disabled.args = {
   placeholder: 'Disabled',
   disabled: true,
 };
+
+export const WithMaxLength = Template.bind({});
+WithMaxLength.args = {
+  label: 'Max Length',
+  placeholder: 'Max Length TextArea',
+  maxLength: 200,
+};

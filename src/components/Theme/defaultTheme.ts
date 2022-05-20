@@ -1,4 +1,10 @@
 export const defaultTheme = {
+  default: {
+    dark: '#606770',
+    main: '#D0D5DD',
+    light: '#FCFCFD',
+    hover: '#F2F4F7',
+  },
   primary: {
     main: '#003CB8',
     light: '#C2C9F1',

@@ -4,7 +4,7 @@ import {Text, TextProps} from 'react-native';
 
 interface IHintMessageProps extends TextProps {
   disabled?: boolean;
-  message?: string;
+  message: string;
 }
 
 const HintMessage: React.FC<IHintMessageProps> = ({
@@ -15,18 +15,14 @@ const HintMessage: React.FC<IHintMessageProps> = ({
 }) => {
   const styles = useStyles();
 
-  if (message) {
-    return (
-      <Text
-        style={[styles.hint, disabled && styles.disabledHint, style]}
-        {...rest}
-      >
-        {message}
-      </Text>
-    );
-  }
-
-  return null;
+  return (
+    <Text
+      style={[styles.hint, disabled && styles.disabledHint, style]}
+      {...rest}
+    >
+      {message}
+    </Text>
+  );
 };
 
 export default HintMessage;

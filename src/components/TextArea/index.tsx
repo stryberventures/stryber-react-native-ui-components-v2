@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from './styles';
 import Input, {IInputProps} from '../Input';
 
-interface ITextAreaProps extends IInputProps {}
+export interface ITextAreaProps extends IInputProps {}
 
 const TextArea: React.FC<ITextAreaProps> = ({inputWrapperStyle, ...rest}) => {
   const styles = useStyles();

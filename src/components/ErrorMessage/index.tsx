@@ -3,7 +3,7 @@ import useStyles from './styles';
 import {Text, TextProps} from 'react-native';
 
 interface IErrorMessageProps extends TextProps {
-  error?: string;
+  error: string;
 }
 
 const ErrorMessage: React.FC<IErrorMessageProps> = ({
@@ -13,14 +13,11 @@ const ErrorMessage: React.FC<IErrorMessageProps> = ({
 }) => {
   const styles = useStyles();
 
-  if (error) {
-    return (
-      <Text style={[styles.error, style]} {...rest}>
-        {error}
-      </Text>
-    );
-  }
-  return null;
+  return (
+    <Text style={[styles.error, style]} {...rest}>
+      {error}
+    </Text>
+  );
 };
 
 export default ErrorMessage;

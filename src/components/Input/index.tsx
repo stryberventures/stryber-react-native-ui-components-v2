@@ -42,6 +42,7 @@ const Input: React.FC<IInputProps> = ({
   inputStyle,
   disabled,
   controlled,
+  maxLength,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -101,6 +102,8 @@ const Input: React.FC<IInputProps> = ({
       wrapperStyle={inputWrapperStyle}
       disabled={disabled}
       hint={hint}
+      maxValueLength={maxLength}
+      currentValueLength={controlled ? value?.length : internalValue?.length}
     >
       <TextInput
         style={[styles.input, disabled && styles.disabledInput, inputStyle]}
@@ -110,6 +113,7 @@ const Input: React.FC<IInputProps> = ({
         onFocus={onFocusWrapper}
         placeholderTextColor={disabled ? theme.text.disabled : theme.text.hint}
         ref={inputRef}
+        maxLength={maxLength}
         editable={!disabled}
         {...rest}
       />

@@ -7,9 +7,6 @@ import Form from '../Form';
 export default {
   title: 'RadioButton',
   component: RadioButton,
-  argTypes: {
-    onPress: {action: 'RadioButton pressed'},
-  },
   decorators: [CenterView],
 } as ComponentMeta<typeof RadioButton>;
 
