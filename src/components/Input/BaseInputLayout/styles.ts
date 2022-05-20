@@ -58,5 +58,8 @@ export default createUseStyles(
     disabledLabel: {
       color: theme.text.disabled,
     },
+    mainContent: {
+      alignSelf: 'flex-start',
+    },
   }),
 );

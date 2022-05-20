@@ -21,6 +21,8 @@ export interface IBaseInputLayoutProps extends PressableProps {
   disabled?: boolean;
   hint?: string;
   rightContent?: React.ReactNode;
+  maxValueLength?: number;
+  currentValueLength?: number;
 }
 
 export interface IInputSize {
@@ -41,6 +43,8 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       hint,
       color = 'primary',
       rightContent,
+      currentValueLength,
+      maxValueLength,
       ...rest
     },
     ref,
@@ -69,7 +73,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           {...rest}
         >
           {!!error && <View style={styles.errorLine} />}
-          <View>
+          <View style={styles.mainContent}>
             <Text style={[styles.label, disabled && styles.disabledLabel]}>
               {label}
             </Text>
@@ -85,8 +89,14 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
             ]}
           />
         )}
-        <HintMessage message={hint} disabled={disabled} />
-        <ErrorMessage error={error} />
+        {hint && <HintMessage message={hint} disabled={disabled} />}
+        {!!maxValueLength && (
+          <HintMessage
+            message={`${currentValueLength} / ${maxValueLength}`}
+            disabled={disabled}
+          />
+        )}
+        {error && <ErrorMessage error={error} />}
       </View>
     );
   },

@@ -72,12 +72,14 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
         />
         <Text style={styles.toggleInputText}>{label}</Text>
       </View>
-      <HintMessage
-        style={styles.textMargin}
-        message={hint}
-        disabled={disabled}
-      />
-      <ErrorMessage style={styles.textMargin} error={error} />
+      {hint && (
+        <HintMessage
+          style={styles.textMargin}
+          message={hint}
+          disabled={disabled}
+        />
+      )}
+      {error && <ErrorMessage style={styles.textMargin} error={error} />}
     </Pressable>
   );
 };
