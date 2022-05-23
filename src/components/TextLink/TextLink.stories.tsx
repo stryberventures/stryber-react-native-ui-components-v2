@@ -25,10 +25,16 @@ Secondary.args = {
   color: 'secondary',
 };
 
-export const Icon = Template.bind({});
-Icon.args = {
+export const RightIcon = Template.bind({});
+RightIcon.args = {
   children: 'Text link',
   iconRight: <ArrowRightIcon />,
+};
+
+export const LeftIcon = Template.bind({});
+LeftIcon.args = {
+  children: 'Text link',
+  iconLeft: <ArrowRightIcon style={{transform: [{rotate: '180deg'}]}} />,
 };
 
 export const Disabled = Template.bind({});

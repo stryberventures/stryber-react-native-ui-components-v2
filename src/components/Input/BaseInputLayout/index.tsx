@@ -43,7 +43,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       hint,
       color = 'primary',
       rightContent,
-      currentValueLength,
+      currentValueLength = 0,
       maxValueLength,
       ...rest
     },
