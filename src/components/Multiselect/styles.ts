@@ -13,6 +13,6 @@ export default createUseStyles(theme => ({
     paddingVertical: 8.5,
   },
   multiselectItemPressed: {
-    backgroundColor: theme.default.hover,
+    backgroundColor: theme.default.extraLight,
   },
 }));

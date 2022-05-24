@@ -7,10 +7,12 @@ import {
   Pressable,
   StyleProp,
   ViewStyle,
+  TextStyle,
 } from 'react-native';
 import ToggleIcon, {ToggleIconProps} from './ToggleIcon';
 import HintMessage from '../HintMessage';
 import ErrorMessage from '../ErrorMessage';
+import SwitchIcon from './SwitchIcon';
 
 export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   label?: string;
@@ -21,10 +23,11 @@ export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   size?: 'medium' | 'small';
   style?: StyleProp<ViewStyle>;
   hint?: string;
-  variant: 'radio' | 'checkbox';
+  variant: 'radio' | 'checkbox' | 'switch';
   iconVariant?: 'round' | 'check';
   color?: ToggleIconProps['color'];
   pressedStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
 }
 
 const ToggleInput: React.FC<IToggleInputProps> = ({
@@ -40,10 +43,11 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
   iconVariant = 'check',
   color,
   pressedStyle,
+  labelStyle,
   ...rest
 }) => {
   const [isPressed, setIsPressed] = useState(false);
-  const styles = useStyles(size);
+  const styles = useStyles(size, variant);
 
   const handlePressIn = () => setIsPressed(true);
   const handlePressOut = () => setIsPressed(false);
@@ -62,24 +66,34 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
       {...rest}
     >
       <View style={styles.toggleInputWrapper}>
-        <ToggleIcon
-          variant={variant}
-          checked={checked}
-          isPressed={isPressed}
-          iconVariant={iconVariant}
-          size={size}
-          color={color}
-        />
-        <Text style={styles.toggleInputText}>{label}</Text>
+        {variant === 'switch' ? (
+          <SwitchIcon isPressed={isPressed} checked={checked} color={color} />
+        ) : (
+          <ToggleIcon
+            variant={variant}
+            checked={checked}
+            isPressed={isPressed}
+            iconVariant={iconVariant}
+            size={size}
+            color={color}
+          />
+        )}
+        <View style={styles.textContainer}>
+          {!!label && (
+            <Text style={[styles.toggleInputText, labelStyle]}>{label}</Text>
+          )}
+          {!!hint && (
+            <HintMessage
+              style={styles.hint}
+              message={hint}
+              disabled={disabled}
+            />
+          )}
+        </View>
       </View>
-      {hint && (
-        <HintMessage
-          style={styles.textMargin}
-          message={hint}
-          disabled={disabled}
-        />
+      {!!error && variant !== 'radio' && (
+        <ErrorMessage style={styles.error} error={error} />
       )}
-      {error && <ErrorMessage style={styles.textMargin} error={error} />}
     </Pressable>
   );
 };

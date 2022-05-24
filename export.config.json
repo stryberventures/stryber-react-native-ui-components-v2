@@ -11,6 +11,7 @@
     "Checkbox": "checkbox",
     "Dropdown": "dropdown",
     "TextLink": "text-link",
-    "Multiselect": "multiselect"
+    "Multiselect": "multiselect",
+    "Switch": "switch"
   }
 }

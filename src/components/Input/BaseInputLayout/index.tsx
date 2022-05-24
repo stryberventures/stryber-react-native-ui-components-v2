@@ -72,7 +72,6 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           ref={ref}
           {...rest}
         >
-          {!!error && <View style={styles.errorLine} />}
           <View style={styles.mainContent}>
             <Text style={[styles.label, disabled && styles.disabledLabel]}>
               {label}
@@ -89,14 +88,14 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
             ]}
           />
         )}
-        {hint && <HintMessage message={hint} disabled={disabled} />}
+        {!!hint && <HintMessage message={hint} disabled={disabled} />}
         {!!maxValueLength && (
           <HintMessage
             message={`${currentValueLength} / ${maxValueLength}`}
             disabled={disabled}
           />
         )}
-        {error && <ErrorMessage error={error} />}
+        {!!error && <ErrorMessage error={error} />}
       </View>
     );
   },

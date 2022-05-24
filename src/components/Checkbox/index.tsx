@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {useFormContext} from '../Form';
+import React from 'react';
 import ToggleInput, {IToggleInputProps} from '../ToggleInput';
+import {useCheckbox} from './useCheckbox';
 
 export interface ICheckboxProps
   extends Omit<IToggleInputProps, 'onChange' | 'variant' | 'iconVariant'> {
@@ -23,31 +23,13 @@ const Checkbox: React.FC<ICheckboxProps> = ({
   controlled,
   ...rest
 }) => {
-  const {
-    fieldValue,
-    fieldError,
-    updateFormValue,
-    unsetFormValue,
-    updateFormTouched,
-  } = useFormContext(name);
-
-  const [internalValue, setInternalValue] = useState(fieldValue || checked);
-  const errorMessage = fieldError || error;
-
-  const onChangeWrapper = () => {
-    setInternalValue(!internalValue);
-    updateFormValue(name, !internalValue);
-    onChange && onChange(!internalValue);
-    updateFormTouched(name, true);
-  };
-
-  useEffect(() => {
-    updateFormValue(name, internalValue, true);
-    return () => {
-      clearFormValueOnUnmount && unsetFormValue(name);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const {internalValue, onChangeWrapper, errorMessage} = useCheckbox({
+    name,
+    error,
+    onChange,
+    checked,
+    clearFormValueOnUnmount,
+  });
 
   return (
     <ToggleInput
