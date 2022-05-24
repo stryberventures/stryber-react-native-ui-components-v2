@@ -40,14 +40,6 @@ Small.args = {
   size: 'small',
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  onChange: value => {
-    console.log(value);
-  },
-  error: 'Error message',
-};
-
 export const Hint = Template.bind({});
 Hint.args = {
   onChange: value => {
