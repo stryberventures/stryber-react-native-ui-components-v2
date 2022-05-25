@@ -2,13 +2,11 @@ import {useEffect, useState} from 'react';
 import {useFormContext} from '../Form';
 import {ICheckboxProps} from './index';
 
-interface IUseCheckbox {
-  name: ICheckboxProps['name'];
-  error: ICheckboxProps['error'];
-  onChange: ICheckboxProps['onChange'];
-  checked: ICheckboxProps['checked'];
-  clearFormValueOnUnmount: ICheckboxProps['clearFormValueOnUnmount'];
-}
+interface IUseCheckbox
+  extends Pick<
+    ICheckboxProps,
+    'name' | 'error' | 'onChange' | 'checked' | 'clearFormValueOnUnmount'
+  > {}
 
 export const useCheckbox = ({
   name = 'unnamed',
