@@ -4,7 +4,10 @@ import {useFormContext} from '../Form';
 import ToggleInput, {IToggleInputProps} from '../ToggleInput';
 
 export interface IRadioButtonProps
-  extends Omit<IToggleInputProps, 'onChange' | 'variant'> {
+  extends Omit<
+    IToggleInputProps,
+    'onChange' | 'variant' | 'iconVariant' | 'error'
+  > {
   name?: string;
   value: any;
   onChange?: (value?: any) => void;
@@ -14,10 +17,8 @@ export interface IRadioButtonProps
 const RadioButton: React.FC<IRadioButtonProps> = ({
   value,
   name = 'unnamed',
-  iconVariant = 'round',
   disabled,
   hint,
-  error,
   label,
   size = 'medium',
   checked,
@@ -27,14 +28,12 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
 }) => {
   const {
     fieldValue,
-    fieldError,
     updateFormValue,
     unsetFormValue,
     updateFormTouched,
   } = useFormContext(name);
 
   const checkedValue = fieldValue === value;
-  const errorMessage = fieldError || error;
 
   const onChangeWrapper = () => {
     updateFormValue(name, value);
@@ -45,6 +44,9 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
   useEffect(() => {
     if (checked) {
       updateFormValue(name, value, true);
+    }
+    if (!fieldValue) {
+      updateFormValue(name, undefined, true);
     }
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
@@ -57,8 +59,7 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
       label={label}
       checked={checkedValue}
       variant="radio"
-      iconVariant={iconVariant}
-      error={errorMessage}
+      iconVariant="round"
       onChange={onChangeWrapper}
       disabled={disabled}
       size={size}

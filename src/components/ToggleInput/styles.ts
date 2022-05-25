@@ -1,28 +1,38 @@
 import {createUseStyles} from '../Theme';
 import {IToggleInputProps} from './index';
+import {TOGGLE_ICON_SIZE} from './ToggleIcon/styles';
+import {SWITCH_SIZE} from './SwitchIcon/styles';
 
-const toggleInputConst = {
-  SIZE: {
-    medium: 20,
-    small: 16,
+export default createUseStyles(
+  (
+    theme,
+    size: IToggleInputProps['size'],
+    variant: IToggleInputProps['variant'],
+  ) => {
+    const isSwitch = variant === 'switch';
+    return {
+      toggleInputText: {
+        color: theme.text.secondary,
+        fontWeight: '500',
+        lineHeight: isSwitch ? SWITCH_SIZE.height : TOGGLE_ICON_SIZE[size!],
+      },
+      toggleInputWrapper: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+      },
+      hint: {
+        lineHeight: isSwitch ? SWITCH_SIZE.height : TOGGLE_ICON_SIZE[size!],
+        marginTop: 0,
+      },
+      textContainer: {
+        marginLeft: 8,
+      },
+      disabled: {
+        opacity: 0.45,
+      },
+      error: {
+        marginTop: 8,
+      },
+    };
   },
-  TEXT_MARGIN: 8,
-};
-
-export default createUseStyles((theme, size: IToggleInputProps['size']) => ({
-  toggleInputText: {
-    color: theme.text.secondary,
-    fontWeight: '500',
-    marginLeft: toggleInputConst.TEXT_MARGIN,
-  },
-  toggleInputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  textMargin: {
-    marginLeft: toggleInputConst.SIZE[size!] + toggleInputConst.TEXT_MARGIN,
-  },
-  disabled: {
-    opacity: 0.45,
-  },
-}));
+);

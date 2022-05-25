@@ -1,9 +1,13 @@
 export const defaultTheme = {
+  background: {
+    main: '#FFF',
+    disabled: '#FCFCFD',
+  },
   default: {
-    dark: '#606770',
-    main: '#D0D5DD',
-    light: '#FCFCFD',
-    hover: '#F2F4F7',
+    dark: '#667085',
+    main: '#C7CCD3',
+    light: '#E4E7EC',
+    extraLight: '#F9FAFB',
   },
   primary: {
     main: '#003CB8',
@@ -28,10 +32,6 @@ export const defaultTheme = {
     light: '#FBDCDA',
     dark: '#D92C20',
     contrast: '#000',
-  },
-  background: {
-    main: '#FFF',
-    disabled: '#FCFCFD',
   },
   divider: {
     main: '#D0D5DD',

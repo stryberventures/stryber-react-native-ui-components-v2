@@ -12,8 +12,8 @@ export default {
 
 const Template: ComponentStory<typeof RadioButton> = args => (
   <Form>
-    <RadioButton {...args} value="option 1" label="Option 1" />
-    <RadioButton {...args} value="option 2" label="Option 2" />
+    <RadioButton label="Option 1" {...args} value="option 1" />
+    <RadioButton label="Option 2" {...args} value="option 2" />
   </Form>
 );
 
@@ -32,14 +32,6 @@ Secondary.args = {
   color: 'secondary',
 };
 
-export const Check = Template.bind({});
-Check.args = {
-  onChange: value => {
-    console.log(value);
-  },
-  iconVariant: 'check',
-};
-
 export const Small = Template.bind({});
 Small.args = {
   onChange: value => {
@@ -48,19 +40,12 @@ Small.args = {
   size: 'small',
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  onChange: value => {
-    console.log(value);
-  },
-  error: 'Error message',
-};
-
 export const Hint = Template.bind({});
 Hint.args = {
   onChange: value => {
     console.log(value);
   },
+  label: '',
   hint: 'Hint message',
 };
 

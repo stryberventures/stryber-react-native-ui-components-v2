@@ -9,6 +9,7 @@ import {View} from 'react-native';
 import ExternalFormControl from '../../storybook/preview/ExternalFormControl';
 import RadioButton from '../RadioButton';
 import Checkbox from '../Checkbox';
+import Switch from '../Switch';
 import Multiselect, {IMultiselectOption} from '../Multiselect';
 
 export default {
@@ -44,6 +45,7 @@ const Template: ComponentStory<typeof Form> = ({
       <RadioButton name="radio" value="option 2" label="Option 2" />
       <RadioButton name="radio" value="option 3" label="Option 3" />
       <Checkbox name="checkbox" label="Stay logged in" />
+      <Switch name="switch" label="Switch" />
       <Input
         name="email"
         placeholder="Email"
@@ -91,6 +93,7 @@ WithInitialValues.args = {
     multiselect: ['one', 'two'],
     checkbox: true,
     radio: 'option 2',
+    switch: true,
   },
 };
 
@@ -105,8 +108,9 @@ WithValidation.args = {
   validationSchema: yup.object({
     email: yup.string().email(),
     password: yup.string().required(),
-    radio: yup.string().required(),
+    radio: yup.string().min(2).required(),
     checkbox: yup.boolean().required(),
+    switch: yup.boolean().required(),
     multiselect: yup.array().min(1).required(),
   }),
 };

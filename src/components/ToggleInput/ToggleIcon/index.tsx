@@ -12,7 +12,7 @@ const CHECK_ICON_SIZE = {
 export interface ToggleIconProps extends ViewProps {
   checked?: boolean;
   isPressed: boolean;
-  variant: IToggleInputProps['variant'];
+  variant: 'radio' | 'checkbox';
   iconVariant?: IToggleInputProps['iconVariant'];
   size?: IToggleInputProps['size'];
   color?: 'primary' | 'secondary';
@@ -41,7 +41,6 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
     <View
       style={[
         styles.container,
-        styles[size],
         styles[variant],
         isPressed && !checked && styles.pressed,
         checked && styles.checked,

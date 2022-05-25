@@ -1,39 +1,37 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import Checkbox from '.';
+import Switch from '.';
 
 it('renders', () => {
-  render(<Checkbox />);
+  render(<Switch />);
 });
 
 it('displays label', () => {
-  const label = 'Checkbox';
-  const {getByText} = render(<Checkbox label={label} />);
+  const label = 'Switch';
+  const {getByText} = render(<Switch label={label} />);
 
   getByText(label);
 });
 
 it('displays error', () => {
-  const error = 'Checkbox';
-  const {getByText} = render(<Checkbox error={error} />);
+  const error = 'Switch';
+  const {getByText} = render(<Switch error={error} />);
 
   getByText(error);
 });
 
 it('displays hint', () => {
-  const hint = 'Checkbox';
-  const {getByText} = render(<Checkbox hint={hint} />);
+  const hint = 'Switch';
+  const {getByText} = render(<Switch hint={hint} />);
 
   getByText(hint);
 });
 
 it('fires onChange', () => {
   const onChange = jest.fn();
-  const testId = 'checkbox';
-  const {getByTestId} = render(
-    <Checkbox testID={testId} onChange={onChange} />,
-  );
+  const testId = 'switch';
+  const {getByTestId} = render(<Switch testID={testId} onChange={onChange} />);
   const radioButton = getByTestId(testId);
   fireEvent.press(radioButton);
   expect(onChange).toHaveBeenCalled();

@@ -14,13 +14,6 @@ it('displays label', () => {
   getByText(label);
 });
 
-it('displays error', () => {
-  const error = 'Radio error';
-  const {getByText} = render(<RadioButton value="option" error={error} />);
-
-  getByText(error);
-});
-
 it('displays hint', () => {
   const hint = 'Radio hint';
   const {getByText} = render(<RadioButton value="option" hint={hint} />);

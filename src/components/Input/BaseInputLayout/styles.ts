@@ -3,7 +3,6 @@ import {IBaseInputLayoutProps, IInputSize} from './index';
 
 const inputConstants = {
   OUTLINE_SIZE: 8,
-  ERROR_LINE_WIDTH: 8,
   BORDER_WIDTH: 1,
 };
 
@@ -39,18 +38,9 @@ export default createUseStyles(
     },
     error: {
       borderColor: theme.error.main,
-      paddingLeft: 8 + inputConstants.ERROR_LINE_WIDTH,
     },
     errorFocusedOutline: {
       backgroundColor: theme.error.light,
-    },
-    errorLine: {
-      position: 'absolute',
-      width: inputConstants.ERROR_LINE_WIDTH,
-      height: inputSize.height - inputConstants.BORDER_WIDTH * 2,
-      backgroundColor: theme.error.main,
-      left: 0,
-      top: 0,
     },
     disabled: {
       backgroundColor: theme.background.disabled,

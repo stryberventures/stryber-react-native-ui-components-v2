@@ -12,6 +12,11 @@ const CHECKBOX_BORDER_RADIUS = {
   small: 4,
 };
 
+export const TOGGLE_ICON_SIZE = {
+  medium: 20,
+  small: 16,
+};
+
 export default createUseStyles(
   (
     theme,
@@ -24,20 +29,14 @@ export default createUseStyles(
       backgroundColor: theme[color!].contrast,
       justifyContent: 'center',
       alignItems: 'center',
+      width: TOGGLE_ICON_SIZE[size!],
+      height: TOGGLE_ICON_SIZE[size!],
     },
     radio: {
       borderRadius: 10,
     },
     checkbox: {
       borderRadius: CHECKBOX_BORDER_RADIUS[size!],
-    },
-    medium: {
-      width: 20,
-      height: 20,
-    },
-    small: {
-      width: 16,
-      height: 16,
     },
     pressed: {
       backgroundColor: theme[color!].light,

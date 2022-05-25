@@ -1,16 +1,16 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
-import Checkbox from '.';
+import Switch from '.';
 import CenterView from '../../storybook/preview/CenterView';
 
 export default {
-  title: 'Checkbox',
-  component: Checkbox,
+  title: 'Switch',
+  component: Switch,
   decorators: [CenterView],
-} as ComponentMeta<typeof Checkbox>;
+} as ComponentMeta<typeof Switch>;
 
-const Template: ComponentStory<typeof Checkbox> = args => (
-  <Checkbox label="Checkbox" {...args} />
+const Template: ComponentStory<typeof Switch> = args => (
+  <Switch label="Switch" {...args} />
 );
 
 export const Primary = Template.bind({});
@@ -18,11 +18,6 @@ export const Primary = Template.bind({});
 export const Secondary = Template.bind({});
 Secondary.args = {
   color: 'secondary',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
 };
 
 export const Error = Template.bind({});
