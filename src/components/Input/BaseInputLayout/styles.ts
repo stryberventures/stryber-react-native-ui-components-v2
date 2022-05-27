@@ -50,6 +50,7 @@ export default createUseStyles(
     },
     mainContent: {
       alignSelf: 'flex-start',
+      flex: 1,
     },
   }),
 );

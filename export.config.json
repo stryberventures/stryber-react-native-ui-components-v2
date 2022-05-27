@@ -12,6 +12,7 @@
     "Dropdown": "dropdown",
     "TextLink": "text-link",
     "Multiselect": "multiselect",
-    "Switch": "switch"
+    "Switch": "switch",
+    "PasswordInput": "password-input"
   }
 }
