@@ -75,7 +75,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
       onPress={handleOpen}
       rightContent={
         <ArrowDownIcon
-          fill={disabled ? theme.divider.main : undefined}
+          fill={disabled ? theme.divider.main : theme.default.dark}
           style={[styles.icon, visible && styles.invertedIcon]}
         />
       }

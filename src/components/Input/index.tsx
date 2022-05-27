@@ -24,6 +24,7 @@ export interface IInputProps extends TextInputProps {
   inputStyle?: StyleProp<TextStyle>;
   disabled?: boolean;
   controlled?: boolean;
+  rightContent?: IBaseInputLayoutProps['rightContent'];
   color?: IBaseInputLayoutProps['color'];
 }
 
@@ -43,6 +44,8 @@ const Input: React.FC<IInputProps> = ({
   disabled,
   controlled,
   maxLength,
+  rightContent,
+  color,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -104,6 +107,8 @@ const Input: React.FC<IInputProps> = ({
       hint={hint}
       maxValueLength={maxLength}
       currentValueLength={controlled ? value?.length : internalValue?.length}
+      rightContent={rightContent}
+      color={color}
     >
       <TextInput
         style={[styles.input, disabled && styles.disabledInput, inputStyle]}
