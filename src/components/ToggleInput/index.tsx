@@ -76,6 +76,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
             iconVariant={iconVariant}
             size={size}
             color={color}
+            disabled={disabled}
           />
         )}
         <View style={styles.textContainer}>

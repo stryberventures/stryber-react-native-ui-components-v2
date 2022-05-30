@@ -3,6 +3,7 @@ import useStyles from './styles';
 import {View, ViewProps} from 'react-native';
 import {CheckIcon} from '../../Icons';
 import {IToggleInputProps} from '../index';
+import {useTheme} from '../../Theme';
 
 const CHECK_ICON_SIZE = {
   medium: {width: 12, height: 10},
@@ -16,6 +17,7 @@ export interface ToggleIconProps extends ViewProps {
   iconVariant?: IToggleInputProps['iconVariant'];
   size?: IToggleInputProps['size'];
   color?: 'primary' | 'secondary';
+  disabled?: boolean;
 }
 
 const ToggleIcon: React.FC<ToggleIconProps> = ({
@@ -26,15 +28,24 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
   style,
   size = 'medium',
   variant,
+  disabled,
   ...rest
 }) => {
+  const {theme} = useTheme();
   const styles = useStyles(size, color);
 
   const getIcon = () => {
     if (iconVariant === 'check') {
-      return <CheckIcon {...CHECK_ICON_SIZE[size]} />;
+      return (
+        <CheckIcon
+          {...CHECK_ICON_SIZE[size]}
+          fill={disabled ? theme[color].main : theme[color].contrast}
+        />
+      );
     }
-    return <View style={styles.checkedIcon} />;
+    return (
+      <View style={[styles.checkedIcon, disabled && styles.disabledIcon]} />
+    );
   };
 
   return (
@@ -45,6 +56,7 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
         isPressed && !checked && styles.pressed,
         checked && styles.checked,
         isPressed && checked && styles.pressedChecked,
+        disabled && styles.disabled,
         style,
       ]}
       {...rest}
