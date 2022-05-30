@@ -44,8 +44,9 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
   useEffect(() => {
     if (checked) {
       updateFormValue(name, value, true);
+      console.log(checked, value);
     }
-    if (!fieldValue) {
+    if (!fieldValue && !checked) {
       updateFormValue(name, undefined, true);
     }
     return () => {

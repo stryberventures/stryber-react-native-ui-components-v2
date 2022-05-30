@@ -40,3 +40,10 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
 };
+
+export const DisabledChecked = Template.bind({});
+DisabledChecked.args = {
+  disabled: true,
+  controlled: true,
+  checked: true,
+};

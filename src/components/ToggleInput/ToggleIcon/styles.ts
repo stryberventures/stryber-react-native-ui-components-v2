@@ -53,5 +53,11 @@ export default createUseStyles(
       backgroundColor: theme[color!].contrast,
       borderRadius: 4,
     },
+    disabled: {
+      backgroundColor: theme[color!].contrast,
+    },
+    disabledIcon: {
+      backgroundColor: theme[color!].main,
+    },
   }),
 );

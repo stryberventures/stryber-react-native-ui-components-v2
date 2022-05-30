@@ -11,6 +11,7 @@ const TextArea: React.FC<ITextAreaProps> = ({inputWrapperStyle, ...rest}) => {
       multiline={true}
       numberOfLines={6}
       inputWrapperStyle={[styles.textArea, inputWrapperStyle]}
+      inputStyle={styles.input}
       {...rest}
     />
   );

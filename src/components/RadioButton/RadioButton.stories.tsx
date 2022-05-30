@@ -56,3 +56,12 @@ Disabled.args = {
   },
   disabled: true,
 };
+
+export const DisabledChecked = Template.bind({});
+DisabledChecked.args = {
+  onChange: value => {
+    console.log(value);
+  },
+  disabled: true,
+  checked: true,
+};
