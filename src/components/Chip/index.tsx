@@ -6,6 +6,7 @@ import {
   Pressable,
   StyleProp,
   ViewStyle,
+  TextStyle,
 } from 'react-native';
 
 export interface IChipProps extends PressableProps {
@@ -14,6 +15,7 @@ export interface IChipProps extends PressableProps {
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
 }
 
 const Chip: React.FC<IChipProps> = ({
@@ -24,6 +26,7 @@ const Chip: React.FC<IChipProps> = ({
   color = 'primary',
   variant = 'contained',
   style,
+  textStyle,
   ...rest
 }) => {
   const isOutlined = variant === 'outlined';
@@ -48,6 +51,7 @@ const Chip: React.FC<IChipProps> = ({
           styles.text,
           isOutlined && styles.outlinedText,
           disabled && styles.disabledText,
+          textStyle,
         ]}
       >
         {children}
