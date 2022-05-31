@@ -13,6 +13,7 @@
     "TextLink": "text-link",
     "Multiselect": "multiselect",
     "Switch": "switch",
-    "PasswordInput": "password-input"
+    "PasswordInput": "password-input",
+    "Chip": "chip"
   }
 }

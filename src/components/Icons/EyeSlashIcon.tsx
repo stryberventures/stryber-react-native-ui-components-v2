@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, {Path, SvgProps} from 'react-native-svg';
 
-const EyeIcon: React.FC<SvgProps> = ({fill, ...rest}) => (
+const EyeSlashIcon: React.FC<SvgProps> = ({fill, ...rest}) => (
   <Svg viewBox="0 0 20 18" {...rest}>
     <Path
       fillRule="evenodd"
@@ -12,10 +12,10 @@ const EyeIcon: React.FC<SvgProps> = ({fill, ...rest}) => (
   </Svg>
 );
 
-EyeIcon.defaultProps = {
+EyeSlashIcon.defaultProps = {
   width: 20,
   height: 18,
   fill: '#667085',
 };
 
-export default EyeIcon;
+export default EyeSlashIcon;
