@@ -58,6 +58,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
       onPressOut={handlePressOut}
       onPress={onChange}
       disabled={disabled}
+      hitSlop={3}
       style={({pressed}) => [
         disabled && styles.disabled,
         style,
