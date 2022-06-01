@@ -17,7 +17,7 @@ interface IThemeContext {
   updateTheme: (updatedTheme: Object) => void;
 }
 
-interface IThemeProvider {
+export interface IThemeProvider {
   initial: Object;
   children?: React.ReactNode;
 }
