@@ -34,7 +34,7 @@ export default createUseStyles((theme, color: IChipProps['color']) => ({
     marginHorizontal: 8,
   },
   disabledText: {
-    color: theme.text.hint,
+    color: theme.default.main,
   },
   outlinedText: {
     color: theme[color!].main,
