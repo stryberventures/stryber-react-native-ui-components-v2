@@ -61,13 +61,13 @@ const Tooltip: React.FC<ITooltipProps> = ({
   onChange,
   titleStyle,
   textStyle,
-  visible: isVisible,
+  visible: isVisible = false,
   controlled,
   withCloseButton,
   ...rest
 }) => {
   const childrenWrapperRef = useRef<View>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(isVisible);
   const [childPosition, setChildPosition] = useState<IChildPosition>({
     top: 0,
     left: 0,

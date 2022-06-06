@@ -1,7 +1,7 @@
 import {createUseStyles} from '../../../components/Theme';
 
-export default createUseStyles({
+export default createUseStyles((_, height: number) => ({
   divider: {
-    marginVertical: 20,
+    marginVertical: height,
   },
-});
+}));

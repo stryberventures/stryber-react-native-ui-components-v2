@@ -11,6 +11,7 @@ import RadioButton from '../RadioButton';
 import Checkbox from '../Checkbox';
 import Switch from '../Switch';
 import Multiselect, {IMultiselectOption} from '../Multiselect';
+import Divider from '../../storybook/preview/Divider';
 
 export default {
   title: 'Form',
@@ -41,11 +42,17 @@ const Template: ComponentStory<typeof Form> = ({
         name="multiselect"
         options={multiselectOptions}
       />
+      <Divider height={10} />
       <RadioButton name="radio" value="option 1" label="Option 1" />
+      <Divider height={10} />
       <RadioButton name="radio" value="option 2" label="Option 2" />
+      <Divider height={10} />
       <RadioButton name="radio" value="option 3" label="Option 3" />
+      <Divider height={10} />
       <Checkbox name="checkbox" label="Stay logged in" />
+      <Divider height={10} />
       <Switch name="switch" label="Switch" />
+      <Divider height={10} />
       <Input
         name="email"
         placeholder="Email"
@@ -53,6 +60,7 @@ const Template: ComponentStory<typeof Form> = ({
         // eslint-disable-next-line react-native/no-inline-styles
         style={{marginVertical: 20}}
       />
+      <Divider height={10} />
       <Input name="password" placeholder="Password" label="Password" />
       <View
         // eslint-disable-next-line react-native/no-inline-styles
