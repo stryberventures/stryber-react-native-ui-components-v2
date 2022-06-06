@@ -15,6 +15,7 @@
     "Switch": "switch",
     "PasswordInput": "password-input",
     "Chip": "chip",
-    "Tooltip": "tooltip"
+    "Tooltip": "tooltip",
+    "ToggleInput": "toggle-input"
   }
 }
