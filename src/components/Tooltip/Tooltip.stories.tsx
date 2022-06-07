@@ -32,9 +32,29 @@ const Template: ComponentStory<typeof Tooltip> = args => (
 
 export const Top = Template.bind({});
 
+export const TopStart = Template.bind({});
+TopStart.args = {
+  position: 'topStart',
+};
+
+export const TopEnd = Template.bind({});
+TopEnd.args = {
+  position: 'topEnd',
+};
+
 export const Left = Template.bind({});
 Left.args = {
   position: 'left',
+};
+
+export const LeftStart = Template.bind({});
+LeftStart.args = {
+  position: 'leftStart',
+};
+
+export const LeftEnd = Template.bind({});
+LeftEnd.args = {
+  position: 'leftEnd',
 };
 
 export const Right = Template.bind({});
@@ -42,9 +62,29 @@ Right.args = {
   position: 'right',
 };
 
+export const RightStart = Template.bind({});
+RightStart.args = {
+  position: 'rightStart',
+};
+
+export const RightEnd = Template.bind({});
+RightEnd.args = {
+  position: 'rightEnd',
+};
+
 export const Bottom = Template.bind({});
 Bottom.args = {
   position: 'bottom',
+};
+
+export const BottomStart = Template.bind({});
+BottomStart.args = {
+  position: 'bottomStart',
+};
+
+export const BottomEnd = Template.bind({});
+BottomEnd.args = {
+  position: 'bottomEnd',
 };
 
 export const WithCloseButton = Template.bind({});
