@@ -1,17 +1,27 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {View} from 'react-native';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
-import Form from '../../../components/Form';
+import Form, {IFormRef} from '../../../components/Form';
 import * as yup from 'yup';
 
 interface IExternalFormControlProps {}
 
 const ExternalFormControl: React.FC<IExternalFormControlProps> = () => {
+  const formRef = useRef<IFormRef>(null);
   const [currentFormState, updateFormState]: [any, any] = useState({});
+
+  const handleSetError = () => {
+    formRef.current!.setError({email: 'This email is already taken'});
+  };
+
+  const handleResetForm = () => {
+    formRef.current!.resetForm();
+  };
 
   return (
     <Form
+      ref={formRef}
       onSubmit={(formData: any) => console.log('onSubmit external', formData)}
       onChange={(formData: any) => {
         console.log('onChange external', formData);
@@ -45,6 +55,16 @@ const ExternalFormControl: React.FC<IExternalFormControlProps> = () => {
       >
         <Button type="submit">Login</Button>
         <Button type="reset">Reset</Button>
+      </View>
+      <View
+        style={{
+          marginTop: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }}
+      >
+        <Button onPress={handleSetError}>Set extern error</Button>
+        <Button onPress={handleResetForm}>Reset externally</Button>
       </View>
     </Form>
   );
