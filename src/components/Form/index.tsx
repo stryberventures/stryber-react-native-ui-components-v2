@@ -125,6 +125,11 @@ const Form = forwardRef<IFormRef, IFormProps>(
       onError && onError(errors, formValues);
     };
 
+    const formActions = {
+      setError: setFormErrorsActionWrapper,
+      resetForm: onResetFormWrapper,
+    };
+
     const updateFormValue = (
       name: string,
       value: any,
@@ -139,12 +144,7 @@ const Form = forwardRef<IFormRef, IFormProps>(
         validate(newFormValues);
 
         /** Sending on change callback (if it was provided) */
-        !init &&
-          onChange &&
-          onChange(newFormValues, {
-            setError: setFormErrorsActionWrapper,
-            resetForm: onResetFormWrapper,
-          });
+        !init && onChange && onChange(newFormValues, formActions);
 
         return newFormValues;
       });
@@ -170,18 +170,11 @@ const Form = forwardRef<IFormRef, IFormProps>(
         handleFormTouched();
         onError && onError(formErrors, formValues);
       } else {
-        onSubmit &&
-          onSubmit(formValues, {
-            setError: setFormErrorsActionWrapper,
-            resetForm: onResetFormWrapper,
-          });
+        onSubmit && onSubmit(formValues, formActions);
       }
     };
 
-    useImperativeHandle(ref, () => ({
-      setError: setFormErrorsActionWrapper,
-      resetForm: onResetFormWrapper,
-    }));
+    useImperativeHandle(ref, () => formActions);
 
     useEffect(() => {
       /** Running first validation on mount */
