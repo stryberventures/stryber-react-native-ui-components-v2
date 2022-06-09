@@ -20,6 +20,30 @@ Secondary.args = {
   color: 'secondary',
 };
 
+export const Validation = Template.bind({});
+Validation.args = {
+  label: 'Input password',
+  placeholder: 'Enter password',
+  value: 'something',
+  onValidationChange: valid => {
+    console.log('valid', valid);
+  },
+  validationSchema: [
+    {
+      label: 'Number',
+      rule: /(?=.*\d).{1,}/gm,
+    },
+    {
+      label: 'Uppercase',
+      rule: /(?=[A-Z]).{1,}$/gm,
+    },
+    {
+      label: 'Lowercase',
+      rule: /(?=[a-z]).{1,}$/gm,
+    },
+  ],
+};
+
 export const Hint = Template.bind({});
 Hint.args = {
   hint: 'Hint message',

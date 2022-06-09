@@ -21,6 +21,10 @@ export const defaultTheme = {
     dark: '#3D2181',
     contrast: '#FFF',
   },
+  success: {
+    main: '#6CA78B',
+    contrast: '#fff',
+  },
   text: {
     primary: '#101828',
     secondary: '#344054',
