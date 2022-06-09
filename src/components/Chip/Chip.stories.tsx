@@ -23,6 +23,18 @@ Secondary.args = {
   color: 'secondary',
 };
 
+export const Success = Template.bind({});
+Success.args = {
+  children: 'Success',
+  color: 'success',
+};
+
+export const Grey = Template.bind({});
+Grey.args = {
+  children: 'Grey',
+  color: 'default',
+};
+
 export const Outlined = Template.bind({});
 Outlined.args = {
   children: 'Outlined',
@@ -47,4 +59,16 @@ WithIcons.args = {
   children: 'Icons',
   iconRight: <ArrowDownSmallIcon style={{marginHorizontal: 3}} />,
   iconLeft: <CheckIcon style={{marginHorizontal: 2}} />,
+};
+
+export const LeftIcon = Template.bind({});
+LeftIcon.args = {
+  children: 'LeftIcon',
+  iconLeft: <CheckIcon style={{marginHorizontal: 2}} />,
+};
+
+export const RightIcon = Template.bind({});
+RightIcon.args = {
+  children: 'RightIcon',
+  iconRight: <ArrowDownSmallIcon style={{marginHorizontal: 3}} />,
 };

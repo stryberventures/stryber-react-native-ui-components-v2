@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 export interface IChipProps extends PressableProps {
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'success' | 'default';
   variant?: 'contained' | 'outlined';
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
