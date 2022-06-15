@@ -107,6 +107,8 @@ const Form = forwardRef<IFormRef, IFormProps>(
     const onResetFormWrapper = () => {
       setFormValues(() => initialValues || {});
       setFormSessionId(id => id + 1);
+      setFormErrors({});
+      setFormTouched({});
       onReset && onReset(formValues);
     };
 
