@@ -2,6 +2,8 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Switch from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import * as Icons from '../Icons';
+import {Text, View} from 'react-native';
 
 export default {
   title: 'Switch',
@@ -34,4 +36,15 @@ Hint.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+
+export const CustomContent = Template.bind({});
+CustomContent.args = {
+  label: '',
+  children: (
+    <View style={{display: 'flex', flexDirection: 'row'}}>
+      <Text style={{color: 'blue', marginRight: 10}}>Custom content</Text>
+      <Icons.EyeSlashIcon />
+    </View>
+  ),
 };

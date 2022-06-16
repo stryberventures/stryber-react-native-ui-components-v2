@@ -28,6 +28,7 @@ export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   color?: ToggleIconProps['color'];
   pressedStyle?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
+  children?: React.ReactNode;
 }
 
 const ToggleInput: React.FC<IToggleInputProps> = ({
@@ -44,6 +45,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
   color,
   pressedStyle,
   labelStyle,
+  children,
   ...rest
 }) => {
   const [isPressed, setIsPressed] = useState(false);
@@ -91,6 +93,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
               disabled={disabled}
             />
           )}
+          {children}
         </View>
       </View>
       {!!error && variant !== 'radio' && (
