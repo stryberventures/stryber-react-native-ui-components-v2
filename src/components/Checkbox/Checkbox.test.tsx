@@ -1,7 +1,7 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
-
 import Checkbox from '.';
+import {Text} from 'react-native';
 
 it('renders', () => {
   render(<Checkbox />);
@@ -26,6 +26,16 @@ it('displays hint', () => {
   const {getByText} = render(<Checkbox hint={hint} />);
 
   getByText(hint);
+});
+
+it('displays custom content', () => {
+  const {getByText} = render(
+    <Checkbox>
+      <Text>custom content</Text>
+    </Checkbox>,
+  );
+
+  getByText('custom content');
 });
 
 it('fires onChange', () => {

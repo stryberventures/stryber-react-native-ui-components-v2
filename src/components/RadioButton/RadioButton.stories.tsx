@@ -3,6 +3,8 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import RadioButton from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import Form from '../Form';
+import {Text, View} from 'react-native';
+import * as Icons from '../Icons';
 
 export default {
   title: 'RadioButton',
@@ -64,4 +66,15 @@ DisabledChecked.args = {
   },
   disabled: true,
   checked: true,
+};
+
+export const CustomContent = Template.bind({});
+CustomContent.args = {
+  label: '',
+  children: (
+    <View style={{display: 'flex', flexDirection: 'row'}}>
+      <Text style={{color: 'blue', marginRight: 10}}>Custom content</Text>
+      <Icons.EyeSlashIcon />
+    </View>
+  ),
 };

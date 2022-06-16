@@ -1,7 +1,7 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
-
 import Switch from '.';
+import {Text} from 'react-native';
 
 it('renders', () => {
   render(<Switch />);
@@ -26,6 +26,16 @@ it('displays hint', () => {
   const {getByText} = render(<Switch hint={hint} />);
 
   getByText(hint);
+});
+
+it('displays custom content', () => {
+  const {getByText} = render(
+    <Switch>
+      <Text>custom content</Text>
+    </Switch>,
+  );
+
+  getByText('custom content');
 });
 
 it('fires onChange', () => {
