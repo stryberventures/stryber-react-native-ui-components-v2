@@ -32,6 +32,7 @@ const getStories = () => {
     require("../src/components/Multiselect/Multiselect.stories.tsx"),
     require("../src/components/PasswordInput/PasswordInput.stories.tsx"),
     require("../src/components/RadioButton/RadioButton.stories.tsx"),
+    require("../src/components/Slider/Slider.stories.tsx"),
     require("../src/components/Switch/Switch.stories.tsx"),
     require("../src/components/TextArea/TextArea.stories.tsx"),
     require("../src/components/TextLink/TextLink.stories.tsx"),
