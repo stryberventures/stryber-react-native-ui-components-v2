@@ -24,7 +24,7 @@ export interface ISliderProps {
   step?: number | undefined;
   smooth?: boolean;
   color?: 'primary' | 'secondary';
-  layout?: 'regular' | 'labelBottom' | 'labelHidden';
+  layout?: 'regular' | 'labelHidden';
   range?: boolean;
   showTooltip?: boolean;
   showInput?: boolean;
