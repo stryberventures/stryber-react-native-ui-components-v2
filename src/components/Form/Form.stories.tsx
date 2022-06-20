@@ -1,16 +1,19 @@
 import React from 'react';
+import {View} from 'react-native';
 import * as yup from 'yup';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+
 import Input from '../Input';
 import CenterView from '../../storybook/preview/CenterView';
 import Form from '.';
 import Button from '../Button';
-import {View} from 'react-native';
 import ExternalFormControl from '../../storybook/preview/ExternalFormControl';
 import RadioButton from '../RadioButton';
 import Checkbox from '../Checkbox';
 import Switch from '../Switch';
 import Multiselect, {IMultiselectOption} from '../Multiselect';
+import Slider from '../Slider';
+
 import Divider from '../../storybook/preview/Divider';
 
 export default {
@@ -62,6 +65,10 @@ const Template: ComponentStory<typeof Form> = ({
       />
       <Divider height={10} />
       <Input name="password" placeholder="Password" label="Password" />
+      <Divider height={10} />
+      <Slider name="slider" valueUp={5} max={10} />
+      <Divider height={20} />
+      <Slider name="rangeSlider" range valueDown={2} valueUp={5} max={10} />
       <View
         // eslint-disable-next-line react-native/no-inline-styles
         style={{
@@ -102,6 +109,8 @@ WithInitialValues.args = {
     checkbox: true,
     radio: 'option 2',
     switch: true,
+    slider: 6,
+    rangeSlider: [5, 8],
   },
 };
 

@@ -16,6 +16,7 @@
     "PasswordInput": "password-input",
     "Chip": "chip",
     "Tooltip": "tooltip",
-    "ToggleInput": "toggle-input"
+    "ToggleInput": "toggle-input",
+    "Slider": "slider"
   }
 }

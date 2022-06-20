@@ -18,7 +18,7 @@ export interface IInputProps extends TextInputProps {
   label?: string;
   clearFormValueOnUnmount?: boolean;
   hint?: string;
-  error?: string;
+  error?: string | boolean;
   style?: StyleProp<ViewStyle>;
   inputWrapperStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
