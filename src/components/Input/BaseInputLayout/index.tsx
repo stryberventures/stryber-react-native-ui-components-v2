@@ -23,7 +23,6 @@ export interface IBaseInputLayoutProps extends PressableProps {
   rightContent?: React.ReactNode;
   maxValueLength?: number;
   currentValueLength?: number;
-  leftValueText?: string;
 }
 
 export interface IInputSize {
@@ -46,7 +45,6 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       rightContent,
       currentValueLength = 0,
       maxValueLength,
-      leftValueText,
       ...rest
     },
     ref,
@@ -80,12 +78,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
                 {label}
               </Text>
             )}
-            <View style={styles.childrenWrapper}>
-              {leftValueText && (
-                <Text style={styles.leftValueText}>{leftValueText}</Text>
-              )}
-              {children}
-            </View>
+            {children}
           </View>
           {rightContent}
         </Pressable>

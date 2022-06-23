@@ -31,6 +31,7 @@ export interface IInputProps extends TextInputProps {
   color?: IBaseInputLayoutProps['color'];
   mask?: string;
   prefix?: string;
+  prefixStyle?: StyleProp<TextStyle>;
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -53,6 +54,7 @@ const Input: React.FC<IInputProps> = ({
   color,
   mask,
   prefix,
+  prefixStyle,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -84,9 +86,7 @@ const Input: React.FC<IInputProps> = ({
     setInternalValue(prevValue => {
       if (mask) {
         nextValue =
-          prevValue.length >= text.length
-              ? text
-              : applyDigitMask(text, mask);
+          prevValue.length >= text.length ? text : applyDigitMask(text, mask);
       }
       return nextValue;
     });
@@ -128,7 +128,7 @@ const Input: React.FC<IInputProps> = ({
       color={color}
     >
       <View style={styles.inputContainer}>
-        {prefix && <Text style={styles.prefix}>{prefix}</Text>}
+        {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
         <TextInput
           style={[styles.input, disabled && styles.disabledInput, inputStyle]}
           value={controlled ? value : internalValue}
