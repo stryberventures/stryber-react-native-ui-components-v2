@@ -20,7 +20,7 @@ export interface INumberInputProps
 }
 
 const NumberInput: React.FC<INumberInputProps> = ({
-  value,
+  value = '',
   step = 1,
   min = 0,
   max = 100,
@@ -31,7 +31,7 @@ const NumberInput: React.FC<INumberInputProps> = ({
   ...rest
 }) => {
   const {fieldError, fieldValue, updateFormValue} = useFormContext(name);
-  const initValue = fieldValue || value || '';
+  const initValue = fieldValue || value;
   const [internalValue, setInternalValue] = useState<string>(String(initValue));
   const errorMessage = fieldError || error;
   const styles = useStyles();
