@@ -31,3 +31,10 @@ it('shows input value', () => {
   const {getByDisplayValue} = render(<Input value={value} />);
   getByDisplayValue(value);
 });
+
+it('should use the mask', () => {
+  const {getByDisplayValue} = render(
+    <Input label="Input" mask="+X(X)-XX" value="1234" />,
+  );
+  getByDisplayValue('+1(2)-34');
+});

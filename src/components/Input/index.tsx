@@ -12,6 +12,7 @@ import {
 import {useFormContext} from '../Form';
 import BaseInputLayout, {IBaseInputLayoutProps} from './BaseInputLayout';
 import {useTheme} from '../Theme';
+import {applyDigitMask} from './utils';
 
 export interface IInputProps extends TextInputProps {
   name?: string;
@@ -26,16 +27,17 @@ export interface IInputProps extends TextInputProps {
   controlled?: boolean;
   rightContent?: IBaseInputLayoutProps['rightContent'];
   color?: IBaseInputLayoutProps['color'];
+  mask?: string;
 }
 
 const Input: React.FC<IInputProps> = ({
   name = 'unnamed',
+  value = '',
   onChange,
   onFocus,
   onBlur,
   clearFormValueOnUnmount,
   error,
-  value,
   label,
   hint,
   style,
@@ -46,6 +48,7 @@ const Input: React.FC<IInputProps> = ({
   maxLength,
   rightContent,
   color,
+  mask,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -65,16 +68,29 @@ const Input: React.FC<IInputProps> = ({
   } = useFormContext(name);
 
   const errorMessage = fieldError || error;
-
-  const [internalValue, setInternalValue] = useState(fieldValue || value);
+  const initValue = fieldValue || value;
+  const [internalValue, setInternalValue] = React.useState<string>(
+    mask && initValue ? applyDigitMask(initValue, mask) : initValue,
+  );
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (
     e: NativeSyntheticEvent<TextInputFocusEventData>,
   ) => {
     const {text: targetValue} = e.nativeEvent;
-    setInternalValue(targetValue);
-    updateFormValue(name, targetValue);
+    let nextValue = targetValue;
+
+    setInternalValue(prevValue => {
+      if (mask) {
+        nextValue =
+          prevValue.length >= targetValue.length
+            ? targetValue
+            : applyDigitMask(targetValue, mask);
+      }
+      return nextValue;
+    });
+
+    updateFormValue(name, nextValue);
     onChange && onChange(e);
   };
   const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
