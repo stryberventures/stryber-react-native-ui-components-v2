@@ -38,3 +38,9 @@ it('should use the mask', () => {
   );
   getByDisplayValue('+1(2)-34');
 });
+
+it('should display the prefix', () => {
+  const prefix = '+380';
+  const {getByText} = render(<Input label="Input" prefix={prefix} />);
+  getByText(prefix);
+});

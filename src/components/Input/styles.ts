@@ -5,9 +5,17 @@ export default createUseStyles(theme => ({
     color: theme.text.primary,
     padding: 0,
     textAlignVertical: 'top',
-    height: 20,
+    height: 17,
   },
   disabledInput: {
     color: theme.text.disabled,
+  },
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  prefix: {
+    height: 17,
+    color: theme.text.primary,
   },
 }));
