@@ -34,13 +34,13 @@ export interface IInputProps extends TextInputProps {
 }
 
 const Input: React.FC<IInputProps> = ({
-  name = 'unnamed',
-  value = '',
-  onChange,
+  name = 'input',
+  onChangeText,
   onFocus,
   onBlur,
   clearFormValueOnUnmount,
   error,
+  value = '',
   label,
   hint,
   style,
@@ -78,24 +78,21 @@ const Input: React.FC<IInputProps> = ({
   );
 
   /** Wrappers to merge form and props methods */
-  const onChangeWrapper = (
-    e: NativeSyntheticEvent<TextInputFocusEventData>,
-  ) => {
-    const {text: targetValue} = e.nativeEvent;
-    let nextValue = targetValue;
+  const onChangeTextWrapper = (text: string) => {
+    let nextValue = text;
 
     setInternalValue(prevValue => {
       if (mask) {
         nextValue =
-          prevValue.length >= targetValue.length
-            ? targetValue
-            : applyDigitMask(targetValue, mask);
+          prevValue.length >= text.length
+              ? text
+              : applyDigitMask(text, mask);
       }
       return nextValue;
     });
 
     updateFormValue(name, nextValue);
-    onChange && onChange(e);
+    onChangeText && onChangeText(nextValue);
   };
   const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setIsFocused(true);
@@ -136,7 +133,7 @@ const Input: React.FC<IInputProps> = ({
           style={[styles.input, disabled && styles.disabledInput, inputStyle]}
           value={controlled ? value : internalValue}
           onBlur={onBlurWrapper}
-          onChange={onChangeWrapper}
+          onChangeText={onChangeTextWrapper}
           onFocus={onFocusWrapper}
           placeholderTextColor={
             disabled ? theme.text.disabled : theme.text.hint

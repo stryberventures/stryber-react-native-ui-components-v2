@@ -52,5 +52,12 @@ export default createUseStyles(
       alignSelf: 'flex-start',
       flex: 1,
     },
+    childrenWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    leftValueText: {
+      marginRight: 4,
+    },
   }),
 );
