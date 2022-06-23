@@ -51,3 +51,11 @@ Mask.args = {
   mask: '+X(XXX) XX-XX-XXX',
   placeholder: '+X(XXX) XX-XX-XXX',
 };
+
+export const Prefix = Template.bind({});
+Prefix.args = {
+  label: 'Prefix',
+  prefix: 'G-',
+  mask: 'XXX-XXX',
+  placeholder: 'XXX-XXX',
+};

@@ -8,6 +8,8 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
+  Text,
+  View,
 } from 'react-native';
 import {useFormContext} from '../Form';
 import BaseInputLayout, {IBaseInputLayoutProps} from './BaseInputLayout';
@@ -28,6 +30,7 @@ export interface IInputProps extends TextInputProps {
   rightContent?: IBaseInputLayoutProps['rightContent'];
   color?: IBaseInputLayoutProps['color'];
   mask?: string;
+  prefix?: string;
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -49,6 +52,7 @@ const Input: React.FC<IInputProps> = ({
   rightContent,
   color,
   mask,
+  prefix,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -126,18 +130,23 @@ const Input: React.FC<IInputProps> = ({
       rightContent={rightContent}
       color={color}
     >
-      <TextInput
-        style={[styles.input, disabled && styles.disabledInput, inputStyle]}
-        value={controlled ? value : internalValue}
-        onBlur={onBlurWrapper}
-        onChange={onChangeWrapper}
-        onFocus={onFocusWrapper}
-        placeholderTextColor={disabled ? theme.text.disabled : theme.text.hint}
-        ref={inputRef}
-        maxLength={maxLength}
-        editable={!disabled}
-        {...rest}
-      />
+      <View style={styles.inputContainer}>
+        {prefix && <Text style={styles.prefix}>{prefix}</Text>}
+        <TextInput
+          style={[styles.input, disabled && styles.disabledInput, inputStyle]}
+          value={controlled ? value : internalValue}
+          onBlur={onBlurWrapper}
+          onChange={onChangeWrapper}
+          onFocus={onFocusWrapper}
+          placeholderTextColor={
+            disabled ? theme.text.disabled : theme.text.hint
+          }
+          ref={inputRef}
+          maxLength={maxLength}
+          editable={!disabled}
+          {...rest}
+        />
+      </View>
     </BaseInputLayout>
   );
 };
