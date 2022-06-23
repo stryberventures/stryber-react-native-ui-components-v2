@@ -44,3 +44,10 @@ Disabled.args = {
   placeholder: 'Disabled',
   disabled: true,
 };
+
+export const Mask = Template.bind({});
+Mask.args = {
+  label: 'Digit mask',
+  mask: '+X(XXX) XX-XX-XXX',
+  placeholder: '+X(XXX) XX-XX-XXX',
+};
