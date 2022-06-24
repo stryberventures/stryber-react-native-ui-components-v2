@@ -1,9 +1,10 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import * as yup from 'yup';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 
 import Input from '../Input';
+import PasswordInput from '../PasswordInput';
 import CenterView from '../../storybook/preview/CenterView';
 import Form from '.';
 import Button from '../Button';
@@ -15,6 +16,7 @@ import Multiselect, {IMultiselectOption} from '../Multiselect';
 import Slider from '../Slider';
 
 import Divider from '../../storybook/preview/Divider';
+import NumberInput from '../NumberInput';
 
 export default {
   title: 'Form',
@@ -39,47 +41,59 @@ const Template: ComponentStory<typeof Form> = ({
 }) => {
   return (
     <Form {...rest}>
-      <Multiselect
-        label="Multiselect"
-        placeholder="multiselect"
-        name="multiselect"
-        options={multiselectOptions}
-      />
-      <Divider height={10} />
-      <RadioButton name="radio" value="option 1" label="Option 1" />
-      <Divider height={10} />
-      <RadioButton name="radio" value="option 2" label="Option 2" />
-      <Divider height={10} />
-      <RadioButton name="radio" value="option 3" label="Option 3" />
-      <Divider height={10} />
-      <Checkbox name="checkbox" label="Stay logged in" />
-      <Divider height={10} />
-      <Switch name="switch" label="Switch" />
-      <Divider height={10} />
-      <Input
-        name="email"
-        placeholder="Email"
-        label="Email"
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{marginVertical: 20}}
-      />
-      <Divider height={10} />
-      <Input name="password" placeholder="Password" label="Password" />
-      <Divider height={10} />
-      <Slider name="slider" valueUp={5} max={10} />
-      <Divider height={20} />
-      <Slider name="rangeSlider" range valueDown={2} valueUp={5} max={10} />
-      <View
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{
-          marginTop: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-        }}
-      >
-        <Button type="submit">Login</Button>
-        <Button type="reset">Reset</Button>
-      </View>
+      <ScrollView contentContainerStyle={{paddingHorizontal: 8}}>
+        <Multiselect
+          label="Multiselect"
+          placeholder="multiselect"
+          name="multiselect"
+          options={multiselectOptions}
+        />
+        <Divider height={10} />
+        <RadioButton name="radio" value="option 1" label="Option 1" />
+        <Divider height={10} />
+        <RadioButton name="radio" value="option 2" label="Option 2" />
+        <Divider height={10} />
+        <RadioButton name="radio" value="option 3" label="Option 3" />
+        <Divider height={10} />
+        <Checkbox name="checkbox" label="Stay logged in" />
+        <Divider height={10} />
+        <Switch name="switch" label="Switch" />
+        <Divider height={10} />
+        <Input
+          name="email"
+          placeholder="Email"
+          label="Email"
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{marginVertical: 20}}
+        />
+        <Divider height={10} />
+        <PasswordInput
+          name="password"
+          placeholder="Password"
+          label="Password"
+        />
+        <Divider height={10} />
+        <Slider name="slider" valueUp={5} max={10} />
+        <Divider height={20} />
+        <Slider name="rangeSlider" range valueDown={2} valueUp={5} max={10} />
+        <Divider height={10} />
+        <NumberInput
+          name="numberInput"
+          label="Number"
+          placeholder="Number Input"
+        />
+        <View
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{
+            marginTop: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+          }}
+        >
+          <Button type="submit">Submit</Button>
+          <Button type="reset">Reset</Button>
+        </View>
+      </ScrollView>
     </Form>
   );
 };
@@ -111,6 +125,7 @@ WithInitialValues.args = {
     switch: true,
     slider: 6,
     rangeSlider: [5, 8],
+    numberInput: 6,
   },
 };
 
@@ -128,6 +143,7 @@ WithValidation.args = {
     checkbox: yup.boolean().required(),
     switch: yup.boolean().required(),
     multiselect: yup.array().min(1).required(),
+    numberInput: yup.number().required(),
   }),
 };
 
