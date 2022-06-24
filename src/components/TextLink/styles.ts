@@ -18,6 +18,7 @@ export default createUseStyles((theme, color: ITextLinkProps['color']) => ({
     fontSize: 16,
     color: theme[color!].main,
     fontWeight: '700',
+    fontFamily: theme.fontFamily,
   },
   leftIcon: {
     marginRight: 8,

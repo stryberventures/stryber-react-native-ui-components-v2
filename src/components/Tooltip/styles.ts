@@ -38,9 +38,11 @@ export default createUseStyles(
       color: theme.text.secondary,
       fontWeight: '500',
       marginBottom: withCloseButton ? 0 : 4,
+      fontFamily: theme.fontFamily,
     },
     text: {
       color: theme.text.hint,
+      fontFamily: theme.fontFamily,
     },
     overlay: {
       width: '100%',

@@ -66,6 +66,7 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
     fontSize: 12,
     fontWeight: '600',
     color: theme.default.extraLight,
+    fontFamily: theme.fontFamily,
   },
   dot: {
     width: 4,

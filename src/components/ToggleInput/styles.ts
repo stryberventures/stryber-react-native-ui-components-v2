@@ -15,6 +15,7 @@ export default createUseStyles(
         color: theme.text.secondary,
         fontWeight: '500',
         lineHeight: isSwitch ? SWITCH_SIZE.height : TOGGLE_ICON_SIZE[size!],
+        fontFamily: theme.fontFamily,
       },
       toggleInputWrapper: {
         flexDirection: 'row',
