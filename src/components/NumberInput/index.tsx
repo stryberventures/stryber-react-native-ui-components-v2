@@ -44,7 +44,7 @@ const NumberInput: React.FC<INumberInputProps> = ({
     onChange && onChange(+newVal);
   };
 
-  const isValueValid = (newVal: number) => {
+  const checkValue = (newVal: number) => {
     if (newVal > max) {
       return handleChange(String(max));
     }
@@ -53,26 +53,20 @@ const NumberInput: React.FC<INumberInputProps> = ({
     }
   };
 
-  const handlePlus = () => {
+  const handleButtonPress = (buttonType: 'plus' | 'minus') => {
     if (!isNumberValue) {
       return handleChange(String(min));
     }
-    const newVal = +internalValue! + step;
+    const newVal =
+      buttonType === 'plus' ? +internalValue! + step : +internalValue! - step;
     if (newVal > max || newVal < min) {
-      return isValueValid(newVal);
+      return checkValue(newVal);
     }
     handleChange(String(newVal));
   };
-  const handleMinus = () => {
-    if (!isNumberValue) {
-      return handleChange(String(min));
-    }
-    const newVal = +internalValue! - step;
-    if (newVal > max || newVal < min) {
-      return isValueValid(newVal);
-    }
-    handleChange(String(newVal));
-  };
+
+  const handlePlus = () => handleButtonPress('plus');
+  const handleMinus = () => handleButtonPress('minus');
 
   const handleEndEditing = ({
     nativeEvent: {text},
@@ -81,7 +75,7 @@ const NumberInput: React.FC<INumberInputProps> = ({
     if (isNaN(newVal)) {
       return handleChange(String(min));
     }
-    isValueValid(newVal);
+    checkValue(newVal);
   };
 
   return (
