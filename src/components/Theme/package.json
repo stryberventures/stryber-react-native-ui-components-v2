@@ -1,6 +1,6 @@
 {
   "name": "@stryberventures/gaia-react-native.theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
     "react-native": ">=0.68.0",
     "react": ">=17.0.2",
