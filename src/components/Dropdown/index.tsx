@@ -85,6 +85,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
       {renderDropdown()}
       <Text
         style={[
+          styles.text,
           !!placeholder && styles.placeholderText,
           !!value && styles.valueText,
           disabled && styles.disabledText,

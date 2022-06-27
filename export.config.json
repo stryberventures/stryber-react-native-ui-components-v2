@@ -17,6 +17,8 @@
     "Chip": "chip",
     "Tooltip": "tooltip",
     "ToggleInput": "toggle-input",
-    "Slider": "slider"
+    "Slider": "slider",
+    "NumberInput": "number-input",
+    "Text": "text"
   }
 }

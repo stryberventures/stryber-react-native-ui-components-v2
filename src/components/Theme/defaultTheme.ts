@@ -1,4 +1,7 @@
 export const defaultTheme = {
+  //Will apply default font for ios and android(San Francisco on iOS and Roboto on Android)
+  //Change this font in your project to apply changes on all components
+  fontFamily: 'System',
   background: {
     main: '#FFF',
     disabled: '#FCFCFD',
