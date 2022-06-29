@@ -46,16 +46,18 @@ const Chip: React.FC<IChipProps> = ({
       {...rest}
     >
       {iconLeft}
-      <Text
-        style={[
-          styles.text,
-          isOutlined && styles.outlinedText,
-          disabled && styles.disabledText,
-          textStyle,
-        ]}
-      >
-        {children}
-      </Text>
+      {children && (
+        <Text
+          style={[
+            styles.text,
+            isOutlined && styles.outlinedText,
+            disabled && styles.disabledText,
+            textStyle,
+          ]}
+        >
+          {children}
+        </Text>
+      )}
       {iconRight}
     </Pressable>
   );

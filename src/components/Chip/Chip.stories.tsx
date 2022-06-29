@@ -72,3 +72,8 @@ RightIcon.args = {
   children: 'RightIcon',
   iconRight: <ArrowDownSmallIcon style={{marginHorizontal: 3}} />,
 };
+
+export const OnlyIcon = Template.bind({});
+OnlyIcon.args = {
+  iconLeft: <CheckIcon style={{marginVertical: 2}} />,
+};
