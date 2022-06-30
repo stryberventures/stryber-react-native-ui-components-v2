@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {forwardRef, useImperativeHandle, useRef, useState} from 'react';
 import useStyles from './styles';
 import {
   GestureResponderEvent,
@@ -27,74 +27,91 @@ export interface IDropdownPosition {
   width: number;
 }
 
-const Dropdown: React.FC<IDropdownProps> = ({
-  placeholder,
-  value,
-  onPress,
-  disabled,
-  children,
-  dropdownStyle,
-  onChange,
-  ...rest
-}) => {
-  const {theme} = useTheme();
-  const dropdownInputRef = useRef<View>(null);
-  const [visible, setVisible] = useState(false);
-  const [dropdownPosition, setDropdownPosition] = useState<IDropdownPosition>({
-    top: 0,
-    left: 0,
-    width: 0,
-  });
-  const styles = useStyles(dropdownPosition);
+export interface IDropdownRef {
+  open: (event?: GestureResponderEvent) => void;
+  close: () => void;
+}
 
-  const handleOpen = (event: GestureResponderEvent) => {
-    dropdownInputRef.current!.measure((x, y, width, height, pageX, pageY) => {
-      setDropdownPosition({top: pageY + height, left: pageX, width});
-    });
-    setVisible(true);
-    onChange && onChange(true);
-    onPress && onPress(event);
-  };
+const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
+  (
+    {
+      placeholder,
+      value,
+      onPress,
+      disabled,
+      children,
+      dropdownStyle,
+      onChange,
+      ...rest
+    },
+    ref,
+  ) => {
+    const {theme} = useTheme();
+    const dropdownInputRef = useRef<View>(null);
+    const [visible, setVisible] = useState(false);
+    const [dropdownPosition, setDropdownPosition] = useState<IDropdownPosition>(
+      {
+        top: 0,
+        left: 0,
+        width: 0,
+      },
+    );
+    const styles = useStyles(dropdownPosition);
 
-  const handleClose = () => {
-    setVisible(false);
-    onChange && onChange(false);
-  };
+    const handleOpen = (event?: GestureResponderEvent) => {
+      dropdownInputRef.current!.measure((x, y, width, height, pageX, pageY) => {
+        setDropdownPosition({top: pageY + height, left: pageX, width});
+      });
+      setVisible(true);
+      onChange && onChange(true);
+      onPress && onPress(event!);
+    };
 
-  const renderDropdown = () => (
-    <Modal visible={visible} transparent animationType="none">
-      <Pressable style={styles.overlay} onPress={handleClose} />
-      <View style={[styles.dropdown, dropdownStyle]}>{children}</View>
-    </Modal>
-  );
+    const handleClose = () => {
+      setVisible(false);
+      onChange && onChange(false);
+    };
 
-  return (
-    <BaseInputLayout
-      isFocused={visible}
-      ref={dropdownInputRef}
-      onPress={handleOpen}
-      rightContent={
-        <ArrowDownIcon
-          fill={disabled ? theme.divider.main : theme.default.dark}
-          style={[styles.icon, visible && styles.invertedIcon]}
-        />
-      }
-      disabled={disabled}
-      {...rest}
-    >
-      {renderDropdown()}
-      <Text
-        style={[
-          styles.text,
-          !!placeholder && styles.placeholderText,
-          !!value && styles.valueText,
-          disabled && styles.disabledText,
-        ]}
+    const renderDropdown = () => (
+      <Modal visible={visible} transparent animationType="none">
+        <Pressable style={styles.overlay} onPress={handleClose} />
+        <View style={[styles.dropdown, dropdownStyle]}>{children}</View>
+      </Modal>
+    );
+
+    useImperativeHandle(ref, () => ({
+      open: handleOpen,
+      close: handleClose,
+    }));
+
+    return (
+      <BaseInputLayout
+        isFocused={visible}
+        ref={dropdownInputRef}
+        onPress={handleOpen}
+        rightContent={
+          <ArrowDownIcon
+            fill={disabled ? theme.divider.main : theme.default.dark}
+            style={[styles.icon, visible && styles.invertedIcon]}
+          />
+        }
+        disabled={disabled}
+        {...rest}
       >
-        {(!!value && validateInputValueLength(value)) || placeholder}
-      </Text>
-    </BaseInputLayout>
-  );
-};
+        {renderDropdown()}
+        <Text
+          style={[
+            styles.text,
+            !!placeholder && styles.placeholderText,
+            !!value && styles.valueText,
+            disabled && styles.disabledText,
+          ]}
+        >
+          {(!!value && validateInputValueLength(value)) || placeholder}
+        </Text>
+      </BaseInputLayout>
+    );
+  },
+);
 
 export default Dropdown;
