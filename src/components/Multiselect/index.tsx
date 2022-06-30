@@ -14,9 +14,9 @@ export interface IMultiselectProps
   extends Omit<IDropdownProps, 'children' | 'value' | 'onChange'> {
   name?: string;
   options: IMultiselectOption[];
-  selectedOptions?: any[];
+  selectedOptions?: (number | string)[];
   clearFormValueOnUnmount?: boolean;
-  onChange?: (selectedOptions?: any[]) => void;
+  onChange?: (selectedOptions?: (number | string)[]) => void;
   onDropdownChange?: IDropdownProps['onChange'];
 }
 

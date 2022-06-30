@@ -17,6 +17,7 @@ import Slider from '../Slider';
 
 import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
+import Select from '../Select';
 
 export default {
   title: 'Form',
@@ -24,7 +25,7 @@ export default {
   decorators: [CenterView],
 } as ComponentMeta<typeof Form>;
 
-const multiselectOptions: IMultiselectOption[] = [
+const options: IMultiselectOption[] = [
   {label: 'One', value: 'one'},
   {label: 'Two', value: 'two'},
   {label: 'Three for length testing', value: 'three'},
@@ -46,7 +47,14 @@ const Template: ComponentStory<typeof Form> = ({
           label="Multiselect"
           placeholder="multiselect"
           name="multiselect"
-          options={multiselectOptions}
+          options={options}
+        />
+        <Divider height={10} />
+        <Select
+          options={options}
+          name="select"
+          label="Select"
+          placeholder="Select"
         />
         <Divider height={10} />
         <RadioButton name="radio" value="option 1" label="Option 1" />
@@ -120,6 +128,7 @@ WithInitialValues.args = {
     email: 'myemail@example.com',
     password: 'mypassword',
     multiselect: ['one', 'two'],
+    select: 'five',
     checkbox: true,
     radio: 'option 2',
     switch: true,
@@ -143,6 +152,7 @@ WithValidation.args = {
     checkbox: yup.boolean().required(),
     switch: yup.boolean().required(),
     multiselect: yup.array().min(1).required(),
+    select: yup.string().required(),
     numberInput: yup.number().required(),
   }),
 };

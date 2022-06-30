@@ -19,6 +19,7 @@
     "ToggleInput": "toggle-input",
     "Slider": "slider",
     "NumberInput": "number-input",
-    "Text": "text"
+    "Text": "text",
+    "Select": "select"
   }
 }
