@@ -5,6 +5,8 @@
 The components library based on React Native and Typescript, represented with Storybook(web and native) and
 tested with React Testing Library
 
+Explore [GAIA components](https://stryberventures.github.io/stryber-react-native-ui-components-v2/) for React Native
+
 ## To run the project ##
 
 1) Install dependencies
@@ -104,6 +106,5 @@ npm i ./stryberventures-gaia-react-native-ui-components-v2.button-0.0.1.tgz
 
 ## Components website ##
 
-Components website is built with Github Pages and it builds and deploys automatically
+[Components website](https://stryberventures.github.io/stryber-react-native-ui-components-v2/) is built with Github Pages and it builds and deploys automatically
 with Github actions (.github/workflows/storybook.yml)
-https://stryberventures.github.io/stryber-react-native-ui-components-v2/

@@ -10,6 +10,7 @@ const {components, name} = require('./export.config.json');
 const buildDir = 'build';
 const webpackBuildDir = 'dist';
 const componentsList = Object.keys(components);
+const fontDir = './src/components/Theme/DefaultFont';
 
 async function postBuild() {
   try {
@@ -31,6 +32,17 @@ async function moveComponentsFiles() {
       `${buildDir}/${dir}/package.json`,
     );
     fs.copySync(`${webpackBuildDir}/${dir}.js`, `${buildDir}/${dir}/index.js`);
+    // Create README.md file for each component from template
+    fs.copySync('component_README.md', `${buildDir}/${dir}/README.md`);
+    replace.sync({
+      files: [`${buildDir}/${dir}/README.md`],
+      from: '{name}',
+      to: dir,
+    });
+    // Copy font file to Theme build directory
+    if (dir === 'Theme') {
+      fs.copySync(fontDir, `${buildDir}/${dir}/DefaultFont`);
+    }
   });
 }
 
