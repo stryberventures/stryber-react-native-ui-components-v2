@@ -18,11 +18,15 @@ import Slider from '../Slider';
 import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
 import Select from '../Select';
+import pkg from './package.json';
 
 export default {
   title: 'Form',
   component: Form,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Form>;
 
 const options: IMultiselectOption[] = [

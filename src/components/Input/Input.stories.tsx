@@ -2,11 +2,15 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Input from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import pkg from './package.json';
 
 export default {
   title: 'Input',
   component: Input,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = args => <Input {...args} />;

@@ -3,11 +3,15 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Chip from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {ArrowDownSmallIcon, CheckIcon} from '../Icons';
+import pkg from './package.json';
 
 export default {
   title: 'Chip',
   component: Chip,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Chip>;
 
 const Template: ComponentStory<typeof Chip> = args => <Chip {...args} />;

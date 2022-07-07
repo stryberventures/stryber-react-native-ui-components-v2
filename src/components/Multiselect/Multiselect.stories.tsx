@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Multiselect from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import pkg from './package.json';
 
 const options = [
   {label: 'One', value: 'one'},
@@ -16,6 +17,9 @@ export default {
   title: 'MultiSelect',
   component: Multiselect,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Multiselect>;
 
 const Template: ComponentStory<typeof Multiselect> = args => (

@@ -3,6 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Dropdown from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Text} from 'react-native';
+import pkg from './package.json';
 
 const DropdownContent = () => (
   <Text selectable>
@@ -19,6 +20,9 @@ export default {
   title: 'Dropdown',
   component: Dropdown,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Dropdown>;
 
 const Template: ComponentStory<typeof Dropdown> = args => (

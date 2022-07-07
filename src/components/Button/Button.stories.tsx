@@ -3,6 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Button from '.';
 import * as Icons from '../Icons';
 import CenterView from '../../storybook/preview/CenterView';
+import pkg from './package.json';
 
 export default {
   title: 'Button',
@@ -13,6 +14,9 @@ export default {
   decorators: [CenterView],
   args: {
     children: 'Button',
+  },
+  parameters: {
+    pkg,
   },
 } as ComponentMeta<typeof Button>;
 

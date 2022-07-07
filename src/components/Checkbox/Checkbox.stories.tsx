@@ -4,11 +4,15 @@ import Checkbox from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Text, View} from 'react-native';
 import * as Icons from '../Icons';
+import pkg from './package.json';
 
 export default {
   title: 'Checkbox',
   component: Checkbox,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Checkbox>;
 
 const Template: ComponentStory<typeof Checkbox> = args => (
