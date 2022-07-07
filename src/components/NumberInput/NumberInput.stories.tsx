@@ -2,11 +2,15 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import NumberInput from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import pkg from './package.json';
 
 export default {
   title: 'NumberInput',
   component: NumberInput,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof NumberInput>;
 
 const Template: ComponentStory<typeof NumberInput> = args => (

@@ -2,11 +2,15 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import TextArea from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import pkg from './package.json';
 
 export default {
   title: 'TextArea',
   component: TextArea,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof TextArea>;
 
 const Template: ComponentStory<typeof TextArea> = args => (

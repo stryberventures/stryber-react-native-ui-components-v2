@@ -2,11 +2,15 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import PasswordInput from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import pkg from './package.json';
 
 export default {
   title: 'PasswordInput',
   component: PasswordInput,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof PasswordInput>;
 
 const Template: ComponentStory<typeof PasswordInput> = args => (

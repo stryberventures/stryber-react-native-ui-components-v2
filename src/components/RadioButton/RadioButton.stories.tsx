@@ -5,11 +5,15 @@ import CenterView from '../../storybook/preview/CenterView';
 import Form from '../Form';
 import {Text, View} from 'react-native';
 import * as Icons from '../Icons';
+import pkg from './package.json';
 
 export default {
   title: 'RadioButton',
   component: RadioButton,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof RadioButton>;
 
 const Template: ComponentStory<typeof RadioButton> = args => (

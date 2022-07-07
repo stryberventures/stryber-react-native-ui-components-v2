@@ -2,11 +2,15 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Select from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import pkg from './package.json';
 
 export default {
   title: 'Select',
   component: Select,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = args => <Select {...args} />;

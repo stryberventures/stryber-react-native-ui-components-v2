@@ -3,6 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Tooltip from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Platform, View} from 'react-native';
+import pkg from './package.json';
 
 export default {
   title: 'Tooltip',
@@ -17,6 +18,9 @@ export default {
         )
       : Story => <Story />,
   ],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Tooltip>;
 
 const Template: ComponentStory<typeof Tooltip> = args => (

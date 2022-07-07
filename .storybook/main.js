@@ -9,7 +9,8 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-actions",
-    "@storybook/addon-react-native-web"
+    "@storybook/addon-react-native-web",
+    "./customAddons/yarnInstall/preset.ts",
   ],
   "framework": "@storybook/react"
 }

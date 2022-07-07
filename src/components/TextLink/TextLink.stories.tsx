@@ -3,11 +3,15 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import TextLink from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {ArrowRightIcon} from '../Icons';
+import pkg from './package.json';
 
 export default {
   title: 'TextLink',
   component: TextLink,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof TextLink>;
 
 const Template: ComponentStory<typeof TextLink> = args => (

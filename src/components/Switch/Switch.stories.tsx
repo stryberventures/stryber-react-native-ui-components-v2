@@ -4,11 +4,15 @@ import Switch from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import * as Icons from '../Icons';
 import {Text, View} from 'react-native';
+import pkg from './package.json';
 
 export default {
   title: 'Switch',
   component: Switch,
   decorators: [CenterView],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Switch>;
 
 const Template: ComponentStory<typeof Switch> = args => (

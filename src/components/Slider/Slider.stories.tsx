@@ -5,6 +5,7 @@ import Slider from './index';
 import CenterView from '../../storybook/preview/CenterView';
 import {CheckIcon, InfoIcon} from '../Icons';
 import {Platform, View} from 'react-native';
+import pkg from './package.json';
 
 export default {
   title: 'Slider',
@@ -19,6 +20,9 @@ export default {
         )
       : Story => <Story />,
   ],
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = args => <Slider {...args} />;
