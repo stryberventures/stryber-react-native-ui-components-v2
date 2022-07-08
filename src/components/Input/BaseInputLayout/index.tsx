@@ -7,6 +7,7 @@ import {
   View,
   StyleProp,
   ViewStyle,
+  TextStyle,
 } from 'react-native';
 import HintMessage from '../../HintMessage';
 import ErrorMessage from '../../ErrorMessage';
@@ -15,6 +16,8 @@ export interface IBaseInputLayoutProps extends PressableProps {
   label?: string;
   isFocused?: boolean;
   style?: StyleProp<ViewStyle>;
+  hintStyle?: StyleProp<TextStyle>;
+  errorStyle?: StyleProp<TextStyle>;
   wrapperStyle?: StyleProp<ViewStyle>;
   color?: 'primary' | 'secondary';
   error?: string;
@@ -45,6 +48,8 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       rightContent,
       currentValueLength = 0,
       maxValueLength,
+      hintStyle,
+      errorStyle,
       ...rest
     },
     ref,
@@ -95,9 +100,10 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           <HintMessage
             message={`${currentValueLength} / ${maxValueLength}`}
             disabled={disabled}
+            style={hintStyle}
           />
         )}
-        {!!error && <ErrorMessage error={error} />}
+        {!!error && <ErrorMessage error={error} style={errorStyle} />}
       </View>
     );
   },
