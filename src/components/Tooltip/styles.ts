@@ -10,6 +10,7 @@ export default createUseStyles(
     childPosition: IChildPosition,
     tooltipSize: ITooltipSize,
     withCloseButton?: boolean,
+    withText?: boolean,
   ) => ({
     tooltip: {
       position: 'absolute',
@@ -33,6 +34,7 @@ export default createUseStyles(
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
+      marginBottom: withText ? 5 : 0,
     },
     title: {
       color: theme.text.secondary,

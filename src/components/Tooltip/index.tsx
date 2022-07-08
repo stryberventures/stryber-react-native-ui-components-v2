@@ -78,7 +78,7 @@ const Tooltip: React.FC<ITooltipProps> = ({
     width: 0,
     height: 0,
   });
-  const styles = useStyles(childPosition, tooltipSize, withCloseButton);
+  const styles = useStyles(childPosition, tooltipSize, withCloseButton, !!text);
 
   const handleOpen = () => {
     childrenWrapperRef.current!.measure((x, y, width, height, pageX, pageY) => {

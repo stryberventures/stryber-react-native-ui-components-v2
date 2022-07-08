@@ -25,6 +25,8 @@ export interface IInputProps extends TextInputProps {
   style?: StyleProp<ViewStyle>;
   inputWrapperStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
+  hintStyle?: IBaseInputLayoutProps['hintStyle'];
+  errorStyle?: IBaseInputLayoutProps['errorStyle'];
   disabled?: boolean;
   controlled?: boolean;
   rightContent?: IBaseInputLayoutProps['rightContent'];
@@ -47,6 +49,8 @@ const Input: React.FC<IInputProps> = ({
   style,
   inputWrapperStyle,
   inputStyle,
+  hintStyle,
+  errorStyle,
   disabled,
   controlled,
   maxLength,
@@ -126,6 +130,8 @@ const Input: React.FC<IInputProps> = ({
       currentValueLength={controlled ? value?.length : internalValue?.length}
       rightContent={rightContent}
       color={color}
+      hintStyle={hintStyle}
+      errorStyle={errorStyle}
     >
       <View style={styles.inputContainer}>
         {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
