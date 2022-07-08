@@ -6,6 +6,7 @@ export default createUseStyles(theme => ({
     padding: 0,
     textAlignVertical: 'top',
     height: 17,
+    width: '100%',
   },
   disabledInput: {
     color: theme.text.disabled,

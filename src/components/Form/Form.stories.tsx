@@ -161,6 +161,26 @@ WithValidation.args = {
   }),
 };
 
+export const WithOnChangeValidation = Template.bind({});
+WithOnChangeValidation.args = {
+  onSubmit: (formData: any) => {
+    console.log('onSubmit external', formData);
+  },
+  onReset: (formData: any) => {
+    console.log('onReset external', formData);
+  },
+  onChange: (_, {isFormValid}) => console.log(isFormValid),
+  validationSchema: yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+    checkbox: yup.boolean().required(),
+    switch: yup.boolean().required(),
+    multiselect: yup.array().min(1).required(),
+    select: yup.string().required(),
+    numberInput: yup.number().required(),
+  }),
+};
+
 export const ErrorOnSubmit = Template.bind({});
 ErrorOnSubmit.args = {
   onSubmit: (formData: any, {setError}) => {

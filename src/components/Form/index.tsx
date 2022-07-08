@@ -38,13 +38,20 @@ export const FormContext: React.Context<IFormContext> = React.createContext(
 export interface IFormActions {
   setError: (errors: any) => void;
   resetForm: () => void;
+  isFormValid: boolean;
 }
 
 export interface IFormProps {
-  onSubmit?: (formData: any, {setError, resetForm}: IFormActions) => void;
+  onSubmit?: (
+    formData: any,
+    {setError, resetForm, isFormValid}: IFormActions,
+  ) => void;
   onReset?: (formData: any) => void;
   onError?: (errorData: any, formData: any) => void;
-  onChange?: (newFormData: any, {setError, resetForm}: IFormActions) => void;
+  onChange?: (
+    newFormData: any,
+    {setError, resetForm, isFormValid}: IFormActions,
+  ) => void;
   onValidate?: (newFormData: any) => any;
   onValidateAsync?: (newFormData: any) => Promise<any>;
   initialValues?: any;
@@ -128,6 +135,7 @@ const Form = forwardRef<IFormRef, IFormProps>(
     };
 
     const formActions = {
+      isFormValid: JSON.stringify(formErrors) === '{}',
       setError: setFormErrorsActionWrapper,
       resetForm: onResetFormWrapper,
     };
