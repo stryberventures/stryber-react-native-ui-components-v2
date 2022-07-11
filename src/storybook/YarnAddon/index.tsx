@@ -31,11 +31,11 @@ const YarnAddon: React.FC<IYarnAddonProps> = ({active}) => {
 
   return (
     <div className="yarn-container">
-      <h3 className="title">To install package:</h3>
+      <h3 className="yarn-title">To install package:</h3>
       <CodeBox>
         yarn add {name}@{version}
       </CodeBox>
-      {filteredPeerDependencies.length && (
+      {!!filteredPeerDependencies.length && (
         <>
           <h3 className="yarn-title">
             ⚠️ Make sure that all needed peer dependencies are also installed
