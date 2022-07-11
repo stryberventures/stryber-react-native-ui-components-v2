@@ -10,7 +10,6 @@ interface ICodeBoxProps {
 
 const CodeBox: FC<ICodeBoxProps> = ({children}) => {
   const [copyString, setCopyString] = React.useState('Press to Copy');
-  console.log(copyString);
   return (
     <div className="pre-wrapper">
       <pre className="pre">{children}</pre>

@@ -19,6 +19,7 @@ import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
 import Select from '../Select';
 import pkg from './package.json';
+import FormDisabledSubmitButton from '../../storybook/preview/FormDisabledSubmitButton';
 
 export default {
   title: 'Form',
@@ -204,5 +205,6 @@ ResetOnSubmit.args = {
   },
 };
 
-// @ts-ignore
 export const ExternalControl = ExternalFormControl;
+
+export const DisabledSubmitButton = FormDisabledSubmitButton;

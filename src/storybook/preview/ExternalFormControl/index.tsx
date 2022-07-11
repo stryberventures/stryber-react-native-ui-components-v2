@@ -5,9 +5,7 @@ import Button from '../../../components/Button';
 import Form, {IFormRef} from '../../../components/Form';
 import * as yup from 'yup';
 
-interface IExternalFormControlProps {}
-
-const ExternalFormControl: React.FC<IExternalFormControlProps> = () => {
+const ExternalFormControl = () => {
   const formRef = useRef<IFormRef>(null);
   const [currentFormState, updateFormState]: [any, any] = useState({});
 
