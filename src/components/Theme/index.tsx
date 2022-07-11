@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useMemo, useState} from 'react';
-import merge from 'lodash/merge';
+import {merge} from '../../utils/deepMerge';
 import {StyleSheet} from 'react-native';
 
 import {defaultTheme} from './defaultTheme';
@@ -29,10 +29,10 @@ const Context = React.createContext<IThemeContext>({
 
 export const ThemeProvider = React.memo<IThemeProvider>(
   ({initial, children}) => {
-    const [theme, setTheme] = useState(merge({}, defaultTheme, initial));
+    const [theme, setTheme] = useState(merge(defaultTheme, initial));
 
     const UpdateThemeCallback = useCallback(<T,>(updatedTheme: T) => {
-      setTheme(currentTheme => merge({}, currentTheme, updatedTheme));
+      setTheme((currentTheme: any) => merge(currentTheme, updatedTheme));
     }, []);
 
     const MemoizedValue = useMemo(() => {
