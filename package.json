@@ -21,10 +21,8 @@
   "scripts": {
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "update-stories": "sb-rn-get-stories --config-path .ondevice",
-    "preandroid": "yarn run update-stories",
-    "android": "react-native run-android",
-    "preios": "yarn run update-stories",
-    "ios": "react-native run-ios",
+    "android": "react-native run-android & yarn storybook-watcher",
+    "ios": "react-native run-ios & yarn storybook-watcher",
     "pod": "npx pod-install",
     "start": "react-native start",
     "test": "jest",
