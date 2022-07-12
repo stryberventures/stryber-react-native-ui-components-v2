@@ -6,7 +6,7 @@
 * [Setup Theme and Font](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/2.-Theme)
 * [How to use Form](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/3.-Form)
 * [How to create a Story](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/4.-Create-a-Story)
-* [Build and Deploy](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/3.-Build-and-Deploy)
+* [Build and Deploy](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/5.-Build-and-Deploy)
 
 ## Description
 
