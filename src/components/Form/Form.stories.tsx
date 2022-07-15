@@ -14,6 +14,7 @@ import Checkbox from '../Checkbox';
 import Switch from '../Switch';
 import Multiselect, {IMultiselectOption} from '../Multiselect';
 import Slider from '../Slider';
+import Combobox from '../Combobox';
 
 import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
@@ -47,7 +48,10 @@ const Template: ComponentStory<typeof Form> = ({
 }) => {
   return (
     <Form {...rest}>
-      <ScrollView contentContainerStyle={{paddingHorizontal: 8}}>
+      <ScrollView
+        contentContainerStyle={{paddingHorizontal: 8}}
+        nestedScrollEnabled
+      >
         <Multiselect
           label="Multiselect"
           placeholder="multiselect"
@@ -60,6 +64,12 @@ const Template: ComponentStory<typeof Form> = ({
           name="select"
           label="Select"
           placeholder="Select"
+        />
+        <Divider height={10} />
+        <Combobox
+          options={options}
+          label="Combobox"
+          placeholder="Chose number"
         />
         <Divider height={10} />
         <RadioButton name="radio" value="option 1" label="Option 1" />

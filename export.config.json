@@ -20,6 +20,7 @@
     "Slider": "slider",
     "NumberInput": "number-input",
     "Text": "text",
-    "Select": "select"
+    "Select": "select",
+    "Combobox": "combobox"
   }
 }
