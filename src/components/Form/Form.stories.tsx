@@ -185,24 +185,24 @@ WithOnChangeValidation.args = {
   onReset: (formData: any) => {
     console.log('onReset external', formData);
   },
-  onChange: (_, {isFormValid}) => console.log(isFormValid),
+  onChange: (_, {isValid}) => console.log(isValid),
   validationSchema,
 };
 
 export const ErrorOnSubmit = Template.bind({});
 ErrorOnSubmit.args = {
-  onSubmit: (formData: any, {setError}) => {
+  onSubmit: (formData: any, {setErrors}) => {
     console.log('onSubmit external', formData);
-    setError({email: 'This email is already taken'});
+    setErrors({email: 'This email is already taken'});
   },
   validationSchema,
 };
 
 export const ResetOnSubmit = Template.bind({});
 ResetOnSubmit.args = {
-  onSubmit: (formData: any, {resetForm}) => {
+  onSubmit: (formData: any, {reset}) => {
     console.log('onSubmit external', formData);
-    resetForm();
+    reset();
   },
 };
 

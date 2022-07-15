@@ -12,10 +12,10 @@ const FormDisabledSubmitButton = () => {
       onSubmit={(formData: any) => {
         console.log('onSubmit: ', formData);
       }}
-      onChange={(formData: any, {isFormValid}) => {
+      onChange={(formData: any, {isValid}) => {
         console.log('onChange: ', formData);
-        console.log('isFormValid: ', isFormValid);
-        setDisabled(!isFormValid);
+        console.log('isFormValid: ', isValid);
+        setDisabled(!isValid);
       }}
       onError={(errorData: any, formData: any) =>
         console.log('onError: ', errorData, formData)

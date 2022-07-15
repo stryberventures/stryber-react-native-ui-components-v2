@@ -23,7 +23,7 @@ export default createUseStyles(
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
-        height: 3,
+        height: 0,
       },
       shadowOpacity: 0.2,
       shadowRadius: 8.3,

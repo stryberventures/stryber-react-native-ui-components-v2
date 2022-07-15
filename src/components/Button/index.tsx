@@ -40,7 +40,9 @@ const Button: React.FC<IButtonProps> = ({
   type,
   ...rest
 }) => {
-  const {handleSubmit, handleReset} = useFormContext();
+  const {
+    formActions: {submit, reset},
+  } = useFormContext();
   const styles = useStyles(color, size, variant);
 
   const renderIcon = (
@@ -51,9 +53,9 @@ const Button: React.FC<IButtonProps> = ({
   const handlePress = (e: GestureResponderEvent) => {
     switch (type) {
       case 'submit':
-        return handleSubmit();
+        return submit();
       case 'reset':
-        return handleReset();
+        return reset();
       default:
         return onPress && onPress(e);
     }
