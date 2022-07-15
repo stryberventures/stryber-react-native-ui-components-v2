@@ -1,4 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react';
 import useStyles from './styles';
 import {
   TextInput,
@@ -36,122 +41,133 @@ export interface IInputProps extends TextInputProps {
   prefixStyle?: StyleProp<TextStyle>;
 }
 
-const Input: React.FC<IInputProps> = ({
-  name = 'input',
-  onChangeText,
-  onFocus,
-  onBlur,
-  clearFormValueOnUnmount,
-  error,
-  value = '',
-  label,
-  hint,
-  style,
-  inputWrapperStyle,
-  inputStyle,
-  hintStyle,
-  errorStyle,
-  disabled,
-  controlled,
-  maxLength,
-  rightContent,
-  color,
-  mask,
-  prefix,
-  prefixStyle,
-  ...rest
-}) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const inputRef = React.createRef<TextInput>();
-  const {theme} = useTheme();
+const Input = forwardRef<TextInput, IInputProps>(
+  (
+    {
+      name = 'input',
+      onChangeText,
+      onFocus,
+      onBlur,
+      clearFormValueOnUnmount,
+      error,
+      value = '',
+      label,
+      hint,
+      style,
+      inputWrapperStyle,
+      inputStyle,
+      hintStyle,
+      errorStyle,
+      disabled,
+      controlled,
+      maxLength,
+      rightContent,
+      color,
+      mask,
+      prefix,
+      prefixStyle,
+      ...rest
+    },
+    ref,
+  ) => {
+    const [isFocused, setIsFocused] = useState(false);
+    const inputRef = React.createRef<TextInput>();
+    const {theme} = useTheme();
 
-  const styles = useStyles();
+    const styles = useStyles();
 
-  const handleFocus = () => inputRef.current!.focus();
+    const handleFocus = () => inputRef.current!.focus();
 
-  const {
-    fieldError,
-    fieldValue,
-    unsetFormValue,
-    updateFormValue,
-    updateFormTouched,
-  } = useFormContext(name);
+    useImperativeHandle(ref, () => inputRef.current as TextInput);
 
-  const errorMessage = fieldError || error;
-  const initValue = fieldValue || value;
-  const [internalValue, setInternalValue] = React.useState<string>(
-    mask && initValue ? applyDigitMask(initValue, mask) : initValue,
-  );
+    const {
+      fieldError,
+      fieldValue,
+      unsetFormValue,
+      updateFormValue,
+      updateFormTouched,
+    } = useFormContext(name);
 
-  /** Wrappers to merge form and props methods */
-  const onChangeTextWrapper = (text: string) => {
-    let nextValue = text;
+    const initValue = fieldValue || value;
+    const errorMessage = fieldError || error;
+    const [internalValue, setInternalValue] = React.useState<string>(
+      mask && initValue ? applyDigitMask(initValue, mask) : initValue,
+    );
 
-    setInternalValue(prevValue => {
-      if (mask) {
-        nextValue =
-          prevValue.length >= text.length ? text : applyDigitMask(text, mask);
-      }
-      return nextValue;
-    });
+    /** Wrappers to merge form and props methods */
+    const onChangeTextWrapper = (text: string) => {
+      let nextValue = text;
 
-    updateFormValue(name, nextValue);
-    onChangeText && onChangeText(nextValue);
-  };
-  const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setIsFocused(true);
-    onFocus && onFocus(e);
-  };
-  const onBlurWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setIsFocused(false);
-    updateFormTouched(name, true);
-    onBlur && onBlur(e);
-  };
+      setInternalValue(prevValue => {
+        if (mask) {
+          nextValue =
+            prevValue.length >= text.length ? text : applyDigitMask(text, mask);
+        }
+        return nextValue;
+      });
 
-  useEffect(() => {
-    updateFormValue(name, internalValue, true);
-    return () => {
-      clearFormValueOnUnmount && unsetFormValue(name);
+      updateFormValue(name, nextValue);
+      onChangeText && onChangeText(nextValue);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const onFocusWrapper = (
+      e: NativeSyntheticEvent<TextInputFocusEventData>,
+    ) => {
+      setIsFocused(true);
+      onFocus && onFocus(e);
+    };
+    const onBlurWrapper = (
+      e: NativeSyntheticEvent<TextInputFocusEventData>,
+    ) => {
+      setIsFocused(false);
+      updateFormTouched(name, true);
+      onBlur && onBlur(e);
+    };
 
-  return (
-    <BaseInputLayout
-      style={style}
-      label={label}
-      isFocused={isFocused}
-      onPress={handleFocus}
-      error={errorMessage}
-      wrapperStyle={inputWrapperStyle}
-      disabled={disabled}
-      hint={hint}
-      maxValueLength={maxLength}
-      currentValueLength={controlled ? value?.length : internalValue?.length}
-      rightContent={rightContent}
-      color={color}
-      hintStyle={hintStyle}
-      errorStyle={errorStyle}
-    >
-      <View style={styles.inputContainer}>
-        {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
-        <TextInput
-          style={[styles.input, disabled && styles.disabledInput, inputStyle]}
-          value={controlled ? value : internalValue}
-          onBlur={onBlurWrapper}
-          onChangeText={onChangeTextWrapper}
-          onFocus={onFocusWrapper}
-          placeholderTextColor={
-            disabled ? theme.text.disabled : theme.text.hint
-          }
-          ref={inputRef}
-          maxLength={maxLength}
-          editable={!disabled}
-          {...rest}
-        />
-      </View>
-    </BaseInputLayout>
-  );
-};
+    useEffect(() => {
+      updateFormValue(name, internalValue, true);
+      return () => {
+        clearFormValueOnUnmount && unsetFormValue(name);
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return (
+      <BaseInputLayout
+        style={style}
+        label={label}
+        isFocused={isFocused}
+        onPress={handleFocus}
+        error={errorMessage}
+        wrapperStyle={inputWrapperStyle}
+        disabled={disabled}
+        hint={hint}
+        maxValueLength={maxLength}
+        currentValueLength={controlled ? value?.length : internalValue?.length}
+        rightContent={rightContent}
+        color={color}
+        hintStyle={hintStyle}
+        errorStyle={errorStyle}
+      >
+        <View style={styles.inputContainer}>
+          {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
+          <TextInput
+            style={[styles.input, disabled && styles.disabledInput, inputStyle]}
+            value={controlled ? value : internalValue}
+            onBlur={onBlurWrapper}
+            onChangeText={onChangeTextWrapper}
+            onFocus={onFocusWrapper}
+            placeholderTextColor={
+              disabled ? theme.text.disabled : theme.text.hint
+            }
+            ref={inputRef}
+            maxLength={maxLength}
+            editable={!disabled}
+            {...rest}
+          />
+        </View>
+      </BaseInputLayout>
+    );
+  },
+);
 
 export default Input;

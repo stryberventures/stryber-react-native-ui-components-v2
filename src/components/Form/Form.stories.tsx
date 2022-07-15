@@ -14,6 +14,7 @@ import Checkbox from '../Checkbox';
 import Switch from '../Switch';
 import Multiselect, {IMultiselectOption} from '../Multiselect';
 import Slider from '../Slider';
+import Combobox from '../Combobox';
 
 import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
@@ -39,6 +40,17 @@ const options: IMultiselectOption[] = [
   {label: 'Six', value: 'six'},
 ];
 
+const validationSchema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+  checkbox: yup.boolean().required(),
+  switch: yup.boolean().required(),
+  multiselect: yup.array().min(1).required(),
+  select: yup.string().required(),
+  numberInput: yup.number().required(),
+  combobox: yup.string().required(),
+});
+
 const Template: ComponentStory<typeof Form> = ({
   // removed onValidateAsync from props(web storybook error)
   onValidateAsync: _,
@@ -47,7 +59,10 @@ const Template: ComponentStory<typeof Form> = ({
 }) => {
   return (
     <Form {...rest}>
-      <ScrollView contentContainerStyle={{paddingHorizontal: 8}}>
+      <ScrollView
+        contentContainerStyle={{paddingHorizontal: 8}}
+        nestedScrollEnabled
+      >
         <Multiselect
           label="Multiselect"
           placeholder="multiselect"
@@ -60,6 +75,13 @@ const Template: ComponentStory<typeof Form> = ({
           name="select"
           label="Select"
           placeholder="Select"
+        />
+        <Divider height={10} />
+        <Combobox
+          name="combobox"
+          options={options}
+          label="Combobox"
+          placeholder="Chose number"
         />
         <Divider height={10} />
         <RadioButton name="radio" value="option 1" label="Option 1" />
@@ -140,6 +162,7 @@ WithInitialValues.args = {
     slider: 6,
     rangeSlider: [5, 8],
     numberInput: 6,
+    combobox: 'six',
   },
 };
 
@@ -151,15 +174,7 @@ WithValidation.args = {
   onReset: (formData: any) => {
     console.log('onReset external', formData);
   },
-  validationSchema: yup.object({
-    email: yup.string().email().required(),
-    password: yup.string().required(),
-    checkbox: yup.boolean().required(),
-    switch: yup.boolean().required(),
-    multiselect: yup.array().min(1).required(),
-    select: yup.string().required(),
-    numberInput: yup.number().required(),
-  }),
+  validationSchema,
 };
 
 export const WithOnChangeValidation = Template.bind({});
@@ -171,15 +186,7 @@ WithOnChangeValidation.args = {
     console.log('onReset external', formData);
   },
   onChange: (_, {isFormValid}) => console.log(isFormValid),
-  validationSchema: yup.object({
-    email: yup.string().email().required(),
-    password: yup.string().required(),
-    checkbox: yup.boolean().required(),
-    switch: yup.boolean().required(),
-    multiselect: yup.array().min(1).required(),
-    select: yup.string().required(),
-    numberInput: yup.number().required(),
-  }),
+  validationSchema,
 };
 
 export const ErrorOnSubmit = Template.bind({});
@@ -188,13 +195,7 @@ ErrorOnSubmit.args = {
     console.log('onSubmit external', formData);
     setError({email: 'This email is already taken'});
   },
-  validationSchema: yup.object({
-    email: yup.string().email().required(),
-    password: yup.string().required(),
-    checkbox: yup.boolean().required(),
-    switch: yup.boolean().required(),
-    multiselect: yup.array().min(1).required(),
-  }),
+  validationSchema,
 };
 
 export const ResetOnSubmit = Template.bind({});
