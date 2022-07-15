@@ -5,6 +5,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from 'react';
+import {isObjectEmpty} from '../../utils';
 
 export interface IFormActions {
   submit: () => void;
@@ -141,7 +142,7 @@ const Form = forwardRef<IFormRef, IFormProps>(
     };
 
     const formActions = {
-      isValid: JSON.stringify(formErrors) === '{}',
+      isValid: isObjectEmpty(formErrors),
       setErrors: setFormErrorsActionWrapper,
       reset: onResetFormWrapper,
       submit: onSubmitFormWrapper,
@@ -158,8 +159,8 @@ const Form = forwardRef<IFormRef, IFormProps>(
         newFormValues[name] = value;
 
         /** Validating new values */
-        const validationResult = validate(newFormValues);
-        const isValid = JSON.stringify(validationResult) === '{}';
+        const validationResult = validate(newFormValues) || {};
+        const isValid = isObjectEmpty(validationResult);
 
         /** Sending on change callback (if it was provided) */
         !init && onChange && onChange(newFormValues, {...formActions, isValid});

@@ -4,3 +4,7 @@ export const validateInputValueLength = (value: string) => {
   }
   return value;
 };
+
+export const isObjectEmpty = (obj: object) => {
+  return Object.keys(obj).length === 0;
+};
