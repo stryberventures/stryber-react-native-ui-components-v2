@@ -3,8 +3,6 @@ import useStyles from './styles';
 import {
   Pressable,
   Keyboard,
-  NativeSyntheticEvent,
-  TextInputFocusEventData,
   ScrollView,
   ViewStyle,
   StyleProp,
@@ -29,7 +27,6 @@ const Combobox: React.FC<IComboboxProps> = ({
   error,
   options,
   disabled,
-  onBlur,
   onChangeText,
   clearFormValueOnUnmount,
   style,
@@ -43,10 +40,16 @@ const Combobox: React.FC<IComboboxProps> = ({
     fieldValue,
     unsetFormValue,
     updateFormValue,
-    updateFormTouched,
   } = useFormContext(name);
 
-  const [inputValue, setInputValue] = React.useState(fieldValue || value);
+  const getOptionLabelByValue = (optionValue: string | number) => {
+    const option = options.find(optionItem => optionItem.value === optionValue);
+    return option ? option.label : '';
+  };
+
+  const [inputValue, setInputValue] = React.useState(
+    getOptionLabelByValue(fieldValue || value),
+  );
   const errorMessage = fieldError || error;
   const [visible, setVisible] = React.useState(false);
   const extractedLabels = options.map(option => option.label);
@@ -61,8 +64,8 @@ const Combobox: React.FC<IComboboxProps> = ({
   const onChangeTextWrapper = (text: string) => {
     setInputValue(text);
     updateFormValue(name, getOptionValueByLabel(text));
-    onChangeText && onChangeText(text);
     onChange && onChange(getOptionValueByLabel(text));
+    onChangeText && onChangeText(text);
   };
 
   const handleFocus = () => {
@@ -92,11 +95,6 @@ const Combobox: React.FC<IComboboxProps> = ({
     handleDismiss();
   };
 
-  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    updateFormTouched(name, true);
-    onBlur && onBlur(e);
-  };
-
   useEffect(() => {
     updateFormValue(name, getOptionValueByLabel(inputValue), true);
     return () => {
@@ -112,6 +110,7 @@ const Combobox: React.FC<IComboboxProps> = ({
       style={[styles.container, style]}
     >
       <Input
+        name={name}
         onFocus={handleFocus}
         value={inputValue}
         onChangeText={onChangeTextWrapper}
@@ -124,7 +123,6 @@ const Combobox: React.FC<IComboboxProps> = ({
             style={[styles.icon, visible && styles.invertedIcon]}
           />
         }
-        onBlur={handleBlur}
         style={inputStyle}
         {...rest}
       />
