@@ -6,6 +6,8 @@ import {
   ScrollView,
   ViewStyle,
   StyleProp,
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
 } from 'react-native';
 import {useTheme} from '../Theme';
 import {useFormContext} from '../Form';
@@ -33,6 +35,7 @@ const Combobox: React.FC<IComboboxProps> = ({
   dropdownStyle,
   inputStyle,
   onChange,
+  onFocus,
   ...rest
 }) => {
   const {
@@ -68,8 +71,9 @@ const Combobox: React.FC<IComboboxProps> = ({
     onChangeText && onChangeText(text);
   };
 
-  const handleFocus = () => {
+  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setVisible(true);
+    onFocus && onFocus(e);
   };
 
   const handleSearch = (arr: ISelectOption[]) => {
