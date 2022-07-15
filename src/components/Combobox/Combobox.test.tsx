@@ -40,7 +40,7 @@ it('shows hint input message', () => {
 });
 
 it('shows input value', () => {
-  const value = 'Test value';
+  const value = 'Phoenix';
   const {getByDisplayValue} = render(
     <Combobox value={value} options={cities} />,
   );
