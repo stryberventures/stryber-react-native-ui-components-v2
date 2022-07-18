@@ -60,5 +60,5 @@ buck-out/
 /ios/Pods/
 /vendor/bundle/
 
-# generated files by bob
-lib/
+# generated dirs by webpack build
+dist/

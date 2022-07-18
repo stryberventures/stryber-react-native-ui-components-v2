@@ -6,8 +6,8 @@
 const fs = require('fs-extra');
 const replace = require('replace-in-file');
 const {components, name} = require('./export.config.json');
+const {buildDir} = require('./buildConstants');
 
-const buildDir = 'build';
 const webpackBuildDir = 'dist';
 const componentsList = Object.keys(components);
 const fontDir = './src/components/Theme/DefaultFont';
@@ -54,7 +54,7 @@ async function replacePaths() {
   await replace({
     from,
     to,
-    files: ['build/**/index.js', 'build/**/index.d.ts'],
+    files: [`${buildDir}/**/index.js`, `${buildDir}/**/index.d.ts`],
   });
 }
 
