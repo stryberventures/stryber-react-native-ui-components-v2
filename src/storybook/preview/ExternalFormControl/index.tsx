@@ -10,11 +10,11 @@ const ExternalFormControl = () => {
   const [currentFormState, updateFormState]: [any, any] = useState({});
 
   const handleSetError = () => {
-    formRef.current!.setError({email: 'This email is already taken'});
+    formRef.current!.setErrors({email: 'This email is already taken'});
   };
 
   const handleResetForm = () => {
-    formRef.current!.resetForm();
+    formRef.current!.reset();
   };
 
   return (

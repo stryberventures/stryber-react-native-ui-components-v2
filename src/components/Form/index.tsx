@@ -5,7 +5,14 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from 'react';
-import * as yup from 'yup';
+import {isObjectEmpty} from '../../utils';
+
+export interface IFormActions {
+  submit: () => void;
+  reset: () => void;
+  isValid: boolean;
+  setErrors: (errors: Record<string, string>) => void;
+}
 
 export interface IFormContext {
   updateFormValue: (name: string, data: any, init?: boolean) => void;
@@ -15,8 +22,7 @@ export interface IFormContext {
   formErrors: any;
   formTouched: any;
   initialValues?: any;
-  handleReset: () => void;
-  handleSubmit: (formData?: any) => void;
+  formActions: IFormActions;
 }
 
 const defaultFormContextValues: IFormContext = {
@@ -27,31 +33,23 @@ const defaultFormContextValues: IFormContext = {
   formErrors: undefined,
   formTouched: undefined,
   initialValues: undefined,
-  handleReset: () => {},
-  handleSubmit: () => {},
+  formActions: {
+    submit: () => {},
+    reset: () => {},
+    isValid: true,
+    setErrors: () => {},
+  },
 };
 
 export const FormContext: React.Context<IFormContext> = React.createContext(
   defaultFormContextValues,
 );
 
-export interface IFormActions {
-  setError: (errors: any) => void;
-  resetForm: () => void;
-  isFormValid: boolean;
-}
-
 export interface IFormProps {
-  onSubmit?: (
-    formData: any,
-    {setError, resetForm, isFormValid}: IFormActions,
-  ) => void;
+  onSubmit?: (formData: any, formActions: IFormActions) => void;
   onReset?: (formData: any) => void;
   onError?: (errorData: any, formData: any) => void;
-  onChange?: (
-    newFormData: any,
-    {setError, resetForm, isFormValid}: IFormActions,
-  ) => void;
+  onChange?: (newFormData: any, formActions: IFormActions) => void;
   onValidate?: (newFormData: any) => any;
   onValidateAsync?: (newFormData: any) => Promise<any>;
   initialValues?: any;
@@ -84,19 +82,19 @@ const Form = forwardRef<IFormRef, IFormProps>(
 
     const validate = (values: any) => {
       /** Validation schema using Yup library */
+      let validationRes = {};
       if (validationSchema) {
-        validationSchema
-          .validate(values, {abortEarly: false})
-          /** No errors from Yup */
-          .then(() => setFormErrors({}))
-          /** Errors were caught */
-          .catch((errors: yup.ValidationError) => {
-            const parsedErrors = errors.inner.reduce(
-              (a: any, v: any) => ({...a, [v.path]: v.message}),
-              {},
-            );
-            setFormErrors(() => parsedErrors);
-          });
+        try {
+          validationSchema.validateSync(values, {abortEarly: false});
+        } catch (errors: any) {
+          validationRes = errors.inner.reduce(
+            (a: any, v: any) => ({...a, [v.path]: v.message}),
+            {},
+          );
+        }
+        setFormErrors(validationRes);
+
+        return validationRes;
       }
       /** External validation methods */
       if (onValidate) {
@@ -105,9 +103,9 @@ const Form = forwardRef<IFormRef, IFormProps>(
       if (onValidateAsync) {
         onValidateAsync(values)
           /** No errors from external lib */
-          .then(() => setFormErrors(() => {}))
+          .then(() => setFormErrors({}))
           /** Errors were caught */
-          .catch((errors: any) => setFormErrors(() => errors));
+          .catch((errors: any) => setFormErrors(errors));
       }
     };
 
@@ -134,10 +132,20 @@ const Form = forwardRef<IFormRef, IFormProps>(
       onError && onError(errors, formValues);
     };
 
+    const onSubmitFormWrapper = () => {
+      if (Object.keys(formErrors).length > 0) {
+        handleFormTouched();
+        onError && onError(formErrors, formValues);
+      } else {
+        onSubmit && onSubmit(formValues, formActions);
+      }
+    };
+
     const formActions = {
-      isFormValid: JSON.stringify(formErrors) === '{}',
-      setError: setFormErrorsActionWrapper,
-      resetForm: onResetFormWrapper,
+      isValid: isObjectEmpty(formErrors),
+      setErrors: setFormErrorsActionWrapper,
+      reset: onResetFormWrapper,
+      submit: onSubmitFormWrapper,
     };
 
     const updateFormValue = (
@@ -151,10 +159,11 @@ const Form = forwardRef<IFormRef, IFormProps>(
         newFormValues[name] = value;
 
         /** Validating new values */
-        validate(newFormValues);
+        const validationResult = validate(newFormValues) || {};
+        const isValid = isObjectEmpty(validationResult);
 
         /** Sending on change callback (if it was provided) */
-        !init && onChange && onChange(newFormValues, formActions);
+        !init && onChange && onChange(newFormValues, {...formActions, isValid});
 
         return newFormValues;
       });
@@ -173,15 +182,6 @@ const Form = forwardRef<IFormRef, IFormProps>(
     const unsetFormValue = (name: string) => {
       updateFormValue(name, undefined);
       updateFormTouched(name, false);
-    };
-
-    const onSubmitFormWrapper = () => {
-      if (Object.keys(formErrors).length > 0) {
-        handleFormTouched();
-        onError && onError(formErrors, formValues);
-      } else {
-        onSubmit && onSubmit(formValues, formActions);
-      }
     };
 
     useImperativeHandle(ref, () => formActions);
@@ -203,8 +203,7 @@ const Form = forwardRef<IFormRef, IFormProps>(
           formValues,
           formErrors,
           formTouched,
-          handleSubmit: onSubmitFormWrapper,
-          handleReset: onResetFormWrapper,
+          formActions,
         }}
       >
         {children}
@@ -221,8 +220,7 @@ export const useFormContext = (fieldName: string = 'unnamed') => {
     formValues,
     formErrors,
     formTouched,
-    handleReset,
-    handleSubmit,
+    formActions,
   } = useContext(FormContext);
 
   return {
@@ -235,8 +233,7 @@ export const useFormContext = (fieldName: string = 'unnamed') => {
     updateFormValue: formValues ? updateFormValue : () => {},
     updateFormTouched: formTouched ? updateFormTouched : () => {},
     unsetFormValue: formValues ? unsetFormValue : () => {},
-    handleReset,
-    handleSubmit,
+    formActions,
   };
 };
 
