@@ -63,3 +63,10 @@ Prefix.args = {
   mask: 'XXX-XXX',
   placeholder: 'XXX-XXX',
 };
+
+export const ReadOnly = Template.bind({});
+ReadOnly.args = {
+  label: 'Read only',
+  value: 'example@test.com',
+  editable: false,
+};
