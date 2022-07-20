@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
 import TextLink from '.';
-import {Icons} from '../../index';
+import * as Icons from '../Icons';
 
 it('should be rendered with text', () => {
   const label = 'Test button';

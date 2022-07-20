@@ -65,6 +65,16 @@ Range.args = {
   range: true,
 };
 
+export const RangeMinDistance = Template.bind({});
+RangeMinDistance.args = {
+  max: 20,
+  valueUp: 10,
+  range: true,
+  minDistance: 2,
+  showInput: true,
+  showTooltip: false,
+};
+
 export const RangeInput = Template.bind({});
 RangeInput.args = {
   max: 20,
