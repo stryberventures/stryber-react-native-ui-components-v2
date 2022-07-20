@@ -91,7 +91,10 @@ const Slider: FC<ISliderProps> = ({
 
   const setValueUpWrapper = (value: number) => {
     if (Array.isArray(fieldValue)) {
-      updateFormValue(name, [valueDown, value]);
+      const newValue = isPositionDownHigher
+        ? [value, valueDown]
+        : [valueDown, value];
+      updateFormValue(name, newValue);
     } else {
       updateFormValue(name, value);
     }
@@ -100,7 +103,10 @@ const Slider: FC<ISliderProps> = ({
 
   const setValueDownWrapper = (value: number) => {
     if (Array.isArray(fieldValue)) {
-      updateFormValue(name, [value, valueUp]);
+      const newValue = isPositionDownHigher
+        ? [valueUp, value]
+        : [value, valueUp];
+      updateFormValue(name, newValue);
     }
     setValueDown(value);
   };
