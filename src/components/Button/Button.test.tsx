@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
 import Button from '.';
-import {Icons} from '../../index';
+import * as Icons from '../Icons';
 
 it('should be rendered', () => {
   const label = 'Test button';

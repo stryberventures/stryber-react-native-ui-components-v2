@@ -15,6 +15,7 @@ import SliderLayout from './SliderLayout';
 import useStyles from './styles';
 import SliderInput from './SliderInput';
 import {useFormContext} from '../Form';
+import {getAnimatedValue} from '../../utils';
 
 export interface ISliderProps {
   valueUp?: number;
@@ -31,6 +32,7 @@ export interface ISliderProps {
   stepDotsIndicator?: boolean;
   leftLabel?: (a: number) => React.ReactNode;
   rightLabel?: (b: number) => React.ReactNode;
+  minDistance?: number;
   style?: StyleProp<ViewStyle>;
   onChange?: (a: number, b: number) => void;
   name?: string;
@@ -56,6 +58,7 @@ const Slider: FC<ISliderProps> = ({
   style,
   name = 'slider',
   clearFormValueOnUnmount,
+  minDistance = 0,
 }) => {
   const {fieldValue, unsetFormValue, updateFormValue} = useFormContext(name);
   const [width, setWidth] = useState(1);
@@ -81,12 +84,17 @@ const Slider: FC<ISliderProps> = ({
   const [buttonDownActive, setButtonDownActive] = useState(0);
   const buttonUpTouched = useRef(new Animated.Value(0)).current;
   const buttonDownTouched = useRef(new Animated.Value(0)).current;
+  const isPositionDownHigher =
+    getAnimatedValue(positionDown) > getAnimatedValue(positionUp);
 
   const styles = useStyles(color);
 
   const setValueUpWrapper = (value: number) => {
     if (Array.isArray(fieldValue)) {
-      updateFormValue(name, [valueDown, value]);
+      const newValue = isPositionDownHigher
+        ? [value, valueDown]
+        : [valueDown, value];
+      updateFormValue(name, newValue);
     } else {
       updateFormValue(name, value);
     }
@@ -95,7 +103,10 @@ const Slider: FC<ISliderProps> = ({
 
   const setValueDownWrapper = (value: number) => {
     if (Array.isArray(fieldValue)) {
-      updateFormValue(name, [value, valueUp]);
+      const newValue = isPositionDownHigher
+        ? [valueUp, value]
+        : [value, valueUp];
+      updateFormValue(name, newValue);
     }
     setValueDown(value);
   };
@@ -131,16 +142,20 @@ const Slider: FC<ISliderProps> = ({
   };
 
   const getValues = () => {
-    const interpolatedValueUp = (positionUp.interpolate({
-      inputRange: [0, width],
-      outputRange: [min, max],
-      extrapolate: 'clamp',
-    }) as any).__getValue();
-    const interpolatedValueDown = (positionDown.interpolate({
-      inputRange: [0, width],
-      outputRange: [min, max],
-      extrapolate: 'clamp',
-    }) as any).__getValue();
+    const interpolatedValueUp = getAnimatedValue(
+      positionUp.interpolate({
+        inputRange: [0, width],
+        outputRange: [min, max],
+        extrapolate: 'clamp',
+      }),
+    );
+    const interpolatedValueDown = getAnimatedValue(
+      positionDown.interpolate({
+        inputRange: [0, width],
+        outputRange: [min, max],
+        extrapolate: 'clamp',
+      }),
+    );
     return {
       interpolatedValueUp: getRoundedValue(interpolatedValueUp),
       interpolatedValueDown: getRoundedValue(interpolatedValueDown),
@@ -172,6 +187,12 @@ const Slider: FC<ISliderProps> = ({
     return Math.floor(offset / positionStep) * positionStep;
   };
 
+  const getButtonPositionFromValue = (value: number, initWidth?: number) => {
+    const sliderWidth = initWidth || width;
+    const positionToValueRatio = sliderWidth / (max - min);
+    return (value - min) * positionToValueRatio;
+  };
+
   const createUpButtonPanResponder = () => {
     let value = 0;
     return PanResponder.create({
@@ -189,13 +210,17 @@ const Slider: FC<ISliderProps> = ({
       },
       onPanResponderMove: (_, gestureState) => {
         let dx = gestureState.dx;
-        const positionDownValue = (positionDown as any).__getValue();
+        const positionDownWithOffset =
+          getAnimatedValue(positionDown) +
+          getButtonPositionFromValue(minDistance);
         const newPosition = value + gestureState.dx;
 
         if (newPosition >= width) {
           dx = width - value;
-        } else if (newPosition <= positionDownValue) {
-          dx = positionDownValue - value;
+        } else if (minDistance && newPosition <= positionDownWithOffset) {
+          dx = positionDownWithOffset - value;
+        } else if (newPosition <= 0) {
+          dx = -value;
         }
         positionUp.setValue(getRoundedOffset(dx));
         onSliderChange();
@@ -203,7 +228,7 @@ const Slider: FC<ISliderProps> = ({
       onPanResponderRelease: () => {
         value = 0;
         positionUp.flattenOffset();
-        const positionUpValue = (positionUp as any).__getValue();
+        const positionUpValue = getAnimatedValue(positionUp);
         const buttonWidth = SLIDER_CONFIG.buttonRadius * 2;
         if (positionUpValue >= width - buttonWidth) {
           setTopButton('down');
@@ -232,11 +257,15 @@ const Slider: FC<ISliderProps> = ({
       },
       onPanResponderMove: (_, gestureState) => {
         let dx = gestureState.dx;
-        const positionUpValue = (positionUp as any).__getValue();
+        const positionUpWithOffset =
+          getAnimatedValue(positionUp) -
+          getButtonPositionFromValue(minDistance);
         const newPosition = value + gestureState.dx;
 
-        if (newPosition >= positionUpValue) {
-          dx = positionUpValue - value;
+        if (minDistance && newPosition >= positionUpWithOffset) {
+          dx = positionUpWithOffset - value;
+        } else if (newPosition >= width) {
+          dx = width - value;
         } else if (newPosition <= 0) {
           dx = -value;
         }
@@ -246,7 +275,7 @@ const Slider: FC<ISliderProps> = ({
       onPanResponderRelease: () => {
         value = 0;
         positionDown.flattenOffset();
-        const positionDownValue = (positionUp as any).__getValue();
+        const positionDownValue = getAnimatedValue(positionUp);
         const buttonWidth = SLIDER_CONFIG.buttonRadius * 2;
         if (positionDownValue <= buttonWidth) {
           setTopButton('up');
@@ -264,9 +293,7 @@ const Slider: FC<ISliderProps> = ({
     buttonPosition: Animated.Value,
     initWidth?: number,
   ) => {
-    const sliderWidth = initWidth || width;
-    const positionToValueRatio = sliderWidth / (max - min);
-    buttonPosition.setValue((value - min) * positionToValueRatio);
+    buttonPosition.setValue(getButtonPositionFromValue(value, initWidth));
   };
 
   const onRangeBarContainerLayout = ({nativeEvent}: LayoutChangeEvent) => {
@@ -325,6 +352,7 @@ const Slider: FC<ISliderProps> = ({
               buttonPosition={isUp ? positionUp : positionDown}
               min={min}
               max={max}
+              minDistance={minDistance}
               range={range}
               testID={`slider_input_${type}`}
             />
@@ -372,12 +400,18 @@ const Slider: FC<ISliderProps> = ({
             style={[
               styles.rangeBar,
               {
-                marginLeft: positionDown,
-                marginRight: positionUp.interpolate({
-                  inputRange: [0, 1, width],
-                  outputRange: [width, width - 1, 0],
-                  extrapolate: 'clamp',
-                }),
+                marginLeft: isPositionDownHigher ? positionUp : positionDown,
+                marginRight: isPositionDownHigher
+                  ? positionDown.interpolate({
+                      inputRange: [0, 1, width],
+                      outputRange: [width, width - 1, 0],
+                      extrapolate: 'clamp',
+                    })
+                  : positionUp.interpolate({
+                      inputRange: [0, 1, width],
+                      outputRange: [width, width - 1, 0],
+                      extrapolate: 'clamp',
+                    }),
               },
             ]}
           />
