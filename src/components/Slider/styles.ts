@@ -17,7 +17,8 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
   },
   rangeBar: {
     height: '100%',
-    backgroundColor: '#6C84DE',
+    backgroundColor: theme[color!].main,
+    opacity: 0.5,
   },
   buttonWrapper: {
     position: 'absolute',

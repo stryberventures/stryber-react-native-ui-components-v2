@@ -17,10 +17,17 @@ const Template: ComponentStory<typeof TextArea> = args => (
   <TextArea {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   label: 'Your message',
   placeholder: 'Your message',
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  label: 'Your message',
+  placeholder: 'Your message',
+  color: 'secondary',
 };
 
 export const WithValue = Template.bind({});

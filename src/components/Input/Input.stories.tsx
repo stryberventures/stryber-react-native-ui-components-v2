@@ -15,10 +15,17 @@ export default {
 
 const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   label: 'Email',
   placeholder: 'Email',
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  label: 'Email',
+  placeholder: 'Email',
+  color: 'secondary',
 };
 
 export const WithValue = Template.bind({});

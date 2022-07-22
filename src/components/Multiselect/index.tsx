@@ -107,7 +107,10 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       {...rest}
     >
       <Form initialValues={getFormInitValues()} onChange={handleChange}>
-        <ScrollView style={styles.content}>
+        <ScrollView
+          style={styles.content}
+          contentContainerStyle={styles.innerContent}
+        >
           {options.map(option => (
             <Checkbox
               color={color}

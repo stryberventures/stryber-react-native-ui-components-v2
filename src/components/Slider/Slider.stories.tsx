@@ -27,10 +27,17 @@ export default {
 
 const Template: ComponentStory<typeof Slider> = args => <Slider {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   max: 9,
   valueUp: 3,
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  max: 9,
+  valueUp: 3,
+  color: 'secondary',
 };
 
 export const Input = Template.bind({});
