@@ -3,10 +3,10 @@ import {createUseStyles} from '../Theme';
 export default createUseStyles(theme => ({
   dropdown: {
     paddingHorizontal: 0,
-    paddingVertical: 8,
+    paddingVertical: 0,
   },
   content: {
-    maxHeight: 170,
+    maxHeight: 175,
   },
   multiselectItem: {
     paddingHorizontal: 8,
@@ -14,5 +14,8 @@ export default createUseStyles(theme => ({
   },
   multiselectItemPressed: {
     backgroundColor: theme.default.extraLight,
+  },
+  innerContent: {
+    paddingVertical: 8,
   },
 }));

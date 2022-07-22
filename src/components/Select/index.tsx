@@ -81,7 +81,10 @@ const Select: React.FC<ISelectProps> = ({
       ref={dropdownRef}
       {...rest}
     >
-      <ScrollView style={styles.content}>
+      <ScrollView
+        style={styles.content}
+        contentContainerStyle={styles.innerContent}
+      >
         {options.map(option => (
           <SelectItem
             key={option.value}

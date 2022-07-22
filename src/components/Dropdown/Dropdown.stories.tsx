@@ -29,11 +29,19 @@ const Template: ComponentStory<typeof Dropdown> = args => (
   <Dropdown {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   label: 'Text',
   value: 'Text dropdown',
   children: <DropdownContent />,
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  label: 'Text',
+  value: 'Text dropdown',
+  children: <DropdownContent />,
+  color: 'secondary',
 };
 
 export const Hint = Template.bind({});

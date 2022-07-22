@@ -17,11 +17,19 @@ const Template: ComponentStory<typeof NumberInput> = args => (
   <NumberInput {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   label: 'Number',
   placeholder: 'Number Value',
   step: 1,
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  label: 'Number',
+  placeholder: 'Number Value',
+  step: 1,
+  color: 'secondary',
 };
 
 export const CustomStep = Template.bind({});

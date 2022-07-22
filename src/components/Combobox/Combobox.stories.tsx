@@ -30,10 +30,17 @@ const Template: ComponentStory<typeof Combobox> = ({options: _, ...args}) => (
   <Combobox options={cities} {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   label: 'City',
   placeholder: 'Chose a city',
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  label: 'City',
+  placeholder: 'Chose a city',
+  color: 'secondary',
 };
 
 export const WithValue = Template.bind({});
