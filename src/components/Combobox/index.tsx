@@ -21,6 +21,7 @@ export interface IComboboxProps extends Omit<IInputProps, 'onChange'> {
   dropdownStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<ViewStyle>;
   onChange?: (value: string | number) => void;
+  noOptionsFoundText?: string;
 }
 
 const Combobox: React.FC<IComboboxProps> = ({
@@ -36,6 +37,7 @@ const Combobox: React.FC<IComboboxProps> = ({
   inputStyle,
   onChange,
   onFocus,
+  noOptionsFoundText = 'No options found',
   ...rest
 }) => {
   const {
@@ -136,6 +138,9 @@ const Combobox: React.FC<IComboboxProps> = ({
             contentContainerStyle={styles.content}
             keyboardShouldPersistTaps="always"
           >
+            {!handleSearch(options).length && (
+              <SelectItem disabled>{noOptionsFoundText}</SelectItem>
+            )}
             {handleSearch(options).map(option => (
               <SelectItem
                 key={option.value}

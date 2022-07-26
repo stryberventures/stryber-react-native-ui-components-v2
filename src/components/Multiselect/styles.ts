@@ -6,7 +6,7 @@ export default createUseStyles(theme => ({
     paddingVertical: 0,
   },
   content: {
-    maxHeight: 175,
+    maxHeight: 160,
   },
   multiselectItem: {
     paddingHorizontal: 8,
