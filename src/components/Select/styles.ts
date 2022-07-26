@@ -6,7 +6,7 @@ export default createUseStyles({
     paddingVertical: 0,
   },
   content: {
-    maxHeight: 150,
+    maxHeight: 160,
   },
   innerContent: {
     paddingVertical: 8,
