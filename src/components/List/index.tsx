@@ -7,6 +7,8 @@ import {
   ListRenderItem,
   Pressable,
   View,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 
 export interface IListItem {
@@ -16,6 +18,7 @@ export interface IListItem {
   rightContent?: React.ReactNode;
   onPress?: () => void;
   testID?: string;
+  style?: StyleProp<ViewStyle>;
 }
 
 export interface IListProps
@@ -27,9 +30,16 @@ const List: React.FC<IListProps> = ({listItems, ...rest}) => {
   const styles = useStyles();
 
   const renderItem: ListRenderItem<IListItem> = ({
-    item: {title, subtitle, rightContent, leftContent, onPress, testID},
+    item: {
+      title,
+      subtitle,
+      rightContent,
+      leftContent,
+      onPress,
+      ...restItemProps
+    },
   }) => (
-    <Pressable style={styles.listItem} onPress={onPress} testID={testID}>
+    <Pressable style={styles.listItem} onPress={onPress} {...restItemProps}>
       <View style={styles.content}>
         {!!leftContent && <View style={styles.leftContent}>{leftContent}</View>}
         <View>
