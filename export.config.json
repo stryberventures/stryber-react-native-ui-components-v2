@@ -21,6 +21,7 @@
     "NumberInput": "number-input",
     "Text": "text",
     "Select": "select",
-    "Combobox": "combobox"
+    "Combobox": "combobox",
+    "List": "list"
   }
 }
