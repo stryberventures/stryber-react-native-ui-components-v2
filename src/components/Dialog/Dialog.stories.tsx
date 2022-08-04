@@ -1,6 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
-import Dialog from '.';
+import Dialog, {IDialogProps} from '.';
+import Button from '../Button';
 import CenterView from '../../storybook/preview/CenterView';
 import pkg from './package.json';
 
@@ -13,9 +14,22 @@ export default {
   },
 } as ComponentMeta<typeof Dialog>;
 
-const Template: ComponentStory<typeof Dialog> = args => <Dialog {...args} />;
+const DialogStory = (args: IDialogProps) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <Button onPress={() => setOpen(true)}>Open Dialog</Button>
+      <Dialog {...args} onClose={() => setOpen(false)} open={open} />
+    </>
+  );
+};
+
+const Template: ComponentStory<typeof Dialog> = args => (
+  <DialogStory {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
-  children: 'Contained',
+  title: 'Title',
+  subtitle: 'Subtitle',
 };
