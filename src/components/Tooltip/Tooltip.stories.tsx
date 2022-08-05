@@ -9,13 +9,9 @@ export default {
   title: 'Tooltip',
   component: Tooltip,
   decorators: [
-    CenterView,
+    Platform.OS === 'web' ? Story => Story() : CenterView,
     Platform.OS === 'web'
-      ? Story => (
-          <View style={{paddingTop: 200}}>
-            <Story />
-          </View>
-        )
+      ? Story => <View style={{paddingTop: 70}}>{Story()}</View>
       : Story => <Story />,
   ],
   parameters: {

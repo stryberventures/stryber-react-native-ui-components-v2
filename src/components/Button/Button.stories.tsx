@@ -3,6 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Button from '.';
 import * as Icons from '../Icons';
 import CenterView from '../../storybook/preview/CenterView';
+import {Platform} from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -11,7 +12,7 @@ export default {
   argTypes: {
     onPress: {action: 'pressed the button'},
   },
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   args: {
     children: 'Button',
   },

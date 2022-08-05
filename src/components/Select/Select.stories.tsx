@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Select from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import {Platform} from 'react-native';
 import pkg from './package.json';
 
 const options = [
@@ -12,7 +13,7 @@ const options = [
 export default {
   title: 'Select',
   component: Select,
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
   },

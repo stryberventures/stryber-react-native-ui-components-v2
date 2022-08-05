@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Dropdown from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import {Platform} from 'react-native';
 import {Text} from 'react-native';
 import pkg from './package.json';
 
@@ -19,7 +20,7 @@ const DropdownContent = () => (
 export default {
   title: 'Dropdown',
   component: Dropdown,
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
   },

@@ -2,12 +2,13 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import PasswordInput from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import {Platform} from 'react-native';
 import pkg from './package.json';
 
 export default {
   title: 'PasswordInput',
   component: PasswordInput,
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
   },

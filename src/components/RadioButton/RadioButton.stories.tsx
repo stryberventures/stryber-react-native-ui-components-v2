@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import RadioButton from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import {Platform} from 'react-native';
 import Form from '../Form';
 import {Text, View} from 'react-native';
 import * as Icons from '../Icons';
@@ -10,7 +11,7 @@ import pkg from './package.json';
 export default {
   title: 'RadioButton',
   component: RadioButton,
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
   },

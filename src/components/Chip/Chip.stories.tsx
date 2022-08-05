@@ -2,13 +2,14 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Chip from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import {Platform} from 'react-native';
 import {ArrowDownSmallIcon, CheckIcon} from '../Icons';
 import pkg from './package.json';
 
 export default {
   title: 'Chip',
   component: Chip,
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
   },

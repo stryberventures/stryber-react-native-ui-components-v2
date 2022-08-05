@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {ScrollView, View} from 'react-native';
 import * as yup from 'yup';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
@@ -6,9 +6,9 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Input from '../Input';
 import PasswordInput from '../PasswordInput';
 import CenterView from '../../storybook/preview/CenterView';
-import Form from '.';
+import {Platform} from 'react-native';
+import Form, {IFormRef} from '.';
 import Button from '../Button';
-import ExternalFormControl from '../../storybook/preview/ExternalFormControl';
 import RadioButton from '../RadioButton';
 import Checkbox from '../Checkbox';
 import Switch from '../Switch';
@@ -20,12 +20,11 @@ import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
 import Select from '../Select';
 import pkg from './package.json';
-import FormDisabledSubmitButton from '../../storybook/preview/FormDisabledSubmitButton';
 
 export default {
   title: 'Form',
   component: Form,
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
   },
@@ -206,6 +205,110 @@ ResetOnSubmit.args = {
   },
 };
 
-export const ExternalControl = ExternalFormControl;
+export const ExternalControl = () => {
+  const formRef = useRef<IFormRef>(null);
+  const [currentFormState, updateFormState]: [any, any] = useState({});
 
-export const DisabledSubmitButton = FormDisabledSubmitButton;
+  const handleSetError = () => {
+    formRef.current!.setErrors({email: 'This email is already taken'});
+  };
+
+  const handleResetForm = () => {
+    formRef.current!.reset();
+  };
+
+  return (
+    <Form
+      ref={formRef}
+      onSubmit={(formData: any) => console.log('onSubmit external', formData)}
+      onChange={(formData: any) => {
+        console.log('onChange external', formData);
+        updateFormState(formData);
+      }}
+      onError={(errorData: any, formData: any) =>
+        console.log('onError external', errorData, formData)
+      }
+      validationSchema={yup.object({
+        email: yup.string().email().required(),
+        password: yup.string().required(),
+      })}
+    >
+      <Input
+        name="email"
+        placeholder="Email"
+        label="Email"
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{marginBottom: 20}}
+      />
+      {!!currentFormState.email && (
+        <Input name="password" placeholder="Password" label="Password" />
+      )}
+      <View
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{
+          marginTop: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }}
+      >
+        <Button type="submit">Login</Button>
+        <Button type="reset">Reset</Button>
+      </View>
+      <View
+        style={{
+          marginTop: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }}
+      >
+        <Button onPress={handleSetError}>Set extern error</Button>
+        <Button onPress={handleResetForm}>Reset externally</Button>
+      </View>
+    </Form>
+  );
+};
+
+export const DisabledSubmitButton = () => {
+  const [disabled, setDisabled] = useState(true);
+  return (
+    <Form
+      onSubmit={(formData: any) => {
+        console.log('onSubmit: ', formData);
+      }}
+      onChange={(formData: any, {isValid}) => {
+        console.log('onChange: ', formData);
+        console.log('isFormValid: ', isValid);
+        setDisabled(!isValid);
+      }}
+      onError={(errorData: any, formData: any) =>
+        console.log('onError: ', errorData, formData)
+      }
+      validationSchema={yup.object({
+        email: yup.string().email().required(),
+        password: yup.string().required(),
+      })}
+    >
+      <Input
+        name="email"
+        placeholder="Email"
+        label="Email"
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{marginBottom: 20}}
+      />
+      <Input name="password" placeholder="Password" label="Password" />
+      <View
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{
+          marginTop: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }}
+      >
+        <Button type="submit" disabled={disabled}>
+          Login
+        </Button>
+        <Button type="reset">Reset</Button>
+      </View>
+    </Form>
+  );
+};
