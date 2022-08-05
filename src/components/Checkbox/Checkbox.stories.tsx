@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Checkbox from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import {Platform} from 'react-native';
 import {Text, View} from 'react-native';
 import * as Icons from '../Icons';
 import pkg from './package.json';
@@ -9,7 +10,7 @@ import pkg from './package.json';
 export default {
   title: 'Checkbox',
   component: Checkbox,
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
   },

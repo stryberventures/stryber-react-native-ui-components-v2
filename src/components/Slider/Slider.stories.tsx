@@ -11,13 +11,9 @@ export default {
   title: 'Slider',
   component: Slider,
   decorators: [
-    CenterView,
+    Platform.OS === 'web' ? Story => Story() : CenterView,
     Platform.OS === 'web'
-      ? Story => (
-          <View style={{paddingTop: 200}}>
-            <Story />
-          </View>
-        )
+      ? Story => <View style={{paddingTop: 50}}>{Story()}</View>
       : Story => <Story />,
   ],
   parameters: {

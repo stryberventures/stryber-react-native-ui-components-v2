@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ThemeProvider, ThemeType, useTheme} from '../../../components/Theme';
+import {ThemeType, useTheme} from '../../../components/Theme';
 import Button from '../../../components/Button';
 import {Text, ScrollView} from 'react-native';
 import Title from '../Title';
@@ -144,10 +144,4 @@ const ThemePreview = ({theme}: {theme: ThemeType}) => {
   );
 };
 
-const ThemeChooser = ({theme}: {theme: ThemeType}) => (
-  <ThemeProvider initial={theme}>
-    <ThemePreview theme={theme} />
-  </ThemeProvider>
-);
-
-export default ThemeChooser;
+export default ThemePreview;

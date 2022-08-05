@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Switch from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import {Platform} from 'react-native';
 import * as Icons from '../Icons';
 import {Text, View} from 'react-native';
 import pkg from './package.json';
@@ -9,7 +10,7 @@ import pkg from './package.json';
 export default {
   title: 'Switch',
   component: Switch,
-  decorators: [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
   },
