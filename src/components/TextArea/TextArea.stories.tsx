@@ -59,9 +59,10 @@ Disabled.args = {
   disabled: true,
 };
 
-export const WithMaxLength = Template.bind({});
-WithMaxLength.args = {
-  label: 'Max Length',
-  placeholder: 'Max Length TextArea',
+export const WithLengthIndicator = Template.bind({});
+WithLengthIndicator.args = {
+  label: 'Max length',
+  placeholder: 'Show length indicator',
   maxLength: 200,
+  showLength: true,
 };

@@ -39,6 +39,7 @@ export interface IInputProps extends TextInputProps {
   mask?: string;
   prefix?: string;
   prefixStyle?: StyleProp<TextStyle>;
+  showLength?: boolean;
 }
 
 const Input = forwardRef<TextInput, IInputProps>(
@@ -66,6 +67,7 @@ const Input = forwardRef<TextInput, IInputProps>(
       mask,
       prefix,
       prefixStyle,
+      showLength,
       ...rest
     },
     ref,
@@ -142,6 +144,7 @@ const Input = forwardRef<TextInput, IInputProps>(
         disabled={disabled}
         hint={hint}
         maxValueLength={maxLength}
+        showLength={showLength}
         currentValueLength={controlled ? value?.length : internalValue?.length}
         rightContent={rightContent}
         color={color}
@@ -160,7 +163,7 @@ const Input = forwardRef<TextInput, IInputProps>(
               disabled ? theme.text.disabled : theme.text.hint
             }
             ref={inputRef}
-            maxLength={maxLength}
+            maxLength={mask?.length || maxLength}
             editable={!disabled}
             {...rest}
           />
