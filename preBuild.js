@@ -1,4 +1,4 @@
-const {components} = require('./export.config.json');
+const {components, name} = require('./export.config.json');
 const fs = require('fs-extra');
 
 // Returns components entries based on export.config.js
@@ -16,7 +16,7 @@ const getComponentsEntries = () => {
 
 const getComponentsExternals = () => {
   const componentsList = Object.keys(components);
-  let libComponents = componentsList.map(dir => `../${dir}`);
+  let libComponents = componentsList.map(dir => new RegExp(`.+${dir}$`, 'i'));
   const externalsSet = new Set(libComponents);
 
   componentsList.forEach(component => {
@@ -27,7 +27,7 @@ const getComponentsExternals = () => {
       );
       const packageObject = JSON.parse(item);
       const peers = Object.keys(packageObject.peerDependencies) || [];
-      peers.forEach(peer => externalsSet.add(peer));
+      peers.forEach(peer => !peer.includes(name) && externalsSet.add(peer));
     } catch (e) {
       console.error(
         `package.json file in missed in ./src/components/${component}/package.json`,
