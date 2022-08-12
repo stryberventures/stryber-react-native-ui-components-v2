@@ -11,7 +11,7 @@ export default createUseStyles(theme => ({
     width: '100%',
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: theme.divider.main,
+    borderColor: theme.default.main,
     borderRadius: 4,
     maxHeight: 160,
   },

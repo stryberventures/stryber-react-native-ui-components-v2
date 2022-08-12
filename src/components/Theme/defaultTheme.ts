@@ -40,7 +40,4 @@ export const defaultTheme = {
     dark: '#D92C20',
     contrast: '#000',
   },
-  divider: {
-    main: '#D0D5DD',
-  },
 };
