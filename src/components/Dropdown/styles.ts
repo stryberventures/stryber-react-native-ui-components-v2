@@ -12,7 +12,7 @@ export default createUseStyles(
       position: 'absolute',
       backgroundColor: '#fff',
       borderWidth: 1,
-      borderColor: theme.divider.main,
+      borderColor: theme.default.main,
       borderRadius: 4,
       paddingHorizontal: 8,
       paddingVertical: 16,

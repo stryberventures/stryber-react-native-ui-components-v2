@@ -10,7 +10,7 @@ export default createUseStyles(
   (theme, inputSize: IInputSize, color: IBaseInputLayoutProps['color']) => ({
     baseInput: {
       borderWidth: inputConstants.BORDER_WIDTH,
-      borderColor: theme.divider.main,
+      borderColor: theme.default.main,
       borderRadius: 4,
       paddingHorizontal: 8,
       paddingVertical: 5,

@@ -91,7 +91,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         onPress={handleOpen}
         rightContent={
           <ArrowDownIcon
-            fill={disabled ? theme.divider.main : theme.default.dark}
+            fill={disabled ? theme.default.main : theme.default.dark}
             style={[styles.icon, visible && styles.invertedIcon]}
           />
         }
