@@ -1,4 +1,4 @@
-const {components} = require('./export.config.json');
+const {components, name} = require('./export.config.json');
 const fs = require('fs-extra');
 
 // Returns components entries based on export.config.js
@@ -27,9 +27,7 @@ const getComponentsExternals = () => {
       );
       const packageObject = JSON.parse(item);
       const peers = Object.keys(packageObject.peerDependencies) || [];
-      peers.forEach(
-        peer => !peer.includes('@stryberventures') && externalsSet.add(peer),
-      );
+      peers.forEach(peer => !peer.includes(name) && externalsSet.add(peer));
     } catch (e) {
       console.error(
         `package.json file in missed in ./src/components/${component}/package.json`,
