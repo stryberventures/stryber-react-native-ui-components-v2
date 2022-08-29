@@ -37,6 +37,7 @@ export interface ISliderProps {
   onChange?: (a: number, b: number) => void;
   name?: string;
   clearFormValueOnUnmount?: boolean;
+  controlled?: boolean;
 }
 
 const Slider: FC<ISliderProps> = ({
@@ -59,6 +60,7 @@ const Slider: FC<ISliderProps> = ({
   name = 'slider',
   clearFormValueOnUnmount,
   minDistance = 0,
+  controlled,
 }) => {
   const {fieldValue, unsetFormValue, updateFormValue} = useFormContext(name);
   const [width, setWidth] = useState(1);
@@ -136,6 +138,24 @@ const Slider: FC<ISliderProps> = ({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (controlled) {
+      if (initialValueUp >= min && initialValueUp <= max) {
+        setValueUpWrapper(initialValueUp);
+        if (!getAnimatedValue(buttonUpTouched)) {
+          setButtonPosition(initialValueUp, positionUp);
+        }
+      }
+      if (initialValueDown >= min && initialValueDown <= max) {
+        setValueDownWrapper(initialValueDown);
+        if (!getAnimatedValue(buttonDownTouched)) {
+          setButtonPosition(initialValueDown, positionDown);
+        }
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialValueUp, initialValueDown, buttonDownTouched, buttonUpTouched]);
 
   const getRoundedValue = (value: number) => {
     if (step) {

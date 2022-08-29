@@ -6,6 +6,7 @@ import CenterView from '../../storybook/preview/CenterView';
 import {CheckIcon, InfoIcon} from '../Icons';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
+import ControlledSlider from '../../storybook/preview/ControlledSlider';
 
 export default {
   title: 'Slider',
@@ -94,3 +95,5 @@ WithIcons.args = {
   leftLabel: () => <CheckIcon fill="black" />,
   rightLabel: () => <InfoIcon fill="black" />,
 };
+
+export const Controlled = ControlledSlider;
