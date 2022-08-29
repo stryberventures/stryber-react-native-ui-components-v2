@@ -72,19 +72,19 @@ export const useStyles = createUseStyles(
       },
       mini: {
         paddingHorizontal: 8,
-        paddingVertical: 4,
+        height: 24,
       },
       small: {
         paddingHorizontal: 16,
-        paddingVertical: 8,
+        height: 40,
       },
       medium: {
         paddingHorizontal: 24,
-        paddingVertical: 16,
+        height: 56,
       },
       large: {
         paddingHorizontal: 32,
-        paddingVertical: 24,
+        height: 72,
       },
       leftIcon: {
         width: size === 'mini' ? 14 : 20,
