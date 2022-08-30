@@ -8,7 +8,7 @@ import {InfoIcon} from '../Icons';
 const title = 'One-line Item';
 const subtitle = 'Secondary Text';
 const leftContent = <InfoIcon fill="#667085" />;
-const rightContent = <Text style={{fontWeight: '500'}}>01</Text>;
+const rightContent = <Text>01</Text>;
 
 const listItems: IListItem[] = new Array(4).fill({title});
 
