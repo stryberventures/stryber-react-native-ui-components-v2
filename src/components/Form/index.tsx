@@ -174,7 +174,7 @@ const Form = forwardRef<IFormRef, IFormProps>(
       setFormTouched((updatedFormTouched: any) => {
         const newFormTouched = {...updatedFormTouched};
         newFormTouched[name] = touched;
-        setFormTouched(newFormTouched);
+        return newFormTouched;
       });
     };
 
