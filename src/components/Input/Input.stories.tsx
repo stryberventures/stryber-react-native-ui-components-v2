@@ -78,3 +78,8 @@ ReadOnly.args = {
   value: 'example@test.com',
   editable: false,
 };
+
+export const NoLabel = Template.bind({});
+NoLabel.args = {
+  placeholder: 'No Label',
+};
