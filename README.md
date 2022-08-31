@@ -1,4 +1,11 @@
-# Stryber React Native UI Components v2
+# GAIA React Native Components
+
+## Description
+
+The components library based on React Native and Typescript, represented with Storybook(web and native) and
+tested with React Testing Library
+
+Explore [GAIA components](https://stryberventures.github.io/stryber-react-native-ui-components-v2/) for React Native
 
 ## Docs
 
@@ -7,13 +14,6 @@
 * [How to use Form](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/3.-Form)
 * [How to create a Story](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/4.-Create-a-Story)
 * [Build and Deploy](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/5.-Build-and-Deploy)
-
-## Description
-
-The components library based on React Native and Typescript, represented with Storybook(web and native) and
-tested with React Testing Library
-
-Explore [GAIA components](https://stryberventures.github.io/stryber-react-native-ui-components-v2/) for React Native
 
 ## To run the project
 
@@ -52,5 +52,6 @@ yarn test
 
 ## Components website
 
-[Components website](https://stryberventures.github.io/stryber-react-native-ui-components-v2/) is built with Github Pages and it builds and deploys automatically
-with Github actions (.github/workflows/storybook.yml)
+[Components website](https://stryberventures.github.io/stryber-react-native-ui-components-v2/)
+is hosted on Github Pages and it builds and deploys the sources automatically
+based on Github actions (.github/workflows/storybook.yml)
