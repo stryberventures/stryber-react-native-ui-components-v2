@@ -9,8 +9,9 @@ export default createUseStyles(theme => ({
     backgroundColor: theme.default.extraLight,
   },
   text: {
-    color: theme.default.dark,
-    lineHeight: 17,
+    color: theme.text.primary,
+    fontSize: 14,
+    lineHeight: 16.8,
   },
   activeContainer: {
     backgroundColor: theme.default.light,
