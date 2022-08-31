@@ -29,7 +29,7 @@ export const defaultTheme = {
     contrast: '#fff',
   },
   text: {
-    primary: '#101828',
+    primary: '#000000',
     secondary: '#344054',
     disabled: '#D2D2D2',
     hint: '#667085',
