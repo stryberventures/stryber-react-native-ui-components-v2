@@ -18,4 +18,8 @@ export default createUseStyles(theme => ({
   innerContent: {
     paddingVertical: 8,
   },
+  checkboxText: {
+    fontSize: 14,
+    fontWeight: '400',
+  },
 }));

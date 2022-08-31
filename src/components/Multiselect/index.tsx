@@ -116,6 +116,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
               color={color}
               key={option.label}
               label={option.label}
+              labelStyle={styles.checkboxText}
               name={option.label}
               size="small"
               style={styles.multiselectItem}
