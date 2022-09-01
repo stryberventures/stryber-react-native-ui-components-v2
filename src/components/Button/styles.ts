@@ -95,13 +95,9 @@ export const useStyles = createUseStyles(
         paddingVertical: 24 - BORDER_WIDTH,
       },
       leftIcon: {
-        width: size === 'mini' ? 14 : 20,
-        height: size === 'mini' ? 14 : 20,
         marginRight: 10,
       },
       rightIcon: {
-        width: size === 'mini' ? 14 : 20,
-        height: size === 'mini' ? 14 : 20,
         marginLeft: 10,
       },
       flat: {
