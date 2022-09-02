@@ -107,9 +107,9 @@ const Template: ComponentStory<typeof Form> = ({
           label="Password"
         />
         <Divider height={10} />
-        <Slider name="slider" valueUp={5} max={10} />
+        <Slider name="slider" value={5} max={10} />
         <Divider height={20} />
-        <Slider name="rangeSlider" range valueDown={2} valueUp={5} max={10} />
+        <Slider name="rangeSlider" value={[2, 5]} max={10} />
         <Divider height={10} />
         <NumberInput
           name="numberInput"

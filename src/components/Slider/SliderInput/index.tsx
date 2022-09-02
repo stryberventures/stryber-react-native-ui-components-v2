@@ -2,12 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {Animated, Platform} from 'react-native';
 
 import Input from '../../Input';
-import {ISliderProps} from '../index';
+import {ISliderProps, SliderValueType} from '../index';
 
 interface ISliderInputProps {
   type: 'up' | 'down';
-  valueUp: number;
-  valueDown: number;
+  value: SliderValueType;
   setValue: (value: number) => void;
   setButtonPosition: (
     value: number,
@@ -15,7 +14,6 @@ interface ISliderInputProps {
     initWidth?: number,
   ) => void;
   buttonPosition: Animated.Value;
-  range: boolean;
   min: number;
   max: number;
   testID?: string;
@@ -24,18 +22,20 @@ interface ISliderInputProps {
 
 const SliderInput: React.FC<ISliderInputProps> = ({
   type,
-  valueUp,
-  valueDown,
+  value: initialValue,
   setValue,
   setButtonPosition,
   buttonPosition,
-  range,
   max,
   min,
   testID,
   minDistance,
 }) => {
-  const value = type === 'up' ? valueUp : valueDown;
+  const value = Array.isArray(initialValue)
+    ? type === 'up'
+      ? initialValue[1]
+      : initialValue[0]
+    : initialValue;
   const [inputWidth, setInputWidth] = useState(26);
   const [inputValue, setInputValue] = useState<string>(String(value));
   const [error, setError] = useState(false);
@@ -62,16 +62,19 @@ const SliderInput: React.FC<ISliderInputProps> = ({
     if (isNaN(newVal)) {
       setError(true);
     }
-    if (range) {
+    if (Array.isArray(initialValue)) {
       if (type === 'up') {
-        if (newVal > max || (minDistance && newVal < valueDown + minDistance)) {
+        if (
+          newVal > max ||
+          (minDistance && newVal < initialValue[0] + minDistance)
+        ) {
           setError(true);
         }
       }
       if (type === 'down') {
         if (
-          newVal > valueUp ||
-          (minDistance && newVal > valueUp - minDistance)
+          newVal > initialValue[1] ||
+          (minDistance && newVal > initialValue[1] - minDistance)
         ) {
           setError(true);
         }
@@ -91,18 +94,18 @@ const SliderInput: React.FC<ISliderInputProps> = ({
       setInputValue(String(value));
       return setValueWithPosition(value);
     }
-    if (range) {
+    if (Array.isArray(initialValue)) {
       if (type === 'up') {
         if (newVal > max) {
           return setValueWithPosition(max);
         }
-        if (minDistance && newVal < valueDown + minDistance) {
-          return setValueWithPosition(valueDown + minDistance);
+        if (minDistance && newVal < initialValue[0] + minDistance) {
+          return setValueWithPosition(initialValue[0] + minDistance);
         }
       }
       if (type === 'down') {
-        if (minDistance && newVal > valueUp - minDistance) {
-          return setValueWithPosition(valueUp - minDistance);
+        if (minDistance && newVal > initialValue[1] - minDistance) {
+          return setValueWithPosition(initialValue[1] - minDistance);
         }
         if (newVal < min) {
           return setValueWithPosition(min);
