@@ -14,13 +14,13 @@ const ControlledSlider = () => {
     <>
       <Slider
         controlled
-        range
-        onChange={(newValUp, newValDown) => {
-          setSValUp(newValUp);
-          setValDown(newValDown);
+        value={[valDown, valUp]}
+        onChange={newVal => {
+          if (Array.isArray(newVal)) {
+            setSValUp(newVal[1]);
+            setValDown(newVal[0]);
+          }
         }}
-        valueDown={valDown}
-        valueUp={valUp}
         max={10}
       />
       <Text style={styles.title}>Value Up:</Text>

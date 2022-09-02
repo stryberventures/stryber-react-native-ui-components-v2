@@ -16,3 +16,5 @@ export const getAnimatedValue = (
 ) => {
   return Number(JSON.stringify(value));
 };
+
+export const getNumberLength = (num: number) => String(num).length;

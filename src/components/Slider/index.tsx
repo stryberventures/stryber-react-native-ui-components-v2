@@ -15,41 +15,39 @@ import SliderLayout from './SliderLayout';
 import useStyles from './styles';
 import SliderInput from './SliderInput';
 import {useFormContext} from '../Form';
-import {getAnimatedValue} from '../../utils';
+import {getAnimatedValue, getNumberLength} from '../../utils';
+
+export type SliderValueType = number | [number, number];
 
 export interface ISliderProps {
-  valueUp?: number;
-  valueDown?: number;
+  value: SliderValueType;
   max: number;
   min?: number;
   step?: number | undefined;
   smooth?: boolean;
   color?: 'primary' | 'secondary';
   layout?: 'regular' | 'labelHidden';
-  range?: boolean;
   showTooltip?: boolean;
   showInput?: boolean;
   stepDotsIndicator?: boolean;
-  leftLabel?: (a: number) => React.ReactNode;
-  rightLabel?: (b: number) => React.ReactNode;
+  leftLabel?: (min: number) => React.ReactNode;
+  rightLabel?: (max: number) => React.ReactNode;
   minDistance?: number;
   style?: StyleProp<ViewStyle>;
-  onChange?: (a: number, b: number) => void;
+  onChange?: (value: SliderValueType) => void;
   name?: string;
   clearFormValueOnUnmount?: boolean;
   controlled?: boolean;
 }
 
 const Slider: FC<ISliderProps> = ({
-  valueUp: initialValueUp = 1,
-  valueDown: initialValueDown = 0,
+  value: initialValue = 1,
   step = 1,
   min = 0,
   max = 9,
   onChange = () => {},
   smooth = true,
   color = 'primary',
-  range = false,
   showTooltip = true,
   showInput = false,
   rightLabel,
@@ -65,11 +63,8 @@ const Slider: FC<ISliderProps> = ({
   const {fieldValue, unsetFormValue, updateFormValue} = useFormContext(name);
   const [width, setWidth] = useState(1);
   const [topButton, setTopButton] = useState('up');
-  const [valueUp, setValueUp] = useState(
-    Array.isArray(fieldValue) ? fieldValue[1] : fieldValue || initialValueUp,
-  );
-  const [valueDown, setValueDown] = useState(
-    fieldValue ? fieldValue[0] : initialValueDown,
+  const [internalValue, setInternalValue] = useState<SliderValueType>(
+    fieldValue || initialValue,
   );
   const [
     upButtonPanResponder,
@@ -92,29 +87,22 @@ const Slider: FC<ISliderProps> = ({
   const styles = useStyles(color);
 
   const setValueUpWrapper = (value: number) => {
-    if (Array.isArray(fieldValue)) {
+    if (Array.isArray(internalValue)) {
       const {interpolatedValueDown} = getValues();
-      const newValue =
-        interpolatedValueDown > value
-          ? [value, interpolatedValueDown]
-          : [interpolatedValueDown, value];
-      updateFormValue(name, newValue);
+      updateFormValue(name, [interpolatedValueDown, value]);
+      setInternalValue([interpolatedValueDown, value]);
     } else {
       updateFormValue(name, value);
+      setInternalValue(value);
     }
-    setValueUp(value);
   };
 
   const setValueDownWrapper = (value: number) => {
-    if (Array.isArray(fieldValue)) {
+    if (Array.isArray(internalValue)) {
       const {interpolatedValueUp} = getValues();
-      const newValue =
-        interpolatedValueUp < value
-          ? [interpolatedValueUp, value]
-          : [value, interpolatedValueUp];
-      updateFormValue(name, newValue);
+      updateFormValue(name, [value, interpolatedValueUp]);
+      setInternalValue([value, interpolatedValueUp]);
     }
-    setValueDown(value);
   };
 
   useEffect(() => {
@@ -132,7 +120,7 @@ const Slider: FC<ISliderProps> = ({
   }, [buttonDownActive]);
 
   useEffect(() => {
-    updateFormValue(name, range ? [valueDown, valueUp] : valueUp, true);
+    updateFormValue(name, internalValue, true);
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };
@@ -141,26 +129,32 @@ const Slider: FC<ISliderProps> = ({
 
   useEffect(() => {
     if (controlled) {
-      if (initialValueUp >= min && initialValueUp <= max) {
-        setValueUpWrapper(initialValueUp);
-        if (!getAnimatedValue(buttonUpTouched)) {
-          setButtonPosition(initialValueUp, positionUp);
+      if (Array.isArray(initialValue)) {
+        if (initialValue[0] >= min && initialValue[0] <= max) {
+          setValueDownWrapper(initialValue[0]);
+          if (!getAnimatedValue(buttonDownTouched)) {
+            setButtonPosition(initialValue[0], positionDown);
+          }
         }
-      }
-      if (initialValueDown >= min && initialValueDown <= max) {
-        setValueDownWrapper(initialValueDown);
-        if (!getAnimatedValue(buttonDownTouched)) {
-          setButtonPosition(initialValueDown, positionDown);
+        if (initialValue[1] >= min && initialValue[1] <= max) {
+          setValueUpWrapper(initialValue[1]);
+          if (!getAnimatedValue(buttonUpTouched)) {
+            setButtonPosition(initialValue[1], positionUp);
+          }
+        }
+      } else {
+        if (initialValue >= min && initialValue <= max) {
+          setValueUpWrapper(initialValue);
+          if (!getAnimatedValue(buttonUpTouched)) {
+            setButtonPosition(initialValue, positionUp);
+          }
         }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialValueUp, initialValueDown, buttonDownTouched, buttonUpTouched]);
+  }, [initialValue, buttonDownTouched, buttonUpTouched]);
 
   const getRoundedValue = (value: number) => {
-    if (step) {
-      return Math.round(value);
-    }
     const stepCount = Math.round(value / step!);
     return Math.round(stepCount * step!);
   };
@@ -194,7 +188,10 @@ const Slider: FC<ISliderProps> = ({
     if ((buttonDownTouched as any)._value) {
       setValueDownWrapper(interpolatedValueDown);
     }
-    onChange(interpolatedValueUp, interpolatedValueDown);
+    const newValue = Array.isArray(internalValue)
+      ? ([interpolatedValueDown, interpolatedValueUp] as [number, number])
+      : interpolatedValueUp;
+    onChange(newValue);
   };
 
   const getRoundedOffset = (offset: number) => {
@@ -324,8 +321,12 @@ const Slider: FC<ISliderProps> = ({
     const newWidth = Math.round(
       nativeEvent.layout.width - SLIDER_CONFIG.buttonRadius * 2,
     );
-    valueUp && setButtonPosition(valueUp, positionUp, newWidth);
-    valueDown && setButtonPosition(valueDown, positionDown, newWidth);
+    if (Array.isArray(internalValue)) {
+      setButtonPosition(internalValue[0], positionDown, newWidth);
+      setButtonPosition(internalValue[1], positionUp, newWidth);
+    } else {
+      setButtonPosition(internalValue, positionUp, newWidth);
+    }
     setWidth(newWidth);
   };
 
@@ -354,10 +355,31 @@ const Slider: FC<ISliderProps> = ({
             style={[
               styles.labelContainer,
               styles.buttonTooltip,
-              {opacity: isUp ? buttonUpTouched : buttonDownTouched},
+              {
+                opacity: isUp ? buttonUpTouched : buttonDownTouched,
+                //Calculating tooltip width based on number length
+                width:
+                  SLIDER_CONFIG.maxNumWidth +
+                  SLIDER_CONFIG.maxNumWidth *
+                    (Array.isArray(internalValue)
+                      ? isUp
+                        ? getNumberLength(internalValue[1])
+                        : getNumberLength(internalValue[0])
+                      : getNumberLength(internalValue)),
+              },
             ]}
           >
-            <Text style={styles.tooltipText}>{isUp ? valueUp : valueDown}</Text>
+            <Text
+              numberOfLines={1}
+              ellipsizeMode="clip"
+              style={styles.tooltipText}
+            >
+              {Array.isArray(internalValue)
+                ? isUp
+                  ? internalValue[1]
+                  : internalValue[0]
+                : internalValue}
+            </Text>
           </Animated.View>
         )}
         {showInput && (
@@ -369,15 +391,13 @@ const Slider: FC<ISliderProps> = ({
           >
             <SliderInput
               type={type}
-              valueDown={valueDown}
-              valueUp={valueUp}
+              value={internalValue}
               setValue={isUp ? setValueUpWrapper : setValueDownWrapper}
               setButtonPosition={setButtonPosition}
               buttonPosition={isUp ? positionUp : positionDown}
               min={min}
               max={max}
               minDistance={minDistance}
-              range={range}
               testID={`slider_input_${type}`}
             />
           </Animated.View>
@@ -440,7 +460,7 @@ const Slider: FC<ISliderProps> = ({
             ]}
           />
         </View>
-        {range && renderButton('down')}
+        {Array.isArray(initialValue) && renderButton('down')}
         {renderButton('up')}
       </>
     );

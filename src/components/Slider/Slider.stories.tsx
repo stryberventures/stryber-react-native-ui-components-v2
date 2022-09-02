@@ -26,21 +26,22 @@ const Template: ComponentStory<typeof Slider> = args => <Slider {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  max: 9,
-  valueUp: 3,
+  max: 10,
+  value: 4,
+  min: 0,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   max: 9,
-  valueUp: 3,
+  value: 3,
   color: 'secondary',
 };
 
 export const Input = Template.bind({});
 Input.args = {
   max: 9,
-  valueUp: 3,
+  value: 3,
   showTooltip: false,
   showInput: true,
 };
@@ -48,15 +49,14 @@ Input.args = {
 export const CustomStep = Template.bind({});
 CustomStep.args = {
   max: 10,
-  valueUp: 2,
-  smooth: false,
+  value: 2,
   step: 2,
 };
 
 export const StepDotsIndicator = Template.bind({});
 StepDotsIndicator.args = {
   max: 10,
-  valueUp: 2,
+  value: 2,
   smooth: false,
   step: 2,
   stepDotsIndicator: true,
@@ -65,15 +65,13 @@ StepDotsIndicator.args = {
 export const Range = Template.bind({});
 Range.args = {
   max: 20,
-  valueUp: 10,
-  range: true,
+  value: [2, 10],
 };
 
 export const RangeMinDistance = Template.bind({});
 RangeMinDistance.args = {
   max: 20,
-  valueUp: 10,
-  range: true,
+  value: [1, 5],
   minDistance: 2,
   showInput: true,
   showTooltip: false,
@@ -82,8 +80,7 @@ RangeMinDistance.args = {
 export const RangeInput = Template.bind({});
 RangeInput.args = {
   max: 20,
-  valueUp: 10,
-  range: true,
+  value: [2, 5],
   showTooltip: false,
   showInput: true,
 };
@@ -91,7 +88,7 @@ RangeInput.args = {
 export const WithIcons = Template.bind({});
 WithIcons.args = {
   max: 9,
-  valueUp: 3,
+  value: 3,
   leftLabel: () => <CheckIcon fill="black" />,
   rightLabel: () => <InfoIcon fill="black" />,
 };
