@@ -2,11 +2,7 @@ import React, {useState} from 'react';
 import useStyles from './styles';
 import Input, {IInputProps} from '../Input';
 import CounterIcon from './CounterIcon';
-import {
-  NativeSyntheticEvent,
-  TextInputEndEditingEventData,
-  View,
-} from 'react-native';
+import {View} from 'react-native';
 import {useFormContext} from '../Form';
 
 export interface INumberInputProps
@@ -68,16 +64,6 @@ const NumberInput: React.FC<INumberInputProps> = ({
   const handlePlus = () => handleButtonPress('plus');
   const handleMinus = () => handleButtonPress('minus');
 
-  const handleEndEditing = ({
-    nativeEvent: {text},
-  }: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
-    const newVal = +text;
-    if (isNaN(newVal)) {
-      return handleChange(String(min));
-    }
-    checkValue(newVal);
-  };
-
   return (
     <Input
       name={name}
@@ -100,7 +86,6 @@ const NumberInput: React.FC<INumberInputProps> = ({
       }
       error={errorMessage}
       onChangeText={handleChange}
-      onEndEditing={handleEndEditing}
       controlled
       {...rest}
     />
