@@ -80,6 +80,8 @@ const Form = forwardRef<IFormRef, IFormProps>(
     // Use to force form rerender with key prop
     const [formSessionId, setFormSessionId] = useState(1);
 
+    const rerenderForm = () => setFormSessionId(id => id + 1);
+
     const validate = (values: any) => {
       /** Validation schema using Yup library */
       let validationRes = {};
@@ -111,7 +113,7 @@ const Form = forwardRef<IFormRef, IFormProps>(
 
     const onResetFormWrapper = () => {
       setFormValues(() => initialValues || {});
-      setFormSessionId(id => id + 1);
+      rerenderForm();
       setFormErrors({});
       setFormTouched({});
       onReset && onReset(formValues);
@@ -185,6 +187,11 @@ const Form = forwardRef<IFormRef, IFormProps>(
     };
 
     useImperativeHandle(ref, () => formActions);
+
+    useEffect(() => {
+      setFormValues(initialValues || {});
+      rerenderForm();
+    }, [initialValues]);
 
     useEffect(() => {
       /** Running first validation on mount */
