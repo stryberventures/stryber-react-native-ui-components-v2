@@ -29,7 +29,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "tsc-compile": "tsc --noemit",
+    "tsc-compile": "tsc --noemit --project tsconfig.checkAll.json",
     "build": "webpack --config webpack.config.js && node postBuild.js"
   },
   "react-native-builder-bob": {
