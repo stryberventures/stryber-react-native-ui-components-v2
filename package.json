@@ -73,7 +73,7 @@
     "@storybook/addon-ondevice-notes": "next",
     "@storybook/addon-react-native-web": "^0.0.18",
     "@storybook/react": "~6.4",
-    "@storybook/react-native": "next",
+    "@storybook/react-native": "6.0.1-beta.5",
     "@storybook/testing-library": "^0.0.9",
     "@testing-library/jest-native": "^4.0.4",
     "@testing-library/react-native": "^9.1.0",
