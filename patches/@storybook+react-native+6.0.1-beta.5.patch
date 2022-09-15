@@ -1,0 +1,12 @@
+diff --git a/node_modules/@storybook/react-native/dist/preview/components/OnDeviceUI/animation.js b/node_modules/@storybook/react-native/dist/preview/components/OnDeviceUI/animation.js
+index 9fae673..b6a5355 100644
+--- a/node_modules/@storybook/react-native/dist/preview/components/OnDeviceUI/animation.js
++++ b/node_modules/@storybook/react-native/dist/preview/components/OnDeviceUI/animation.js
+@@ -1,5 +1,6 @@
++import {I18nManager} from 'react-native';
+ import { NAVIGATOR, PREVIEW, ADDONS } from './navigation/constants';
+-const PREVIEW_SCALE = 0.3;
++const PREVIEW_SCALE = I18nManager.isRTL ? -0.02 : 0.3;
+ const PREVIEW_WIDE_SCREEN = 0.7;
+ const SCALE_OFFSET = 0.025;
+ const TRANSLATE_X_OFFSET = 6;

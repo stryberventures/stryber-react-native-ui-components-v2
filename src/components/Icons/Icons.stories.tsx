@@ -1,7 +1,9 @@
 import React from 'react';
+import RNRestart from 'react-native-restart';
 import * as Icons from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform, Text, View} from 'react-native';
+import {Platform, Text, View, I18nManager} from 'react-native';
+import Button from '../Button';
 import pkg from './package.json';
 
 export default {
@@ -19,6 +21,11 @@ export const AllIcons = () => {
       iconsArr.push({name: key, Icon: Icons[key as keyof typeof Icons]});
     }
     return iconsArr;
+  };
+
+  const toggleRTL = async () => {
+    await I18nManager.forceRTL(false);
+    RNRestart.Restart();
   };
 
   return (
@@ -39,6 +46,7 @@ export const AllIcons = () => {
           <Icon fill="#000" />
         </View>
       ))}
+      <Button onPress={toggleRTL}>Turn on RTL</Button>
     </View>
   );
 };
