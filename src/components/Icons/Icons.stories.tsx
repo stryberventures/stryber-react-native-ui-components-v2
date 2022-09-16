@@ -36,7 +36,7 @@ export const AllIcons = () => {
           }}
         >
           <Text>{name}: </Text>
-          <Icon fill="#000" />
+          <Icon fill="#000000" />
         </View>
       ))}
     </View>

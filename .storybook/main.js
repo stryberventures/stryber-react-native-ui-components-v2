@@ -11,6 +11,7 @@ module.exports = {
     "@storybook/addon-actions",
     "@storybook/addon-react-native-web",
     "./customAddons/yarnInstall/preset.ts",
+    "storybook-addon-rtl",
   ],
   "framework": "@storybook/react"
 }
