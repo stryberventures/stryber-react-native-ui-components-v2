@@ -13,9 +13,7 @@ const RtlAddon: React.FC<IRtlAddonProps> = ({active}) => {
   const handleRTL = async (updatedIsRTL: boolean) => {
     await I18nManager.forceRTL(updatedIsRTL);
     setRTL(updatedIsRTL);
-    setTimeout(() => {
-      RNRestart.Restart();
-    }, 200);
+    RNRestart.Restart();
   };
 
   if (!active) {
