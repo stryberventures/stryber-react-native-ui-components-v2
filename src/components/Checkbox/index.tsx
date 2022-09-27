@@ -21,6 +21,8 @@ const Checkbox: React.FC<ICheckboxProps> = ({
   label,
   hint,
   controlled,
+  reverse,
+  fullWidth,
   ...rest
 }) => {
   const {internalValue, onChangeWrapper, errorMessage} = useCheckbox({
@@ -42,6 +44,8 @@ const Checkbox: React.FC<ICheckboxProps> = ({
       size={size}
       label={label}
       hint={hint}
+      reverse={reverse}
+      fullWidth={fullWidth}
       {...rest}
     />
   );

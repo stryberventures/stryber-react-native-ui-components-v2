@@ -55,6 +55,13 @@ DisabledChecked.args = {
   checked: true,
 };
 
+export const FullWidthReverse = Template.bind({});
+FullWidthReverse.args = {
+  controlled: true,
+  fullWidth: true,
+  reverse: true,
+};
+
 export const CustomContent = Template.bind({});
 CustomContent.args = {
   label: '',

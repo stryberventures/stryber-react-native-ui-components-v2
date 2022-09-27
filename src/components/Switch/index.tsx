@@ -20,6 +20,8 @@ const Switch: React.FC<ISwitchProps> = ({
   checked,
   clearFormValueOnUnmount,
   controlled,
+  fullWidth,
+  reverse,
   ...rest
 }) => {
   // Switch uses the same logic as a Checkbox
@@ -37,6 +39,8 @@ const Switch: React.FC<ISwitchProps> = ({
       variant="switch"
       error={errorMessage}
       onChange={onChangeWrapper}
+      fullWidth={fullWidth}
+      reverse={reverse}
       {...rest}
     />
   );
