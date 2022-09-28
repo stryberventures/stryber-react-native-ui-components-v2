@@ -15,10 +15,10 @@ import Switch from '../Switch';
 import Multiselect, {IMultiselectOption} from '../Multiselect';
 import Slider from '../Slider';
 import Combobox from '../Combobox';
+import Select from '../Select';
 
 import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
-import Select from '../Select';
 import pkg from './package.json';
 
 export default {

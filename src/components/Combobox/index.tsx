@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import useStyles from './styles';
 import {
   Pressable,
   Keyboard,
-  ScrollView,
   ViewStyle,
   StyleProp,
   NativeSyntheticEvent,
   TextInputFocusEventData,
+  Text,
+  FlatList,
+  ListRenderItem,
 } from 'react-native';
 import {useTheme} from '../Theme';
 import {useFormContext} from '../Form';
@@ -16,17 +18,21 @@ import {ArrowDownIcon} from '../Icons';
 import SelectItem from '../Select/SelectItem';
 import {ISelectOption} from '../Select';
 
-export interface IComboboxProps extends Omit<IInputProps, 'onChange'> {
+export interface IComboboxProps
+  extends Omit<IInputProps, 'onChange' | 'value'> {
   options: ISelectOption[];
   dropdownStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<ViewStyle>;
-  onChange?: (value: string | number) => void;
+  onChange?: (option: ISelectOption | null) => void;
   noOptionsFoundText?: string;
+  value?: ISelectOption['value'];
 }
+
+const COMBOBOX_ITEM_SIZE = 33;
 
 const Combobox: React.FC<IComboboxProps> = ({
   name = 'combobox',
-  value = '',
+  value = null,
   error,
   options,
   disabled,
@@ -47,41 +53,46 @@ const Combobox: React.FC<IComboboxProps> = ({
     updateFormValue,
   } = useFormContext(name);
 
-  const getOptionLabelByValue = (optionValue: string | number) => {
+  const getOptionByValue = (optionValue: string | number) => {
     const option = options.find(optionItem => optionItem.value === optionValue);
-    return option ? option.label : '';
+    return option ? option : null;
   };
 
+  const [selectedOption, setSelectedOption] = useState<ISelectOption | null>(
+    getOptionByValue(fieldValue || value),
+  );
+  const selectedOptionIndex = selectedOption
+    ? options.map(option => option.label).indexOf(selectedOption?.label)
+    : 0;
   const [inputValue, setInputValue] = React.useState(
-    getOptionLabelByValue(fieldValue || value),
+    selectedOption?.label || '',
   );
   const errorMessage = fieldError || error;
   const [visible, setVisible] = React.useState(false);
-  const extractedLabels = options.map(option => option.label);
   const {theme} = useTheme();
   const styles = useStyles();
 
-  const getOptionValueByLabel = (label: string) => {
-    const option = options.find(optionItem => optionItem.label === label);
-    return option ? option.value : '';
+  const handleSelectOption = (option: ISelectOption) => {
+    onChangeTextWrapper(option.label);
+    setSelectedOption(option);
+    updateFormValue(name, option.value);
+    onChange && onChange(option);
+    handleDismiss();
+  };
+
+  const clearSelectedOption = (skipText?: boolean) => {
+    !skipText && onChangeTextWrapper('');
+    setSelectedOption(null);
+    updateFormValue(name, null);
+    onChange && onChange(null);
   };
 
   const onChangeTextWrapper = (text: string) => {
+    if (text === '') {
+      clearSelectedOption(true);
+    }
     setInputValue(text);
-    updateFormValue(name, getOptionValueByLabel(text));
-    onChange && onChange(getOptionValueByLabel(text));
     onChangeText && onChangeText(text);
-  };
-
-  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setVisible(true);
-    onFocus && onFocus(e);
-  };
-
-  const handleSearch = (arr: ISelectOption[]) => {
-    return arr.filter(item =>
-      item.label.toLowerCase().includes(inputValue.toLowerCase()),
-    );
   };
 
   const handleDismiss = () => {
@@ -89,20 +100,49 @@ const Combobox: React.FC<IComboboxProps> = ({
     Keyboard.dismiss();
   };
 
-  const handleChoose = (label: string) => {
-    onChangeTextWrapper(label);
-    handleDismiss();
+  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setVisible(true);
+    onFocus && onFocus(e);
   };
 
-  const handleCheckValue = () => {
-    if (!extractedLabels.includes(inputValue)) {
-      onChangeTextWrapper('');
+  const filterOptionsByInputValue = () => {
+    if (inputValue === selectedOption?.label) {
+      return options;
+    }
+    return options.filter(option =>
+      option.label.toLowerCase().includes(inputValue.toLowerCase()),
+    );
+  };
+
+  const handleOutsidePress = () => {
+    if (selectedOption) {
+      onChangeTextWrapper(selectedOption.label);
     }
     handleDismiss();
   };
 
+  const handleReturnKey = () => {
+    handleSelectOption(selectedOption || filterOptionsByInputValue()[0]);
+  };
+
+  const renderComboboxItem: ListRenderItem<ISelectOption> = ({item, index}) => (
+    <SelectItem
+      onPress={() => handleSelectOption(item)}
+      active={
+        selectedOption ? selectedOption.label === item.label : index === 0
+      }
+    >
+      {item.label}
+    </SelectItem>
+  );
+
+  const renderNoOptionsFound = () =>
+    !filterOptionsByInputValue().length && (
+      <SelectItem disabled>{noOptionsFoundText}</SelectItem>
+    );
+
   useEffect(() => {
-    updateFormValue(name, getOptionValueByLabel(inputValue), true);
+    updateFormValue(name, selectedOption?.value, true);
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };
@@ -112,7 +152,7 @@ const Combobox: React.FC<IComboboxProps> = ({
   return (
     <Pressable
       hitSlop={visible ? 10000 : 0}
-      onPress={handleCheckValue}
+      onPress={handleOutsidePress}
       style={[styles.container, style]}
     >
       <Input
@@ -123,34 +163,43 @@ const Combobox: React.FC<IComboboxProps> = ({
         controlled
         error={errorMessage}
         disabled={disabled}
+        onSubmitEditing={handleReturnKey}
+        returnKeyType="done"
         rightContent={
-          <ArrowDownIcon
-            fill={disabled ? theme.default.main : theme.default.dark}
-            style={[styles.icon, visible && styles.invertedIcon]}
-          />
+          <>
+            {!!inputValue && visible && (
+              <Pressable onPress={() => clearSelectedOption()}>
+                <Text>X</Text>
+              </Pressable>
+            )}
+            <ArrowDownIcon
+              fill={disabled ? theme.default.main : theme.default.dark}
+              style={[styles.icon, visible && styles.invertedIcon]}
+            />
+          </>
         }
         style={inputStyle}
         {...rest}
       />
       {visible && (
         <Pressable style={[styles.dropdown, dropdownStyle]}>
-          <ScrollView
+          {renderNoOptionsFound()}
+          <FlatList
+            data={filterOptionsByInputValue()}
+            renderItem={renderComboboxItem}
             contentContainerStyle={styles.content}
             keyboardShouldPersistTaps="always"
-          >
-            {!handleSearch(options).length && (
-              <SelectItem disabled>{noOptionsFoundText}</SelectItem>
-            )}
-            {handleSearch(options).map(option => (
-              <SelectItem
-                key={option.value}
-                onPress={() => handleChoose(option.label)}
-                active={inputValue === option.label}
-              >
-                {option.label}
-              </SelectItem>
-            ))}
-          </ScrollView>
+            keyExtractor={item => item.label}
+            nestedScrollEnabled
+            getItemLayout={(data, index) => ({
+              length: COMBOBOX_ITEM_SIZE,
+              offset: COMBOBOX_ITEM_SIZE * index,
+              index,
+            })}
+            initialScrollIndex={
+              inputValue === selectedOption?.label ? selectedOptionIndex : null
+            }
+          />
         </Pressable>
       )}
     </Pressable>
