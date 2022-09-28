@@ -29,6 +29,8 @@ export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   pressedStyle?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
   children?: React.ReactNode;
+  reverse?: boolean;
+  fullWidth?: boolean;
 }
 
 const ToggleInput: React.FC<IToggleInputProps> = ({
@@ -46,10 +48,12 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
   pressedStyle,
   labelStyle,
   children,
+  reverse,
+  fullWidth,
   ...rest
 }) => {
   const [isPressed, setIsPressed] = useState(false);
-  const styles = useStyles(size, variant);
+  const styles = useStyles(size, variant, reverse);
 
   const handlePressIn = () => setIsPressed(true);
   const handlePressOut = () => setIsPressed(false);
@@ -68,7 +72,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
       ]}
       {...rest}
     >
-      <View style={styles.toggleInputWrapper}>
+      <View style={[styles.toggleInputWrapper, fullWidth && styles.fullWidth]}>
         {variant === 'switch' ? (
           <SwitchIcon isPressed={isPressed} checked={checked} color={color} />
         ) : (

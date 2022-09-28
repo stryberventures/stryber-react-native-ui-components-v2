@@ -24,6 +24,8 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
   checked,
   onChange,
   clearFormValueOnUnmount,
+  reverse,
+  fullWidth,
   ...rest
 }) => {
   const {
@@ -64,6 +66,8 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
       disabled={disabled}
       size={size}
       hint={hint}
+      reverse={reverse}
+      fullWidth={fullWidth}
       {...rest}
     />
   );

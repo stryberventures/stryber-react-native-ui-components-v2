@@ -8,6 +8,7 @@ export default createUseStyles(
     theme,
     size: IToggleInputProps['size'],
     variant: IToggleInputProps['variant'],
+    reverse,
   ) => {
     const isSwitch = variant === 'switch';
     return {
@@ -18,7 +19,8 @@ export default createUseStyles(
         fontFamily: theme.fontFamily,
       },
       toggleInputWrapper: {
-        flexDirection: 'row',
+        flexDirection: reverse ? 'row-reverse' : 'row',
+        justifyContent: reverse ? 'flex-end' : 'flex-start',
         alignItems: 'flex-start',
       },
       hint: {
@@ -26,13 +28,17 @@ export default createUseStyles(
         marginTop: 0,
       },
       textContainer: {
-        marginLeft: 8,
+        marginLeft: reverse ? 0 : 8,
+        marginRight: reverse ? 8 : 0,
       },
       disabled: {
         opacity: 0.45,
       },
       error: {
         marginTop: 8,
+      },
+      fullWidth: {
+        justifyContent: 'space-between',
       },
     };
   },
