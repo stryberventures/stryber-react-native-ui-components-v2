@@ -61,6 +61,8 @@ const Template: ComponentStory<typeof Form> = ({
       <ScrollView
         contentContainerStyle={{paddingHorizontal: 8}}
         nestedScrollEnabled
+        //TODO: write documentation
+        keyboardShouldPersistTaps="always"
       >
         <Multiselect
           label="Multiselect"
