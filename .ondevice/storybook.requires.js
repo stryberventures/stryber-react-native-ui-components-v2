@@ -28,6 +28,7 @@ const getStories = () => {
     require("../src/components/Checkbox/Checkbox.stories.tsx"),
     require("../src/components/Chip/Chip.stories.tsx"),
     require("../src/components/Combobox/Combobox.stories.tsx"),
+    require("../src/components/Dialog/Dialog.stories.tsx"),
     require("../src/components/Dropdown/Dropdown.stories.tsx"),
     require("../src/components/Form/Form.stories.tsx"),
     require("../src/components/Icons/Icons.stories.tsx"),
