@@ -22,6 +22,7 @@
     "Text": "text",
     "Select": "select",
     "Combobox": "combobox",
-    "List": "list"
+    "List": "list",
+    "Dialog": "dialog"
   }
 }
