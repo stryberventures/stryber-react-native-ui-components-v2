@@ -15,6 +15,8 @@ export default createUseStyles(
       paddingHorizontal: 8,
       paddingVertical: 5,
       backgroundColor: theme.background.main,
+      elevation: 4,
+      shadowColor: 'transparent',
       zIndex: 2,
       flexDirection: 'row',
       justifyContent: 'space-between',

@@ -63,6 +63,14 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
     const styles = useStyles(inputSize, color);
     return (
       <View style={style}>
+        {isFocused && (
+          <View
+            style={[
+              styles.focusedOutline,
+              !!error && styles.errorFocusedOutline,
+            ]}
+          />
+        )}
         <Pressable
           style={[
             styles.baseInput,
@@ -89,14 +97,6 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           </View>
           {rightContent}
         </Pressable>
-        {isFocused && (
-          <View
-            style={[
-              styles.focusedOutline,
-              !!error && styles.errorFocusedOutline,
-            ]}
-          />
-        )}
         {!!hint && <HintMessage message={hint} disabled={disabled} />}
         {!!showLength && (
           <HintMessage
