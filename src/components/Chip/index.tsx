@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import useStyles from './styles';
 import {
   Text,
@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 export interface IChipProps extends PressableProps {
+  children: string | ReactElement;
   color?: 'primary' | 'secondary' | 'success' | 'default';
   variant?: 'contained' | 'outlined';
   iconLeft?: React.ReactNode;

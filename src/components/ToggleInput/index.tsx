@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import useStyles from './styles';
 import {
   View,
@@ -15,7 +15,7 @@ import ErrorMessage from '../ErrorMessage';
 import SwitchIcon from './SwitchIcon';
 
 export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
-  label?: string;
+  label?: string | ReactElement;
   checked?: boolean;
   onChange?: () => void;
   error?: string;
@@ -28,7 +28,6 @@ export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   color?: ToggleIconProps['color'];
   pressedStyle?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
-  children?: React.ReactNode;
   reverse?: boolean;
   fullWidth?: boolean;
 }
@@ -47,7 +46,6 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
   color,
   pressedStyle,
   labelStyle,
-  children,
   reverse,
   fullWidth,
   ...rest
@@ -87,9 +85,10 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
           />
         )}
         <View style={styles.textContainer}>
-          {!!label && (
-            <Text style={[styles.toggleInputText, labelStyle]}>{label}</Text>
-          )}
+          {!!label && typeof label === 'string'
+            ? <Text style={[styles.toggleInputText, labelStyle]}>{label}</Text>
+            : label
+          }
           {!!hint && (
             <HintMessage
               style={styles.hint}
@@ -97,7 +96,6 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
               disabled={disabled}
             />
           )}
-          {children}
         </View>
       </View>
       {!!error && variant !== 'radio' && (
