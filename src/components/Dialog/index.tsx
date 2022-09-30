@@ -1,37 +1,44 @@
 import React from 'react';
 import useStyles from './styles';
-import {Modal, Pressable, View, Text} from 'react-native';
+import {Modal, Pressable, View, Text, ModalProps} from 'react-native';
 import DialogButton from './DialogButton';
 
-export interface IDialogProps {
+export interface IDialogProps extends ModalProps {
   title?: string;
-  subtitle?: string;
-  onClose: () => void;
+  text?: string;
+  onCancel: () => void;
+  onSuccess: () => void;
+  cancelButtonText?: string;
+  successButtonText?: string;
   open: boolean;
-  closeOnTouchOutside?: boolean;
+  cancelOnOutsidePress?: boolean;
 }
 
 const Dialog: React.FC<IDialogProps> = ({
   title,
-  subtitle,
+  text,
   open,
-  onClose,
-  closeOnTouchOutside = true,
+  onCancel,
+  onSuccess,
+  cancelButtonText = 'Cancel',
+  successButtonText = 'Ok',
+  cancelOnOutsidePress = true,
+  ...rest
 }) => {
   const styles = useStyles();
   return (
-    <Modal transparent visible={open}>
+    <Modal transparent visible={open} {...rest}>
       <Pressable
-        onPress={closeOnTouchOutside ? onClose : null}
+        onPress={cancelOnOutsidePress ? onCancel : null}
         style={styles.overlay}
       >
         <Pressable style={styles.dialog}>
           <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text style={styles.subtitle}>{text}</Text>
           <View style={styles.buttonWrapper}>
-            <DialogButton>Ok</DialogButton>
-            <DialogButton onPress={onClose} style={styles.cancelButton}>
-              Discard
+            <DialogButton onPress={onSuccess}>{successButtonText}</DialogButton>
+            <DialogButton onPress={onCancel} style={styles.cancelButton}>
+              {cancelButtonText}
             </DialogButton>
           </View>
         </Pressable>

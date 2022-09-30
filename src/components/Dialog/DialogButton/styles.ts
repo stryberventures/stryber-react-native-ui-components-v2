@@ -8,6 +8,6 @@ export default createUseStyles(theme => ({
     fontWeight: '700',
   },
   pressedText: {
-    color: theme.primary.light,
+    color: theme.primary.dark,
   },
 }));

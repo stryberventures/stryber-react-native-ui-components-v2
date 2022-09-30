@@ -16,10 +16,17 @@ export default {
 
 const DialogStory = (args: IDialogProps) => {
   const [open, setOpen] = React.useState(false);
+  const closeDialog = () => setOpen(false);
+
   return (
     <>
       <Button onPress={() => setOpen(true)}>Open Dialog</Button>
-      <Dialog {...args} onClose={() => setOpen(false)} open={open} />
+      <Dialog
+        {...args}
+        onCancel={closeDialog}
+        onSuccess={closeDialog}
+        open={open}
+      />
     </>
   );
 };
@@ -31,5 +38,5 @@ const Template: ComponentStory<typeof Dialog> = args => (
 export const Default = Template.bind({});
 Default.args = {
   title: 'Title',
-  subtitle: 'Subtitle',
+  text: 'Some content here',
 };
