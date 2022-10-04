@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from 'react';
+import React, {ReactElement, useRef, useState} from 'react';
 import useStyles from './styles';
 import {
   View,
@@ -110,16 +110,18 @@ const Tooltip: React.FC<ITooltipProps> = ({
         >
           <TooltipTriangle position={position} />
           <View style={styles.titleWrapper}>
-            {title && typeof title === 'string'
-              ? <Text style={[styles.title, titleStyle]}>{title}</Text>
-              : title
-            }
+            {title && typeof title === 'string' ? (
+              <Text style={[styles.title, titleStyle]}>{title}</Text>
+            ) : (
+              title
+            )}
             {withCloseButton && <TooltipCloseIcon onPress={handleClose} />}
           </View>
-          {text && typeof text === 'string'
-            ? <Text style={[styles.text, textStyle]}>{text}</Text>
-            : text
-          }
+          {text && typeof text === 'string' ? (
+            <Text style={[styles.text, textStyle]}>{text}</Text>
+          ) : (
+            text
+          )}
         </View>
       </Modal>
     );

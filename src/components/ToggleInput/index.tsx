@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import useStyles from './styles';
 import {
   View,
@@ -85,10 +85,11 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
           />
         )}
         <View style={styles.textContainer}>
-          {!!label && typeof label === 'string'
-            ? <Text style={[styles.toggleInputText, labelStyle]}>{label}</Text>
-            : label
-          }
+          {!!label && typeof label === 'string' ? (
+            <Text style={[styles.toggleInputText, labelStyle]}>{label}</Text>
+          ) : (
+            label
+          )}
           {!!hint && (
             <HintMessage
               style={styles.hint}
