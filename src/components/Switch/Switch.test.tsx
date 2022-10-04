@@ -29,11 +29,7 @@ it('displays hint', () => {
 });
 
 it('displays custom content', () => {
-  const {getByText} = render(
-    <Switch>
-      <Text>custom content</Text>
-    </Switch>,
-  );
+  const {getByText} = render(<Switch label={<Text>custom content</Text>} />);
 
   getByText('custom content');
 });
