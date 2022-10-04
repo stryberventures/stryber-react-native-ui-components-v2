@@ -30,9 +30,7 @@ it('displays hint', () => {
 
 it('displays custom content', () => {
   const {getByText} = render(
-    <Checkbox>
-      <Text>custom content</Text>
-    </Checkbox>,
+    <Checkbox label={<Text>custom content</Text>} />,
   );
 
   getByText('custom content');
