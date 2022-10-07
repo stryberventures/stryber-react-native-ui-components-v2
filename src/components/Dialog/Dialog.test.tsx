@@ -12,8 +12,8 @@ it('should be rendered with title, text and buttons if opened', () => {
       title={title}
       text={text}
       onCancel={() => {}}
-      onSuccess={() => {}}
-      successButtonText={successButton}
+      onConfirm={() => {}}
+      confirmButtonText={successButton}
       cancelButtonText={cancelButton}
       open={true}
     />,
@@ -30,7 +30,7 @@ it("shouldn't render Dialog if closed", () => {
     <Dialog
       title={title}
       onCancel={() => {}}
-      onSuccess={() => {}}
+      onConfirm={() => {}}
       open={false}
     />,
   );
@@ -38,21 +38,21 @@ it("shouldn't render Dialog if closed", () => {
 });
 
 it('should fire success and cancel functions on buttons press', () => {
-  const onSuccess = jest.fn();
+  const onConfirm = jest.fn();
   const onCancel = jest.fn();
   const successBtnText = 'Success';
   const cancelBtnText = 'Cancel';
   const {getByText} = render(
     <Dialog
       onCancel={onCancel}
-      onSuccess={onSuccess}
-      successButtonText={successBtnText}
+      onConfirm={onConfirm}
+      confirmButtonText={successBtnText}
       cancelButtonText={cancelBtnText}
       open={true}
     />,
   );
   fireEvent.press(getByText(successBtnText));
-  expect(onSuccess).toHaveBeenCalled();
+  expect(onConfirm).toHaveBeenCalled();
   fireEvent.press(getByText(cancelBtnText));
   expect(onCancel).toHaveBeenCalled();
 });

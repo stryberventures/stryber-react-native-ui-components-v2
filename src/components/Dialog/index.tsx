@@ -5,11 +5,11 @@ import DialogButton from './DialogButton';
 
 export interface IDialogProps extends ModalProps {
   title?: string;
-  text?: string;
+  text?: string | React.ReactElement;
   onCancel: () => void;
-  onSuccess: () => void;
+  onConfirm: () => void;
   cancelButtonText?: string;
-  successButtonText?: string;
+  confirmButtonText?: string;
   open: boolean;
   cancelOnOutsidePress?: boolean;
 }
@@ -19,9 +19,9 @@ const Dialog: React.FC<IDialogProps> = ({
   text,
   open,
   onCancel,
-  onSuccess,
+  onConfirm,
   cancelButtonText = 'Cancel',
-  successButtonText = 'Ok',
+  confirmButtonText = 'Ok',
   cancelOnOutsidePress = true,
   ...rest
 }) => {
@@ -36,7 +36,7 @@ const Dialog: React.FC<IDialogProps> = ({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{text}</Text>
           <View style={styles.buttonWrapper}>
-            <DialogButton onPress={onSuccess}>{successButtonText}</DialogButton>
+            <DialogButton onPress={onConfirm}>{confirmButtonText}</DialogButton>
             <DialogButton onPress={onCancel} style={styles.cancelButton}>
               {cancelButtonText}
             </DialogButton>

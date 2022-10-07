@@ -24,7 +24,7 @@ const DialogStory = (args: IDialogProps) => {
       <Dialog
         {...args}
         onCancel={closeDialog}
-        onSuccess={closeDialog}
+        onConfirm={closeDialog}
         open={open}
       />
     </>
