@@ -7,9 +7,9 @@ import {
   StyleProp,
   NativeSyntheticEvent,
   TextInputFocusEventData,
-  Text,
   FlatList,
   ListRenderItem,
+  ScrollView,
 } from 'react-native';
 import {useTheme} from '../Theme';
 import {useFormContext} from '../Form';
@@ -17,6 +17,7 @@ import Input, {IInputProps} from '../Input';
 import {ArrowDownIcon} from '../Icons';
 import SelectItem from '../Select/SelectItem';
 import {ISelectOption} from '../Select';
+import ClearIcon from './ClearIcon';
 
 export interface IComboboxProps
   extends Omit<IInputProps, 'onChange' | 'value'> {
@@ -168,9 +169,11 @@ const Combobox: React.FC<IComboboxProps> = ({
         rightContent={
           <>
             {!!inputValue && visible && (
-              <Pressable onPress={() => clearSelectedOption()}>
-                <Text>X</Text>
-              </Pressable>
+              <ClearIcon
+                style={styles.clearIcon}
+                onPress={() => clearSelectedOption()}
+                hitSlop={5}
+              />
             )}
             <ArrowDownIcon
               fill={disabled ? theme.default.main : theme.default.dark}
@@ -184,22 +187,32 @@ const Combobox: React.FC<IComboboxProps> = ({
       {visible && (
         <Pressable style={[styles.dropdown, dropdownStyle]}>
           {renderNoOptionsFound()}
-          <FlatList
-            data={filterOptionsByInputValue()}
-            renderItem={renderComboboxItem}
-            contentContainerStyle={styles.content}
+          {/* This ScrollView prevent "nested" error for VirtualizedLists inside vertical ScrollViews  */}
+          <ScrollView
+            horizontal
+            contentContainerStyle={styles.scrollView}
             keyboardShouldPersistTaps="always"
-            keyExtractor={item => item.label}
             nestedScrollEnabled
-            getItemLayout={(data, index) => ({
-              length: COMBOBOX_ITEM_SIZE,
-              offset: COMBOBOX_ITEM_SIZE * index,
-              index,
-            })}
-            initialScrollIndex={
-              inputValue === selectedOption?.label ? selectedOptionIndex : null
-            }
-          />
+          >
+            <FlatList
+              data={filterOptionsByInputValue()}
+              renderItem={renderComboboxItem}
+              contentContainerStyle={styles.content}
+              keyboardShouldPersistTaps="always"
+              keyExtractor={item => item.label}
+              nestedScrollEnabled
+              getItemLayout={(data, index) => ({
+                length: COMBOBOX_ITEM_SIZE,
+                offset: COMBOBOX_ITEM_SIZE * index,
+                index,
+              })}
+              initialScrollIndex={
+                inputValue === selectedOption?.label
+                  ? selectedOptionIndex
+                  : null
+              }
+            />
+          </ScrollView>
         </Pressable>
       )}
     </Pressable>
