@@ -7,15 +7,15 @@ import pkg from './package.json';
 import {ISelectOption} from '../Select';
 
 const cities: ISelectOption[] = [
-  {label: 'New York', value: 'New York'},
-  {label: 'Los Angeles', value: 'Los Angeles'},
-  {label: 'Chicago', value: 'Chicago'},
-  {label: 'Houston', value: 'Houston'},
-  {label: 'Philadelphia', value: 'Philadelphia'},
-  {label: 'Phoenix', value: 'Phoenix'},
-  {label: 'San Antonio', value: 'San Antonio'},
-  {label: 'San Diego', value: 'San Diego'},
-  {label: 'Dallas', value: 'Dallas'},
+  {label: 'New York', value: 1},
+  {label: 'Los Angeles', value: 2},
+  {label: 'Chicago', value: 3},
+  {label: 'Houston', value: 4},
+  {label: 'Philadelphia', value: 5},
+  {label: 'Phoenix', value: 6},
+  {label: 'San Antonio', value: 7},
+  {label: 'San Diego', value: 8},
+  {label: 'Dallas', value: 9},
 ];
 
 export default {
@@ -48,7 +48,7 @@ export const WithValue = Template.bind({});
 WithValue.args = {
   label: 'City',
   placeholder: 'Chose a city',
-  value: 'Dallas',
+  value: 9,
 };
 
 export const Hint = Template.bind({});

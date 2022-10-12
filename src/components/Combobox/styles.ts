@@ -24,4 +24,10 @@ export default createUseStyles(theme => ({
   invertedIcon: {
     transform: [{rotateX: '180deg'}],
   },
+  clearIcon: {
+    marginRight: 15,
+  },
+  scrollView: {
+    flex: 1,
+  },
 }));
