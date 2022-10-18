@@ -18,36 +18,19 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
   rangeBar: {
     height: '100%',
     backgroundColor: theme[color!].main,
-    opacity: 0.5,
+  },
+  disabledRangeBar: {
+    backgroundColor: theme.default.main,
   },
   buttonWrapper: {
     position: 'absolute',
-    marginLeft: SLIDER_CONFIG.buttonRadius - SLIDER_CONFIG.pulsarRadius,
-    width: SLIDER_CONFIG.pulsarRadius * 2,
-    height: SLIDER_CONFIG.pulsarRadius * 2,
+    width: SLIDER_CONFIG.buttonRadius * 2,
+    height: SLIDER_CONFIG.buttonRadius * 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
   topButton: {
     zIndex: 1,
-  },
-  buttonPulsarWrapper: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    right: 0,
-    bottom: 0,
-  },
-  buttonPulsar: {
-    flex: 1,
-    overflow: 'hidden',
-    borderRadius: SLIDER_CONFIG.pulsarRadius,
-    left: 0,
-    top: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: theme[color!].light,
-    opacity: 0.4,
   },
   buttonTooltip: {
     position: 'absolute',
@@ -61,7 +44,18 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
     width: SLIDER_CONFIG.buttonRadius * 2,
     height: SLIDER_CONFIG.buttonRadius * 2,
     borderRadius: SLIDER_CONFIG.buttonRadius,
-    backgroundColor: theme[color!].main,
+    backgroundColor: theme[color!].contrast,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 3,
+  },
+  disabledButton: {
+    backgroundColor: theme.default.light,
   },
   tooltipText: {
     fontSize: 12,
@@ -76,12 +70,15 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
     borderRadius: 2,
     backgroundColor: theme.default.light,
     position: 'absolute',
-    top: 1,
+    top: 0,
   },
   labelContainer: {
     paddingHorizontal: 4,
     paddingVertical: 2,
     backgroundColor: theme.default.dark,
     borderRadius: 4,
+  },
+  disabledLabelContainer: {
+    backgroundColor: theme.default.main,
   },
 }));

@@ -30,14 +30,15 @@ export interface ISliderProps {
   showTooltip?: boolean;
   showInput?: boolean;
   stepDotsIndicator?: boolean;
-  leftLabel?: (min: number) => React.ReactNode;
-  rightLabel?: (max: number) => React.ReactNode;
+  leftLabel?: (min: number, disabled?: boolean) => React.ReactNode;
+  rightLabel?: (max: number, disabled?: boolean) => React.ReactNode;
   minDistance?: number;
   style?: StyleProp<ViewStyle>;
   onChange?: (value: SliderValueType) => void;
   name?: string;
   clearFormValueOnUnmount?: boolean;
   controlled?: boolean;
+  disabled?: boolean;
 }
 
 const Slider: FC<ISliderProps> = ({
@@ -59,6 +60,7 @@ const Slider: FC<ISliderProps> = ({
   clearFormValueOnUnmount,
   minDistance = 0,
   controlled,
+  disabled = false,
 }) => {
   const {fieldValue, unsetFormValue, updateFormValue} = useFormContext(name);
   const [width, setWidth] = useState(1);
@@ -348,7 +350,7 @@ const Slider: FC<ISliderProps> = ({
           topButton === type && styles.topButton,
         ]}
         testID={`slider_button_${type}`}
-        {...panResponder?.panHandlers}
+        {...(!disabled ? panResponder?.panHandlers : {})}
       >
         {showTooltip && (
           <Animated.View
@@ -402,15 +404,7 @@ const Slider: FC<ISliderProps> = ({
             />
           </Animated.View>
         )}
-        <Animated.View
-          style={[
-            styles.buttonPulsarWrapper,
-            {opacity: isUp ? buttonUpTouched : buttonDownTouched},
-          ]}
-        >
-          <View style={styles.buttonPulsar} />
-        </Animated.View>
-        <View style={styles.button} />
+        <View style={[styles.button, disabled && styles.disabledButton]} />
       </Animated.View>
     );
   };
@@ -434,8 +428,8 @@ const Slider: FC<ISliderProps> = ({
                   {
                     left:
                       (width / (max / step)) * i +
-                      SLIDER_CONFIG.buttonRadius -
-                      2.5,
+                      SLIDER_CONFIG.buttonRadius +
+                      10,
                   },
                 ]}
               />
@@ -457,6 +451,7 @@ const Slider: FC<ISliderProps> = ({
                       extrapolate: 'clamp',
                     }),
               },
+              disabled && styles.disabledRangeBar,
             ]}
           />
         </View>
@@ -467,7 +462,9 @@ const Slider: FC<ISliderProps> = ({
   };
 
   const renderLabel = (labelValue: number) => (
-    <View style={styles.labelContainer}>
+    <View
+      style={[styles.labelContainer, disabled && styles.disabledLabelContainer]}
+    >
       <Text style={styles.tooltipText}>{labelValue}</Text>
     </View>
   );
@@ -476,8 +473,8 @@ const Slider: FC<ISliderProps> = ({
     <SliderLayout
       type={layout}
       wrapperStyle={style}
-      leftLabel={leftLabel ? leftLabel(min) : renderLabel(min)}
-      rightLabel={rightLabel ? rightLabel(max) : renderLabel(max)}
+      leftLabel={leftLabel ? leftLabel(min, disabled) : renderLabel(min)}
+      rightLabel={rightLabel ? rightLabel(max, disabled) : renderLabel(max)}
       rangeBar={renderRangeBar()}
     />
   );

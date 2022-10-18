@@ -94,3 +94,11 @@ WithIcons.args = {
 };
 
 export const Controlled = ControlledSlider;
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  max: 10,
+  value: [2, 5],
+  min: 0,
+  disabled: true,
+};

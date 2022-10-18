@@ -1,6 +1,5 @@
 export const SLIDER_CONFIG = {
-  barHeight: 6,
+  barHeight: 4,
   buttonRadius: 15,
-  pulsarRadius: 20,
   maxNumWidth: 8.4,
 };
