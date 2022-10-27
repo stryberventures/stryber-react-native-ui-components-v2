@@ -3,6 +3,7 @@ import {Animated, Platform} from 'react-native';
 
 import Input from '../../Input';
 import {ISliderProps, SliderValueType} from '../index';
+import useStyles from './styles';
 
 interface ISliderInputProps {
   type: 'up' | 'down';
@@ -39,6 +40,7 @@ const SliderInput: React.FC<ISliderInputProps> = ({
   const [inputWidth, setInputWidth] = useState(26);
   const [inputValue, setInputValue] = useState<string>(String(value));
   const [error, setError] = useState(false);
+  const styles = useStyles();
 
   useEffect(() => {
     setInputValue(String(value));
@@ -137,6 +139,7 @@ const SliderInput: React.FC<ISliderInputProps> = ({
       error={error}
       keyboardType="numeric"
       returnKeyType="done"
+      inputWrapperStyle={styles.inputWrapperStyle}
       testID={testID}
     />
   );
