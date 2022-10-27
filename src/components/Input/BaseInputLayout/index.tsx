@@ -77,6 +77,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
             isFocused && styles.baseInputFocused,
             !!error && styles.error,
             disabled && styles.disabled,
+            !label && styles.noLabel,
             wrapperStyle,
           ]}
           disabled={disabled}

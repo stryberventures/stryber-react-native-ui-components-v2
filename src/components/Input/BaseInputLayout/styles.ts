@@ -13,7 +13,7 @@ export default createUseStyles(
       borderColor: theme.default.main,
       borderRadius: 4,
       paddingHorizontal: 8,
-      paddingVertical: 5,
+      paddingVertical: 4,
       backgroundColor: theme.background.main,
       elevation: 4,
       shadowColor: 'transparent',
@@ -21,6 +21,9 @@ export default createUseStyles(
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
+    },
+    noLabel: {
+      paddingVertical: 12.5,
     },
     baseInputFocused: {
       borderColor: theme[color!].main,
