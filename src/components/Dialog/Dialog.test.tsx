@@ -10,7 +10,7 @@ it('should be rendered with title, text and buttons if opened', () => {
   const successButton = 'Fine';
   const cancelButton = 'No';
   const {getByText} = render(
-    <Dialog onCancel={() => {}} open={true}>
+    <Dialog onClose={() => {}} open={true}>
       <Dialog.Title>{title}</Dialog.Title>
       <Text variant="body">{text}</Text>
       <Dialog.Actions>
@@ -37,7 +37,7 @@ it('should be rendered with title, text and buttons if opened', () => {
 it("shouldn't render Dialog if closed", () => {
   const title = 'Test dialog';
   const {getByText} = render(
-    <Dialog onCancel={() => {}} open={false}>
+    <Dialog onClose={() => {}} open={false}>
       <Dialog.Title>{title}</Dialog.Title>
       <Dialog.Actions>
         <Button
@@ -63,7 +63,7 @@ it('should fire success and cancel functions on buttons press', () => {
   const successBtnText = 'Success';
   const cancelBtnText = 'Cancel';
   const {getByText} = render(
-    <Dialog onCancel={onCancel} open={true}>
+    <Dialog onClose={onCancel} open={true}>
       <Dialog.Actions>
         <Button
           variant="outlined"

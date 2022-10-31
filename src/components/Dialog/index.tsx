@@ -1,13 +1,14 @@
 import React, {FC} from 'react';
 import useStyles from './styles';
-import {Modal, Pressable, ModalProps} from 'react-native';
+import {Modal, Pressable, ModalProps, ViewStyle} from 'react-native';
 import DialogTitle from './DialogTitle';
 import DialogActions from './DialogActions';
 
 export interface IDialogProps extends ModalProps {
-  onCancel: () => void;
+  onClose: () => void;
   open: boolean;
-  cancelOnOutsidePress?: boolean;
+  disableOutsidePress?: boolean;
+  overlayStyle?: ViewStyle;
 }
 
 export interface IDialogStaticProps {
@@ -17,8 +18,10 @@ export interface IDialogStaticProps {
 
 const Dialog: FC<IDialogProps> & IDialogStaticProps = ({
   open,
-  onCancel,
-  cancelOnOutsidePress = true,
+  onClose,
+  disableOutsidePress = false,
+  style,
+  overlayStyle,
   children,
   ...rest
 }) => {
@@ -26,10 +29,10 @@ const Dialog: FC<IDialogProps> & IDialogStaticProps = ({
   return (
     <Modal transparent visible={open} {...rest}>
       <Pressable
-        onPress={cancelOnOutsidePress ? onCancel : null}
-        style={styles.overlay}
+        onPress={!disableOutsidePress ? onClose : null}
+        style={[styles.overlay, overlayStyle]}
       >
-        <Pressable style={styles.dialog}>{children}</Pressable>
+        <Pressable style={[styles.dialog, style]}>{children}</Pressable>
       </Pressable>
     </Modal>
   );

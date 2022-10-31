@@ -22,7 +22,7 @@ const DialogStory = (args: IDialogProps) => {
   return (
     <>
       <Button onPress={() => setOpen(true)}>Open Dialog</Button>
-      <Dialog {...args} onCancel={closeDialog} open={open}>
+      <Dialog {...args} onClose={closeDialog} open={open}>
         <Dialog.Title>Discard draft?</Dialog.Title>
         <Text variant="body">Discard draft?</Text>
         <Dialog.Actions>
