@@ -1,50 +1,44 @@
-import React from 'react';
+import React, {FC} from 'react';
 import useStyles from './styles';
-import {Modal, Pressable, View, Text, ModalProps} from 'react-native';
-import DialogButton from './DialogButton';
+import {Modal, Pressable, ModalProps, ViewStyle} from 'react-native';
+import DialogTitle from './DialogTitle';
+import DialogActions from './DialogActions';
 
 export interface IDialogProps extends ModalProps {
-  title?: string;
-  text?: string | React.ReactElement;
-  onCancel: () => void;
-  onConfirm: () => void;
-  cancelButtonText?: string;
-  confirmButtonText?: string;
+  onClose: () => void;
   open: boolean;
-  cancelOnOutsidePress?: boolean;
+  disableOutsidePress?: boolean;
+  overlayStyle?: ViewStyle;
 }
 
-const Dialog: React.FC<IDialogProps> = ({
-  title,
-  text,
+export interface IDialogStaticProps {
+  Title: typeof DialogTitle;
+  Actions: typeof DialogActions;
+}
+
+const Dialog: FC<IDialogProps> & IDialogStaticProps = ({
   open,
-  onCancel,
-  onConfirm,
-  cancelButtonText = 'Cancel',
-  confirmButtonText = 'Ok',
-  cancelOnOutsidePress = true,
+  onClose,
+  disableOutsidePress = false,
+  style,
+  overlayStyle,
+  children,
   ...rest
 }) => {
   const styles = useStyles();
   return (
     <Modal transparent visible={open} {...rest}>
       <Pressable
-        onPress={cancelOnOutsidePress ? onCancel : null}
-        style={styles.overlay}
+        onPress={!disableOutsidePress ? onClose : null}
+        style={[styles.overlay, overlayStyle]}
       >
-        <Pressable style={styles.dialog}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{text}</Text>
-          <View style={styles.buttonWrapper}>
-            <DialogButton onPress={onConfirm}>{confirmButtonText}</DialogButton>
-            <DialogButton onPress={onCancel} style={styles.cancelButton}>
-              {cancelButtonText}
-            </DialogButton>
-          </View>
-        </Pressable>
+        <Pressable style={[styles.dialog, style]}>{children}</Pressable>
       </Pressable>
     </Modal>
   );
 };
+
+Dialog.Title = DialogTitle;
+Dialog.Actions = DialogActions;
 
 export default Dialog;

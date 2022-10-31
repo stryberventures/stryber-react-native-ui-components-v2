@@ -7,10 +7,12 @@ export default createUseStyles(theme => ({
   body: {
     fontSize: 16,
     fontWeight: '400',
+    color: theme.default.dark,
   },
   description: {
     fontSize: 12,
     fontWeight: '700',
+    color: theme.default.dark,
   },
   h1: {
     fontSize: 48,
@@ -31,6 +33,7 @@ export default createUseStyles(theme => ({
   caption: {
     fontSize: 12,
     fontWeight: '400',
+    color: theme.default.dark,
   },
   smallText: {
     fontSize: 10,
@@ -47,6 +50,7 @@ export default createUseStyles(theme => ({
   label: {
     fontSize: 14,
     fontWeight: '400',
+    color: theme.default.dark,
   },
   labelHighlight: {
     fontSize: 14,
