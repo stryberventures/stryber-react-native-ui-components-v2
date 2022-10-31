@@ -1,28 +1,25 @@
-import React from 'react';
+import React, {FC} from 'react';
 import useStyles from './styles';
-import {Modal, Pressable, View, Text, ModalProps} from 'react-native';
-import DialogButton from './DialogButton';
+import {Modal, Pressable, ModalProps} from 'react-native';
+import DialogTitle from './DialogTitle';
+import DialogActions from './DialogActions';
 
 export interface IDialogProps extends ModalProps {
-  title?: string;
-  text?: string | React.ReactElement;
   onCancel: () => void;
-  onConfirm: () => void;
-  cancelButtonText?: string;
-  confirmButtonText?: string;
   open: boolean;
   cancelOnOutsidePress?: boolean;
 }
 
-const Dialog: React.FC<IDialogProps> = ({
-  title,
-  text,
+export interface IDialogStaticProps {
+  Title: typeof DialogTitle;
+  Actions: typeof DialogActions;
+}
+
+const Dialog: FC<IDialogProps> & IDialogStaticProps = ({
   open,
   onCancel,
-  onConfirm,
-  cancelButtonText = 'Cancel',
-  confirmButtonText = 'Ok',
   cancelOnOutsidePress = true,
+  children,
   ...rest
 }) => {
   const styles = useStyles();
@@ -32,19 +29,13 @@ const Dialog: React.FC<IDialogProps> = ({
         onPress={cancelOnOutsidePress ? onCancel : null}
         style={styles.overlay}
       >
-        <Pressable style={styles.dialog}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{text}</Text>
-          <View style={styles.buttonWrapper}>
-            <DialogButton onPress={onConfirm}>{confirmButtonText}</DialogButton>
-            <DialogButton onPress={onCancel} style={styles.cancelButton}>
-              {cancelButtonText}
-            </DialogButton>
-          </View>
-        </Pressable>
+        <Pressable style={styles.dialog}>{children}</Pressable>
       </Pressable>
     </Modal>
   );
 };
+
+Dialog.Title = DialogTitle;
+Dialog.Actions = DialogActions;
 
 export default Dialog;

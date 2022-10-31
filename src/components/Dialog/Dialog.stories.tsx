@@ -2,6 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Dialog, {IDialogProps} from '.';
 import Button from '../Button';
+import Text from '../Text';
 import CenterView from '../../storybook/preview/CenterView';
 import pkg from './package.json';
 
@@ -21,12 +22,23 @@ const DialogStory = (args: IDialogProps) => {
   return (
     <>
       <Button onPress={() => setOpen(true)}>Open Dialog</Button>
-      <Dialog
-        {...args}
-        onCancel={closeDialog}
-        onConfirm={closeDialog}
-        open={open}
-      />
+      <Dialog {...args} onCancel={closeDialog} open={open}>
+        <Dialog.Title>Discard draft?</Dialog.Title>
+        <Text variant="body">Discard draft?</Text>
+        <Dialog.Actions>
+          <Button
+            variant="outlined"
+            size="small"
+            style={{marginRight: 12}}
+            onPress={closeDialog}
+          >
+            Discard
+          </Button>
+          <Button size="small" onPress={closeDialog}>
+            Cancel
+          </Button>
+        </Dialog.Actions>
+      </Dialog>
     </>
   );
 };
@@ -36,7 +48,3 @@ const Template: ComponentStory<typeof Dialog> = args => (
 );
 
 export const Default = Template.bind({});
-Default.args = {
-  title: 'Title',
-  text: 'Some content here',
-};
