@@ -1,6 +1,8 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
 import Dialog from '.';
+import Button from '../Button';
+import Text from '../Text';
 
 it('should be rendered with title, text and buttons if opened', () => {
   const title = 'Test dialog';
@@ -8,15 +10,23 @@ it('should be rendered with title, text and buttons if opened', () => {
   const successButton = 'Fine';
   const cancelButton = 'No';
   const {getByText} = render(
-    <Dialog
-      title={title}
-      text={text}
-      onCancel={() => {}}
-      onConfirm={() => {}}
-      confirmButtonText={successButton}
-      cancelButtonText={cancelButton}
-      open={true}
-    />,
+    <Dialog onCancel={() => {}} open={true}>
+      <Dialog.Title>{title}</Dialog.Title>
+      <Text variant="body">{text}</Text>
+      <Dialog.Actions>
+        <Button
+          variant="outlined"
+          size="small"
+          style={{marginRight: 12}}
+          onPress={() => {}}
+        >
+          {successButton}
+        </Button>
+        <Button size="small" onPress={() => {}}>
+          {cancelButton}
+        </Button>
+      </Dialog.Actions>
+    </Dialog>,
   );
   expect(getByText(title)).toBeTruthy();
   expect(getByText(text)).toBeTruthy();
@@ -27,12 +37,22 @@ it('should be rendered with title, text and buttons if opened', () => {
 it("shouldn't render Dialog if closed", () => {
   const title = 'Test dialog';
   const {getByText} = render(
-    <Dialog
-      title={title}
-      onCancel={() => {}}
-      onConfirm={() => {}}
-      open={false}
-    />,
+    <Dialog onCancel={() => {}} open={false}>
+      <Dialog.Title>{title}</Dialog.Title>
+      <Dialog.Actions>
+        <Button
+          variant="outlined"
+          size="small"
+          style={{marginRight: 12}}
+          onPress={() => {}}
+        >
+          Success
+        </Button>
+        <Button size="small" onPress={() => {}}>
+          Cancel
+        </Button>
+      </Dialog.Actions>
+    </Dialog>,
   );
   expect(() => getByText(title)).toThrowError();
 });
@@ -43,13 +63,21 @@ it('should fire success and cancel functions on buttons press', () => {
   const successBtnText = 'Success';
   const cancelBtnText = 'Cancel';
   const {getByText} = render(
-    <Dialog
-      onCancel={onCancel}
-      onConfirm={onConfirm}
-      confirmButtonText={successBtnText}
-      cancelButtonText={cancelBtnText}
-      open={true}
-    />,
+    <Dialog onCancel={onCancel} open={true}>
+      <Dialog.Actions>
+        <Button
+          variant="outlined"
+          size="small"
+          style={{marginRight: 12}}
+          onPress={onConfirm}
+        >
+          {successBtnText}
+        </Button>
+        <Button size="small" onPress={onCancel}>
+          {cancelBtnText}
+        </Button>
+      </Dialog.Actions>
+    </Dialog>,
   );
   fireEvent.press(getByText(successBtnText));
   expect(onConfirm).toHaveBeenCalled();
