@@ -42,9 +42,7 @@ export default createUseStyles((theme, color: IChipProps['color']) => {
       color: isDefault
         ? theme.default.dark
         : theme[color! as DefaultColorType].contrast,
-      fontWeight: '500',
       marginHorizontal: 8,
-      fontFamily: theme.fontFamily,
     },
     disabledText: {
       color: theme.default.main,

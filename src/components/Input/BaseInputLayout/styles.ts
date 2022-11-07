@@ -30,7 +30,6 @@ export default createUseStyles(
     },
     label: {
       color: theme.text.secondary,
-      fontFamily: theme.fontFamily,
     },
     focusedOutline: {
       position: 'absolute',

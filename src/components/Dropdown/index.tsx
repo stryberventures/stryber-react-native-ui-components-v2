@@ -5,13 +5,13 @@ import {
   Modal,
   Pressable,
   StyleProp,
-  Text,
   View,
   ViewStyle,
 } from 'react-native';
 import BaseInputLayout, {IBaseInputLayoutProps} from '../Input/BaseInputLayout';
 import {ArrowDownIcon} from '../Icons';
 import {useTheme} from '../Theme';
+import Text from '../Text';
 import {validateInputValueLength} from '../../utils';
 
 export interface IDropdownProps extends IBaseInputLayoutProps {
@@ -100,8 +100,8 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       >
         {renderDropdown()}
         <Text
+          variant="label"
           style={[
-            styles.text,
             !!placeholder && styles.placeholderText,
             !!value && styles.valueText,
             disabled && styles.disabledText,

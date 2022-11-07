@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
-import {Text, Pressable, PressableProps} from 'react-native';
+import {Pressable, PressableProps} from 'react-native';
+import Text from '../../Text';
 
 interface ISelectItemProps extends PressableProps {
   active?: boolean;
@@ -21,7 +22,9 @@ const SelectItem: React.FC<ISelectItemProps> = ({
       ]}
       {...rest}
     >
-      <Text style={styles.text}>{children}</Text>
+      <Text variant="label" style={styles.text}>
+        {children}
+      </Text>
     </Pressable>
   );
 };

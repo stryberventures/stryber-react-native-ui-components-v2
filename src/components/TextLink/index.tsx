@@ -2,13 +2,13 @@ import React from 'react';
 import useStyles from './styles';
 import {
   View,
-  Text,
   PressableProps,
   StyleProp,
   ViewStyle,
   Pressable,
   TextStyle,
 } from 'react-native';
+import Text from '../Text';
 
 export interface ITextLinkProps extends PressableProps {
   color?: 'primary' | 'secondary';
@@ -47,7 +47,9 @@ const TextLink: React.FC<ITextLinkProps> = ({
       {...rest}
     >
       {renderIcon('leftIcon', iconLeft)}
-      <Text style={[styles.text, textStyle]}>{children}</Text>
+      <Text variant="buttonLabel" style={[styles.text, textStyle]}>
+        {children}
+      </Text>
       {renderIcon('rightIcon', iconRight)}
     </Pressable>
   );

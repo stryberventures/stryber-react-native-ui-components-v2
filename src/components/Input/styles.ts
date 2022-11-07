@@ -7,6 +7,7 @@ export default createUseStyles(theme => ({
     textAlignVertical: 'top',
     height: 17,
     width: '100%',
+    fontFamily: theme.fontFamily,
   },
   disabledInput: {
     color: theme.text.disabled,
@@ -18,6 +19,5 @@ export default createUseStyles(theme => ({
   prefix: {
     height: 17,
     color: theme.text.primary,
-    fontFamily: theme.fontFamily,
   },
 }));

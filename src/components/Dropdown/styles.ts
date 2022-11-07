@@ -21,9 +21,6 @@ export default createUseStyles(
       width: '100%',
       height: '100%',
     },
-    text: {
-      fontFamily: theme.fontFamily,
-    },
     placeholderText: {
       color: theme.text.hint,
     },

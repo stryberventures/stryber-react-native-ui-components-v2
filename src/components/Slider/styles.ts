@@ -63,6 +63,7 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
     color: theme.default.extraLight,
     fontFamily: theme.fontFamily,
     textAlign: 'center',
+    lineHeight: 16,
   },
   dot: {
     width: 4,

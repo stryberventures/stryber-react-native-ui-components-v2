@@ -7,7 +7,6 @@ import {
   ViewStyle,
   StyleProp,
   PanResponderInstance,
-  Text,
 } from 'react-native';
 
 import {SLIDER_CONFIG} from './constants';
@@ -15,6 +14,7 @@ import SliderLayout from './SliderLayout';
 import useStyles from './styles';
 import SliderInput from './SliderInput';
 import {useFormContext} from '../Form';
+import Text from '../Text';
 import {getAnimatedValue, getNumberLength} from '../../utils';
 
 export type SliderValueType = number | [number, number];

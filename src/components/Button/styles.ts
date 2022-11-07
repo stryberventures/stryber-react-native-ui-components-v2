@@ -66,14 +66,10 @@ export const useStyles = createUseStyles(
         ...buttonVariantStyle().buttonPressed,
       },
       text: {
-        fontSize: size === 'mini' ? 10 : 16,
-        fontFamily: theme.fontFamily,
-        lineHeight: 24,
-        fontWeight: '700',
         ...buttonVariantStyle().text,
       },
       miniText: {
-        lineHeight: 15,
+        fontWeight: '700',
       },
       disabled: {
         opacity: 0.3,

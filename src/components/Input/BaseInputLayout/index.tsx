@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import useStyles from './styles';
 import {
-  Text,
   Pressable,
   PressableProps,
   View,
@@ -9,6 +8,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import Text from '../../Text';
 import HintMessage from '../../HintMessage';
 import ErrorMessage from '../../ErrorMessage';
 
@@ -90,7 +90,10 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
         >
           <View style={styles.mainContent}>
             {label && (
-              <Text style={[styles.label, disabled && styles.disabledLabel]}>
+              <Text
+                variant="label"
+                style={[styles.label, disabled && styles.disabledLabel]}
+              >
                 {label}
               </Text>
             )}

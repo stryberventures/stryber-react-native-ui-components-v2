@@ -64,8 +64,7 @@ FullWidthReverse.args = {
 
 export const CustomContent = Template.bind({});
 CustomContent.args = {
-  label: '',
-  children: (
+  label: (
     <View style={{display: 'flex', flexDirection: 'row'}}>
       <Text style={{color: 'blue', marginRight: 10}}>Custom content</Text>
       <Icons.EyeSlashIcon />
