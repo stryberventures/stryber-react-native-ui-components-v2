@@ -1,7 +1,6 @@
 import React from 'react';
 import useStyles from './styles';
 import {
-  Text,
   FlatListProps,
   FlatList,
   ListRenderItem,
@@ -10,6 +9,7 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
+import Text from '../Text';
 
 export interface IListItem {
   title: string;
@@ -43,8 +43,12 @@ const List: React.FC<IListProps> = ({listItems, ...rest}) => {
       <View style={styles.content}>
         {!!leftContent && <View style={styles.leftContent}>{leftContent}</View>}
         <View>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text variant="labelHighlight" style={styles.title}>
+            {title}
+          </Text>
+          <Text variant="label" style={styles.subtitle}>
+            {subtitle}
+          </Text>
         </View>
       </View>
       {rightContent}

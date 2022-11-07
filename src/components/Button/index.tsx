@@ -5,12 +5,12 @@ import {
   ViewStyle,
   TextStyle,
   StyleProp,
-  Text,
   View,
   GestureResponderEvent,
 } from 'react-native';
 import {useStyles} from './styles';
 import {useFormContext} from '../Form';
+import Text from '../Text';
 
 export interface IButtonProps extends PressableProps {
   size?: 'mini' | 'small' | 'medium' | 'large';
@@ -77,6 +77,7 @@ const Button: React.FC<IButtonProps> = ({
     >
       {renderIcon('leftIcon', iconLeft)}
       <Text
+        variant={size === 'mini' ? 'smallText' : 'buttonLabel'}
         style={[styles.text, size === 'mini' && styles.miniText, textStyle]}
       >
         {children}

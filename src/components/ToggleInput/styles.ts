@@ -14,9 +14,7 @@ export default createUseStyles(
     return {
       toggleInputText: {
         color: theme.text.secondary,
-        fontWeight: '500',
         lineHeight: isSwitch ? SWITCH_SIZE.height : TOGGLE_ICON_SIZE[size!],
-        fontFamily: theme.fontFamily,
       },
       toggleInputWrapper: {
         flexDirection: reverse ? 'row-reverse' : 'row',

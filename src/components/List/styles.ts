@@ -10,11 +10,9 @@ export default createUseStyles(theme => ({
   },
   title: {
     color: theme.text.secondary,
-    fontWeight: '500',
   },
   subtitle: {
     color: theme.text.hint,
-    fontWeight: '400',
   },
   leftContent: {
     marginRight: 16,

@@ -2,7 +2,6 @@ import React, {ReactElement, useState} from 'react';
 import useStyles from './styles';
 import {
   View,
-  Text,
   PressableProps,
   Pressable,
   StyleProp,
@@ -13,6 +12,7 @@ import ToggleIcon, {ToggleIconProps} from './ToggleIcon';
 import HintMessage from '../HintMessage';
 import ErrorMessage from '../ErrorMessage';
 import SwitchIcon from './SwitchIcon';
+import Text from '../Text';
 
 export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   label?: string | ReactElement;
@@ -86,9 +86,14 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
         )}
         <View style={styles.textContainer}>
           {!!label && typeof label === 'string' ? (
-            <Text style={[styles.toggleInputText, labelStyle]}>{label}</Text>
+            <Text
+              variant="labelHighlight"
+              style={[styles.toggleInputText, labelStyle]}
+            >
+              {label}
+            </Text>
           ) : (
-            label
+            !!label && label
           )}
           {!!hint && (
             <HintMessage

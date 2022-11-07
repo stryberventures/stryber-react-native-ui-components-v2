@@ -13,12 +13,12 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
-  Text,
   View,
 } from 'react-native';
 import {useFormContext} from '../Form';
 import BaseInputLayout, {IBaseInputLayoutProps} from './BaseInputLayout';
 import {useTheme} from '../Theme';
+import Text from '../Text';
 import {applyDigitMask} from './utils';
 
 export interface IInputProps extends TextInputProps {
@@ -152,7 +152,11 @@ const Input = forwardRef<TextInput, IInputProps>(
         errorStyle={errorStyle}
       >
         <View style={styles.inputContainer}>
-          {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
+          {prefix && (
+            <Text variant="label" style={[styles.prefix, prefixStyle]}>
+              {prefix}
+            </Text>
+          )}
           <TextInput
             style={[styles.input, disabled && styles.disabledInput, inputStyle]}
             value={controlled ? value : internalValue}

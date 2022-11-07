@@ -2,7 +2,6 @@ import React, {ReactElement, useRef, useState} from 'react';
 import useStyles from './styles';
 import {
   View,
-  Text,
   Pressable,
   Modal,
   StyleProp,
@@ -12,6 +11,7 @@ import {
 } from 'react-native';
 import TooltipTriangle from './TooltipTriangle';
 import TooltipCloseIcon from './TooltipCloseIcon';
+import Text from '../Text';
 
 export interface ITooltipProps extends ViewProps {
   title?: string | ReactElement;
@@ -111,14 +111,18 @@ const Tooltip: React.FC<ITooltipProps> = ({
           <TooltipTriangle position={position} />
           <View style={styles.titleWrapper}>
             {title && typeof title === 'string' ? (
-              <Text style={[styles.title, titleStyle]}>{title}</Text>
+              <Text variant="labelHighlight" style={[styles.title, titleStyle]}>
+                {title}
+              </Text>
             ) : (
               title
             )}
             {withCloseButton && <TooltipCloseIcon onPress={handleClose} />}
           </View>
           {text && typeof text === 'string' ? (
-            <Text style={[styles.text, textStyle]}>{text}</Text>
+            <Text variant="label" style={[styles.text, textStyle]}>
+              {text}
+            </Text>
           ) : (
             text
           )}

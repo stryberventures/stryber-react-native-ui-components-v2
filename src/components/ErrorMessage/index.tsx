@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
-import {Text, TextProps} from 'react-native';
+import {TextProps} from 'react-native';
+import Text from '../Text';
 
 interface IErrorMessageProps extends TextProps {
   error: string;
@@ -14,7 +15,7 @@ const ErrorMessage: React.FC<IErrorMessageProps> = ({
   const styles = useStyles();
 
   return (
-    <Text style={[styles.error, style]} {...rest}>
+    <Text variant="label" style={[styles.error, style]} {...rest}>
       {error}
     </Text>
   );

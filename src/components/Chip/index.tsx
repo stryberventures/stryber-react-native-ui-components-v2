@@ -1,13 +1,13 @@
 import React, {ReactElement} from 'react';
 import useStyles from './styles';
 import {
-  Text,
   PressableProps,
   Pressable,
   StyleProp,
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import Text from '../Text';
 
 export interface IChipProps extends PressableProps {
   children: string | ReactElement;
@@ -49,6 +49,7 @@ const Chip: React.FC<IChipProps> = ({
       {iconLeft}
       {children && (
         <Text
+          variant="labelHighlight"
           style={[
             styles.text,
             isOutlined && styles.outlinedText,
