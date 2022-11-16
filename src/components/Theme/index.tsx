@@ -1,8 +1,9 @@
-import React, {useCallback, useContext, useMemo, useState} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import {merge} from '../../utils/deepMerge';
 import {StyleSheet} from 'react-native';
 
 import {defaultTheme} from './defaultTheme';
+import {useEffectAfterMount} from '../../hooks/useEffectAfterMount';
 
 declare global {
   namespace DesignSystem {
@@ -18,7 +19,7 @@ interface IThemeContext {
 }
 
 export interface IThemeProvider {
-  initial: Object;
+  theme: Object;
   children?: React.ReactNode;
 }
 
@@ -28,24 +29,23 @@ const Context = React.createContext<IThemeContext>({
 });
 
 export const ThemeProvider = React.memo<IThemeProvider>(
-  ({initial, children}) => {
-    const [theme, setTheme] = useState(merge(defaultTheme, initial));
+  ({theme: initialTheme, children}) => {
+    const [theme, setTheme] = useState(merge(defaultTheme, initialTheme));
 
-    const UpdateThemeCallback = useCallback(<T,>(updatedTheme: T) => {
+    const updateThemeCallback = useCallback(<T,>(updatedTheme: T) => {
       setTheme((currentTheme: any) => merge(currentTheme, updatedTheme));
     }, []);
 
-    const MemoizedValue = useMemo(() => {
-      const value: IThemeContext = {
-        theme,
-        updateTheme: UpdateThemeCallback,
-      };
-      return value;
-    }, [theme, UpdateThemeCallback]);
+    const ContextValue: IThemeContext = {
+      theme,
+      updateTheme: updateThemeCallback,
+    };
 
-    return (
-      <Context.Provider value={MemoizedValue}>{children}</Context.Provider>
-    );
+    useEffectAfterMount(() => {
+      updateThemeCallback(initialTheme);
+    }, [initialTheme]);
+
+    return <Context.Provider value={ContextValue}>{children}</Context.Provider>;
   },
 );
 

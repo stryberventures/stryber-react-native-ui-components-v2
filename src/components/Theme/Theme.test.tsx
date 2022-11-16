@@ -14,7 +14,7 @@ it('should pass theme colors', () => {
   const newTheme = {primary: {main: newPrimaryMainColor}};
   const buttonTestId = 'test-button';
   const screen = render(
-    <ThemeProvider initial={newTheme}>
+    <ThemeProvider theme={newTheme}>
       <Button variant="contained" testID={buttonTestId}>
         Button
       </Button>
