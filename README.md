@@ -5,7 +5,7 @@
 The components library based on React Native and Typescript, represented with Storybook(web and native) and
 tested with React Testing Library
 
-Explore [GAIA components](https://stryberventures.github.io/stryber-react-native-ui-components-v2/) for React Native
+Explore [GAIA components](https://gaia-components-react-native.vercel.app/) for React Native
 
 ## Docs
 
@@ -50,8 +50,10 @@ The test setup is based on React Testing Library with Jest runner. To run tests:
 yarn test 
 ```
 
-## Components website
+## Components website ##
+[Components website](https://gaia-components-react-native.vercel.app) is hosted on [Vercel](https://vercel.com/stryber/stryber-react-native-ui-components-v2)
+and it builds and deploys the sources automatically once pull request is created and merged.
 
-[Components website](https://stryberventures.github.io/stryber-react-native-ui-components-v2/)
-is hosted on Github Pages and it builds and deploys the sources automatically
-based on Github actions (.github/workflows/storybook.yml)
+[Production website](https://gaia-components-react-native.vercel.app) - based on `master` branch
+
+[Devevelopment website](https://dev-gaia-components-react-native.vercel.app) - based on `dev` branch
