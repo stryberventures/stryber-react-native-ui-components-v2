@@ -1,11 +1,9 @@
-import {Platform} from 'react-native';
-
 export const defaultTheme = {
   //Will apply default font for ios and android(San Francisco on iOS and Roboto on Android)
   //Change this font in your project to apply changes on all components
-  //Inter by default only available for web. To add it to RN project:
+  //Inter by default only available for Storybook. See ThemeDecorator: ../../storybook/preview/ThemeDecorator
   //More info: https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/2.-Theme#setup-font
-  fontFamily: Platform.OS === 'web' ? 'Inter, sans-serif' : 'System',
+  fontFamily: 'System',
   background: {
     main: '#FFF',
     disabled: '#FCFCFD',

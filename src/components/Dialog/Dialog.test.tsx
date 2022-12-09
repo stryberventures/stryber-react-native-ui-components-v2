@@ -12,7 +12,7 @@ it('should be rendered with title, text and buttons if opened', () => {
   const {getByText} = render(
     <Dialog onClose={() => {}} open={true}>
       <Dialog.Title>{title}</Dialog.Title>
-      <Text variant="body">{text}</Text>
+      <Text>{text}</Text>
       <Dialog.Actions>
         <Button
           variant="outlined"

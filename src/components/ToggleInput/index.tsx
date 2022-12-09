@@ -87,7 +87,8 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
         <View style={styles.textContainer}>
           {!!label && typeof label === 'string' ? (
             <Text
-              variant="labelHighlight"
+              variant="components2"
+              weight="regular"
               style={[styles.toggleInputText, labelStyle]}
             >
               {label}

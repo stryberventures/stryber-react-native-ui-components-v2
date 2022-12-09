@@ -47,7 +47,11 @@ const TextLink: React.FC<ITextLinkProps> = ({
       {...rest}
     >
       {renderIcon('leftIcon', iconLeft)}
-      <Text variant="buttonLabel" style={[styles.text, textStyle]}>
+      <Text
+        variant="components1"
+        weight="bold"
+        style={[styles.text, textStyle]}
+      >
         {children}
       </Text>
       {renderIcon('rightIcon', iconRight)}

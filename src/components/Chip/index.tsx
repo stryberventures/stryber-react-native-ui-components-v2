@@ -49,7 +49,8 @@ const Chip: React.FC<IChipProps> = ({
       {iconLeft}
       {children && (
         <Text
-          variant="labelHighlight"
+          variant="components1"
+          weight="medium"
           style={[
             styles.text,
             isOutlined && styles.outlinedText,

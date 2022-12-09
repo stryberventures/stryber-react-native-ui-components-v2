@@ -18,6 +18,7 @@ import Multiselect from '../Multiselect';
 
 import Title from '../../storybook/preview/Title';
 import Divider from '../../storybook/preview/Divider';
+import {customFontTheme} from '../../storybook/preview/ThemeDecorator';
 
 export default {
   title: 'Theme',
@@ -155,5 +156,5 @@ const Template: ComponentStory<typeof ThemeProvider> = args => {
 
 export const Theme = Template.bind({});
 Theme.args = {
-  theme: defaultTheme,
+  theme: {...defaultTheme, ...customFontTheme},
 };
