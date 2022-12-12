@@ -22,7 +22,7 @@ const SelectItem: React.FC<ISelectItemProps> = ({
       ]}
       {...rest}
     >
-      <Text variant="label" style={styles.text}>
+      <Text variant="components2" style={styles.text}>
         {children}
       </Text>
     </Pressable>

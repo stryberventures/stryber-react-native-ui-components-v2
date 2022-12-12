@@ -100,7 +100,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       >
         {renderDropdown()}
         <Text
-          variant="label"
+          variant="components2"
           style={[
             !!placeholder && styles.placeholderText,
             !!value && styles.valueText,

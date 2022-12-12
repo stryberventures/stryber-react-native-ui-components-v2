@@ -77,7 +77,8 @@ const Button: React.FC<IButtonProps> = ({
     >
       {renderIcon('leftIcon', iconLeft)}
       <Text
-        variant={size === 'mini' ? 'smallText' : 'buttonLabel'}
+        variant={size === 'mini' ? 'components3' : 'components1'}
+        weight={size === 'mini' ? undefined : 'bold'}
         style={[styles.text, size === 'mini' && styles.miniText, textStyle]}
       >
         {children}

@@ -153,7 +153,7 @@ const Input = forwardRef<TextInput, IInputProps>(
       >
         <View style={styles.inputContainer}>
           {prefix && (
-            <Text variant="label" style={[styles.prefix, prefixStyle]}>
+            <Text variant="components2" style={[styles.prefix, prefixStyle]}>
               {prefix}
             </Text>
           )}
