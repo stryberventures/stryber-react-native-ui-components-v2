@@ -21,15 +21,15 @@ export const useStyles = createUseStyles(
     const buttonVariantStyle = (): IButtonTypeStyle => {
       const containedStyle: IButtonTypeStyle = {
         button: {
-          backgroundColor: theme[color!].main,
-          borderColor: theme[color!].main,
+          backgroundColor: theme.colors[color!].medium500,
+          borderColor: theme.colors[color!].medium500,
         },
         buttonPressed: {
-          backgroundColor: theme[color!].dark,
-          borderColor: theme[color!].dark,
+          backgroundColor: theme.colors[color!].dark600,
+          borderColor: theme.colors[color!].dark600,
         },
         text: {
-          color: theme.primary.contrast,
+          color: theme.colors.contrast.white,
         },
       };
       switch (variant) {
@@ -39,14 +39,14 @@ export const useStyles = createUseStyles(
           return {
             button: {
               backgroundColor: 'transparent',
-              borderColor: theme[color!].main,
+              borderColor: theme.colors[color!].medium500,
             },
             buttonPressed: {
-              backgroundColor: theme[color!].light,
-              borderColor: theme[color!].light,
+              backgroundColor: theme.colors[color!].extraLight50,
+              borderColor: theme.colors[color!].extraLight50,
             },
             text: {
-              color: theme[color!].main,
+              color: theme.colors[color!].medium500,
             },
           };
         default:

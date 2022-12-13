@@ -37,7 +37,7 @@ Success.args = {
 export const Grey = Template.bind({});
 Grey.args = {
   children: 'Grey',
-  color: 'default',
+  color: 'neutralGray',
 };
 
 export const Outlined = Template.bind({});

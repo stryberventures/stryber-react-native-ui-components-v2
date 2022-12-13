@@ -11,16 +11,16 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
 
     height: SLIDER_CONFIG.barHeight,
     width: '100%',
-    backgroundColor: theme.default.main,
+    backgroundColor: theme.colors.neutralGray.medium300,
     borderRadius: 10,
     overflow: 'hidden',
   },
   rangeBar: {
     height: '100%',
-    backgroundColor: theme[color!].main,
+    backgroundColor: theme.colors[color!].medium500,
   },
   disabledRangeBar: {
-    backgroundColor: theme.default.main,
+    backgroundColor: theme.colors.neutralGray.medium300,
   },
   buttonWrapper: {
     position: 'absolute',
@@ -44,7 +44,7 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
     width: SLIDER_CONFIG.buttonRadius * 2,
     height: SLIDER_CONFIG.buttonRadius * 2,
     borderRadius: SLIDER_CONFIG.buttonRadius,
-    backgroundColor: theme[color!].contrast,
+    backgroundColor: theme.colors.contrast.white,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -55,13 +55,12 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
     elevation: 3,
   },
   disabledButton: {
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.colors.neutralGray.light200,
   },
   tooltipText: {
     fontSize: 12,
     fontWeight: '600',
-    color: theme.default.extraLight,
-    fontFamily: theme.fontFamily,
+    color: theme.colors.neutralGray.light100,
     textAlign: 'center',
     lineHeight: 16,
   },
@@ -69,17 +68,17 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
     width: 4,
     height: 4,
     borderRadius: 2,
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.colors.neutralGray.light200,
     position: 'absolute',
     top: 0,
   },
   labelContainer: {
     paddingHorizontal: 4,
     paddingVertical: 2,
-    backgroundColor: theme.default.dark,
+    backgroundColor: theme.colors.neutralGray.medium500,
     borderRadius: 4,
   },
   disabledLabelContainer: {
-    backgroundColor: theme.default.main,
+    backgroundColor: theme.colors.neutralGray.medium300,
   },
 }));

@@ -15,7 +15,7 @@ export default createUseStyles(theme => ({
     width: '80%',
     paddingHorizontal: 24,
     paddingVertical: 20,
-    backgroundColor: theme.background.main,
+    backgroundColor: theme.colors.background.white,
     borderRadius: 4,
     shadowColor: '#000',
     shadowOffset: {
@@ -36,7 +36,7 @@ export default createUseStyles(theme => ({
   subtitle: {
     fontSize: 16,
     lineHeight: 24,
-    color: theme.default.dark,
+    color: theme.colors.neutralGray.medium500,
   },
   buttonWrapper: {
     marginTop: 16,

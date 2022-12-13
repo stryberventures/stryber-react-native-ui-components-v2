@@ -12,7 +12,9 @@ interface IEyeProps extends PressableProps {
 const Eye: React.FC<IEyeProps> = ({secured, disabled, ...rest}) => {
   const {theme} = useTheme();
   const iconProps: SvgProps = {
-    fill: disabled ? theme.text.disabled : theme.default.dark,
+    fill: disabled
+      ? theme.colors.text.disabled
+      : theme.colors.neutralGray.medium500,
   };
   const styles = useStyles();
 

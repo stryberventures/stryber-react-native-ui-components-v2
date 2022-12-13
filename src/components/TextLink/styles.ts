@@ -12,10 +12,10 @@ export default createUseStyles((theme, color: ITextLinkProps['color']) => ({
     alignItems: 'center',
   },
   pressedContainer: {
-    backgroundColor: theme[color!].light,
+    backgroundColor: theme.colors[color!].extraLight50,
   },
   text: {
-    color: theme[color!].main,
+    color: theme.colors[color!].medium500,
   },
   leftIcon: {
     marginRight: 8,

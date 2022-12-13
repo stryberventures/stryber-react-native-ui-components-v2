@@ -28,7 +28,7 @@ export default createUseStyles(theme => ({
   labelText: {
     fontSize: 12,
     fontWeight: '600',
-    color: theme.default.extraLight,
+    color: theme.colors.neutralGray.light100,
   },
   container: {
     flexDirection: 'row',

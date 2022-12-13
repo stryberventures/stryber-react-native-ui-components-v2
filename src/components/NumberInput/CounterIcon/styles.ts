@@ -9,6 +9,6 @@ export default createUseStyles(theme => ({
     justifyContent: 'center',
   },
   containerPressed: {
-    backgroundColor: theme.default.extraLight,
+    backgroundColor: theme.colors.neutralGray.light100,
   },
 }));

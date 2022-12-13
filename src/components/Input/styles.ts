@@ -2,7 +2,7 @@ import {createUseStyles} from '../Theme';
 
 export default createUseStyles(theme => ({
   input: {
-    color: theme.text.primary,
+    color: theme.colors.text.headline,
     padding: 0,
     textAlignVertical: 'top',
     height: 17,
@@ -10,7 +10,7 @@ export default createUseStyles(theme => ({
     fontFamily: theme.fontFamily,
   },
   disabledInput: {
-    color: theme.text.disabled,
+    color: theme.colors.text.disabled,
   },
   inputContainer: {
     display: 'flex',
@@ -18,6 +18,6 @@ export default createUseStyles(theme => ({
   },
   prefix: {
     height: 17,
-    color: theme.text.primary,
+    color: theme.colors.text.headline,
   },
 }));

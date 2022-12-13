@@ -10,7 +10,7 @@ export default createUseStyles((theme, color: IToggleInputProps['color']) => ({
   container: {
     width: SWITCH_SIZE.width,
     height: SWITCH_SIZE.height,
-    backgroundColor: theme.default.main,
+    backgroundColor: theme.colors.neutralGray.medium300,
     borderRadius: 12,
     padding: 2,
   },
@@ -18,15 +18,15 @@ export default createUseStyles((theme, color: IToggleInputProps['color']) => ({
     width: 20,
     height: 20,
     borderRadius: 10,
-    backgroundColor: theme.background.main,
+    backgroundColor: theme.colors.background.white,
   },
   pressedUncheckedContainer: {
-    backgroundColor: theme.default.dark,
+    backgroundColor: theme.colors.neutralGray.medium500,
   },
   checked: {
-    backgroundColor: theme[color!].main,
+    backgroundColor: theme.colors[color!].medium500,
   },
   pressedCheckedContainer: {
-    backgroundColor: theme[color!].dark,
+    backgroundColor: theme.colors[color!].dark600,
   },
 }));

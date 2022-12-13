@@ -17,7 +17,7 @@ const TooltipTriangle: React.FC<ITooltipTriangleProps> = ({
   return (
     <View style={[styles.iconWrapper, styles[position]]}>
       <TooltipIcon
-        fill={theme.background.main}
+        fill={theme.colors.background.white}
         style={styles[`${position}Icon` as const]}
       />
     </View>

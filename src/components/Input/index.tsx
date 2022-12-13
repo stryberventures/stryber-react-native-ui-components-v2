@@ -164,7 +164,7 @@ const Input = forwardRef<TextInput, IInputProps>(
             onChangeText={onChangeTextWrapper}
             onFocus={onFocusWrapper}
             placeholderTextColor={
-              disabled ? theme.text.disabled : theme.text.hint
+              disabled ? theme.colors.text.disabled : theme.colors.text.tint
             }
             ref={inputRef}
             maxLength={mask?.length || maxLength}

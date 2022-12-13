@@ -1,46 +1,81 @@
 export const defaultTheme = {
   //Will apply default font for ios and android(San Francisco on iOS and Roboto on Android)
   //Change this font in your project to apply changes on all components
-  //Inter by default only available for Storybook. See ThemeDecorator: ../../storybook/preview/ThemeDecorator
+  //Inter by default only available for Storybook. See ThemeDecorator: '../../storybook/preview/ThemeDecorator'
   //More info: https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/2.-Theme#setup-font
   fontFamily: 'System',
-  background: {
-    main: '#FFF',
-    disabled: '#FCFCFD',
-  },
-  default: {
-    dark: '#667085',
-    main: '#C7CCD3',
-    light: '#E4E7EC',
-    extraLight: '#EFF1F3',
-  },
-  primary: {
-    main: '#003CB8',
-    light: '#E7EAF9',
-    dark: '#001D9A',
-    contrast: '#FFF',
-  },
-  secondary: {
-    main: '#58329A',
-    light: '#EDE7F4',
-    dark: '#3D2181',
-    contrast: '#FFF',
-  },
-  success: {
-    main: '#6CA78B',
-    contrast: '#fff',
-  },
-  text: {
-    primary: '#000000',
-    secondary: '#344054',
-    disabled: '#D2D2D2',
-    hint: '#667085',
-  },
-  error: {
-    main: '#EC726B',
-    light: '#FBDCDA',
-    dark: '#D92C20',
-    contrast: '#000',
+  colors: {
+    primary: {
+      dark600: '#001D9A',
+      medium500: '#003CB8',
+      main400: '#034ECF',
+      medium300: '#4669D7',
+      light200: '#98A7E7',
+      light100: '#C2C9F1',
+      extraLight50: '#E7EAF9',
+    },
+    secondary: {
+      dark600: '#3D2181',
+      medium500: '#58329A',
+      main400: '#6C3FA9',
+      medium300: '#815BB6',
+      light200: '#B49FD4',
+      light100: '#D2C5E5',
+      extraLight50: '#EDE7F4',
+    },
+    error: {
+      dark600: '#BF2600',
+      medium500: '#DE350B',
+      main400: '#FF4130',
+      medium300: '#FF7452',
+      light200: '#FF8F73',
+      light100: '#FFBDAD',
+      extraLight50: '#FFEBE6',
+    },
+    success: {
+      dark600: '#006644',
+      medium500: '#00875A',
+      main400: '#36A176',
+      medium300: '#57D9A3',
+      light200: '#79F2C0',
+      light100: '#ABF5D1',
+      extraLight50: '#E3FCEF',
+    },
+    warning: {
+      dark600: '#EC7603',
+      medium500: '#FF991F',
+      main400: '#FFAB00',
+      medium300: '#FFC400',
+      light200: '#FFE380',
+      light100: '#FFF0B3',
+      extraLight50: '#FFFAE6',
+    },
+    contrast: {
+      white: '#FFFFFF',
+      black: '#000000',
+    },
+    neutralGray: {
+      dark900: '#101828',
+      dark800: '#1D2939',
+      dark700: '#344054',
+      dark600: '#475467',
+      medium500: '#667085',
+      main400: '#98A2B3',
+      medium300: '#D0D5DD',
+      light200: '#E4E7EC',
+      light100: '#F2F4F7',
+      extraLight50: '#F9FAFB',
+    },
+    text: {
+      headline: '#101828',
+      secondary: '#475467',
+      disabled: '#E4E7EC',
+      tint: '#98A2B3',
+    },
+    background: {
+      white: '#FFFFFF',
+      extraLightGrey: '#F9FAFB',
+    },
   },
   spacing: {
     2: 2,

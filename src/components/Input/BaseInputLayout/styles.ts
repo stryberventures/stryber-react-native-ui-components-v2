@@ -10,11 +10,11 @@ export default createUseStyles(
   (theme, inputSize: IInputSize, color: IBaseInputLayoutProps['color']) => ({
     baseInput: {
       borderWidth: inputConstants.BORDER_WIDTH,
-      borderColor: theme.default.main,
+      borderColor: theme.colors.neutralGray.medium300,
       borderRadius: 4,
       paddingHorizontal: 8,
       paddingVertical: 4,
-      backgroundColor: theme.background.main,
+      backgroundColor: theme.colors.background.white,
       elevation: 4,
       shadowColor: 'transparent',
       zIndex: 2,
@@ -26,16 +26,16 @@ export default createUseStyles(
       paddingVertical: 12.5,
     },
     baseInputFocused: {
-      borderColor: theme[color!].main,
+      borderColor: theme.colors[color!].medium500,
     },
     label: {
-      color: theme.text.secondary,
+      color: theme.colors.text.secondary,
     },
     focusedOutline: {
       position: 'absolute',
       width: inputSize.width + inputConstants.OUTLINE_SIZE,
       height: inputSize.height + inputConstants.OUTLINE_SIZE,
-      backgroundColor: theme[color!].light,
+      backgroundColor: theme.colors[color!].extraLight50,
       borderRadius: 4,
       left: -4,
       top: -4,
@@ -51,7 +51,7 @@ export default createUseStyles(
       backgroundColor: theme.background.disabled,
     },
     disabledLabel: {
-      color: theme.text.disabled,
+      color: theme.colors.text.disabled,
     },
     mainContent: {
       alignSelf: 'flex-start',

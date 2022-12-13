@@ -3,9 +3,9 @@ import {createUseStyles} from '../Theme';
 export default createUseStyles(theme => ({
   hint: {
     marginTop: 4,
-    color: theme.text.hint,
+    color: theme.colors.text.tint,
   },
   disabledHint: {
-    color: theme.text.disabled,
+    color: theme.colors.text.disabled,
   },
 }));

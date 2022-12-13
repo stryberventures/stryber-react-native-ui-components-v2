@@ -12,7 +12,7 @@ export default createUseStyles(
       position: 'absolute',
       backgroundColor: '#fff',
       borderWidth: 1,
-      borderColor: theme.default.main,
+      borderColor: theme.colors.neutralGray.medium300,
       borderRadius: 4,
       paddingHorizontal: 8,
       paddingVertical: 16,
@@ -22,10 +22,10 @@ export default createUseStyles(
       height: '100%',
     },
     placeholderText: {
-      color: theme.text.hint,
+      color: theme.colors.text.tint,
     },
     valueText: {
-      color: theme.text.primary,
+      color: theme.colors.text.headline,
     },
     icon: {
       marginRight: 5,
@@ -34,7 +34,7 @@ export default createUseStyles(
       transform: [{rotateX: '180deg'}],
     },
     disabledText: {
-      color: theme.text.disabled,
+      color: theme.colors.text.disabled,
     },
   }),
 );
