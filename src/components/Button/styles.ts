@@ -21,8 +21,8 @@ export const useStyles = createUseStyles(
     const buttonVariantStyle = (): IButtonTypeStyle => {
       const containedStyle: IButtonTypeStyle = {
         button: {
-          backgroundColor: theme.colors[color!].medium500,
-          borderColor: theme.colors[color!].medium500,
+          backgroundColor: theme.colors[color!].main500,
+          borderColor: theme.colors[color!].main500,
         },
         buttonPressed: {
           backgroundColor: theme.colors[color!].dark600,
@@ -39,14 +39,14 @@ export const useStyles = createUseStyles(
           return {
             button: {
               backgroundColor: 'transparent',
-              borderColor: theme.colors[color!].medium500,
+              borderColor: theme.colors[color!].main500,
             },
             buttonPressed: {
               backgroundColor: theme.colors[color!].extraLight50,
               borderColor: theme.colors[color!].extraLight50,
             },
             text: {
-              color: theme.colors[color!].medium500,
+              color: theme.colors[color!].main500,
             },
           };
         default:

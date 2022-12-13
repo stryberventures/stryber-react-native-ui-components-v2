@@ -15,7 +15,7 @@ export default createUseStyles((theme, color: ITextLinkProps['color']) => ({
     backgroundColor: theme.colors[color!].extraLight50,
   },
   text: {
-    color: theme.colors[color!].medium500,
+    color: theme.colors[color!].main500,
   },
   leftIcon: {
     marginRight: 8,

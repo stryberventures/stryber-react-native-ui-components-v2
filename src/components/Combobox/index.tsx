@@ -179,7 +179,7 @@ const Combobox: React.FC<IComboboxProps> = ({
               fill={
                 disabled
                   ? theme.colors.neutralGray.medium300
-                  : theme.colors.neutralGray.medium500
+                  : theme.colors.neutralGray.main500
               }
               style={[styles.icon, visible && styles.invertedIcon]}
             />

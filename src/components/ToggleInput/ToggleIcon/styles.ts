@@ -25,7 +25,7 @@ export default createUseStyles(
   ) => ({
     container: {
       borderWidth: 1,
-      borderColor: theme.colors[color!].medium500,
+      borderColor: theme.colors[color!].main500,
       backgroundColor: theme.colors.contrast.white,
       justifyContent: 'center',
       alignItems: 'center',
@@ -42,7 +42,7 @@ export default createUseStyles(
       backgroundColor: theme.colors[color!].extraLight50,
     },
     checked: {
-      backgroundColor: theme.colors[color!].medium500,
+      backgroundColor: theme.colors[color!].main500,
     },
     pressedChecked: {
       backgroundColor: theme.colors[color!].dark600,
@@ -57,7 +57,7 @@ export default createUseStyles(
       backgroundColor: theme.colors.contrast.white,
     },
     disabledIcon: {
-      backgroundColor: theme.colors[color!].medium500,
+      backgroundColor: theme.colors[color!].main500,
     },
   }),
 );

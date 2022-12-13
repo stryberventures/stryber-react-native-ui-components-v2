@@ -14,7 +14,7 @@ const Eye: React.FC<IEyeProps> = ({secured, disabled, ...rest}) => {
   const iconProps: SvgProps = {
     fill: disabled
       ? theme.colors.text.disabled
-      : theme.colors.neutralGray.medium500,
+      : theme.colors.neutralGray.main500,
   };
   const styles = useStyles();
 

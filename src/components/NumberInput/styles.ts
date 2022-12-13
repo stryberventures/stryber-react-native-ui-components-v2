@@ -4,7 +4,7 @@ export default createUseStyles(theme => ({
   line: {
     height: 2,
     width: 10,
-    backgroundColor: theme.colors.neutralGray.medium500,
+    backgroundColor: theme.colors.neutralGray.main500,
   },
   rotatedLine: {
     height: 10,

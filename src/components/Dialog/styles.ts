@@ -36,7 +36,7 @@ export default createUseStyles(theme => ({
   subtitle: {
     fontSize: 16,
     lineHeight: 24,
-    color: theme.colors.neutralGray.medium500,
+    color: theme.colors.neutralGray.main500,
   },
   buttonWrapper: {
     marginTop: 16,

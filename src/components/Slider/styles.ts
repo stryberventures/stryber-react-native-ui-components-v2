@@ -17,7 +17,7 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
   },
   rangeBar: {
     height: '100%',
-    backgroundColor: theme.colors[color!].medium500,
+    backgroundColor: theme.colors[color!].main500,
   },
   disabledRangeBar: {
     backgroundColor: theme.colors.neutralGray.medium300,
@@ -75,7 +75,7 @@ export default createUseStyles((theme, color: ISliderProps['color']) => ({
   labelContainer: {
     paddingHorizontal: 4,
     paddingVertical: 2,
-    backgroundColor: theme.colors.neutralGray.medium500,
+    backgroundColor: theme.colors.neutralGray.main500,
     borderRadius: 4,
   },
   disabledLabelContainer: {

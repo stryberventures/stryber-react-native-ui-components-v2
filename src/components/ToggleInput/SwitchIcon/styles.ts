@@ -21,10 +21,10 @@ export default createUseStyles((theme, color: IToggleInputProps['color']) => ({
     backgroundColor: theme.colors.background.white,
   },
   pressedUncheckedContainer: {
-    backgroundColor: theme.colors.neutralGray.medium500,
+    backgroundColor: theme.colors.neutralGray.main500,
   },
   checked: {
-    backgroundColor: theme.colors[color!].medium500,
+    backgroundColor: theme.colors[color!].main500,
   },
   pressedCheckedContainer: {
     backgroundColor: theme.colors[color!].dark600,

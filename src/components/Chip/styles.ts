@@ -5,7 +5,7 @@ export default createUseStyles((theme, color: IChipProps['color']) => {
   return {
     container: {
       borderRadius: 8,
-      backgroundColor: theme.colors[color!].medium500,
+      backgroundColor: theme.colors[color!].main500,
       paddingVertical: 6,
       paddingHorizontal: 8,
       alignSelf: 'flex-start',
@@ -15,7 +15,7 @@ export default createUseStyles((theme, color: IChipProps['color']) => {
     outlinedContainer: {
       backgroundColor: theme.colors.contrast.white,
       borderWidth: 1,
-      borderColor: theme.colors[color!].medium500,
+      borderColor: theme.colors[color!].main500,
     },
     pressed: {
       backgroundColor: theme.colors[color!].dark600,
@@ -37,7 +37,7 @@ export default createUseStyles((theme, color: IChipProps['color']) => {
       color: theme.colors.neutralGray.medium300,
     },
     outlinedText: {
-      color: theme.colors[color!].medium500,
+      color: theme.colors[color!].main500,
     },
   };
 });

@@ -26,7 +26,7 @@ export default createUseStyles(
       paddingVertical: 12.5,
     },
     baseInputFocused: {
-      borderColor: theme.colors[color!].medium500,
+      borderColor: theme.colors[color!].main500,
     },
     label: {
       color: theme.colors.text.secondary,
@@ -42,13 +42,13 @@ export default createUseStyles(
       zIndex: -3,
     },
     error: {
-      borderColor: theme.error.main,
+      borderColor: theme.colors.error.medium300,
     },
     errorFocusedOutline: {
-      backgroundColor: theme.error.light,
+      backgroundColor: theme.colors.error.light100,
     },
     disabled: {
-      backgroundColor: theme.background.disabled,
+      backgroundColor: theme.colors.background.extraLightGrey,
     },
     disabledLabel: {
       color: theme.colors.text.disabled,
