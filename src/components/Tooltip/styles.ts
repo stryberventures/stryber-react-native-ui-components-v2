@@ -17,7 +17,7 @@ export default createUseStyles(
       paddingVertical: 8,
       paddingHorizontal: 12,
       borderRadius: 8,
-      backgroundColor: theme.background.main,
+      backgroundColor: theme.colors.background.white,
       zIndex: 0,
 
       shadowColor: '#000',
@@ -37,11 +37,11 @@ export default createUseStyles(
       marginBottom: withText ? 5 : 0,
     },
     title: {
-      color: theme.text.secondary,
+      color: theme.colors.text.secondary,
       marginBottom: withCloseButton ? 0 : 4,
     },
     text: {
-      color: theme.text.hint,
+      color: theme.colors.text.tint,
     },
     overlay: {
       width: '100%',

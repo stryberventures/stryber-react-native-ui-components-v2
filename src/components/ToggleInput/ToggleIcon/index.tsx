@@ -39,7 +39,9 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
       return (
         <CheckIcon
           {...CHECK_ICON_SIZE[size]}
-          fill={disabled ? theme[color].main : theme[color].contrast}
+          fill={
+            disabled ? theme.colors[color].main500 : theme.colors.contrast.white
+          }
         />
       );
     }

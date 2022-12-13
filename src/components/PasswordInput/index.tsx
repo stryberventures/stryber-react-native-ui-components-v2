@@ -57,7 +57,7 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({
           {schema.map(({label, matched}) => (
             <Chip
               key={label}
-              color={matched ? 'success' : 'default'}
+              color={matched ? 'success' : 'neutralGray'}
               iconLeft={matched && <CheckIcon />}
               style={[styles.chip, chipStyle]}
             >

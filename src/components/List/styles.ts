@@ -9,10 +9,10 @@ export default createUseStyles(theme => ({
     alignItems: 'center',
   },
   title: {
-    color: theme.text.secondary,
+    color: theme.colors.text.secondary,
   },
   subtitle: {
-    color: theme.text.hint,
+    color: theme.colors.text.tint,
   },
   leftContent: {
     marginRight: 16,

@@ -13,7 +13,7 @@ export default createUseStyles(
     const isSwitch = variant === 'switch';
     return {
       toggleInputText: {
-        color: theme.text.secondary,
+        color: theme.colors.text.secondary,
         lineHeight: isSwitch ? SWITCH_SIZE.height : TOGGLE_ICON_SIZE[size!],
       },
       toggleInputWrapper: {

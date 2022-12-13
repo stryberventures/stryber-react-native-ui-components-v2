@@ -11,7 +11,7 @@ import Text from '../Text';
 
 export interface IChipProps extends PressableProps {
   children: string | ReactElement;
-  color?: 'primary' | 'secondary' | 'success' | 'default';
+  color?: 'primary' | 'secondary' | 'success' | 'neutralGray';
   variant?: 'contained' | 'outlined';
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;

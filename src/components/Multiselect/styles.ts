@@ -13,7 +13,7 @@ export default createUseStyles(theme => ({
     paddingVertical: 8.5,
   },
   multiselectItemPressed: {
-    backgroundColor: theme.default.extraLight,
+    backgroundColor: theme.colors.neutralGray.light100,
   },
   innerContent: {
     paddingVertical: 8,

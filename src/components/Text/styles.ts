@@ -3,6 +3,7 @@ import {createUseStyles} from '../Theme';
 export default createUseStyles(theme => ({
   text: {
     fontFamily: theme.fontFamily,
+    color: theme.colors.text.headline,
   },
   h1: {
     fontSize: 34,

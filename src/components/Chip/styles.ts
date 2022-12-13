@@ -1,15 +1,11 @@
 import {createUseStyles} from '../Theme';
 import {IChipProps} from './index';
 
-type DefaultColorType = 'primary' | 'secondary';
-
 export default createUseStyles((theme, color: IChipProps['color']) => {
-  const isSuccess = color === 'success';
-  const isDefault = color === 'default';
   return {
     container: {
       borderRadius: 8,
-      backgroundColor: theme[color!].main,
+      backgroundColor: theme.colors[color!].main500,
       paddingVertical: 6,
       paddingHorizontal: 8,
       alignSelf: 'flex-start',
@@ -17,38 +13,31 @@ export default createUseStyles((theme, color: IChipProps['color']) => {
       alignItems: 'center',
     },
     outlinedContainer: {
-      backgroundColor: isDefault
-        ? theme.default.dark
-        : theme[color! as DefaultColorType].contrast,
+      backgroundColor: theme.colors.contrast.white,
       borderWidth: 1,
-      borderColor: theme[color!].main,
+      borderColor: theme.colors[color!].main500,
     },
     pressed: {
-      backgroundColor:
-        isDefault || isSuccess
-          ? undefined
-          : theme[color! as DefaultColorType].dark,
+      backgroundColor: theme.colors[color!].dark600,
     },
     outlinedPressed: {
-      backgroundColor: theme.default.extraLight,
+      backgroundColor: theme.colors.neutralGray.light100,
     },
     disabled: {
-      backgroundColor: theme.default.light,
+      backgroundColor: theme.colors.neutralGray.light200,
     },
     outlinedDisabled: {
-      borderColor: theme.default.main,
+      borderColor: theme.colors.neutralGray.medium300,
     },
     text: {
-      color: isDefault
-        ? theme.default.dark
-        : theme[color! as DefaultColorType].contrast,
+      color: theme.colors.contrast.white,
       marginHorizontal: 8,
     },
     disabledText: {
-      color: theme.default.main,
+      color: theme.colors.neutralGray.medium300,
     },
     outlinedText: {
-      color: theme[color!].main,
+      color: theme.colors[color!].main500,
     },
   };
 });
