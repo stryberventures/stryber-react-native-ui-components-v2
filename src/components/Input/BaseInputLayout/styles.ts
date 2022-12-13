@@ -45,7 +45,7 @@ export default createUseStyles(
       borderColor: theme.colors.error.medium300,
     },
     errorFocusedOutline: {
-      backgroundColor: theme.colors.error.light100,
+      backgroundColor: theme.colors.error.extraLight50,
     },
     disabled: {
       backgroundColor: theme.colors.background.extraLightGrey,
