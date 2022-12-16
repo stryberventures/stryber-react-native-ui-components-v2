@@ -69,7 +69,7 @@ export const defaultTheme = {
     text: {
       headline: '#101828',
       secondary: '#475467',
-      disabled: '#E4E7EC',
+      disabled: '#D0D5DD',
       tint: '#98A2B3',
     },
     background: {
