@@ -23,6 +23,7 @@
     "Select": "select",
     "Combobox": "combobox",
     "List": "list",
-    "Dialog": "dialog"
+    "Dialog": "dialog",
+    "Elevation": "elevation"
   }
 }
