@@ -16,7 +16,9 @@ export interface ITextProps extends TextProps {
     | 'caption2'
     | 'components1'
     | 'components2'
-    | 'components3';
+    | 'components3'
+    | 'buttonLabelMini'
+    | 'buttonLabelLarge';
   weight?: 'regular' | 'medium' | 'semiBold' | 'bold';
 }
 
