@@ -2,9 +2,9 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import {defaultTheme} from './defaultTheme';
 import pkg from './package.json';
-import {Text, ScrollView} from 'react-native';
+import {ScrollView, View} from 'react-native';
 
-import {ThemeProvider} from './index';
+import {ThemeProvider, ThemeType} from './index';
 
 import Button from '../Button';
 import Checkbox from '../Checkbox';
@@ -15,10 +15,12 @@ import {ArrowRightIconDeprecated} from '../Icons';
 import Input from '../Input';
 import Dropdown from '../Dropdown';
 import Multiselect from '../Multiselect';
+import Text from '../Text';
 
 import Title from '../../storybook/preview/Title';
 import Divider from '../../storybook/preview/Divider';
 import {customFontTheme} from '../../storybook/preview/ThemeDecorator';
+import useStyles from './Theme.styles.stories';
 
 export default {
   title: 'Theme',
@@ -28,16 +30,188 @@ export default {
   },
 } as ComponentMeta<typeof ThemeProvider>;
 
-const Template: ComponentStory<typeof ThemeProvider> = args => {
+const contrastMapping = {
+  primary: {
+    light200: 'black',
+    light100: 'black',
+    extraLight50: 'black',
+  },
+  secondary: {
+    light200: 'black',
+    light100: 'black',
+    extraLight50: 'black',
+  },
+  error: {
+    dark600: 'both',
+    main500: 'both',
+    medium400: 'both',
+    medium300: 'black',
+    light200: 'black',
+    light100: 'black',
+    extraLight50: 'black',
+  },
+  success: {
+    main500: 'both',
+    medium400: 'black',
+    medium300: 'black',
+    light200: 'black',
+    light100: 'black',
+    extraLight50: 'black',
+  },
+  warning: {
+    dark600: 'black',
+    main500: 'black',
+    medium400: 'black',
+    medium300: 'black',
+    light200: 'black',
+    light100: 'black',
+    extraLight50: 'black',
+  },
+  contrast: {
+    white: 'black',
+  },
+  neutralGray: {
+    medium300: 'black',
+    light200: 'black',
+    light100: 'black',
+    extraLight50: 'black',
+  },
+  text: {
+    disabled: 'black',
+    tint: 'black',
+  },
+  background: {
+    white: 'black',
+    extraLightGrey: 'black',
+  },
+};
+
+type TContrast = 'white' | 'black' | 'both';
+
+interface IColorCard {
+  name: string;
+  color: string;
+  contrast?: TContrast;
+}
+
+const ColorCard: React.FC<IColorCard> = ({name, color, contrast = 'white'}) => {
+  const styles = useStyles();
+
+  const handleContrast = (contrastVariant: TContrast) => {
+    const white = (
+      <Text weight="medium" variant="body1" style={styles.contrastWhiteColor}>
+        AAA
+      </Text>
+    );
+    switch (contrastVariant) {
+      case 'black':
+        return (
+          <Text
+            weight="medium"
+            variant="body1"
+            style={styles.contrastBlackColor}
+          >
+            AAA
+          </Text>
+        );
+      case 'white':
+        return white;
+      case 'both':
+        return (
+          <View style={styles.bothContrastWrapper}>
+            <Text
+              weight="medium"
+              variant="body1"
+              style={styles.contrastWhiteColor}
+            >
+              AAA /
+            </Text>
+            <Text
+              weight="medium"
+              variant="body1"
+              style={styles.contrastBlackColor}
+            >
+              {' '}
+              AAA
+            </Text>
+          </View>
+        );
+      default:
+        return white;
+    }
+  };
+
+  const borderForWhiteColor =
+    color.toLowerCase() === '#ffffff' || color.toLowerCase() === '#fff'
+      ? {borderWidth: 0.5, borderColor: '#000'}
+      : {};
+
   return (
-    <ThemeProvider {...args}>
-      <ScrollView
-        contentContainerStyle={{
-          paddingHorizontal: 20,
-          paddingVertical: 40,
-          paddingBottom: 200,
-        }}
+    <View style={styles.card}>
+      <View
+        style={[
+          {backgroundColor: color, ...borderForWhiteColor},
+          styles.cardTop,
+        ]}
       >
+        {handleContrast(contrast)}
+      </View>
+      <View style={styles.cardBottom}>
+        <Text weight="medium">{name}</Text>
+        <Text style={styles.color}>{color}</Text>
+      </View>
+    </View>
+  );
+};
+
+const createTemplate = (
+  type: 'colors' | 'components',
+): ComponentStory<typeof ThemeProvider> => ({theme, ...rest}) => {
+  const styles = useStyles();
+  if (type === 'colors') {
+    // @ts-ignore
+    const themeColors: ThemeType['colors'] = theme.colors;
+    const themeColorsNames = Object.keys(themeColors);
+    return (
+      <ThemeProvider theme={theme} {...rest}>
+        <ScrollView contentContainerStyle={styles.contentWrapper}>
+          {themeColorsNames.map(paletteName => {
+            const colorNames = Object.keys(
+              themeColors[paletteName as keyof typeof themeColors],
+            );
+            return (
+              <View key={paletteName}>
+                <Text
+                  weight="semiBold"
+                  variant="h1"
+                  style={styles.paletteTitle}
+                >
+                  {paletteName}:
+                </Text>
+                <View style={styles.cardWrapper}>
+                  {colorNames.map(colorName => {
+                    return (
+                      <ColorCard
+                        key={colorName}
+                        name={colorName}
+                        //@ts-ignore
+                        color={themeColors[paletteName][colorName]}
+                        //@ts-ignore
+                        contrast={contrastMapping[paletteName][colorName]}
+                      />
+                    );
+                  })}
+                </View>
+              </View>
+            );
+          })}
+        </ScrollView>
+      </ThemeProvider>
+    );
+  }
+  return (
+    <ThemeProvider theme={theme} {...rest}>
+      <ScrollView contentContainerStyle={styles.componentWrapper}>
         {/* Button */}
         <Title>Button</Title>
         <Button>Button</Button>
@@ -154,7 +328,11 @@ const Template: ComponentStory<typeof ThemeProvider> = args => {
   );
 };
 
-export const Theme = Template.bind({});
-Theme.args = {
+export const Colors = createTemplate('colors').bind({});
+Colors.args = {
+  theme: {...defaultTheme, ...customFontTheme},
+};
+export const Components = createTemplate('components').bind({});
+Components.args = {
   theme: {...defaultTheme, ...customFontTheme},
 };
