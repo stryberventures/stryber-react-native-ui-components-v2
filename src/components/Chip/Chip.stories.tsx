@@ -3,7 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Chip from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Platform} from 'react-native';
-import {ArrowDownSmallIcon, CheckIcon} from '../Icons';
+import {ArrowDownSmallIconDeprecated, CheckIconDeprecated} from '../Icons';
 import pkg from './package.json';
 
 export default {
@@ -62,23 +62,23 @@ DisabledOutlined.args = {
 export const WithIcons = Template.bind({});
 WithIcons.args = {
   children: 'Icons',
-  iconRight: <ArrowDownSmallIcon style={{marginHorizontal: 3}} />,
-  iconLeft: <CheckIcon style={{marginHorizontal: 2}} />,
+  iconRight: <ArrowDownSmallIconDeprecated style={{marginHorizontal: 3}} />,
+  iconLeft: <CheckIconDeprecated style={{marginHorizontal: 2}} />,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   children: 'LeftIcon',
-  iconLeft: <CheckIcon style={{marginHorizontal: 2}} />,
+  iconLeft: <CheckIconDeprecated style={{marginHorizontal: 2}} />,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
   children: 'RightIcon',
-  iconRight: <ArrowDownSmallIcon style={{marginHorizontal: 3}} />,
+  iconRight: <ArrowDownSmallIconDeprecated style={{marginHorizontal: 3}} />,
 };
 
 export const OnlyIcon = Template.bind({});
 OnlyIcon.args = {
-  iconLeft: <CheckIcon style={{marginVertical: 2}} />,
+  iconLeft: <CheckIconDeprecated style={{marginVertical: 2}} />,
 };

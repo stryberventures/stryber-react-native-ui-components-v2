@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
 import {PressableProps, Pressable} from 'react-native';
-import {CloseIcon} from '../../Icons';
+import {CloseIconDeprecated} from '../../Icons';
 
 interface ITooltipCloseIconProps extends PressableProps {}
 
@@ -16,7 +16,7 @@ const TooltipCloseIcon: React.FC<ITooltipCloseIconProps> = props => {
       hitSlop={10}
       {...props}
     >
-      <CloseIcon />
+      <CloseIconDeprecated />
     </Pressable>
   );
 };
