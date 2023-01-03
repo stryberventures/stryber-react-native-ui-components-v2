@@ -1,6 +1,6 @@
 import React from 'react';
 import {PressableProps, Pressable} from 'react-native';
-import {EyeIcon, EyeSlashIcon} from '../../Icons';
+import {EyeIconDeprecated, EyeSlashIconDeprecated} from '../../Icons';
 import {SvgProps} from 'react-native-svg';
 import {useTheme} from '../../Theme';
 import useStyles from './styles';
@@ -25,7 +25,11 @@ const Eye: React.FC<IEyeProps> = ({secured, disabled, ...rest}) => {
       testID="eye-test"
       {...rest}
     >
-      {secured ? <EyeIcon {...iconProps} /> : <EyeSlashIcon {...iconProps} />}
+      {secured ? (
+        <EyeIconDeprecated {...iconProps} />
+      ) : (
+        <EyeSlashIconDeprecated {...iconProps} />
+      )}
     </Pressable>
   );
 };

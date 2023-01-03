@@ -55,7 +55,7 @@ CustomContent.args = {
   children: (
     <View style={{display: 'flex', flexDirection: 'row'}}>
       <Text style={{color: 'blue', marginRight: 10}}>Custom content</Text>
-      <Icons.EyeSlashIcon />
+      <Icons.EyeSlashIconDeprecated />
     </View>
   ),
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
 import {View, ViewProps} from 'react-native';
-import {CheckIcon} from '../../Icons';
+import {CheckIconDeprecated} from '../../Icons';
 import {IToggleInputProps} from '../index';
 import {useTheme} from '../../Theme';
 
@@ -37,7 +37,7 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
   const getIcon = () => {
     if (iconVariant === 'check') {
       return (
-        <CheckIcon
+        <CheckIconDeprecated
           {...CHECK_ICON_SIZE[size]}
           fill={
             disabled ? theme.colors[color].main500 : theme.colors.contrast.white

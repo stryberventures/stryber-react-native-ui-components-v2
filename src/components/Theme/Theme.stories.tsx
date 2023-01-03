@@ -11,7 +11,7 @@ import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
 import Form from '../Form';
 import TextLink from '../TextLink';
-import {ArrowRightIcon} from '../Icons';
+import {ArrowRightIconDeprecated} from '../Icons';
 import Input from '../Input';
 import Dropdown from '../Dropdown';
 import Multiselect from '../Multiselect';
@@ -104,7 +104,7 @@ const Template: ComponentStory<typeof ThemeProvider> = args => {
         <Divider />
         <TextLink disabled>Disabled</TextLink>
         <Divider />
-        <TextLink iconRight={<ArrowRightIcon />}>With icon</TextLink>
+        <TextLink iconRight={<ArrowRightIconDeprecated />}>With icon</TextLink>
 
         {/* Input */}
         <Title>Input</Title>

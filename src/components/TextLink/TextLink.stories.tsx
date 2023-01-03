@@ -3,7 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import TextLink from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Platform} from 'react-native';
-import {ArrowRightIcon} from '../Icons';
+import {ArrowRightIconDeprecated} from '../Icons';
 import pkg from './package.json';
 
 export default {
@@ -33,13 +33,15 @@ Secondary.args = {
 export const RightIcon = Template.bind({});
 RightIcon.args = {
   children: 'Text link',
-  iconRight: <ArrowRightIcon />,
+  iconRight: <ArrowRightIconDeprecated />,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   children: 'Text link',
-  iconLeft: <ArrowRightIcon style={{transform: [{rotate: '180deg'}]}} />,
+  iconLeft: (
+    <ArrowRightIconDeprecated style={{transform: [{rotate: '180deg'}]}} />
+  ),
 };
 
 export const Disabled = Template.bind({});
