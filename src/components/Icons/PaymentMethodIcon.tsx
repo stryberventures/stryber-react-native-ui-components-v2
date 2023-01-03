@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Svg, {Path, SvgProps, Rect} from 'react-native-svg';
+import {View} from 'react-native';
 
 export const paymentMethodVariants = {
   amazon: (
@@ -200,16 +201,15 @@ interface IPaymentMethodIconProps extends SvgProps {
 
 const PaymentMethodIcon: React.FC<IPaymentMethodIconProps> = ({
   variant = 'visa',
+  width = 34,
+  height = 24,
   ...rest
 }) => (
-  <Svg fill="none" {...rest}>
-    {paymentMethodVariants[variant]}
-  </Svg>
+  <View style={{width, height}}>
+    <Svg {...rest} width="100%" height="100%" viewBox="0 0 34 24">
+      {paymentMethodVariants[variant]}
+    </Svg>
+  </View>
 );
-
-PaymentMethodIcon.defaultProps = {
-  width: 34,
-  height: 24,
-};
 
 export default PaymentMethodIcon;

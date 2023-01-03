@@ -11,6 +11,7 @@ import Svg, {
   Stop,
 } from 'react-native-svg';
 import {useTheme} from '../Theme';
+import {View} from 'react-native';
 
 type TSocialVariantsReturn = {
   [key: string]: {
@@ -508,17 +509,20 @@ const SocialIcon: React.FC<ISocialIconProps> = ({
   variant = 'facebook',
   type = 'color',
   fill,
+  width = 24,
+  height = 24,
   ...rest
 }) => {
   const {theme} = useTheme();
   //only for type="plain"
   const fillColor = fill || theme.colors.neutralGray.main500;
-  return <Svg {...rest}>{socialVariants(fillColor)[variant][type]}</Svg>;
-};
-
-SocialIcon.defaultProps = {
-  width: 24,
-  height: 24,
+  return (
+    <View style={{width, height}}>
+      <Svg {...rest} width="100%" height="100%" viewBox="0 0 24 24">
+        {socialVariants(fillColor)[variant][type]}
+      </Svg>
+    </View>
+  );
 };
 
 export default SocialIcon;
