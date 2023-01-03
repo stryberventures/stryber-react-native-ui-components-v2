@@ -59,6 +59,14 @@ export default createUseStyles(theme => ({
     lineHeight: 12,
     letterSpacing: 0.02,
   },
+  buttonLabelMini: {
+    fontSize: 10,
+    lineHeight: 15,
+  },
+  buttonLabelLarge: {
+    fontSize: 16,
+    lineHeight: 24,
+  },
   left: {
     textAlign: 'left',
   },
