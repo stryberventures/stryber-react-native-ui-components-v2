@@ -4,14 +4,14 @@ import TextLink from '.';
 import * as Icons from '../Icons';
 
 it('should be rendered with text', () => {
-  const label = 'Test button';
+  const label = 'Test link';
   const {getByText} = render(<TextLink>{label}</TextLink>);
   expect(getByText(label)).toBeTruthy();
 });
 
 it('should call onPress handler', () => {
   const onPress = jest.fn();
-  const label = 'TextLink';
+  const label = 'Text Link';
   const screen = render(<TextLink onPress={onPress}>{label}</TextLink>);
   const textLink = screen.getByText(label);
   fireEvent.press(textLink);
@@ -20,7 +20,7 @@ it('should call onPress handler', () => {
 
 it('should not call onPress handler when disabled', () => {
   const onPress = jest.fn();
-  const label = 'TextLink';
+  const label = 'Text Link';
   const screen = render(
     <TextLink onPress={onPress} disabled={true}>
       {label}
@@ -32,11 +32,12 @@ it('should not call onPress handler when disabled', () => {
 });
 
 it('should contain the icon', () => {
+  const testId = 'test-svg';
   const screen = render(
-    <TextLink iconRight={<Icons.InfoIcon testID="test-svg" />}>
+    <TextLink iconRight={() => <Icons.InfoIcon testID={testId} />}>
       Button
     </TextLink>,
   );
-  const icon = screen.getByTestId('test-svg');
+  const icon = screen.getByTestId(testId);
   expect(icon).toBeTruthy();
 });

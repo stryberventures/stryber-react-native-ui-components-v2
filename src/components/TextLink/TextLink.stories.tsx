@@ -2,9 +2,10 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import TextLink from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
-import {ArrowRightIconDeprecated} from '../Icons';
+import {Platform, View} from 'react-native';
+import * as Icons from '../Icons';
 import pkg from './package.json';
+import Divider from '../../storybook/preview/Divider';
 
 export default {
   title: 'TextLink',
@@ -16,36 +17,47 @@ export default {
 } as ComponentMeta<typeof TextLink>;
 
 const Template: ComponentStory<typeof TextLink> = args => (
-  <TextLink {...args} />
+  <View>
+    <TextLink variant="body1" {...args}>
+      Body1
+    </TextLink>
+    <Divider />
+    <TextLink variant="body2" {...args}>
+      Body2
+    </TextLink>
+    <Divider />
+    <TextLink variant="body3" {...args}>
+      Body3
+    </TextLink>
+  </View>
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  children: 'Text link',
-};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  children: 'Text link',
   color: 'secondary',
+  iconRight: Icons.LoadIcon,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
-  children: 'Text link',
-  iconRight: <ArrowRightIconDeprecated />,
+  iconRight: Icons.LoadIcon,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
-  children: 'Text link',
-  iconLeft: (
-    <ArrowRightIconDeprecated style={{transform: [{rotate: '180deg'}]}} />
-  ),
+  iconLeft: Icons.LoadIcon,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  children: 'Text link',
   disabled: true,
+  iconRight: Icons.LoadIcon,
+};
+
+export const Visited = Template.bind({});
+Visited.args = {
+  visited: true,
+  iconRight: Icons.LoadIcon,
 };
