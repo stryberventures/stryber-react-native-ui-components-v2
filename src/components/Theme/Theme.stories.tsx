@@ -11,7 +11,7 @@ import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
 import Form from '../Form';
 import TextLink from '../TextLink';
-import {ArrowRightIconDeprecated} from '../Icons';
+import * as Icons from '../Icons';
 import Input from '../Input';
 import Dropdown from '../Dropdown';
 import Multiselect from '../Multiselect';
@@ -278,7 +278,7 @@ const createTemplate = (
         <Divider />
         <TextLink disabled>Disabled</TextLink>
         <Divider />
-        <TextLink iconRight={<ArrowRightIconDeprecated />}>With icon</TextLink>
+        <TextLink iconRight={Icons.LoadIcon}>With icon</TextLink>
 
         {/* Input */}
         <Title>Input</Title>
