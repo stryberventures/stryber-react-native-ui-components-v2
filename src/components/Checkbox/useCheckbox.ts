@@ -29,7 +29,7 @@ export const useCheckbox = ({
   const onChangeWrapper = () => {
     setInternalValue(!internalValue);
     updateFormValue(name, !internalValue);
-    onChange && onChange(!internalValue);
+    onChange && onChange(!internalValue, name);
     updateFormTouched(name, true);
   };
 
