@@ -42,13 +42,14 @@ export const createCommonIcon = <Variants extends string>(
       variant = firstVariant,
       width = 24,
       height = 24,
+      style,
       ...rest
     } = props;
     const {theme} = useTheme();
     const fillColor = fill || theme.colors.text.headline;
 
     return (
-      <View style={{width, height}}>
+      <View style={[{width, height}, style]}>
         <Svg {...rest} width="100%" height="100%" viewBox="0 0 24 24">
           {createPathDComponent(
             parseSvgPathD(iconVariants[variant]),
