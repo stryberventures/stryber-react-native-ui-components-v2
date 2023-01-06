@@ -1,6 +1,6 @@
 import {createUseStyles} from '../../../components/Theme';
 
-export default createUseStyles((theme) => ({
+export default createUseStyles(theme => ({
   selectorContainer: {
     display: 'flex',
     flexDirection: 'row',

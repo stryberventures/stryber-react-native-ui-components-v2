@@ -1,6 +1,6 @@
 import React from 'react';
 import {useParameter} from '@storybook/api';
-import './styes.css';
+import './styles.css';
 import CodeBox from './CodeBox';
 
 const PARAM_KEY = 'pkg';
