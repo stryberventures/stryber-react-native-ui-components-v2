@@ -27,11 +27,12 @@ const ComponentsSelector = () => {
   const handleChange = (checked: boolean, name: string) => {
     jsonFile(name).then(r => {
       const pkgData = [];
-      pkgData.push(`${r.name}@${r.version}`);
+      pkgData.push(`${r.name}`);
       if (Object.entries(r.peerDependencies)[0]) {
         Object.entries(r.peerDependencies).map(item => {
-          const version = `${item[1]}`.replace('>=', '@');
-          pkgData.push(`${item[0]}${version}`);
+          if (item[0] !== 'react' && item[0] !== 'react-native') {
+            pkgData.push(`${item[0]}`);
+          }
         });
       }
       if (checked) {
