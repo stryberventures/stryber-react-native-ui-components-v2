@@ -9,6 +9,10 @@
 .pre {
     margin-top: 0;
     margin-bottom: 0;
+    padding: 11px 1rem;
+    white-space: pre-wrap;
+    color: inherit;
+    border-radius: 3px;
 }
 .copy-container {
     padding: 10px;

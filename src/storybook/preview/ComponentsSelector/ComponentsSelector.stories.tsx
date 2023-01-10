@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ComponentsSelector from './index';
 import {ComponentMeta} from '@storybook/react-native';
 

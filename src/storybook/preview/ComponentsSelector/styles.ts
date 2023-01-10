@@ -21,11 +21,6 @@ export default createUseStyles(theme => ({
   codeBoxContainer: {
     width: '100%',
     maxWidth: 700,
-    '& pre': {
-      padding: '11px 1rem',
-      lineHeight: '18px',
-      fontSize: 16,
-      color: 'black',
-    },
+    fontSize: 16,
   },
 }));
