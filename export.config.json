@@ -24,6 +24,7 @@
     "Combobox": "combobox",
     "List": "list",
     "Dialog": "dialog",
-    "Elevation": "elevation"
+    "Elevation": "elevation",
+    "Tag": "tag"
   }
 }

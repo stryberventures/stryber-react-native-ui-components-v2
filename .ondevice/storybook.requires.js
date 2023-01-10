@@ -42,6 +42,7 @@ const getStories = () => {
     require("../src/components/Select/Select.stories.tsx"),
     require("../src/components/Slider/Slider.stories.tsx"),
     require("../src/components/Switch/Switch.stories.tsx"),
+    require("../src/components/Tag/Tag.stories.tsx"),
     require("../src/components/Text/Text.stories.tsx"),
     require("../src/components/TextArea/TextArea.stories.tsx"),
     require("../src/components/TextLink/TextLink.stories.tsx"),
