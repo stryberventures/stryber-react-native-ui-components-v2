@@ -24,31 +24,32 @@ const ComponentsSelector = () => {
     arr.filter((item, index) => arr.indexOf(item) === index);
   const componentsFiltered = removeDuplicates(components);
 
-  const handleChange = (checked: boolean, name: string) => {
-    jsonFile(name).then(r => {
-      const pkgData = [];
-      pkgData.push(`${r.name}`);
-      if (Object.entries(r.peerDependencies)[0]) {
-        Object.entries(r.peerDependencies).map(item => {
-          if (item[0] !== 'react' && item[0] !== 'react-native') {
-            pkgData.push(`${item[0]}`);
-          }
-        });
-      }
-      if (checked) {
-        setAllData([...allData, ...pkgData]);
-      } else {
-        const filtered = allData
-          .join()
-          .replace(pkgData.join(), '')
-          .replace(',,', ',')
-          .replace(/^,/, '')
-          .replace(/,$/, '')
-          .split(',')
-          .filter(i => i);
-        setAllData([...filtered]);
-      }
-    });
+  const handleChange = (checked?: boolean, name?: string) => {
+    name &&
+      jsonFile(name).then(r => {
+        const pkgData = [];
+        pkgData.push(`${r.name}`);
+        if (Object.entries(r.peerDependencies)[0]) {
+          Object.entries(r.peerDependencies).map(item => {
+            if (item[0] !== 'react' && item[0] !== 'react-native') {
+              pkgData.push(`${item[0]}`);
+            }
+          });
+        }
+        if (checked) {
+          setAllData([...allData, ...pkgData]);
+        } else {
+          const filtered = allData
+            .join()
+            .replace(pkgData.join(), '')
+            .replace(',,', ',')
+            .replace(/^,/, '')
+            .replace(/,$/, '')
+            .split(',')
+            .filter(i => i);
+          setAllData([...filtered]);
+        }
+      });
   };
   useEffect(() => setInstallData(removeDuplicates(allData)), [allData]);
   const jsonFile = async (name: string) =>
