@@ -16,4 +16,4 @@ export default {
   },
 } as ComponentMeta<typeof ComponentsSelector>;
 
-export const Primary = () => <ComponentsSelector />;
+export const Selector = () => <ComponentsSelector />;
