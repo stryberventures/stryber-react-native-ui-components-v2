@@ -1,10 +1,10 @@
 import * as React from 'react';
-import ComponentsSelector from './index';
+import Selector from './index';
 import {ComponentMeta} from '@storybook/react-native';
 
 export default {
-  title: 'Core/ComponentsSelector',
-  component: ComponentsSelector,
+  title: 'Core/Components Selector',
+  component: Selector,
   parameters: {
     previewTabs: {
       'storybook/docs/panel': {hidden: true},
@@ -14,6 +14,6 @@ export default {
       disable: true,
     },
   },
-} as ComponentMeta<typeof ComponentsSelector>;
+} as ComponentMeta<typeof Selector>;
 
-export const Selector = () => <ComponentsSelector />;
+export const ComponentsSelector = () => <Selector />;
