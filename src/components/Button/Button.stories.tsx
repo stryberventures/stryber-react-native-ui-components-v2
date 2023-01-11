@@ -3,7 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Button from '.';
 import * as Icons from '../Icons';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import {Platform, View, ViewStyle} from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -13,9 +13,6 @@ export default {
     onPress: {action: 'pressed the button'},
   },
   decorators: Platform.OS === 'web' ? null : [CenterView],
-  args: {
-    children: 'Button',
-  },
   parameters: {
     pkg,
   },
@@ -36,6 +33,12 @@ export const Outlined = Template.bind({});
 Outlined.args = {
   children: 'Outlined',
   variant: 'outlined',
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  children: 'Ghost',
+  variant: 'ghost',
 };
 
 export const Secondary = Template.bind({});
@@ -76,15 +79,34 @@ Flat.args = {
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
-  iconLeft: <Icons.InfoIcon />,
+  children: 'Left Icon',
+  iconLeft: Icons.InfoIcon,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
-  iconRight: <Icons.InfoIcon />,
+  children: 'Right Icon',
+  iconRight: Icons.InfoIcon,
 };
+
+export const Icon = Template.bind({});
+Icon.args = {
+  icon: Icons.InfoIcon,
+  size: 'small',
+  variant: 'contained',
+};
+
+const alignFlexStart: ViewStyle = {alignItems: 'flex-start'};
+Icon.decorators = [
+  Story => (
+    <View style={alignFlexStart}>
+      <Story />
+    </View>
+  ),
+];
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+  children: 'Disabled',
   disabled: true,
 };

@@ -2,13 +2,28 @@ import {TextStyle, ViewStyle} from 'react-native';
 import {createUseStyles} from '../Theme';
 import {IButtonProps} from './index';
 
-const BORDER_WIDTH = 2;
-
 interface IButtonTypeStyle {
   button: ViewStyle;
   buttonPressed: ViewStyle;
+  buttonDisabled: ViewStyle;
   text: TextStyle;
+  textPressed: TextStyle;
+  textDisabled: TextStyle;
 }
+
+const BORDER_WIDTH = {
+  mini: 1,
+  small: 1.5,
+  medium: 1.5,
+  large: 1.5,
+};
+
+const ICON_SPACES = {
+  mini: 4,
+  small: 10,
+  medium: 10,
+  large: 10,
+};
 
 export const useStyles = createUseStyles(
   (
@@ -25,30 +40,69 @@ export const useStyles = createUseStyles(
           borderColor: theme.colors[color!].main500,
         },
         buttonPressed: {
-          backgroundColor: theme.colors[color!].dark600,
-          borderColor: theme.colors[color!].dark600,
+          backgroundColor: theme.colors[color!].medium300,
+          borderColor: theme.colors[color!].medium300,
+        },
+        buttonDisabled: {
+          backgroundColor: theme.colors.neutralGray.light200,
+          borderColor: theme.colors.neutralGray.light200,
         },
         text: {
           color: theme.colors.contrast.white,
         },
+        textPressed: {
+          color: theme.colors.contrast.white,
+        },
+        textDisabled: {
+          color: theme.colors.contrast.white,
+        },
       };
+      const outlinedStyle: IButtonTypeStyle = {
+        button: {
+          backgroundColor: 'transparent',
+          borderColor: theme.colors[color!].main500,
+        },
+        buttonPressed: {
+          backgroundColor: theme.colors[color!].light100,
+          borderColor: theme.colors[color!].main500,
+        },
+        buttonDisabled: {
+          backgroundColor: 'transparent',
+          borderColor: theme.colors.neutralGray.light200,
+        },
+        text: {
+          color: theme.colors[color!].main500,
+        },
+        textDisabled: {
+          color: theme.colors.neutralGray.light200,
+        },
+        textPressed: {
+          color: theme.colors[color!].dark600,
+        },
+      };
+      const ghostStyle: IButtonTypeStyle = {
+        ...outlinedStyle,
+        button: {
+          ...outlinedStyle.button,
+          borderColor: 'transparent',
+        },
+        buttonPressed: {
+          ...outlinedStyle.buttonPressed,
+          borderColor: 'transparent',
+        },
+        buttonDisabled: {
+          ...outlinedStyle.buttonDisabled,
+          borderColor: 'transparent',
+        },
+      };
+
       switch (variant) {
         case 'contained':
           return containedStyle;
         case 'outlined':
-          return {
-            button: {
-              backgroundColor: 'transparent',
-              borderColor: theme.colors[color!].main500,
-            },
-            buttonPressed: {
-              backgroundColor: theme.colors[color!].extraLight50,
-              borderColor: theme.colors[color!].extraLight50,
-            },
-            text: {
-              color: theme.colors[color!].main500,
-            },
-          };
+          return outlinedStyle;
+        case 'ghost':
+          return ghostStyle;
         default:
           return containedStyle;
       }
@@ -59,42 +113,46 @@ export const useStyles = createUseStyles(
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        borderWidth: BORDER_WIDTH,
+        borderWidth: BORDER_WIDTH[size!],
         ...buttonVariantStyle().button,
       },
       buttonPressed: {
         ...buttonVariantStyle().buttonPressed,
       },
       text: {
+        fontWeight: '700',
         ...buttonVariantStyle().text,
       },
-      miniText: {
-        fontWeight: '700',
+      textPressed: {
+        ...buttonVariantStyle().textPressed,
       },
-      disabled: {
-        opacity: 0.3,
+      textDisabled: {
+        ...buttonVariantStyle().textDisabled,
+      },
+      buttonDisabled: {
+        ...buttonVariantStyle().buttonDisabled,
       },
       mini: {
-        paddingHorizontal: 8 - BORDER_WIDTH,
-        paddingVertical: 4 - BORDER_WIDTH,
+        paddingHorizontal: 8,
+        paddingVertical: 4,
       },
       small: {
-        paddingHorizontal: 16 - BORDER_WIDTH,
-        paddingVertical: 8 - BORDER_WIDTH,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
       },
       medium: {
-        paddingHorizontal: 24 - BORDER_WIDTH,
-        paddingVertical: 16 - BORDER_WIDTH,
+        paddingHorizontal: 16,
+        paddingVertical: 16,
       },
       large: {
-        paddingHorizontal: 32 - BORDER_WIDTH,
-        paddingVertical: 24 - BORDER_WIDTH,
+        paddingHorizontal: 32,
+        paddingVertical: 24,
       },
       leftIcon: {
-        marginRight: 10,
+        marginRight: ICON_SPACES[size!],
       },
       rightIcon: {
-        marginLeft: 10,
+        marginLeft: ICON_SPACES[size!],
       },
       flat: {
         borderRadius: 0,
@@ -104,6 +162,11 @@ export const useStyles = createUseStyles(
       },
       circle: {
         borderRadius: 100,
+      },
+      icon: {
+        alignSelf: 'flex-start',
+        paddingHorizontal: ICON_SPACES[size!],
+        paddingVertical: ICON_SPACES[size!],
       },
     };
   },
