@@ -13,6 +13,7 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
+    controls: {exclude: ['iconLeft', 'iconRight', 'style', 'textStyle']},
   },
 } as ComponentMeta<typeof TextLink>;
 

@@ -23,7 +23,7 @@ import {customFontTheme} from '../../storybook/preview/ThemeDecorator';
 import useStyles from './Theme.styles.stories';
 
 export default {
-  title: 'Theme',
+  title: 'Core/Theme',
   component: ThemeProvider,
   parameters: {
     pkg,
