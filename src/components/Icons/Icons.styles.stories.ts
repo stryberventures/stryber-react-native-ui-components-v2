@@ -30,4 +30,20 @@ export default createUseStyles({
     width: '50%',
     alignItems: 'center',
   },
+  singleContainer: {
+    backgroundColor: '#F2F4F7',
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 10,
+  },
+  iconVariantText: {
+    marginBottom: 5,
+  },
+  subtitle: {marginTop: 20},
+  iconsWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: '100%',
+    justifyContent: 'space-around',
+  },
 });
