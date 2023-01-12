@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import useStyles from './styles';
-import {Animated, Pressable, PressableProps, View} from 'react-native';
+import {
+  Animated,
+  Pressable,
+  PressableProps,
+  StyleProp,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 import TagGroup, {useTagGroupContext} from './TagGroup';
 import * as Icons from '../Icons';
@@ -32,6 +39,7 @@ export interface ITagProps extends Omit<PressableProps, 'onPress'> {
   iconRight?: React.FC<any>;
   onChange?: ({value, selected}?: TOnChangeArgument) => void;
   onRemove?: (value?: TTagValue) => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 const getTextVariant = (size: TTagSize): TTextVariant => {
@@ -75,6 +83,7 @@ const Tag: React.FC<ITagProps> = ({
   onChange,
   onRemove,
   children,
+  style,
 }) => {
   const {isTagSelected, addTag, removeTag} = useTagGroupContext(value);
   const {theme} = useTheme();
@@ -150,6 +159,7 @@ const Tag: React.FC<ITagProps> = ({
         selected && styles.tagSelected,
         {backgroundColor: interpolation},
         disabled && styles.tagDisabled,
+        style,
       ]}
     >
       {IconLeft && (

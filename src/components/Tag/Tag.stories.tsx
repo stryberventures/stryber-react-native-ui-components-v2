@@ -17,6 +17,7 @@ export default {
   },
   parameters: {
     pkg,
+    controls: {exclude: ['iconLeft', 'iconRight', 'value', 'style']},
   },
 } as ComponentMeta<typeof Tag>;
 
@@ -33,7 +34,12 @@ const Template: ComponentStory<typeof Tag> = args => (
   </View>
 );
 
-export const Default = Template.bind({});
+export const Primary = Template.bind({});
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  color: 'secondary',
+};
 
 export const IconLeft = Template.bind({});
 IconLeft.args = {

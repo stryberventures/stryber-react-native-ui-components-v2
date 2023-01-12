@@ -22,7 +22,7 @@ import NumberInput from '../NumberInput';
 import pkg from './package.json';
 
 export default {
-  title: 'Form',
+  title: 'Core/Form',
   component: Form,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
