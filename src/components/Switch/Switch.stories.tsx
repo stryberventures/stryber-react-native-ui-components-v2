@@ -41,6 +41,14 @@ export const Primary = Template.bind({});
 export const Secondary = Template.bind({});
 Secondary.args = {
   color: 'secondary',
+  label: 'Label',
+  hint: 'Hint message',
+};
+
+export const Small = Template.bind({});
+Small.args = {
+  label: 'Small Switch',
+  size: 'small',
 };
 
 export const Error = Template.bind({});
@@ -75,7 +83,15 @@ CustomContent.args = {
   label: (
     <View style={customContentStyle.container}>
       <Text style={customContentStyle.text}>Custom content</Text>
-      <Icons.EyeSlashIconDeprecated />
+      <Icons.EyeIcon />
     </View>
   ),
+};
+
+export const CenteredControl = Template.bind({});
+CenteredControl.args = {
+  label:
+    'Very long label very long label very long label very long label very long label very long label very long label',
+  hint: 'Hint message',
+  controlCentered: true,
 };
