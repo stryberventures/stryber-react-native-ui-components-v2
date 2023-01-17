@@ -2,7 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import RadioButton from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import Form from '../Form';
 import {Text, View} from 'react-native';
 import * as Icons from '../Icons';
@@ -12,8 +12,23 @@ export default {
   title: 'RadioButton',
   component: RadioButton,
   decorators: Platform.OS === 'web' ? null : [CenterView],
+  argTypes: {
+    label: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'name',
+        'value',
+        'clearFormValueOnUnmount',
+        'style',
+        'checked',
+        'pressedStyle',
+        'labelStyle',
+        'onChange',
+      ],
+    },
   },
 } as ComponentMeta<typeof RadioButton>;
 
@@ -82,12 +97,16 @@ DisabledChecked.args = {
   checked: true,
 };
 
+const customContentStyles = StyleSheet.create({
+  container: {display: 'flex', flexDirection: 'row'},
+  text: {color: 'blue', marginRight: 10},
+});
+
 export const CustomContent = Template.bind({});
 CustomContent.args = {
-  label: '',
-  children: (
-    <View style={{display: 'flex', flexDirection: 'row'}}>
-      <Text style={{color: 'blue', marginRight: 10}}>Custom content</Text>
+  label: (
+    <View style={customContentStyles.container}>
+      <Text style={customContentStyles.text}>Custom content</Text>
       <Icons.EyeSlashIconDeprecated />
     </View>
   ),

@@ -22,8 +22,31 @@ export default {
   title: 'Combobox',
   component: Combobox,
   decorators: Platform.OS === 'web' ? null : [CenterView],
+  argTypes: {
+    error: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'options',
+        'dropdownStyle',
+        'inputStyle',
+        'onChange',
+        'value',
+        'style',
+        'name',
+        'clearFormValueOnUnmount',
+        'controlled',
+        'inputWrapperStyle',
+        'hintStyle',
+        'errorStyle',
+        'rightContent',
+        'mask',
+        'prefixStyle',
+        'showLength',
+      ],
+    },
   },
 } as ComponentMeta<typeof Combobox>;
 

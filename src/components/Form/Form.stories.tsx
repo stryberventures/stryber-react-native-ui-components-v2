@@ -20,6 +20,7 @@ import Select from '../Select';
 import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
 import pkg from './package.json';
+import useStyles from './Form.styles.stories';
 
 export default {
   title: 'Core/Form',
@@ -27,6 +28,18 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'onSubmit',
+        'onReset',
+        'onError',
+        'onChange',
+        'onValidate',
+        'onValidateAsync',
+        'initialValues',
+        'validationSchema',
+      ],
+    },
   },
 } as ComponentMeta<typeof Form>;
 
@@ -56,10 +69,11 @@ const Template: ComponentStory<typeof Form> = ({
   onValidate: _1,
   ...rest
 }) => {
+  const styles = useStyles();
   return (
     <Form {...rest}>
       <ScrollView
-        contentContainerStyle={{paddingHorizontal: 8}}
+        contentContainerStyle={styles.scrollViewContainer}
         nestedScrollEnabled
         keyboardShouldPersistTaps="always"
       >
@@ -209,6 +223,7 @@ ResetOnSubmit.args = {
 export const ExternalControl = () => {
   const formRef = useRef<IFormRef>(null);
   const [currentFormState, updateFormState]: [any, any] = useState({});
+  const styles = useStyles();
 
   const handleSetError = () => {
     formRef.current!.setErrors({email: 'This email is already taken'});
@@ -255,13 +270,7 @@ export const ExternalControl = () => {
         <Button type="submit">Login</Button>
         <Button type="reset">Reset</Button>
       </View>
-      <View
-        style={{
-          marginTop: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-        }}
-      >
+      <View style={styles.buttonWrapper}>
         <Button onPress={handleSetError}>Set extern error</Button>
         <Button onPress={handleResetForm}>Reset externally</Button>
       </View>

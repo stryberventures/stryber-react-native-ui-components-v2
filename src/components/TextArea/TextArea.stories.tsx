@@ -9,8 +9,26 @@ export default {
   title: 'TextArea',
   component: TextArea,
   decorators: Platform.OS === 'web' ? null : [CenterView],
+  argTypes: {
+    error: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'name',
+        'clearFormValueOnUnmount',
+        'mask',
+        'prefixStyle',
+        'rightContent',
+        'controlled',
+        'errorStyle',
+        'hintStyle',
+        'inputStyle',
+        'inputWrapperStyle',
+        'style',
+      ],
+    },
   },
 } as ComponentMeta<typeof TextArea>;
 

@@ -16,6 +16,26 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'name',
+        'options',
+        'selectedOptions',
+        'clearFormValueOnUnmount',
+        'onChange',
+        'onDropdownChange',
+        'style',
+        'hintStyle',
+        'errorStyle',
+        'rightContent',
+        'dropdownStyle',
+        'wrapperStyle',
+        'maxValueLength',
+        'currentValueLength',
+        'showLength',
+        'selectedOption',
+      ],
+    },
   },
 } as ComponentMeta<typeof Select>;
 

@@ -8,17 +8,38 @@ import {Platform, View} from 'react-native';
 import pkg from './package.json';
 import ControlledSlider from '../../storybook/preview/ControlledSlider';
 
+const webPadding = {paddingTop: 50};
+
 export default {
   title: 'Slider',
   component: Slider,
   decorators: [
     Platform.OS === 'web' ? Story => Story() : CenterView,
     Platform.OS === 'web'
-      ? Story => <View style={{paddingTop: 50}}>{Story()}</View>
+      ? Story => <View style={webPadding}>{Story()}</View>
       : Story => <Story />,
   ],
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'value',
+        'leftLabel',
+        'rightLabel',
+        'name',
+        'controlled',
+        'clearFormValueOnUnmount',
+        'onChange',
+        'style',
+        'errorStyle',
+        'rightContent',
+        'dropdownStyle',
+        'wrapperStyle',
+        'maxValueLength',
+        'currentValueLength',
+        'showLength',
+      ],
+    },
   },
 } as ComponentMeta<typeof Slider>;
 

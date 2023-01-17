@@ -17,20 +17,35 @@ export default {
   },
   parameters: {
     pkg,
-    controls: {exclude: ['iconLeft', 'iconRight', 'value', 'style']},
+    controls: {
+      exclude: [
+        'iconLeft',
+        'iconRight',
+        'value',
+        'style',
+        'onChange',
+        'onRemove',
+      ],
+    },
   },
 } as ComponentMeta<typeof Tag>;
 
 //To display properly on the web storybook
 const alignFlexStart: ViewStyle = {alignItems: 'flex-start'};
 
-const Template: ComponentStory<typeof Tag> = args => (
+const Template: ComponentStory<typeof Tag> = ({children, ...args}) => (
   <View style={alignFlexStart}>
-    <Tag size="large" {...args} />
+    <Tag size="large" {...args}>
+      {children}
+    </Tag>
     <Divider />
-    <Tag size="medium" {...args} />
+    <Tag size="medium" {...args}>
+      {children}
+    </Tag>
     <Divider />
-    <Tag size="small" {...args} />
+    <Tag size="small" {...args}>
+      {children}
+    </Tag>
   </View>
 );
 

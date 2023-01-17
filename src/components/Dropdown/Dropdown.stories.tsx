@@ -23,6 +23,21 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'children',
+        'dropdownStyle',
+        'onChange',
+        'style',
+        'hintStyle',
+        'errorStyle',
+        'wrapperStyle',
+        'rightContent',
+        'maxValueLength',
+        'currentValueLength',
+        'showLength',
+      ],
+    },
   },
 } as ComponentMeta<typeof Dropdown>;
 

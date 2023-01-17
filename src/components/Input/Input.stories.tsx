@@ -9,8 +9,27 @@ export default {
   title: 'Input',
   component: Input,
   decorators: Platform.OS === 'web' ? null : [CenterView],
+  argTypes: {
+    error: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'name',
+        'clearFormValueOnUnmount',
+        'style',
+        'inputWrapperStyle',
+        'inputStyle',
+        'hintStyle',
+        'errorStyle',
+        'rightContent',
+        'mask',
+        'prefixStyle',
+        'showLength',
+        'controlled',
+      ],
+    },
   },
 } as ComponentMeta<typeof Input>;
 

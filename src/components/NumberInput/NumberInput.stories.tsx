@@ -9,8 +9,28 @@ export default {
   title: 'NumberInput',
   component: NumberInput,
   decorators: Platform.OS === 'web' ? null : [CenterView],
+  argTypes: {
+    error: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'onChange',
+        'style',
+        'name',
+        'clearFormValueOnUnmount',
+        'controlled',
+        'inputWrapperStyle',
+        'inputStyle',
+        'hintStyle',
+        'errorStyle',
+        'rightContent',
+        'mask',
+        'prefixStyle',
+        'showLength',
+      ],
+    },
   },
 } as ComponentMeta<typeof NumberInput>;
 
