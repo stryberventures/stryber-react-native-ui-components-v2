@@ -3,70 +3,69 @@ import {createUseStyles} from '../Theme';
 export default createUseStyles(theme => ({
   text: {
     fontFamily: theme.fontFamily,
-  },
-  body: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: theme.default.dark,
-    lineHeight: 24,
-  },
-  description: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: theme.default.dark,
-    lineHeight: 18,
+    color: theme.colors.text.headline,
   },
   h1: {
-    fontSize: 48,
-    fontWeight: '700',
-    lineHeight: 60,
+    fontSize: 34,
+    lineHeight: 40,
+    letterSpacing: -0.02,
   },
   h2: {
     fontSize: 32,
-    fontWeight: '700',
-    lineHeight: 48,
+    lineHeight: 40,
+    letterSpacing: -0.02,
   },
   h3: {
-    fontSize: 24,
-    fontWeight: '700',
-    lineHeight: 36,
+    fontSize: 28,
+    lineHeight: 34,
+    letterSpacing: -0.02,
   },
   h4: {
-    fontSize: 20,
-    fontWeight: '700',
-    lineHeight: 30,
+    fontSize: 22,
+    lineHeight: 28,
+    letterSpacing: -0.02,
   },
-  caption: {
-    fontSize: 12,
-    fontWeight: '400',
-    color: theme.default.dark,
-    lineHeight: 18,
+  body1: {
+    fontSize: 18,
+    lineHeight: 28,
   },
-  smallText: {
-    fontSize: 10,
-    fontWeight: '400',
-    lineHeight: 15,
-  },
-  footnote: {
-    fontSize: 10,
-    fontWeight: '400',
-    lineHeight: 15,
-  },
-  buttonLabel: {
+  body2: {
     fontSize: 16,
-    fontWeight: '700',
-    lineHeight: 16,
+    lineHeight: 24,
   },
-  label: {
+  body3: {
     fontSize: 14,
-    fontWeight: '400',
-    color: theme.default.dark,
-    lineHeight: 17,
+    lineHeight: 20,
   },
-  labelHighlight: {
+  caption1: {
+    fontSize: 12,
+    lineHeight: 14,
+  },
+  caption2: {
+    fontSize: 10,
+    lineHeight: 12,
+    letterSpacing: 0.02,
+  },
+  components1: {
+    fontSize: 16,
+    letterSpacing: 0.02,
+  },
+  components2: {
     fontSize: 14,
-    fontWeight: '500',
-    lineHeight: 21,
+    letterSpacing: 0.02,
+  },
+  components3: {
+    fontSize: 10,
+    lineHeight: 12,
+    letterSpacing: 0.02,
+  },
+  buttonLabelMini: {
+    fontSize: 10,
+    lineHeight: 15,
+  },
+  buttonLabelLarge: {
+    fontSize: 16,
+    lineHeight: 24,
   },
   left: {
     textAlign: 'left',
@@ -76,5 +75,17 @@ export default createUseStyles(theme => ({
   },
   right: {
     textAlign: 'right',
+  },
+  regular: {
+    fontWeight: '400',
+  },
+  medium: {
+    fontWeight: '500',
+  },
+  semiBold: {
+    fontWeight: '600',
+  },
+  bold: {
+    fontWeight: '700',
   },
 }));

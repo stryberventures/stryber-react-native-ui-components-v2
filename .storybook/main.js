@@ -3,7 +3,7 @@ module.exports = {
     builder: "webpack5",
   },
   "stories": [
-    "../src/components/**/*.stories.tsx"
+    "../src/**/*.stories.tsx"
   ],
   "addons": [
     "@storybook/addon-links",

@@ -18,7 +18,7 @@ const HintMessage: React.FC<IHintMessageProps> = ({
 
   return (
     <Text
-      variant="label"
+      variant="components2"
       style={[styles.hint, disabled && styles.disabledHint, style]}
       {...rest}
     >

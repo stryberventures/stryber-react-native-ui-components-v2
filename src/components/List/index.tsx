@@ -43,10 +43,10 @@ const List: React.FC<IListProps> = ({listItems, ...rest}) => {
       <View style={styles.content}>
         {!!leftContent && <View style={styles.leftContent}>{leftContent}</View>}
         <View>
-          <Text variant="labelHighlight" style={styles.title}>
+          <Text variant="components2" weight="medium" style={styles.title}>
             {title}
           </Text>
-          <Text variant="label" style={styles.subtitle}>
+          <Text variant="components2" style={styles.subtitle}>
             {subtitle}
           </Text>
         </View>

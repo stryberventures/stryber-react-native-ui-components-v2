@@ -11,7 +11,7 @@ it('should render child', () => {
 
 it('should pass theme colors', () => {
   const newPrimaryMainColor = 'red';
-  const newTheme = {primary: {main: newPrimaryMainColor}};
+  const newTheme = {colors: {primary: {main500: newPrimaryMainColor}}};
   const buttonTestId = 'test-button';
   const screen = render(
     <ThemeProvider theme={newTheme}>

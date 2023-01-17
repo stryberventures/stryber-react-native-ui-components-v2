@@ -6,12 +6,12 @@ export default createUseStyles(theme => ({
     paddingHorizontal: 8,
   },
   pressedContainer: {
-    backgroundColor: theme.default.extraLight,
+    backgroundColor: theme.colors.neutralGray.light100,
   },
   text: {
-    color: theme.text.primary,
+    color: theme.colors.text.headline,
   },
   activeContainer: {
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.colors.neutralGray.light200,
   },
 }));

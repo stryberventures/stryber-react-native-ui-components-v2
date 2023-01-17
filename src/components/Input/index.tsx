@@ -153,7 +153,7 @@ const Input = forwardRef<TextInput, IInputProps>(
       >
         <View style={styles.inputContainer}>
           {prefix && (
-            <Text variant="label" style={[styles.prefix, prefixStyle]}>
+            <Text variant="components2" style={[styles.prefix, prefixStyle]}>
               {prefix}
             </Text>
           )}
@@ -164,7 +164,7 @@ const Input = forwardRef<TextInput, IInputProps>(
             onChangeText={onChangeTextWrapper}
             onFocus={onFocusWrapper}
             placeholderTextColor={
-              disabled ? theme.text.disabled : theme.text.hint
+              disabled ? theme.colors.text.disabled : theme.colors.text.tint
             }
             ref={inputRef}
             maxLength={mask?.length || maxLength}

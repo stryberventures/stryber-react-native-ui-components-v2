@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Input, {IInputProps} from '../Input';
 import Chip from '../Chip';
-import {CheckIcon} from '../Icons';
+import {CheckIconDeprecated} from '../Icons';
 import Eye from './Eye';
 import {
   IValidationItemProps,
@@ -57,8 +57,8 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({
           {schema.map(({label, matched}) => (
             <Chip
               key={label}
-              color={matched ? 'success' : 'default'}
-              iconLeft={matched && <CheckIcon />}
+              color={matched ? 'success' : 'neutralGray'}
+              iconLeft={matched && <CheckIconDeprecated />}
               style={[styles.chip, chipStyle]}
             >
               {label}

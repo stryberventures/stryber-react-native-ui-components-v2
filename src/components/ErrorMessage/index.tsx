@@ -15,7 +15,7 @@ const ErrorMessage: React.FC<IErrorMessageProps> = ({
   const styles = useStyles();
 
   return (
-    <Text variant="label" style={[styles.error, style]} {...rest}>
+    <Text variant="components2" style={[styles.error, style]} {...rest}>
       {error}
     </Text>
   );

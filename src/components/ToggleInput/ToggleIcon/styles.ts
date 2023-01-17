@@ -25,8 +25,8 @@ export default createUseStyles(
   ) => ({
     container: {
       borderWidth: 1,
-      borderColor: theme[color!].main,
-      backgroundColor: theme[color!].contrast,
+      borderColor: theme.colors[color!].main500,
+      backgroundColor: theme.colors.contrast.white,
       justifyContent: 'center',
       alignItems: 'center',
       width: TOGGLE_ICON_SIZE[size!],
@@ -39,25 +39,25 @@ export default createUseStyles(
       borderRadius: CHECKBOX_BORDER_RADIUS[size!],
     },
     pressed: {
-      backgroundColor: theme[color!].light,
+      backgroundColor: theme.colors[color!].extraLight50,
     },
     checked: {
-      backgroundColor: theme[color!].main,
+      backgroundColor: theme.colors[color!].main500,
     },
     pressedChecked: {
-      backgroundColor: theme[color!].dark,
+      backgroundColor: theme.colors[color!].dark600,
     },
     checkedIcon: {
       width: CHECKED_ICON_SIZE[size!],
       height: CHECKED_ICON_SIZE[size!],
-      backgroundColor: theme[color!].contrast,
+      backgroundColor: theme.colors.contrast.white,
       borderRadius: 4,
     },
     disabled: {
-      backgroundColor: theme[color!].contrast,
+      backgroundColor: theme.colors.contrast.white,
     },
     disabledIcon: {
-      backgroundColor: theme[color!].main,
+      backgroundColor: theme.colors[color!].main500,
     },
   }),
 );

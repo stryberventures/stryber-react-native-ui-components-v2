@@ -1,6 +1,12 @@
+import React from 'react';
 import { withBackgrounds } from "@storybook/addon-ondevice-backgrounds";
+import ThemeDecorator from "../src/storybook/preview/ThemeDecorator";
 
-export const decorators = [withBackgrounds];
+export const decorators = [
+    withBackgrounds,
+    //ThemeDecorator – is global decorator to preview custom "Inter" font for storybook
+    ThemeDecorator,
+];
 
 export const parameters = {
     backgrounds: [

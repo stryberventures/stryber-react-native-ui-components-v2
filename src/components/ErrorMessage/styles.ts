@@ -2,7 +2,7 @@ import {createUseStyles} from '../Theme';
 
 export default createUseStyles(theme => ({
   error: {
-    color: theme.error.dark,
+    color: theme.colors.error.dark600,
     marginTop: 4,
   },
 }));

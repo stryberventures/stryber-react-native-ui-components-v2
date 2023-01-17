@@ -91,7 +91,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           <View style={styles.mainContent}>
             {label && (
               <Text
-                variant="label"
+                variant="components2"
                 style={[styles.label, disabled && styles.disabledLabel]}
               >
                 {label}

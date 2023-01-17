@@ -111,7 +111,11 @@ const Tooltip: React.FC<ITooltipProps> = ({
           <TooltipTriangle position={position} />
           <View style={styles.titleWrapper}>
             {title && typeof title === 'string' ? (
-              <Text variant="labelHighlight" style={[styles.title, titleStyle]}>
+              <Text
+                variant="components2"
+                weight="medium"
+                style={[styles.title, titleStyle]}
+              >
                 {title}
               </Text>
             ) : (
@@ -120,7 +124,7 @@ const Tooltip: React.FC<ITooltipProps> = ({
             {withCloseButton && <TooltipCloseIcon onPress={handleClose} />}
           </View>
           {text && typeof text === 'string' ? (
-            <Text variant="label" style={[styles.text, textStyle]}>
+            <Text variant="components2" style={[styles.text, textStyle]}>
               {text}
             </Text>
           ) : (

@@ -11,7 +11,7 @@ import Text from '../Text';
 
 export interface IChipProps extends PressableProps {
   children: string | ReactElement;
-  color?: 'primary' | 'secondary' | 'success' | 'default';
+  color?: 'primary' | 'secondary' | 'success' | 'neutralGray';
   variant?: 'contained' | 'outlined';
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
@@ -49,7 +49,8 @@ const Chip: React.FC<IChipProps> = ({
       {iconLeft}
       {children && (
         <Text
-          variant="labelHighlight"
+          variant="components1"
+          weight="medium"
           style={[
             styles.text,
             isOutlined && styles.outlinedText,

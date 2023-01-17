@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import BaseInputLayout, {IBaseInputLayoutProps} from '../Input/BaseInputLayout';
-import {ArrowDownIcon} from '../Icons';
+import {ArrowDownIconDeprecated} from '../Icons';
 import {useTheme} from '../Theme';
 import Text from '../Text';
 import {validateInputValueLength} from '../../utils';
@@ -90,8 +90,12 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         ref={dropdownInputRef}
         onPress={handleOpen}
         rightContent={
-          <ArrowDownIcon
-            fill={disabled ? theme.default.main : theme.default.dark}
+          <ArrowDownIconDeprecated
+            fill={
+              disabled
+                ? theme.colors.neutralGray.medium300
+                : theme.colors.neutralGray.main500
+            }
             style={[styles.icon, visible && styles.invertedIcon]}
           />
         }
@@ -100,7 +104,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       >
         {renderDropdown()}
         <Text
-          variant="label"
+          variant="components2"
           style={[
             !!placeholder && styles.placeholderText,
             !!value && styles.valueText,

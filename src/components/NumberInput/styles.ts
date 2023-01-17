@@ -4,7 +4,7 @@ export default createUseStyles(theme => ({
   line: {
     height: 2,
     width: 10,
-    backgroundColor: theme.default.dark,
+    backgroundColor: theme.colors.neutralGray.main500,
   },
   rotatedLine: {
     height: 10,
@@ -14,7 +14,7 @@ export default createUseStyles(theme => ({
   divider: {
     width: 1,
     height: 22,
-    backgroundColor: theme.default.main,
+    backgroundColor: theme.colors.neutralGray.medium300,
     marginHorizontal: 6,
   },
 }));

@@ -14,7 +14,7 @@ import {
 import {useTheme} from '../Theme';
 import {useFormContext} from '../Form';
 import Input, {IInputProps} from '../Input';
-import {ArrowDownIcon} from '../Icons';
+import {ArrowDownIconDeprecated} from '../Icons';
 import SelectItem from '../Select/SelectItem';
 import {ISelectOption} from '../Select';
 import ClearIcon from './ClearIcon';
@@ -175,8 +175,12 @@ const Combobox: React.FC<IComboboxProps> = ({
                 hitSlop={5}
               />
             )}
-            <ArrowDownIcon
-              fill={disabled ? theme.default.main : theme.default.dark}
+            <ArrowDownIconDeprecated
+              fill={
+                disabled
+                  ? theme.colors.neutralGray.medium300
+                  : theme.colors.neutralGray.main500
+              }
               style={[styles.icon, visible && styles.invertedIcon]}
             />
           </>

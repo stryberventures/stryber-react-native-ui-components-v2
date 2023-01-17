@@ -5,7 +5,7 @@ import {useCheckbox} from './useCheckbox';
 export interface ICheckboxProps
   extends Omit<IToggleInputProps, 'onChange' | 'variant' | 'iconVariant'> {
   name?: string;
-  onChange?: (checked?: boolean) => void;
+  onChange?: (checked?: boolean, name?: string) => void;
   clearFormValueOnUnmount?: boolean;
   controlled?: boolean;
 }
