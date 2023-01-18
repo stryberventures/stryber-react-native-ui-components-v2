@@ -26,9 +26,9 @@ const Eye: React.FC<IEyeProps> = ({secured, disabled, ...rest}) => {
       {...rest}
     >
       {secured ? (
-        <EyeIconDeprecated {...iconProps} />
-      ) : (
         <EyeSlashIconDeprecated {...iconProps} />
+      ) : (
+        <EyeIconDeprecated {...iconProps} />
       )}
     </Pressable>
   );
