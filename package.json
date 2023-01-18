@@ -27,8 +27,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
     "tsc-compile": "tsc --noemit --project tsconfig.checkAll.json",
     "build": "webpack --config webpack.config.js && node postBuild.js",
     "postinstall": "patch-package"
@@ -43,8 +43,10 @@
     ]
   },
   "dependencies": {
+    "@storybook/addons": "^6.5.15",
     "@storybook/builder-webpack5": "^6.4.22",
     "@storybook/manager-webpack5": "^6.4.22",
+    "@storybook/theming": "^6.5.15",
     "@stryberventures/gaia-react.tooltip": "^0.0.1",
     "classnames": "^2.3.1",
     "patch-package": "^6.4.7",
