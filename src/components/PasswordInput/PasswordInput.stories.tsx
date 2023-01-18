@@ -9,8 +9,32 @@ export default {
   title: 'PasswordInput',
   component: PasswordInput,
   decorators: Platform.OS === 'web' ? null : [CenterView],
+  argTypes: {
+    error: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'newPassword',
+        'validationSchema',
+        'onValidationChange',
+        'validationContainerStyle',
+        'chipStyle',
+        'name',
+        'inputStyle',
+        'hintStyle',
+        'errorStyle',
+        'rightContent',
+        'mask',
+        'prefixStyle',
+        'showLength',
+        'clearFormValueOnUnmount',
+        'style',
+        'inputWrapperStyle',
+        'controlled',
+      ],
+    },
   },
 } as ComponentMeta<typeof PasswordInput>;
 

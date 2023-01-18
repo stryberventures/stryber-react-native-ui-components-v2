@@ -19,6 +19,9 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
+    controls: {
+      exclude: ['childShadowStyle', 'testID'],
+    },
   },
 } as ComponentMeta<typeof Elevation>;
 

@@ -12,10 +12,15 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
+    controls: {
+      exclude: ['iconLeft', 'iconRight', 'style', 'textStyle'],
+    },
   },
 } as ComponentMeta<typeof Chip>;
 
-const Template: ComponentStory<typeof Chip> = args => <Chip {...args} />;
+const Template: ComponentStory<typeof Chip> = ({children, ...args}) => (
+  <Chip {...args}>{children}</Chip>
+);
 
 export const Contained = Template.bind({});
 Contained.args = {
@@ -59,26 +64,28 @@ DisabledOutlined.args = {
   variant: 'outlined',
 };
 
+const iconMargin = {marginHorizontal: 2};
+
 export const WithIcons = Template.bind({});
 WithIcons.args = {
   children: 'Icons',
-  iconRight: <CheckIconDeprecated style={{marginHorizontal: 3}} />,
-  iconLeft: <CheckIconDeprecated style={{marginHorizontal: 2}} />,
+  iconRight: <CheckIconDeprecated style={iconMargin} />,
+  iconLeft: <CheckIconDeprecated style={iconMargin} />,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   children: 'LeftIcon',
-  iconLeft: <CheckIconDeprecated style={{marginHorizontal: 2}} />,
+  iconLeft: <CheckIconDeprecated style={iconMargin} />,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
   children: 'RightIcon',
-  iconRight: <CheckIconDeprecated style={{marginHorizontal: 3}} />,
+  iconRight: <CheckIconDeprecated style={iconMargin} />,
 };
 
 export const OnlyIcon = Template.bind({});
 OnlyIcon.args = {
-  iconLeft: <CheckIconDeprecated style={{marginVertical: 2}} />,
+  iconLeft: <CheckIconDeprecated style={iconMargin} />,
 };

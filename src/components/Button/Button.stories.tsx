@@ -15,6 +15,16 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'iconLeft',
+        'iconRight',
+        'icon',
+        'style',
+        'textStyle',
+        'onPress',
+      ],
+    },
   },
 } as ComponentMeta<typeof Button>;
 

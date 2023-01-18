@@ -17,12 +17,17 @@ export default {
   component: List,
   parameters: {
     pkg,
+    controls: {
+      exclude: ['listItems'],
+    },
   },
 } as ComponentMeta<typeof List>;
 
+const mobilePadding = {paddingTop: 200};
+
 const Template: ComponentStory<typeof List> = args => (
   <>
-    {Platform.OS !== 'web' && <View style={{paddingTop: 200}} />}
+    {Platform.OS !== 'web' && <View style={mobilePadding} />}
     <List {...args} />
   </>
 );

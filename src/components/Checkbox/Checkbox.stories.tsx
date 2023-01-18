@@ -2,7 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Checkbox from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {Text, View} from 'react-native';
 import * as Icons from '../Icons';
 import pkg from './package.json';
@@ -11,8 +11,23 @@ export default {
   title: 'Checkbox',
   component: Checkbox,
   decorators: Platform.OS === 'web' ? null : [CenterView],
+  argTypes: {
+    label: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'name',
+        'onChange',
+        'clearFormValueOnUnmount',
+        'style',
+        'pressedStyle',
+        'textStyle',
+        'labelStyle',
+        'controlled',
+      ],
+    },
   },
 } as ComponentMeta<typeof Checkbox>;
 
@@ -62,11 +77,16 @@ FullWidthReverse.args = {
   reverse: true,
 };
 
+const customContentStyles = StyleSheet.create({
+  wrapper: {display: 'flex', flexDirection: 'row'},
+  text: {color: 'blue', marginRight: 10},
+});
+
 export const CustomContent = Template.bind({});
 CustomContent.args = {
   label: (
-    <View style={{display: 'flex', flexDirection: 'row'}}>
-      <Text style={{color: 'blue', marginRight: 10}}>Custom content</Text>
+    <View style={customContentStyles.wrapper}>
+      <Text style={customContentStyles.text}>Custom content</Text>
       <Icons.EyeSlashIconDeprecated />
     </View>
   ),

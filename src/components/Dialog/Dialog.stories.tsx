@@ -12,8 +12,13 @@ export default {
   decorators: [CenterView],
   parameters: {
     pkg,
+    controls: {
+      exclude: ['onClose', 'open', 'overlayStyle', 'disableOutsidePress'],
+    },
   },
 } as ComponentMeta<typeof Dialog>;
+
+const buttonMargin = {marginRight: 12};
 
 const DialogStory = (args: IDialogProps) => {
   const [open, setOpen] = React.useState(false);
@@ -29,7 +34,7 @@ const DialogStory = (args: IDialogProps) => {
           <Button
             variant="outlined"
             size="small"
-            style={{marginRight: 12}}
+            style={buttonMargin}
             onPress={closeDialog}
           >
             Discard
