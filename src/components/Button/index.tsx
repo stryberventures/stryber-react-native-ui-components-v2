@@ -18,7 +18,7 @@ export interface IButtonProps extends PressableProps {
   size?: TButtonSize;
   shape?: 'flat' | 'round' | 'circle';
   variant?: 'contained' | 'outlined' | 'ghost';
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'error';
   type?: 'submit' | 'reset';
   disabled?: boolean;
   iconLeft?: React.FC<any>;

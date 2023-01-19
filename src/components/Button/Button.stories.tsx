@@ -99,6 +99,19 @@ RightIcon.args = {
   iconRight: Icons.InfoIcon,
 };
 
+export const LeftRightIcons = Template.bind({});
+LeftRightIcons.args = {
+  children: 'Left and Right Icons',
+  iconLeft: Icons.InfoIcon,
+  iconRight: Icons.InfoIcon,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  children: 'Error',
+  color: 'error',
+};
+
 export const Icon = Template.bind({});
 Icon.args = {
   icon: Icons.InfoIcon,
