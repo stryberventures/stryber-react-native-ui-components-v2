@@ -42,11 +42,6 @@ Secondary.args = {
   color: 'secondary',
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-};
-
 export const Error = Template.bind({});
 Error.args = {
   error: 'Error message',
@@ -79,7 +74,7 @@ FullWidthReverse.args = {
 
 const customContentStyles = StyleSheet.create({
   wrapper: {display: 'flex', flexDirection: 'row'},
-  text: {color: 'blue', marginRight: 10},
+  text: {color: 'blue', marginRight: 10, marginTop: 1.2},
 });
 
 export const CustomContent = Template.bind({});

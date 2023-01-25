@@ -3,13 +3,13 @@ import {IToggleInputProps} from '../index';
 import {ToggleIconProps} from './index';
 
 const CHECKED_ICON_SIZE = {
-  medium: 8,
-  small: 6,
+  medium: 6,
+  small: 4,
 };
 
 const CHECKBOX_BORDER_RADIUS = {
-  medium: 6,
-  small: 4,
+  medium: 4,
+  small: 2,
 };
 
 export const TOGGLE_ICON_SIZE = {
@@ -25,7 +25,7 @@ export default createUseStyles(
   ) => ({
     container: {
       borderWidth: 1,
-      borderColor: theme.colors[color!].main500,
+      borderColor: theme.colors.neutralGray.dark600,
       backgroundColor: theme.colors.contrast.white,
       justifyContent: 'center',
       alignItems: 'center',
@@ -39,13 +39,15 @@ export default createUseStyles(
       borderRadius: CHECKBOX_BORDER_RADIUS[size!],
     },
     pressed: {
-      backgroundColor: theme.colors[color!].extraLight50,
+      backgroundColor: theme.colors.neutralGray.light200,
     },
     checked: {
       backgroundColor: theme.colors[color!].main500,
+      borderColor: theme.colors[color!].main500,
     },
     pressedChecked: {
-      backgroundColor: theme.colors[color!].dark600,
+      backgroundColor: theme.colors[color!].medium300,
+      borderColor: theme.colors[color!].medium300,
     },
     checkedIcon: {
       width: CHECKED_ICON_SIZE[size!],
@@ -53,11 +55,26 @@ export default createUseStyles(
       backgroundColor: theme.colors.contrast.white,
       borderRadius: 4,
     },
+    error: {
+      borderColor: theme.colors.error.dark600,
+    },
+    errorChecked: {
+      backgroundColor: theme.colors.error.main500,
+      borderColor: theme.colors.error.main500,
+    },
     disabled: {
-      backgroundColor: theme.colors.contrast.white,
+      borderColor: theme.colors.neutralGray.medium300,
+    },
+    checkedDisabled: {
+      backgroundColor: theme.colors.neutralGray.medium300,
     },
     disabledIcon: {
       backgroundColor: theme.colors[color!].main500,
+    },
+    indeterminate: {
+      width: 9.09,
+      height: 1.82,
+      backgroundColor: '#ffffff',
     },
   }),
 );

@@ -17,6 +17,7 @@ import Text from '../Text';
 export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   label?: string | ReactElement;
   checked?: boolean;
+  indeterminate?: boolean;
   onChange?: () => void;
   error?: string;
   disabled?: boolean;
@@ -35,6 +36,7 @@ export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
 
 const ToggleInput: React.FC<IToggleInputProps> = ({
   checked,
+  indeterminate,
   error,
   onChange,
   disabled,
@@ -86,13 +88,15 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
                   size={size}
                   color={color}
                   disabled={disabled}
+                  indeterminate={indeterminate}
+                  error={error}
                 />
               )}
             </View>
             <View style={styles.textContainer}>
               {!!label && typeof label === 'string' ? (
                 <Text
-                  variant={size === 'small' ? 'body3' : 'body1'}
+                  variant={size === 'small' ? 'body3' : 'body2'}
                   weight="regular"
                   style={[
                     styles.toggleInputText,
@@ -113,14 +117,12 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
                   style={styles.hint}
                   message={hint}
                   disabled={disabled}
-                  variant={size === 'small' ? 'body3' : 'body1'}
+                  variant={size === 'small' ? 'body3' : 'body2'}
                 />
               )}
             </View>
           </View>
-          {!!error && variant !== 'radio' && (
-            <ErrorMessage style={styles.error} error={error} />
-          )}
+          {!!error && <ErrorMessage style={styles.error} error={error} />}
         </>
       )}
     </Pressable>

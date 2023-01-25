@@ -1,5 +1,4 @@
 export {default as InfoIcon} from './IconList/InfoIcon';
-export {default as CheckIconDeprecated} from './IconList/CheckIconDeprecated';
 export {default as CheckIcon} from './IconList/CheckIcon';
 export {default as ArrowDownIconDeprecated} from './IconList/ArrowDownIconDeprecated';
 export {default as EyeIconDeprecated} from './IconList/EyeIconDeprecated';
@@ -28,3 +27,4 @@ export {default as PaymentMethodIcon} from './IconList/PaymentMethodIcon';
 export {default as SocialIcon} from './IconList/SocialIcon';
 export {default as CloseIcon} from './IconList/CloseIcon';
 export {default as SearchIcon} from './IconList/SearchIcon';
+export {default as ErrorIcon} from './IconList/ErrorIcon';

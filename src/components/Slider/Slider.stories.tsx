@@ -3,7 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react';
 
 import Slider from './index';
 import CenterView from '../../storybook/preview/CenterView';
-import {CheckIconDeprecated, InfoIcon} from '../Icons';
+import {CheckIcon, InfoIcon} from '../Icons';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
 import ControlledSlider from '../../storybook/preview/ControlledSlider';
@@ -110,7 +110,7 @@ export const WithIcons = Template.bind({});
 WithIcons.args = {
   max: 9,
   value: 3,
-  leftLabel: () => <CheckIconDeprecated fill="black" />,
+  leftLabel: () => <CheckIcon fill="black" />,
   rightLabel: () => <InfoIcon fill="black" />,
 };
 

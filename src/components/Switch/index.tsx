@@ -3,7 +3,10 @@ import ToggleInput, {IToggleInputProps} from '../ToggleInput';
 import {useCheckbox} from '../Checkbox/useCheckbox';
 
 export interface ISwitchProps
-  extends Omit<IToggleInputProps, 'onChange' | 'variant' | 'iconVariant'> {
+  extends Omit<
+    IToggleInputProps,
+    'onChange' | 'variant' | 'iconVariant' | 'indeterminate'
+  > {
   name?: string;
   onChange?: (checked?: boolean) => void;
   clearFormValueOnUnmount?: boolean;

@@ -16,6 +16,7 @@ import Multiselect, {IMultiselectOption} from '../Multiselect';
 import Slider from '../Slider';
 import Combobox from '../Combobox';
 import Select from '../Select';
+import CheckboxGroup from '../CheckboxGroup';
 
 import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
@@ -52,6 +53,25 @@ const options: IMultiselectOption[] = [
   {label: 'Six', value: 'six'},
 ];
 
+const childCheckboxes = [
+  {
+    label: 'first child',
+    name: 'firstField',
+  },
+  {
+    label: 'second child',
+    name: 'secondField',
+  },
+  {
+    label: 'third child',
+    name: 'thirdField',
+  },
+  {
+    label: 'fourth child',
+    name: 'fourthField',
+  },
+];
+
 const validationSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().required(),
@@ -61,6 +81,7 @@ const validationSchema = yup.object({
   select: yup.string().required(),
   numberInput: yup.number().required(),
   combobox: yup.string().required(),
+  checkboxGroup: yup.array().min(1).required(),
 });
 
 const Template: ComponentStory<typeof Form> = ({
@@ -107,6 +128,12 @@ const Template: ComponentStory<typeof Form> = ({
         <Checkbox name="checkbox" label="Stay logged in" />
         <Divider height={10} />
         <Switch name="switch" label="Switch" />
+        <Divider height={10} />
+        <CheckboxGroup
+          label="Checkbox Group"
+          name="checkboxGroup"
+          checkboxes={childCheckboxes}
+        />
         <Divider height={10} />
         <Input
           name="email"
@@ -177,6 +204,7 @@ WithInitialValues.args = {
     rangeSlider: [5, 8],
     numberInput: 6,
     combobox: 'six',
+    checkboxGroup: ['secondField', 'firstField'],
   },
 };
 
