@@ -7,6 +7,7 @@ import Form from '../Form';
 import {Text, View} from 'react-native';
 import * as Icons from '../Icons';
 import pkg from './package.json';
+import Divider from '../../storybook/preview/Divider';
 
 export default {
   title: 'RadioButton',
@@ -35,6 +36,7 @@ export default {
 const Template: ComponentStory<typeof RadioButton> = args => (
   <Form>
     <RadioButton label="Option 1" {...args} value="option 1" />
+    <Divider />
     <RadioButton label="Option 2" {...args} value="option 2" />
   </Form>
 );
@@ -54,12 +56,12 @@ Secondary.args = {
   color: 'secondary',
 };
 
-export const Small = Template.bind({});
-Small.args = {
+export const Error = Template.bind({});
+Error.args = {
   onChange: value => {
     console.log(value);
   },
-  size: 'small',
+  error: 'Test error',
 };
 
 export const Hint = Template.bind({});
@@ -99,7 +101,7 @@ DisabledChecked.args = {
 
 const customContentStyles = StyleSheet.create({
   container: {display: 'flex', flexDirection: 'row'},
-  text: {color: 'blue', marginRight: 10},
+  text: {color: 'blue', marginRight: 10, marginTop: 1.2},
 });
 
 export const CustomContent = Template.bind({});

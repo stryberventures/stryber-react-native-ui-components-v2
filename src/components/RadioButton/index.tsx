@@ -6,7 +6,7 @@ import ToggleInput, {IToggleInputProps} from '../ToggleInput';
 export interface IRadioButtonProps
   extends Omit<
     IToggleInputProps,
-    'onChange' | 'variant' | 'iconVariant' | 'error'
+    'onChange' | 'variant' | 'iconVariant' | 'size' | 'indeterminate'
   > {
   name?: string;
   value: any;
@@ -20,7 +20,6 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
   disabled,
   hint,
   label,
-  size = 'medium',
   checked,
   onChange,
   clearFormValueOnUnmount,
@@ -64,7 +63,6 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
       iconVariant="round"
       onChange={onChangeWrapper}
       disabled={disabled}
-      size={size}
       hint={hint}
       reverse={reverse}
       fullWidth={fullWidth}

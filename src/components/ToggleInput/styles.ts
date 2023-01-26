@@ -31,7 +31,6 @@ export default createUseStyles(
         flex: 1,
       },
       toggleInputText: {
-        marginBottom: 8,
         color: theme.colors.text.headline,
         lineHeight: isSwitch
           ? SWITCH_SIZE[size!].height
@@ -47,7 +46,7 @@ export default createUseStyles(
         color: theme.colors.text.disabled,
       },
       error: {
-        marginTop: 8,
+        marginTop: theme.spacing['12'],
       },
       fullWidth: {
         justifyContent: 'space-between',

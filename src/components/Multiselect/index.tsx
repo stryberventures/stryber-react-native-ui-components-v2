@@ -118,7 +118,6 @@ const Multiselect: React.FC<IMultiselectProps> = ({
               label={option.label}
               labelStyle={styles.checkboxText}
               name={option.label}
-              size="small"
               style={styles.multiselectItem}
               pressedStyle={styles.multiselectItemPressed}
             />

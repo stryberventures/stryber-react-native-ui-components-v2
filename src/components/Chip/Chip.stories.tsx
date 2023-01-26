@@ -3,7 +3,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Chip from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Platform} from 'react-native';
-import {CheckIconDeprecated} from '../Icons';
+import {CheckIcon} from '../Icons';
 import pkg from './package.json';
 
 export default {
@@ -69,23 +69,23 @@ const iconMargin = {marginHorizontal: 2};
 export const WithIcons = Template.bind({});
 WithIcons.args = {
   children: 'Icons',
-  iconRight: <CheckIconDeprecated style={iconMargin} />,
-  iconLeft: <CheckIconDeprecated style={iconMargin} />,
+  iconRight: <CheckIcon style={iconMargin} />,
+  iconLeft: <CheckIcon style={iconMargin} />,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   children: 'LeftIcon',
-  iconLeft: <CheckIconDeprecated style={iconMargin} />,
+  iconLeft: <CheckIcon style={iconMargin} />,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
   children: 'RightIcon',
-  iconRight: <CheckIconDeprecated style={iconMargin} />,
+  iconRight: <CheckIcon style={iconMargin} />,
 };
 
 export const OnlyIcon = Template.bind({});
 OnlyIcon.args = {
-  iconLeft: <CheckIconDeprecated style={iconMargin} />,
+  iconLeft: <CheckIcon style={iconMargin} />,
 };

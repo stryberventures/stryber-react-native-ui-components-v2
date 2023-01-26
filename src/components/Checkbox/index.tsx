@@ -3,7 +3,10 @@ import ToggleInput, {IToggleInputProps} from '../ToggleInput';
 import {useCheckbox} from './useCheckbox';
 
 export interface ICheckboxProps
-  extends Omit<IToggleInputProps, 'onChange' | 'variant' | 'iconVariant'> {
+  extends Omit<
+    IToggleInputProps,
+    'onChange' | 'variant' | 'iconVariant' | 'size'
+  > {
   name?: string;
   onChange?: (checked?: boolean, name?: string) => void;
   clearFormValueOnUnmount?: boolean;
@@ -17,7 +20,6 @@ const Checkbox: React.FC<ICheckboxProps> = ({
   onChange,
   clearFormValueOnUnmount,
   disabled,
-  size = 'medium',
   label,
   hint,
   controlled,
@@ -41,7 +43,6 @@ const Checkbox: React.FC<ICheckboxProps> = ({
       error={errorMessage}
       checked={controlled ? checked : internalValue}
       disabled={disabled}
-      size={size}
       label={label}
       hint={hint}
       reverse={reverse}
