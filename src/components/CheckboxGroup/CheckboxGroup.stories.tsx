@@ -16,6 +16,18 @@ export default {
   },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'name',
+        'onChange',
+        'clearFormValueOnUnmount',
+        'style',
+        'pressedStyle',
+        'textStyle',
+        'labelStyle',
+        'controlled',
+      ],
+    },
   },
 } as ComponentMeta<typeof CheckboxGroup>;
 
