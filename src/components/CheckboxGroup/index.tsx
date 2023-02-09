@@ -92,8 +92,10 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
   const handleParentCheckboxChange = () =>
     onChangeWrapper(setAllChildVal(!checkChildValues(childCheckboxes, 'all')));
 
-  const handleChildCheckboxForm = (newFormData: IChildCheckboxesState) =>
+  const handleChildCheckboxForm = (newFormData: IChildCheckboxesState) => {
+    console.log(newFormData);
     onChangeWrapper({...childCheckboxes, ...newFormData});
+  };
 
   useEffect(() => {
     updateFormValue(name, getSelectedCheckboxesArr(childCheckboxes), true);
@@ -123,6 +125,7 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
           {checkboxes.map(props => (
             <Checkbox
               {...props}
+              checked={childCheckboxes[props.name]}
               key={props.name}
               style={styles.childCheckbox}
               color={color}

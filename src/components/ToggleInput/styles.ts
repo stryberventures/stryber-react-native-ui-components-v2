@@ -1,17 +1,9 @@
 import {createUseStyles} from '../Theme';
 import {IToggleInputProps} from './index';
-import {TOGGLE_ICON_SIZE} from './ToggleIcon/styles';
-import {SWITCH_SIZE} from './SwitchIcon/styles';
-
-const CONTAINER_SPACING = {
-  small: 8,
-  medium: 12,
-};
 
 export default createUseStyles(
   (
     theme,
-    size: IToggleInputProps['size'],
     variant: IToggleInputProps['variant'],
     reverse: IToggleInputProps['reverse'],
     controlCentered: IToggleInputProps['controlCentered'],
@@ -26,21 +18,17 @@ export default createUseStyles(
         justifyContent: controlCentered ? 'center' : 'flex-start',
       },
       textContainer: {
-        marginLeft: reverse ? 0 : CONTAINER_SPACING[size!],
-        marginRight: reverse ? CONTAINER_SPACING[size!] : 0,
+        marginLeft: reverse ? 0 : 12,
+        marginRight: reverse ? 12 : 0,
         flex: 1,
       },
       toggleInputText: {
         color: theme.colors.text.headline,
-        lineHeight: isSwitch
-          ? SWITCH_SIZE[size!].height
-          : TOGGLE_ICON_SIZE[size!],
+        lineHeight: isSwitch ? 24 : 20,
       },
       hint: {
         marginTop: 0,
-        lineHeight: isSwitch
-          ? SWITCH_SIZE[size!].height
-          : TOGGLE_ICON_SIZE[size!],
+        lineHeight: isSwitch ? 24 : 20,
       },
       disabledText: {
         color: theme.colors.text.disabled,

@@ -10,11 +10,10 @@ const SwitchIcon: React.FC<ISwitchIconProps> = ({
   isPressed,
   checked,
   color = 'primary',
-  size = 'medium',
   disabled,
 }) => {
   const toggleAnim = useRef(new Animated.Value(checked ? 1 : 0)).current;
-  const styles = useStyles(color, size);
+  const styles = useStyles(color);
 
   const runAnimation = () => {
     const animValue = {
@@ -46,7 +45,7 @@ const SwitchIcon: React.FC<ISwitchIconProps> = ({
           {
             left: toggleAnim.interpolate({
               inputRange: [0, 1],
-              outputRange: size === 'medium' ? [0, 20] : [0, 12],
+              outputRange: [0, 20],
             }),
           },
         ]}
