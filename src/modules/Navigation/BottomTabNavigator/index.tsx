@@ -32,6 +32,13 @@ const BottomTabNavigator = () => {
       screenOptions={{
         tabBarActiveTintColor: theme.colors.text.headline,
         tabBarInactiveTintColor: theme.colors.text.secondary,
+        tabBarIconStyle: {width: 24, height: 24},
+        tabBarItemStyle: {
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        tabBarLabelStyle: {textAlign: 'center', marginLeft: 0, fontSize: 10},
       }}
     >
       <Tab.Screen
