@@ -92,10 +92,8 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
   const handleParentCheckboxChange = () =>
     onChangeWrapper(setAllChildVal(!checkChildValues(childCheckboxes, 'all')));
 
-  const handleChildCheckboxForm = (newFormData: IChildCheckboxesState) => {
-    console.log(newFormData);
+  const handleChildCheckboxForm = (newFormData: IChildCheckboxesState) =>
     onChangeWrapper({...childCheckboxes, ...newFormData});
-  };
 
   useEffect(() => {
     updateFormValue(name, getSelectedCheckboxesArr(childCheckboxes), true);
