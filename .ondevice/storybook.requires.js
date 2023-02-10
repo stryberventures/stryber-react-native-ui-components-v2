@@ -49,6 +49,9 @@ const getStories = () => {
     require("../src/components/TextLink/TextLink.stories.tsx"),
     require("../src/components/Theme/Theme.stories.tsx"),
     require("../src/components/Tooltip/Tooltip.stories.tsx"),
+    require("../src/modules/Navigation/BottomTabNavigator/BottomTabNavigator.stories.tsx"),
+    require("../src/modules/Navigation/DrawerNavigator/DrawerNavigator.stories.tsx"),
+    require("../src/modules/Navigation/TopTabNavigator/TopTabNavigator.stories.tsx"),
   ];
 };
 
