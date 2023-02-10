@@ -21,7 +21,6 @@ export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   onChange?: () => void;
   error?: string;
   disabled?: boolean;
-  size?: 'medium' | 'small';
   style?: StyleProp<ViewStyle>;
   hint?: string;
   variant: 'radio' | 'checkbox' | 'switch';
@@ -40,7 +39,6 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
   error,
   onChange,
   disabled,
-  size = 'medium',
   label,
   hint,
   style,
@@ -54,7 +52,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
   controlCentered = false,
   ...rest
 }) => {
-  const styles = useStyles(size, variant, reverse, controlCentered);
+  const styles = useStyles(variant, reverse, controlCentered);
   const [containerHeight, setContainerHeight] = useState(0);
 
   return (
@@ -76,7 +74,6 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
                   isPressed={pressed}
                   checked={checked}
                   color={color}
-                  size={size}
                   disabled={disabled}
                 />
               ) : (
@@ -85,7 +82,6 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
                   checked={checked}
                   isPressed={pressed}
                   iconVariant={iconVariant}
-                  size={size}
                   color={color}
                   disabled={disabled}
                   indeterminate={indeterminate}
@@ -96,7 +92,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
             <View style={styles.textContainer}>
               {!!label && typeof label === 'string' ? (
                 <Text
-                  variant={size === 'small' ? 'body3' : 'body2'}
+                  variant="components1"
                   weight="regular"
                   style={[
                     styles.toggleInputText,
@@ -117,7 +113,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
                   style={styles.hint}
                   message={hint}
                   disabled={disabled}
-                  variant={size === 'small' ? 'body3' : 'body2'}
+                  variant="components2"
                 />
               )}
             </View>

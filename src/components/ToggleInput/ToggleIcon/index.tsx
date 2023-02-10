@@ -11,7 +11,6 @@ export interface ToggleIconProps extends ViewProps {
   isPressed: boolean;
   variant: 'radio' | 'checkbox';
   iconVariant?: IToggleInputProps['iconVariant'];
-  size?: IToggleInputProps['size'];
   color?: 'primary' | 'secondary';
   disabled?: boolean;
   error?: string;
@@ -23,7 +22,6 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
   checked,
   iconVariant = 'round',
   style,
-  size = 'medium',
   variant,
   disabled,
   indeterminate,
@@ -31,7 +29,7 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
   ...rest
 }) => {
   const {theme} = useTheme();
-  const styles = useStyles(size, color);
+  const styles = useStyles(color);
 
   const getIcon = () => {
     if (iconVariant === 'check') {

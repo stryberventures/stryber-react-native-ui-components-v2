@@ -45,12 +45,6 @@ Secondary.args = {
   hint: 'Hint message',
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  label: 'Small Switch',
-  size: 'small',
-};
-
 export const Error = Template.bind({});
 Error.args = {
   error: 'Error message',
@@ -75,7 +69,7 @@ FullWidthReverse.args = {
 
 const customContentStyle = StyleSheet.create({
   container: {display: 'flex', flexDirection: 'row'},
-  text: {color: 'blue', marginRight: 10},
+  text: {color: 'blue', marginRight: 10, marginTop: 3},
 });
 
 export const CustomContent = Template.bind({});

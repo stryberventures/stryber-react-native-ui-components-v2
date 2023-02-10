@@ -123,6 +123,7 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
           {checkboxes.map(props => (
             <Checkbox
               {...props}
+              checked={childCheckboxes[props.name]}
               key={props.name}
               style={styles.childCheckbox}
               color={color}
