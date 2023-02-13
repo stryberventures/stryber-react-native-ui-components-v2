@@ -10,38 +10,50 @@ export default createUseStyles(
     childPosition: IChildPosition,
     tooltipSize: ITooltipSize,
     withCloseButton?: boolean,
-    withText?: boolean,
+    withContent?: boolean,
+    withArrow?: boolean,
   ) => ({
     tooltip: {
       position: 'absolute',
       paddingVertical: 8,
       paddingHorizontal: 12,
       borderRadius: 8,
-      backgroundColor: theme.colors.background.white,
       zIndex: 0,
 
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
-        height: 0,
+        height: 1,
       },
-      shadowOpacity: 0.2,
-      shadowRadius: 8.3,
-      elevation: 10,
+      shadowOpacity: 0.22,
+      shadowRadius: withArrow ? 8.3 : 2.22,
+
+      elevation: withArrow ? 10 : 3,
       alignSelf: 'flex-start',
+    },
+    light: {
+      backgroundColor: theme.colors.background.extraLightGrey,
+    },
+    dark: {
+      backgroundColor: theme.colors.neutralGray.extraDark900,
     },
     titleWrapper: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      marginBottom: withText ? 5 : 0,
+      marginBottom: withContent ? 4 : 0,
     },
-    title: {
-      color: theme.colors.text.secondary,
-      marginBottom: withCloseButton ? 0 : 4,
+    lightTitle: {
+      color: theme.colors.neutralGray.extraDark900,
     },
-    text: {
-      color: theme.colors.text.tint,
+    darkTitle: {
+      color: theme.colors.neutralGray.light200,
+    },
+    lightText: {
+      color: theme.colors.neutralGray.dark600,
+    },
+    darkText: {
+      color: theme.colors.neutralGray.medium400,
     },
     overlay: {
       width: '100%',
