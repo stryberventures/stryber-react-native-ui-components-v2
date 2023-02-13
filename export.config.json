@@ -26,6 +26,7 @@
     "Dialog": "dialog",
     "Elevation": "elevation",
     "Tag": "tag",
-    "CheckboxGroup": "checkbox-group"
+    "CheckboxGroup": "checkbox-group",
+    "Divider": "divider"
   }
 }
