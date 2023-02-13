@@ -42,7 +42,7 @@ const Template: ComponentStory<typeof Tooltip> = args => {
   return (
     <Tooltip
       title="Tooltip title"
-      text="Tooltip inner text"
+      content="Tooltip inner text"
       wrapperStyle={styles.wrapper}
       {...args}
     >
@@ -111,4 +111,14 @@ BottomEnd.args = {
 export const WithCloseButton = Template.bind({});
 WithCloseButton.args = {
   withCloseButton: true,
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+  variant: 'dark',
+};
+
+export const WithArrow = Template.bind({});
+WithArrow.args = {
+  arrow: true,
 };

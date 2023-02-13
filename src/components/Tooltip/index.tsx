@@ -14,8 +14,10 @@ import TooltipCloseIcon from './TooltipCloseIcon';
 import Text from '../Text';
 
 export interface ITooltipProps extends ViewProps {
+  variant?: 'light' | 'dark';
+  arrow?: boolean;
   title?: string | ReactElement;
-  text?: string | ReactElement;
+  content?: string | ReactElement;
   position?:
     | 'top'
     | 'topStart'
@@ -52,8 +54,10 @@ export interface ITooltipSize {
 }
 
 const Tooltip: React.FC<ITooltipProps> = ({
+  variant = 'light',
+  arrow = false,
   title,
-  text,
+  content,
   position = 'top',
   children,
   wrapperStyle,
@@ -78,7 +82,13 @@ const Tooltip: React.FC<ITooltipProps> = ({
     width: 0,
     height: 0,
   });
-  const styles = useStyles(childPosition, tooltipSize, withCloseButton, !!text);
+  const styles = useStyles(
+    childPosition,
+    tooltipSize,
+    withCloseButton,
+    !!content,
+    arrow,
+  );
 
   const handleOpen = () => {
     childrenWrapperRef.current!.measure((x, y, width, height, pageX, pageY) => {
@@ -102,19 +112,19 @@ const Tooltip: React.FC<ITooltipProps> = ({
       >
         <Pressable style={styles.overlay} onPress={handleClose} />
         <View
-          style={[styles.tooltip, styles[position], style]}
+          style={[styles.tooltip, styles[position], styles[variant], style]}
           onLayout={({nativeEvent}) => {
             setTooltipSize(nativeEvent.layout);
           }}
           {...rest}
         >
-          <TooltipTriangle position={position} />
+          {arrow && <TooltipTriangle variant={variant} position={position} />}
           <View style={styles.titleWrapper}>
             {title && typeof title === 'string' ? (
               <Text
                 variant="components2"
                 weight="medium"
-                style={[styles.title, titleStyle]}
+                style={[styles[`${variant}Title`], titleStyle]}
               >
                 {title}
               </Text>
@@ -123,12 +133,15 @@ const Tooltip: React.FC<ITooltipProps> = ({
             )}
             {withCloseButton && <TooltipCloseIcon onPress={handleClose} />}
           </View>
-          {text && typeof text === 'string' ? (
-            <Text variant="components2" style={[styles.text, textStyle]}>
-              {text}
+          {content && typeof content === 'string' ? (
+            <Text
+              variant="components2"
+              style={[styles[`${variant}Text`], textStyle]}
+            >
+              {content}
             </Text>
           ) : (
-            text
+            content
           )}
         </View>
       </Modal>

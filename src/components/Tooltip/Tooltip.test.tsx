@@ -11,7 +11,7 @@ const childTestId = 'child-test';
 const TooltipWithChild = () => (
   <Tooltip
     title={tooltipTitle}
-    text={tooltipText}
+    content={tooltipText}
     wrapperStyle={{alignSelf: 'center'}}
     testID={tooltipTestId}
   >
