@@ -1,0 +1,78 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Core/Form/README" parameters={{
+  previewTabs: {
+    canvas: {hidden: true},
+  },
+  viewMode: 'docs',
+}} />
+
+## Installation
+
+Run in console:
+
+```
+yarn add @stryberventures/gaia-react-native.form
+```
+
+> ⚠️ Make sure that all needed peer dependencies are also installed ⚠️:
+
+```
+yarn add yup
+```
+
+## Usage
+
+Here example of simple form with email and password fields:
+
+```tsx
+<Form
+  initialValues={{
+    email: '',
+    password: '',
+  }}
+  validationSchema={yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+  })}
+  onSubmit={(formData, formActions) => console.log('onSubmit external', formData)} // Fires only when formData match `validationSchema`
+  onReset={(formData) => console.log('onReset external', formData)}
+  onChange={(formData, formActions) => console.log('onReset external', formData)} // See `formData` and `formActions` explanation below
+  ref={formRef} // Includes all `formActions` methods
+>
+  <Input
+      name="email"
+      placeholder="Email"
+      label="Email"
+  />
+  <PasswordInput
+      name="password"
+      placeholder="Password"
+      label="Password"
+  />
+  <Button type="submit">Submit</Button> // Use `submit` button type to run `onSubmit`
+  <Button type="reset">Reset</Button> // Use `reset` button type to run `onReset` and reset form values to initialValues
+</Form>
+```
+
+* `formData`: object that includes all values from form fields. Each key in this object = field's name property. From example above:
+```ts
+formData = {
+  email: '', // Value from Input with name="email"
+  password: '', // Value from Input with name="password"
+}
+```
+
+* `formActions`: object with `{submit, reset, setErrors, isValid}` methods that available as second argument in `onSubmit`, `onChange`, `useFormContext` and inside Form's `ref` object
+
+### Examples how you can use `formActions`:
+
+* You can use `isValid` with `onChange` to disable `submit` button until `formData` match `validationSchema`. [See example here](?path=/story/core-form--disabled-submit-button)
+
+* You can use `setErrors` with `onSubmit` to set errors that come from server. [See example here](?path=/story/core-form--error-on-submit)
+
+* You can use `reset` with `onSubmit` to reset form after submission. [See example here](?path=/story/core-form--reset-on-submit)
+
+* You can use all `formActions` from ref object to externally control the form. [See example here](?path=/story/core-form--external-control)
+
+* You can use all `formActions` from `useFormContext`. [See example in our Button component](https://github.com/stryberventures/stryber-react-native-ui-components-v2/blob/dev/src/components/Button/index.tsx#L53)

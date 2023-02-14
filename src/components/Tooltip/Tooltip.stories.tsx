@@ -9,7 +9,7 @@ import useStyles from './Tooltip.styles.stories';
 const webPadding = {paddingTop: 70};
 
 export default {
-  title: 'Tooltip',
+  title: 'Components/Tooltip',
   component: Tooltip,
   decorators: [
     Platform.OS === 'web' ? Story => Story() : CenterView,

@@ -8,7 +8,7 @@ import * as Icons from '../Icons';
 import pkg from './package.json';
 
 export default {
-  title: 'Checkbox',
+  title: 'Components/Checkbox',
   component: Checkbox,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

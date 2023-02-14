@@ -6,7 +6,7 @@ import {Platform} from 'react-native';
 import pkg from './package.json';
 
 export default {
-  title: 'NumberInput',
+  title: 'Components/NumberInput',
   component: NumberInput,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

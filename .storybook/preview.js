@@ -22,8 +22,11 @@ export const parameters = {
       const [__, nextMeta] = next
 
       return anysort(previousMeta.kind, nextMeta.kind, [
-        'Core/Theme',
-        'Core/Form',
+        'Overview/Intro',
+        'Overview/Create a Story',
+        'Overview/**',
+        'Components/**',
+        'Core/**/README',
         'Core/Components Selector',
         'Modules/Navigation/Intro',
         'Modules/Navigation/**/README'

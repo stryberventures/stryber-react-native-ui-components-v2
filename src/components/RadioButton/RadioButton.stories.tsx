@@ -10,7 +10,7 @@ import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
 
 export default {
-  title: 'RadioButton',
+  title: 'Components/RadioButton',
   component: RadioButton,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

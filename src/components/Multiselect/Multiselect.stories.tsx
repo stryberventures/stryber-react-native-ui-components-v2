@@ -15,7 +15,7 @@ const options = [
 ];
 
 export default {
-  title: 'MultiSelect',
+  title: 'Components/MultiSelect',
   component: Multiselect,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {

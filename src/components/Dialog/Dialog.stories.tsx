@@ -7,7 +7,7 @@ import CenterView from '../../storybook/preview/CenterView';
 import pkg from './package.json';
 
 export default {
-  title: 'Dialog',
+  title: 'Components/Dialog',
   component: Dialog,
   decorators: [CenterView],
   parameters: {

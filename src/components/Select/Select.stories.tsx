@@ -11,7 +11,7 @@ const options = [
 ];
 
 export default {
-  title: 'Select',
+  title: 'Components/Select',
   component: Select,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {

@@ -9,7 +9,7 @@ import {socialVariants as socialVariantsObj} from './IconList/SocialIcon';
 import useStyles from './Icons.styles.stories';
 
 export default {
-  title: 'Icons',
+  title: 'Components/Icons',
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,

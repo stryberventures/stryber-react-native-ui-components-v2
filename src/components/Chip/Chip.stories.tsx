@@ -7,7 +7,7 @@ import {CheckIcon} from '../Icons';
 import pkg from './package.json';
 
 export default {
-  title: 'Chip',
+  title: 'Components/Chip',
   component: Chip,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
