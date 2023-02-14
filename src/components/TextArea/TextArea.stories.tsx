@@ -6,7 +6,7 @@ import {Platform} from 'react-native';
 import pkg from './package.json';
 
 export default {
-  title: 'TextArea',
+  title: 'Components/TextArea',
   component: TextArea,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

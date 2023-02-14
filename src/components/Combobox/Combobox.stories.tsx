@@ -19,7 +19,7 @@ const cities: ISelectOption[] = [
 ];
 
 export default {
-  title: 'Combobox',
+  title: 'Components/Combobox',
   component: Combobox,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

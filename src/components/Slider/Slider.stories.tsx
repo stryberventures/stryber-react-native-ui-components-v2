@@ -11,7 +11,7 @@ import ControlledSlider from '../../storybook/preview/ControlledSlider';
 const webPadding = {paddingTop: 50};
 
 export default {
-  title: 'Slider',
+  title: 'Components/Slider',
   component: Slider,
   decorators: [
     Platform.OS === 'web' ? Story => Story() : CenterView,

@@ -13,7 +13,7 @@ const rightContent = <Text>01</Text>;
 const listItems: IListItem[] = new Array(4).fill({title});
 
 export default {
-  title: 'List',
+  title: 'Components/List',
   component: List,
   parameters: {
     pkg,

@@ -8,7 +8,7 @@ import {Text, View} from 'react-native';
 import pkg from './package.json';
 
 export default {
-  title: 'Switch',
+  title: 'Components/Switch',
   component: Switch,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

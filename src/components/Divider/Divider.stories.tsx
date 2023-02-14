@@ -9,7 +9,7 @@ import * as Icons from '../Icons';
 import useStyles from './Divider.styles.stories';
 
 export default {
-  title: 'Divider',
+  title: 'Components/Divider',
   component: Divider,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {

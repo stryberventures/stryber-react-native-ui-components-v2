@@ -6,7 +6,7 @@ import {Platform} from 'react-native';
 import pkg from './package.json';
 
 export default {
-  title: 'Input',
+  title: 'Components/Input',
   component: Input,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

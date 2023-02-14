@@ -6,7 +6,7 @@ import {Platform} from 'react-native';
 import pkg from './package.json';
 
 export default {
-  title: 'PasswordInput',
+  title: 'Components/PasswordInput',
   component: PasswordInput,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

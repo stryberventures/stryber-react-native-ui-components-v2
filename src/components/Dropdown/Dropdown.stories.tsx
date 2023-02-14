@@ -18,7 +18,7 @@ const DropdownContent = () => (
 );
 
 export default {
-  title: 'Dropdown',
+  title: 'Components/Dropdown',
   component: Dropdown,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {

@@ -7,7 +7,7 @@ import pkg from './package.json';
 import useStyles from './Text.styles.stories';
 
 export default {
-  title: 'Text',
+  title: 'Components/Text',
   component: Text,
   decorators:
     Platform.OS === 'web' ? [Story => <View>{Story()}</View>] : [CenterView],

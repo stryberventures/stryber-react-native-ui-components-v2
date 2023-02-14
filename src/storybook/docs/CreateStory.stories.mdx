@@ -1,0 +1,45 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Overview/Create a Story" parameters={{
+  previewTabs: {
+    canvas: {hidden: true},
+  },
+  viewMode: 'docs',
+}} />
+
+## Intro
+
+We are using `storybook v6` and you can check how to create a story on official storybook docs page:
+
+[Official docs](https://storybook.js.org/docs/react/writing-stories/introduction)
+
+## RN specific build
+
+In this repository we are using both: storybook for RN and for web(with `react-native-web` package)
+
+Some components may look a bit different in web. To adjust components in web storybook you can use:
+```ts
+if (Platform.OS === 'web') {
+  // Your code for web here
+}
+```
+
+⚠️ But remember that web version exists just for quick overview of components and shouldn't be 100% accurate ⚠️
+
+## `Yarn install` addon
+
+We created custom storybook addon to make it easier for devs to install our components. To use this addon in your component's story you just need to add `package.json` as `pkg` parameter in your story like this:
+
+```ts
+// Import `package.json` 👇
+import pkg from './package.json';
+
+export default {
+  title: 'Button',
+  component: Button,
+  parameters: {
+// Add it as story's parameter 👇
+    pkg,
+  },
+} as ComponentMeta<typeof Button>;
+```

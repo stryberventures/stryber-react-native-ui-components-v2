@@ -8,7 +8,7 @@ import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
 
 export default {
-  title: 'TextLink',
+  title: 'Components/TextLink',
   component: TextLink,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {

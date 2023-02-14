@@ -8,7 +8,7 @@ import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
 
 export default {
-  title: 'CheckboxGroup',
+  title: 'Components/CheckboxGroup',
   component: CheckboxGroup,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {

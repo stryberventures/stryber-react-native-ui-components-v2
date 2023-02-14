@@ -14,7 +14,7 @@ const Card = () => {
 };
 
 export default {
-  title: 'Elevation',
+  title: 'Components/Elevation',
   component: Elevation,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {

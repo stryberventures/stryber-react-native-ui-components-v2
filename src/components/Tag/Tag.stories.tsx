@@ -9,7 +9,7 @@ import Divider from '../../storybook/preview/Divider';
 import {Alert} from 'react-native';
 import Button from '../Button';
 export default {
-  title: 'Tag',
+  title: 'Components/Tag',
   component: Tag,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   args: {

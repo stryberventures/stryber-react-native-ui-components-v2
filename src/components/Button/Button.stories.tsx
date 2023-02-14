@@ -7,7 +7,7 @@ import {Platform, View, ViewStyle} from 'react-native';
 import pkg from './package.json';
 
 export default {
-  title: 'Button',
+  title: 'Components/Button',
   component: Button,
   argTypes: {
     onPress: {action: 'pressed the button'},
