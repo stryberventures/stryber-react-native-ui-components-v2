@@ -39,7 +39,9 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
+const Template: ComponentStory<typeof Input> = args => (
+  <Input variant="floatingLabel" {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {

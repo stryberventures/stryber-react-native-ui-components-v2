@@ -39,9 +39,7 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = args => (
-  <Input variant="labelOutside" {...args} />
-);
+const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

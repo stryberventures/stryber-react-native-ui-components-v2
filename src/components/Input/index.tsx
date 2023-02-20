@@ -49,7 +49,7 @@ const Input = forwardRef<TextInput, IInputProps>(
   (
     {
       name = 'input',
-      variant = 'floatingLabel',
+      variant = 'labelOutside',
       onChangeText,
       onFocus,
       onBlur,
