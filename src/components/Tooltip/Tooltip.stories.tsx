@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Tooltip from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
 import useStyles from './Tooltip.styles.stories';
@@ -12,7 +12,7 @@ export default {
   title: 'Components/Tooltip',
   component: Tooltip,
   decorators: [
-    Platform.OS === 'web' ? Story => Story() : CenterView,
+    Platform.OS === 'web' ? Story => Story() : CenterViewDecorator,
     Platform.OS === 'web'
       ? Story => <View style={webPadding}>{Story()}</View>
       : Story => <Story />,

@@ -1,14 +1,19 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Input from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import * as Icons from '../Icons';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import pkg from './package.json';
+import DismissKeyboardDecorator from '../../storybook/preview/DismissKeyboardDecorator';
 
 export default {
-  title: 'Components/Input',
+  title: 'Components/Input/FloatingLabel',
   component: Input,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators:
+    Platform.OS === 'web'
+      ? null
+      : [CenterViewDecorator, DismissKeyboardDecorator],
   argTypes: {
     error: {control: 'text'},
   },
@@ -23,6 +28,7 @@ export default {
         'inputStyle',
         'hintStyle',
         'errorStyle',
+        'leftContent',
         'rightContent',
         'mask',
         'prefixStyle',
@@ -73,6 +79,7 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Disabled',
   placeholder: 'Disabled',
+  hint: 'Test hint',
   disabled: true,
 };
 
@@ -98,7 +105,9 @@ ReadOnly.args = {
   editable: false,
 };
 
-export const NoLabel = Template.bind({});
-NoLabel.args = {
-  placeholder: 'No Label',
+export const RightAndLeftContent = Template.bind({});
+RightAndLeftContent.args = {
+  label: 'With icons',
+  leftContent: <Icons.CreditCardIcon />,
+  rightContent: <Icons.InfoIcon />,
 };

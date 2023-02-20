@@ -5,7 +5,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 
 import Input from '../Input';
 import PasswordInput from '../PasswordInput';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import Form, {IFormRef} from '.';
 import Button from '../Button';
@@ -26,7 +26,7 @@ import useStyles from './Form.styles.stories';
 export default {
   title: 'Core/Form',
   component: Form,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   parameters: {
     pkg,
     controls: {

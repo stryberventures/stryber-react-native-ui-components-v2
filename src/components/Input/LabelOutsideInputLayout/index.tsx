@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import useStyles from './styles';
 import {
   Pressable,
@@ -12,29 +12,28 @@ import Text from '../../Text';
 import HintMessage from '../../HintMessage';
 import ErrorMessage from '../../ErrorMessage';
 
-export interface IBaseInputLayoutProps extends PressableProps {
+export interface ILabelOutsideInputLayoutProps extends PressableProps {
   label?: string;
   isFocused?: boolean;
   style?: StyleProp<ViewStyle>;
+  inputWrapperStyle?: StyleProp<ViewStyle>;
   hintStyle?: StyleProp<TextStyle>;
-  errorStyle?: StyleProp<TextStyle>;
-  wrapperStyle?: StyleProp<ViewStyle>;
+  errorStyle?: StyleProp<ViewStyle>;
   color?: 'primary' | 'secondary';
   error?: string;
   disabled?: boolean;
   hint?: string;
+  leftContent?: React.ReactNode;
   rightContent?: React.ReactNode;
   maxValueLength?: number;
   currentValueLength?: number;
   showLength?: boolean;
 }
 
-export interface IInputSize {
-  width: number;
-  height: number;
-}
-
-const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
+const LabelOutsideInputLayout = React.forwardRef<
+  View,
+  ILabelOutsideInputLayoutProps
+>(
   (
     {
       children,
@@ -42,10 +41,11 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       isFocused,
       error,
       style,
-      wrapperStyle,
+      inputWrapperStyle,
       disabled,
       hint,
       color = 'primary',
+      leftContent,
       rightContent,
       currentValueLength = 0,
       maxValueLength,
@@ -56,51 +56,29 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
     },
     ref,
   ) => {
-    const [inputSize, setInputSize] = useState<IInputSize>({
-      width: 0,
-      height: 0,
-    });
-    const styles = useStyles(inputSize, color);
+    const styles = useStyles(color, isFocused, !!leftContent, !!rightContent);
     return (
-      <View style={style}>
-        {isFocused && (
-          <View
-            style={[
-              styles.focusedOutline,
-              !!error && styles.errorFocusedOutline,
-            ]}
-          />
+      <Pressable disabled={disabled} ref={ref} style={style} {...rest}>
+        {label && (
+          <Text
+            variant="components2"
+            style={[styles.label, disabled && styles.disabledLabel]}
+          >
+            {label}
+          </Text>
         )}
-        <Pressable
+        <View
           style={[
-            styles.baseInput,
-            isFocused && styles.baseInputFocused,
+            styles.input,
+            isFocused && styles.inputFocused,
             !!error && styles.error,
-            disabled && styles.disabled,
-            !label && styles.noLabel,
-            wrapperStyle,
+            inputWrapperStyle,
           ]}
-          disabled={disabled}
-          onLayout={e => {
-            const {layout} = e.nativeEvent;
-            setInputSize(layout);
-          }}
-          ref={ref}
-          {...rest}
         >
-          <View style={styles.mainContent}>
-            {label && (
-              <Text
-                variant="components2"
-                style={[styles.label, disabled && styles.disabledLabel]}
-              >
-                {label}
-              </Text>
-            )}
-            {children}
-          </View>
+          {leftContent}
+          <View style={styles.mainContent}>{children}</View>
           {rightContent}
-        </Pressable>
+        </View>
         {!!hint && <HintMessage message={hint} disabled={disabled} />}
         {!!showLength && (
           <HintMessage
@@ -114,9 +92,9 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           />
         )}
         {!!error && <ErrorMessage error={error} style={errorStyle} />}
-      </View>
+      </Pressable>
     );
   },
 );
 
-export default BaseInputLayout;
+export default LabelOutsideInputLayout;

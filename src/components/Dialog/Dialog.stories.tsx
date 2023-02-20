@@ -3,13 +3,13 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Dialog, {IDialogProps} from '.';
 import Button from '../Button';
 import Text from '../Text';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import pkg from './package.json';
 
 export default {
   title: 'Components/Dialog',
   component: Dialog,
-  decorators: [CenterView],
+  decorators: [CenterViewDecorator],
   parameters: {
     pkg,
     controls: {

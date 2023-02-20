@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Tag, {TagGroup} from '.';
 import * as Icons from '../Icons';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View, ViewStyle} from 'react-native';
 import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
@@ -11,7 +11,7 @@ import Button from '../Button';
 export default {
   title: 'Components/Tag',
   component: Tag,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   args: {
     children: 'Tag Label',
   },

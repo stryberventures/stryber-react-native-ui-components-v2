@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Text from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
 import useStyles from './Text.styles.stories';
@@ -10,7 +10,9 @@ export default {
   title: 'Components/Text',
   component: Text,
   decorators:
-    Platform.OS === 'web' ? [Story => <View>{Story()}</View>] : [CenterView],
+    Platform.OS === 'web'
+      ? [Story => <View>{Story()}</View>]
+      : [CenterViewDecorator],
   parameters: {
     pkg,
   },
