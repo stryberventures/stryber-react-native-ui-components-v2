@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {StoryFnReactReturnType} from '@storybook/react-native';
 
-const CenterView = (Story: () => StoryFnReactReturnType) => {
+const CenterViewDecorator = (Story: () => StoryFnReactReturnType) => {
   return (
     <View
       // eslint-disable-next-line react-native/no-inline-styles
@@ -17,4 +17,4 @@ const CenterView = (Story: () => StoryFnReactReturnType) => {
   );
 };
 
-export default CenterView;
+export default CenterViewDecorator;

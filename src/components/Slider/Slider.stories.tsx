@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 
 import Slider from './index';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {CheckIcon, InfoIcon} from '../Icons';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
@@ -14,7 +14,7 @@ export default {
   title: 'Components/Slider',
   component: Slider,
   decorators: [
-    Platform.OS === 'web' ? Story => Story() : CenterView,
+    Platform.OS === 'web' ? Story => Story() : CenterViewDecorator,
     Platform.OS === 'web'
       ? Story => <View style={webPadding}>{Story()}</View>
       : Story => <Story />,

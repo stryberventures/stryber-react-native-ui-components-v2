@@ -8,13 +8,15 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import BaseInputLayout, {IBaseInputLayoutProps} from '../Input/BaseInputLayout';
+import LabelOutsideInputLayout, {
+  ILabelOutsideInputLayoutProps,
+} from '../Input/LabelOutsideInputLayout';
 import {ArrowDownIconDeprecated} from '../Icons';
 import {useTheme} from '../Theme';
 import Text from '../Text';
 import {validateInputValueLength} from '../../utils';
 
-export interface IDropdownProps extends IBaseInputLayoutProps {
+export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
   value?: string;
   placeholder?: string;
   dropdownStyle?: StyleProp<ViewStyle>;
@@ -85,7 +87,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     }));
 
     return (
-      <BaseInputLayout
+      <LabelOutsideInputLayout
         isFocused={visible}
         ref={dropdownInputRef}
         onPress={handleOpen}
@@ -113,7 +115,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         >
           {(!!value && validateInputValueLength(value)) || placeholder}
         </Text>
-      </BaseInputLayout>
+      </LabelOutsideInputLayout>
     );
   },
 );

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import CheckboxGroup from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import Text from '../Text';
 import pkg from './package.json';
@@ -10,7 +10,7 @@ import Divider from '../../storybook/preview/Divider';
 export default {
   title: 'Components/CheckboxGroup',
   component: CheckboxGroup,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   argTypes: {
     label: {control: 'text'},
   },

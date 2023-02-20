@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import RadioButton from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, StyleSheet} from 'react-native';
 import Form from '../Form';
 import {Text, View} from 'react-native';
@@ -12,7 +12,7 @@ import Divider from '../../storybook/preview/Divider';
 export default {
   title: 'Components/RadioButton',
   component: RadioButton,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   argTypes: {
     label: {control: 'text'},
   },

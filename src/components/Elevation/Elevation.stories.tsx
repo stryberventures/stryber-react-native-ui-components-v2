@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Elevation from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
 import useStoryStyles from './Elevation.styles.stories';
@@ -16,7 +16,7 @@ const Card = () => {
 export default {
   title: 'Components/Elevation',
   component: Elevation,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   parameters: {
     pkg,
     controls: {

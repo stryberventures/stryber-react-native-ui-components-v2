@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Combobox from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import pkg from './package.json';
 import {ISelectOption} from '../Select';
@@ -21,7 +21,7 @@ const cities: ISelectOption[] = [
 export default {
   title: 'Components/Combobox',
   component: Combobox,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   argTypes: {
     error: {control: 'text'},
   },

@@ -16,7 +16,8 @@ import {
   View,
 } from 'react-native';
 import {useFormContext} from '../Form';
-import BaseInputLayout, {IBaseInputLayoutProps} from './BaseInputLayout';
+import LabelOutsideInputLayout from './LabelOutsideInputLayout';
+import FloatingLabelInputLayout from './FloatingLabelInputLayout';
 import {useTheme} from '../Theme';
 import Text from '../Text';
 import {applyDigitMask} from './utils';
@@ -24,18 +25,20 @@ import {applyDigitMask} from './utils';
 export interface IInputProps extends TextInputProps {
   name?: string;
   label?: string;
+  variant?: 'floatingLabel' | 'labelOutside';
   clearFormValueOnUnmount?: boolean;
   hint?: string;
   error?: string | boolean;
   style?: StyleProp<ViewStyle>;
   inputWrapperStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
-  hintStyle?: IBaseInputLayoutProps['hintStyle'];
-  errorStyle?: IBaseInputLayoutProps['errorStyle'];
+  hintStyle?: StyleProp<TextStyle>;
+  errorStyle?: StyleProp<ViewStyle>;
   disabled?: boolean;
   controlled?: boolean;
-  rightContent?: IBaseInputLayoutProps['rightContent'];
-  color?: IBaseInputLayoutProps['color'];
+  rightContent?: React.ReactNode;
+  leftContent?: React.ReactNode;
+  color?: 'primary' | 'secondary';
   mask?: string;
   prefix?: string;
   prefixStyle?: StyleProp<TextStyle>;
@@ -46,6 +49,7 @@ const Input = forwardRef<TextInput, IInputProps>(
   (
     {
       name = 'input',
+      variant = 'labelOutside',
       onChangeText,
       onFocus,
       onBlur,
@@ -63,11 +67,13 @@ const Input = forwardRef<TextInput, IInputProps>(
       controlled,
       maxLength,
       rightContent,
+      leftContent,
       color,
       mask,
       prefix,
       prefixStyle,
       showLength,
+      placeholder,
       ...rest
     },
     ref,
@@ -95,6 +101,17 @@ const Input = forwardRef<TextInput, IInputProps>(
     const [internalValue, setInternalValue] = React.useState<string>(
       mask && initValue ? applyDigitMask(initValue, mask) : initValue,
     );
+
+    const getLayoutComponent = () => {
+      switch (variant) {
+        case 'floatingLabel':
+          return FloatingLabelInputLayout;
+        case 'labelOutside':
+          return LabelOutsideInputLayout;
+        default:
+          return FloatingLabelInputLayout;
+      }
+    };
 
     /** Wrappers to merge form and props methods */
     const onChangeTextWrapper = (text: string) => {
@@ -133,14 +150,16 @@ const Input = forwardRef<TextInput, IInputProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const LayoutComponent = getLayoutComponent();
+
     return (
-      <BaseInputLayout
+      <LayoutComponent
         style={style}
         label={label}
         isFocused={isFocused}
         onPress={handleFocus}
         error={errorMessage}
-        wrapperStyle={inputWrapperStyle}
+        inputWrapperStyle={inputWrapperStyle}
         disabled={disabled}
         hint={hint}
         maxValueLength={maxLength}
@@ -150,10 +169,12 @@ const Input = forwardRef<TextInput, IInputProps>(
         color={color}
         hintStyle={hintStyle}
         errorStyle={errorStyle}
+        isEmpty={controlled ? !value : !internalValue}
+        leftContent={leftContent}
       >
         <View style={styles.inputContainer}>
           {prefix && (
-            <Text variant="components2" style={[styles.prefix, prefixStyle]}>
+            <Text variant="components1" style={[styles.prefix, prefixStyle]}>
               {prefix}
             </Text>
           )}
@@ -166,13 +187,16 @@ const Input = forwardRef<TextInput, IInputProps>(
             placeholderTextColor={
               disabled ? theme.colors.text.disabled : theme.colors.text.tint
             }
+            placeholder={
+              variant === 'floatingLabel' && !isFocused ? '' : placeholder
+            }
             ref={inputRef}
             maxLength={mask?.length || maxLength}
             editable={!disabled}
             {...rest}
           />
         </View>
-      </BaseInputLayout>
+      </LayoutComponent>
     );
   },
 );

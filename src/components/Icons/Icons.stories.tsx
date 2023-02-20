@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Icons from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View, ScrollView} from 'react-native';
 import Text from '../Text';
 import pkg from './package.json';
@@ -10,7 +10,7 @@ import useStyles from './Icons.styles.stories';
 
 export default {
   title: 'Components/Icons',
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   parameters: {
     pkg,
   },
