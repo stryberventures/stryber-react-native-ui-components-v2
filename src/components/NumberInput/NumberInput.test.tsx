@@ -7,7 +7,11 @@ it('renders with label and placeholder', () => {
   const label = 'Number';
   const placeholder = 'NumberInput';
   const {getByText, getByPlaceholderText} = render(
-    <NumberInput label={label} placeholder={placeholder} />,
+    <NumberInput
+      variant="labelOutside"
+      label={label}
+      placeholder={placeholder}
+    />,
   );
 
   getByText(label);

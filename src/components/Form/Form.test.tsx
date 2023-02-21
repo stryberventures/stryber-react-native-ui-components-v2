@@ -11,6 +11,7 @@ const resetButtonTestId = 'Button.Reset';
 const Template: FC<IFormProps> = props => (
   <Form {...props}>
     <Input
+      variant="labelOutside"
       name="email"
       placeholder="Email"
       label="Email"

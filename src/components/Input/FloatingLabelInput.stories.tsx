@@ -39,9 +39,7 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = args => (
-  <Input variant="floatingLabel" {...args} />
-);
+const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -112,4 +110,11 @@ RightAndLeftContent.args = {
   label: 'With icons',
   leftContent: <Icons.CreditCardIcon />,
   rightContent: <Icons.InfoIcon />,
+};
+
+export const WithRemoveButton = Template.bind({});
+WithRemoveButton.args = {
+  label: 'With remove button',
+  value: 'Test value',
+  withRemoveButton: true,
 };

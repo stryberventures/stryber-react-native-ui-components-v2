@@ -71,7 +71,7 @@ const FloatingLabelInputLayout = React.forwardRef<
     useEffect(() => {
       animateLabel();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isFocused]);
+    }, [isFocused, isEmpty]);
 
     const translateYLabel = labelAnim.interpolate({
       inputRange: [0, 1],
