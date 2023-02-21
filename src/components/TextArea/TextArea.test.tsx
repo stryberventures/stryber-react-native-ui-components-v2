@@ -7,7 +7,7 @@ it('renders default elements', () => {
   const label = 'Text';
   const placeholder = 'Type your text';
   const {getByText, getByPlaceholderText} = render(
-    <TextArea label={label} placeholder={placeholder} />,
+    <TextArea variant="labelOutside" label={label} placeholder={placeholder} />,
   );
 
   getByText(label);

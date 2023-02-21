@@ -1,11 +1,19 @@
 import React from 'react';
 import useStyles from './styles';
 import {Pressable, PressableProps} from 'react-native';
+import {CountIcon} from '../../Icons';
 
-interface ICounterIconProps extends PressableProps {}
+export interface ICounterIconProps extends PressableProps {
+  variant?: 'plus' | 'minus';
+  color?: 'primary' | 'secondary';
+}
 
-const CounterIcon: React.FC<ICounterIconProps> = ({children, ...rest}) => {
-  const styles = useStyles();
+const CounterIcon: React.FC<ICounterIconProps> = ({
+  variant = 'minus',
+  color = 'primary',
+  ...rest
+}) => {
+  const styles = useStyles(color);
   return (
     <Pressable
       style={({pressed}) => [
@@ -14,7 +22,7 @@ const CounterIcon: React.FC<ICounterIconProps> = ({children, ...rest}) => {
       ]}
       {...rest}
     >
-      {children}
+      <CountIcon variant={variant} width={16} height={16} />
     </Pressable>
   );
 };

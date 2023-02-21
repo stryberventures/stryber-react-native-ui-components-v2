@@ -1,14 +1,15 @@
 import {createUseStyles} from '../../Theme';
+import {ICounterIconProps} from './index';
 
-export default createUseStyles(theme => ({
+export default createUseStyles((theme, color: ICounterIconProps['color']) => ({
   container: {
-    width: 28,
-    height: 28,
+    width: 24,
+    height: 24,
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
   containerPressed: {
-    backgroundColor: theme.colors.neutralGray.light100,
+    backgroundColor: theme.colors[color!].light100,
   },
 }));

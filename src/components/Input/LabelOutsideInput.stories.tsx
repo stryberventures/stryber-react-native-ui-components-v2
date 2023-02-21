@@ -39,7 +39,9 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
+const Template: ComponentStory<typeof Input> = args => (
+  <Input variant="labelOutside" {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -116,4 +118,11 @@ RightAndLeftContent.args = {
 export const NoLabel = Template.bind({});
 NoLabel.args = {
   placeholder: 'No Label',
+};
+
+export const WithRemoveButton = Template.bind({});
+WithRemoveButton.args = {
+  label: 'With remove button',
+  value: 'Test value',
+  withRemoveButton: true,
 };

@@ -7,7 +7,7 @@ it('renders with placeholder', () => {
   const label = 'Email';
   const placeholder = 'Type your email';
   const {getByText, getByPlaceholderText} = render(
-    <Input label={label} placeholder={placeholder} />,
+    <Input variant="labelOutside" label={label} placeholder={placeholder} />,
   );
 
   getByText(label);

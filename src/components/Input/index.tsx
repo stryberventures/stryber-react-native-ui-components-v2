@@ -14,12 +14,14 @@ import {
   ViewStyle,
   TextStyle,
   View,
+  Pressable,
 } from 'react-native';
 import {useFormContext} from '../Form';
 import LabelOutsideInputLayout from './LabelOutsideInputLayout';
 import FloatingLabelInputLayout from './FloatingLabelInputLayout';
 import {useTheme} from '../Theme';
 import Text from '../Text';
+import {CloseCircleIcon} from '../Icons';
 import {applyDigitMask} from './utils';
 
 export interface IInputProps extends TextInputProps {
@@ -42,14 +44,18 @@ export interface IInputProps extends TextInputProps {
   mask?: string;
   prefix?: string;
   prefixStyle?: StyleProp<TextStyle>;
+  postfix?: string;
+  postfixStyle?: StyleProp<TextStyle>;
   showLength?: boolean;
+  withRemoveButton?: boolean;
+  onRemove?: () => void;
 }
 
 const Input = forwardRef<TextInput, IInputProps>(
   (
     {
       name = 'input',
-      variant = 'labelOutside',
+      variant = 'floatingLabel',
       onChangeText,
       onFocus,
       onBlur,
@@ -72,8 +78,12 @@ const Input = forwardRef<TextInput, IInputProps>(
       mask,
       prefix,
       prefixStyle,
+      postfix,
+      postfixStyle,
       showLength,
       placeholder,
+      withRemoveButton,
+      onRemove,
       ...rest
     },
     ref,
@@ -101,6 +111,7 @@ const Input = forwardRef<TextInput, IInputProps>(
     const [internalValue, setInternalValue] = React.useState<string>(
       mask && initValue ? applyDigitMask(initValue, mask) : initValue,
     );
+    const isRemoveButtonVisible = controlled ? !!value : !!internalValue;
 
     const getLayoutComponent = () => {
       switch (variant) {
@@ -142,6 +153,11 @@ const Input = forwardRef<TextInput, IInputProps>(
       onBlur && onBlur(e);
     };
 
+    const handleRemoveValue = () => {
+      onChangeTextWrapper('');
+      onRemove && onRemove();
+    };
+
     useEffect(() => {
       updateFormValue(name, internalValue, true);
       return () => {
@@ -165,7 +181,27 @@ const Input = forwardRef<TextInput, IInputProps>(
         maxValueLength={maxLength}
         showLength={showLength}
         currentValueLength={controlled ? value?.length : internalValue?.length}
-        rightContent={rightContent}
+        rightContent={
+          withRemoveButton ? (
+            <>
+              {isRemoveButtonVisible && (
+                <Pressable
+                  style={!!rightContent && styles.removeButton}
+                  onPress={handleRemoveValue}
+                  disabled={disabled}
+                >
+                  <CloseCircleIcon
+                    variant="filled"
+                    fill={theme.colors.text.secondary}
+                  />
+                </Pressable>
+              )}
+              {rightContent}
+            </>
+          ) : (
+            rightContent
+          )
+        }
         color={color}
         hintStyle={hintStyle}
         errorStyle={errorStyle}
@@ -174,7 +210,10 @@ const Input = forwardRef<TextInput, IInputProps>(
       >
         <View style={styles.inputContainer}>
           {prefix && (
-            <Text variant="components1" style={[styles.prefix, prefixStyle]}>
+            <Text
+              variant="components1"
+              style={[styles.additionalText, prefixStyle]}
+            >
               {prefix}
             </Text>
           )}
@@ -195,6 +234,14 @@ const Input = forwardRef<TextInput, IInputProps>(
             editable={!disabled}
             {...rest}
           />
+          {postfix && (
+            <Text
+              variant="components1"
+              style={[styles.additionalText, postfixStyle]}
+            >
+              {postfix}
+            </Text>
+          )}
         </View>
       </LayoutComponent>
     );

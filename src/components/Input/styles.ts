@@ -17,9 +17,12 @@ export default createUseStyles(theme => ({
     display: 'flex',
     flexDirection: 'row',
   },
-  prefix: {
+  additionalText: {
     color: theme.colors.text.headline,
     alignSelf: 'center',
     lineHeight: 24,
+  },
+  removeButton: {
+    marginRight: theme.spacing['8'],
   },
 }));

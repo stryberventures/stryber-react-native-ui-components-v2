@@ -68,3 +68,5 @@ export const createUseStyles = <
 
   return useStyles;
 };
+
+export {defaultTheme};
