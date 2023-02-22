@@ -4,11 +4,15 @@ import TextArea from '.';
 import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import pkg from './package.json';
+import DismissKeyboardDecorator from '../../storybook/preview/DismissKeyboardDecorator';
 
 export default {
-  title: 'Components/TextArea',
+  title: 'Components/TextArea/LabelOutside',
   component: TextArea,
-  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
+  decorators:
+    Platform.OS === 'web'
+      ? null
+      : [CenterViewDecorator, DismissKeyboardDecorator],
   argTypes: {
     error: {control: 'text'},
   },
@@ -33,7 +37,7 @@ export default {
 } as ComponentMeta<typeof TextArea>;
 
 const Template: ComponentStory<typeof TextArea> = args => (
-  <TextArea {...args} />
+  <TextArea variant="labelOutside" {...args} />
 );
 
 export const Primary = Template.bind({});
