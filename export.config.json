@@ -27,6 +27,7 @@
     "Elevation": "elevation",
     "Tag": "tag",
     "CheckboxGroup": "checkbox-group",
-    "Divider": "divider"
+    "Divider": "divider",
+    "SearchInput": "search-input"
   }
 }
