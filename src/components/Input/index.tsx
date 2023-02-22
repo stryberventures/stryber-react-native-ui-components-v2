@@ -192,7 +192,7 @@ const Input = forwardRef<TextInput, IInputProps>(
                 >
                   <CloseCircleIcon
                     variant="filled"
-                    fill={theme.colors.text.secondary}
+                    fill={theme.colors.neutralGray.main500}
                   />
                 </Pressable>
               )}
