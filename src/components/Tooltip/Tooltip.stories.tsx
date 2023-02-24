@@ -19,7 +19,7 @@ export default {
   ],
   argTypes: {
     title: {control: 'text'},
-    text: {control: 'text'},
+    content: {control: 'text'},
   },
   parameters: {
     pkg,
@@ -106,11 +106,6 @@ BottomStart.args = {
 export const BottomEnd = Template.bind({});
 BottomEnd.args = {
   position: 'bottomEnd',
-};
-
-export const WithCloseButton = Template.bind({});
-WithCloseButton.args = {
-  withCloseButton: true,
 };
 
 export const Dark = Template.bind({});

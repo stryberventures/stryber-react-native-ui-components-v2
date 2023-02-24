@@ -1,7 +1,6 @@
 import React from 'react';
 import {PressableProps, Pressable} from 'react-native';
-import {EyeIconDeprecated, EyeSlashIconDeprecated} from '../../Icons';
-import {SvgProps} from 'react-native-svg';
+import {EyeIcon} from '../../Icons';
 import {useTheme} from '../../Theme';
 import useStyles from './styles';
 
@@ -11,11 +10,6 @@ interface IEyeProps extends PressableProps {
 
 const Eye: React.FC<IEyeProps> = ({secured, disabled, ...rest}) => {
   const {theme} = useTheme();
-  const iconProps: SvgProps = {
-    fill: disabled
-      ? theme.colors.text.disabled
-      : theme.colors.neutralGray.main500,
-  };
   const styles = useStyles();
 
   return (
@@ -25,11 +19,12 @@ const Eye: React.FC<IEyeProps> = ({secured, disabled, ...rest}) => {
       testID="eye-test"
       {...rest}
     >
-      {secured ? (
-        <EyeSlashIconDeprecated {...iconProps} />
-      ) : (
-        <EyeIconDeprecated {...iconProps} />
-      )}
+      <EyeIcon
+        variant={secured ? 'closed' : 'open'}
+        fill={
+          disabled ? theme.colors.text.disabled : theme.colors.text.headline
+        }
+      />
     </Pressable>
   );
 };

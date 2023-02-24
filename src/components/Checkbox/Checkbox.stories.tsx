@@ -4,7 +4,6 @@ import Checkbox from '.';
 import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, StyleSheet} from 'react-native';
 import {Text, View} from 'react-native';
-import * as Icons from '../Icons';
 import pkg from './package.json';
 
 export default {
@@ -82,7 +81,6 @@ CustomContent.args = {
   label: (
     <View style={customContentStyles.wrapper}>
       <Text style={customContentStyles.text}>Custom content</Text>
-      <Icons.EyeSlashIconDeprecated />
     </View>
   ),
 };

@@ -1,8 +1,6 @@
 export {default as InfoIcon} from './IconList/InfoIcon';
 export {default as CheckIcon} from './IconList/CheckIcon';
 export {default as ArrowDownIconDeprecated} from './IconList/ArrowDownIconDeprecated';
-export {default as EyeIconDeprecated} from './IconList/EyeIconDeprecated';
-export {default as EyeSlashIconDeprecated} from './IconList/EyeSlashIconDeprecated';
 export {default as CloseIconDeprecated} from './IconList/CloseIconDeprecated';
 export {default as ArrowIcon} from './IconList/ArrowIcon';
 export {default as PointArrowIcon} from './IconList/PointArrowIcon';

@@ -10,7 +10,6 @@ import {
   ViewProps,
 } from 'react-native';
 import TooltipTriangle from './TooltipTriangle';
-import TooltipCloseIcon from './TooltipCloseIcon';
 import Text from '../Text';
 
 export interface ITooltipProps extends ViewProps {
@@ -38,7 +37,6 @@ export interface ITooltipProps extends ViewProps {
   onChange?: (isOpen?: boolean) => void;
   controlled?: boolean;
   visible?: boolean;
-  withCloseButton?: boolean;
 }
 
 export interface IChildPosition {
@@ -67,7 +65,6 @@ const Tooltip: React.FC<ITooltipProps> = ({
   textStyle,
   visible: isVisible = false,
   controlled,
-  withCloseButton,
   ...rest
 }) => {
   const childrenWrapperRef = useRef<View>(null);
@@ -82,13 +79,7 @@ const Tooltip: React.FC<ITooltipProps> = ({
     width: 0,
     height: 0,
   });
-  const styles = useStyles(
-    childPosition,
-    tooltipSize,
-    withCloseButton,
-    !!content,
-    arrow,
-  );
+  const styles = useStyles(childPosition, tooltipSize, !!content, arrow);
 
   const handleOpen = () => {
     childrenWrapperRef.current!.measure((x, y, width, height, pageX, pageY) => {
@@ -131,7 +122,6 @@ const Tooltip: React.FC<ITooltipProps> = ({
             ) : (
               title
             )}
-            {withCloseButton && <TooltipCloseIcon onPress={handleClose} />}
           </View>
           {content && typeof content === 'string' ? (
             <Text

@@ -9,7 +9,6 @@ export default createUseStyles(
     theme,
     childPosition: IChildPosition,
     tooltipSize: ITooltipSize,
-    withCloseButton?: boolean,
     withContent?: boolean,
     withArrow?: boolean,
   ) => ({

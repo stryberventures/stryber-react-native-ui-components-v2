@@ -79,7 +79,7 @@ const LabelOutsideInputLayout = React.forwardRef<
           <View style={styles.mainContent}>{children}</View>
           {rightContent}
         </View>
-        {!!hint && <HintMessage message={hint} disabled={disabled} />}
+        {!!hint && !error && <HintMessage message={hint} disabled={disabled} />}
         {!!showLength && (
           <HintMessage
             message={
