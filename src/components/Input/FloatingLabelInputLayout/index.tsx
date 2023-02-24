@@ -122,7 +122,7 @@ const FloatingLabelInputLayout = React.forwardRef<
           </View>
           {rightContent}
         </Pressable>
-        {!!hint && (
+        {!!hint && !error && (
           <HintMessage
             style={[styles.messageMargin, hintStyle]}
             message={hint}

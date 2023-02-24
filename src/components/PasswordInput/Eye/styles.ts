@@ -1,8 +1,7 @@
 import {createUseStyles} from '../../Theme';
 
-export default createUseStyles({
+export default createUseStyles(theme => ({
   eye: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingHorizontal: theme.spacing['4'],
   },
-});
+}));
