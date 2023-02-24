@@ -5,7 +5,6 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, StyleSheet} from 'react-native';
 import Form from '../Form';
 import {Text, View} from 'react-native';
-import * as Icons from '../Icons';
 import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
 
@@ -109,7 +108,6 @@ CustomContent.args = {
   label: (
     <View style={customContentStyles.container}>
       <Text style={customContentStyles.text}>Custom content</Text>
-      <Icons.EyeSlashIconDeprecated />
     </View>
   ),
 };
