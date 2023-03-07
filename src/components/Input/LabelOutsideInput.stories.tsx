@@ -107,12 +107,23 @@ ReadOnly.args = {
   editable: false,
 };
 
+export const LeftContent = Template.bind({});
+LeftContent.args = {
+  label: 'Left icon',
+  leftContent: <Icons.CreditCardIcon />,
+};
+
+export const RightContent = Template.bind({});
+RightContent.args = {
+  label: 'Right icon',
+  rightContent: <Icons.InfoIcon />,
+};
+
 export const RightAndLeftContent = Template.bind({});
 RightAndLeftContent.args = {
   label: 'With icons',
   leftContent: <Icons.CreditCardIcon />,
   rightContent: <Icons.InfoIcon />,
-  placeholder: 'With icons',
 };
 
 export const NoLabel = Template.bind({});
