@@ -2,7 +2,11 @@ import React from 'react';
 import useStyles from './styles';
 import Input, {IInputProps} from '../Input';
 
-export interface ITextAreaProps extends IInputProps {}
+export interface ITextAreaProps
+  extends Omit<
+    IInputProps,
+    'prefix' | 'postfix' | 'prefixStyle' | 'postfixStyle'
+  > {}
 
 const TextArea: React.FC<ITextAreaProps> = ({
   variant = 'floatingLabel',
