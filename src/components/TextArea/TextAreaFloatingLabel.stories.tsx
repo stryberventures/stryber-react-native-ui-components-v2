@@ -16,6 +16,11 @@ export default {
   argTypes: {
     error: {control: 'text'},
   },
+  args: {
+    label: 'Your message',
+    placeholder: 'Your message',
+    color: 'primary',
+  },
   parameters: {
     pkg,
     controls: {
@@ -23,8 +28,10 @@ export default {
         'name',
         'clearFormValueOnUnmount',
         'mask',
-        'prefixStyle',
+        'leftContent',
         'rightContent',
+        'onRemove',
+        'withRemoveButton',
         'controlled',
         'errorStyle',
         'hintStyle',
@@ -41,22 +48,14 @@ const Template: ComponentStory<typeof TextArea> = args => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Your message',
-  placeholder: 'Your message',
-};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: 'Your message',
-  placeholder: 'Your message',
   color: 'secondary',
 };
 
 export const WithValue = Template.bind({});
 WithValue.args = {
-  label: 'Your message',
-  placeholder: 'Your message',
   value: 'Lorem ipsum',
 };
 
