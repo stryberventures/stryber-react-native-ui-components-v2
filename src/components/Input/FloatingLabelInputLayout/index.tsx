@@ -9,8 +9,7 @@ import {
   TextStyle,
   Animated,
 } from 'react-native';
-import HintMessage from '../../HintMessage';
-import ErrorMessage from '../../ErrorMessage';
+import HintsLayout from '../HintsLayout';
 
 export interface IFloatingLabelInputLayoutProps extends PressableProps {
   label?: string;
@@ -122,28 +121,16 @@ const FloatingLabelInputLayout = React.forwardRef<
           </View>
           {rightContent}
         </Pressable>
-        {!!hint && !error && (
-          <HintMessage
-            style={[styles.messageMargin, hintStyle]}
-            message={hint}
-            disabled={disabled}
-          />
-        )}
-        {!!showLength && (
-          <HintMessage
-            message={
-              maxValueLength
-                ? `${currentValueLength} / ${maxValueLength}`
-                : `${currentValueLength}`
-            }
-            disabled={disabled}
-            style={hintStyle}
-          />
-        )}
-        {!!error && (
-          <ErrorMessage
+        {(!!hint || !!showLength || !!error) && (
+          <HintsLayout
+            showLength={showLength}
+            hint={hint}
+            hintStyle={hintStyle}
             error={error}
-            style={[styles.messageMargin, errorStyle]}
+            errorStyle={errorStyle}
+            maxValueLength={maxValueLength}
+            currentValueLength={currentValueLength}
+            disabled={disabled}
           />
         )}
       </>
