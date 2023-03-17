@@ -48,8 +48,5 @@ export default createUseStyles(
       left: 0,
       top: -4,
     },
-    messageMargin: {
-      marginLeft: theme.spacing['12'],
-    },
   }),
 );

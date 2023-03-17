@@ -9,8 +9,7 @@ import {
   TextStyle,
 } from 'react-native';
 import Text from '../../Text';
-import HintMessage from '../../HintMessage';
-import ErrorMessage from '../../ErrorMessage';
+import HintsLayout from '../HintsLayout';
 
 export interface ILabelOutsideInputLayoutProps extends PressableProps {
   label?: string;
@@ -79,19 +78,18 @@ const LabelOutsideInputLayout = React.forwardRef<
           <View style={styles.mainContent}>{children}</View>
           {rightContent}
         </View>
-        {!!hint && !error && <HintMessage message={hint} disabled={disabled} />}
-        {!!showLength && (
-          <HintMessage
-            message={
-              maxValueLength
-                ? `${currentValueLength} / ${maxValueLength}`
-                : `${currentValueLength}`
-            }
+        {(!!hint || !!showLength || !!error) && (
+          <HintsLayout
+            showLength={showLength}
+            hint={hint}
+            hintStyle={hintStyle}
+            error={error}
+            errorStyle={errorStyle}
+            maxValueLength={maxValueLength}
+            currentValueLength={currentValueLength}
             disabled={disabled}
-            style={hintStyle}
           />
         )}
-        {!!error && <ErrorMessage error={error} style={errorStyle} />}
       </Pressable>
     );
   },
