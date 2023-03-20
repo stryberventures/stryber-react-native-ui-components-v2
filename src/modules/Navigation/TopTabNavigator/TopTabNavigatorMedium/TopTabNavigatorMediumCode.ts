@@ -1,8 +1,10 @@
+import {replacePaths} from '../../../../storybook/utils';
+
+const code = `
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import Text from '../../../../components/Text';
-import * as Icons from '../../../../components/Icons';
 import {useTheme} from '../../../../components/Theme';
 
 const Tab = createMaterialTopTabNavigator();
@@ -25,7 +27,7 @@ const Profile = () => (
   </View>
 );
 
-const TopTabNavigatorLeftIcon = () => {
+const TopTabNavigatorMedium = () => {
   const {theme} = useTheme();
   return (
     <Tab.Navigator
@@ -33,11 +35,7 @@ const TopTabNavigatorLeftIcon = () => {
         tabBarActiveTintColor: theme.colors.primary.dark600,
         tabBarInactiveTintColor: theme.colors.text.secondary,
         tabBarPressColor: theme.colors.primary.medium300,
-        tabBarItemStyle: {
-          paddingVertical: 14,
-          flexDirection: 'row',
-          alignItems: 'center',
-        },
+        tabBarItemStyle: {paddingVertical: 18.5},
         tabBarStyle: {
           borderBottomWidth: 1,
           borderColor: theme.colors.neutralGray.light200,
@@ -48,20 +46,12 @@ const TopTabNavigatorLeftIcon = () => {
           borderRadius: 2,
           marginBottom: -1,
         },
-        tabBarIconStyle: {
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: 18,
-          height: 18,
-        },
         tabBarLabel: ({color, children}) => (
           <Text
-            variant="components2"
+            variant="components1"
             weight="medium"
-            // eslint-disable-next-line react-native/no-inline-styles
             style={{
               color: color,
-              marginLeft: 8,
             }}
           >
             {children}
@@ -69,35 +59,14 @@ const TopTabNavigatorLeftIcon = () => {
         ),
       }}
     >
-      <Tab.Screen
-        name="Home"
-        options={{
-          tabBarIcon: ({color}) => (
-            <Icons.HomeIcon width={18} height={18} fill={color} />
-          ),
-        }}
-        component={Home}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          tabBarIcon: ({color}) => (
-            <Icons.HomeIcon width={18} height={18} fill={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({color}) => (
-            <Icons.HomeIcon width={18} height={18} fill={color} />
-          ),
-        }}
-      />
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 };
 
-export default TopTabNavigatorLeftIcon;
+export default TopTabNavigatorMedium;
+`;
+
+export default replacePaths(code);

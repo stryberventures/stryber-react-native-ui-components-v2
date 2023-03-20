@@ -5,33 +5,32 @@ import {
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
 import {Pressable, View} from 'react-native';
-import * as Icons from '../../../components/Icons';
-import Text from '../../../components/Text';
-import {useTheme, createUseStyles} from '../../../components/Theme';
+import * as Icons from '../../../../components/Icons';
+import Text from '../../../../components/Text';
+import {useTheme, createUseStyles} from '../../../../components/Theme';
 
 const useStyles = createUseStyles(theme => ({
   itemsWrapper: {
     borderLeftWidth: 1,
-    borderColor: theme.colors.neutralGray.medium300,
+    borderColor: theme.colors.neutralGray.light200,
     marginLeft: 20,
   },
   drawerItem: {
-    paddingVertical: 14,
-    paddingHorizontal: 47,
-    borderLeftWidth: 3,
-    borderColor: 'transparent',
+    paddingVertical: 18,
+    paddingHorizontal: 50,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  drawerItemFocused: {
-    borderLeftWidth: 3,
-    borderColor: theme.colors.primary.dark600,
-  },
-  drawerItemWithIcon: {
-    paddingLeft: 13,
-  },
   drawerItemTextWithIcon: {
     marginLeft: 16,
+  },
+  activeIndicator: {
+    position: 'absolute',
+    width: 2,
+    borderRadius: 2,
+    height: '100%',
+    left: -1,
+    backgroundColor: theme.colors.primary.dark600,
   },
 }));
 
@@ -86,33 +85,31 @@ const CustomDrawer: React.FC<ICustomDrawerProps> = props => {
           };
 
           return (
-            <Pressable
-              accessibilityRole="button"
-              accessibilityState={isFocused ? {selected: true} : {}}
-              onPress={onPress}
-              style={[
-                styles.drawerItem,
-                isFocused && styles.drawerItemFocused,
-                isWithIcon && styles.drawerItemWithIcon,
-              ]}
-              key={index}
-            >
-              {({pressed}) => (
-                <>
-                  {renderIcon(pressed)}
-                  <Text
-                    variant="components2"
-                    weight="semiBold"
-                    style={[
-                      {color: getColor(pressed)},
-                      isWithIcon && styles.drawerItemTextWithIcon,
-                    ]}
-                  >
-                    {label}
-                  </Text>
-                </>
-              )}
-            </Pressable>
+            <View key={index}>
+              {isFocused && <View style={styles.activeIndicator} />}
+              <Pressable
+                accessibilityRole="button"
+                accessibilityState={isFocused ? {selected: true} : {}}
+                onPress={onPress}
+                style={[styles.drawerItem]}
+              >
+                {({pressed}) => (
+                  <>
+                    {renderIcon(pressed)}
+                    <Text
+                      variant="components1"
+                      weight="medium"
+                      style={[
+                        {color: getColor(pressed)},
+                        isWithIcon && styles.drawerItemTextWithIcon,
+                      ]}
+                    >
+                      {label}
+                    </Text>
+                  </>
+                )}
+              </Pressable>
+            </View>
           );
         })}
       </View>
@@ -128,9 +125,9 @@ const Home = () => (
   </View>
 );
 
-const Settings = () => (
+const Info = () => (
   <View>
-    <Text>Settings</Text>
+    <Text>Info</Text>
   </View>
 );
 
@@ -157,15 +154,23 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="Settings"
-        component={Settings}
+        name="Info"
+        component={Info}
         options={{
           drawerIcon: ({size, color}) => (
-            <Icons.HomeIcon fill={color} width={size} height={size} />
+            <Icons.InfoIcon fill={color} width={size} height={size} />
           ),
         }}
       />
-      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          drawerIcon: ({size, color}) => (
+            <Icons.ProfileIcon fill={color} width={size} height={size} />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 };
