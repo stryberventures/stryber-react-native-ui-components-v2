@@ -1,11 +1,8 @@
-import {replacePaths} from '../../../storybook/utils';
-
-const code = `
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {View} from 'react-native';
-import Text from '../../../components/Text';
-import {useTheme} from '../../../components/Theme';
+import Text from '../../../../components/Text';
+import {useTheme} from '../../../../components/Theme';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,7 +24,7 @@ const Profile = () => (
   </View>
 );
 
-const TopTabNavigator = () => {
+const TopTabNavigatorMedium = () => {
   const {theme} = useTheme();
   return (
     <Tab.Navigator
@@ -35,17 +32,25 @@ const TopTabNavigator = () => {
         tabBarActiveTintColor: theme.colors.primary.dark600,
         tabBarInactiveTintColor: theme.colors.text.secondary,
         tabBarPressColor: theme.colors.primary.medium300,
-        tabBarItemStyle: {paddingVertical: 14},
+        tabBarItemStyle: {paddingVertical: 18.5},
         tabBarStyle: {
-          borderBottomWidth: 2,
-          borderColor: theme.colors.neutralGray.medium300,
+          borderBottomWidth: 1,
+          borderColor: theme.colors.neutralGray.light200,
         },
         tabBarIndicatorStyle: {
-          height: 3,
+          height: 2,
           backgroundColor: theme.colors.primary.dark600,
+          borderRadius: 2,
+          marginBottom: -1,
         },
         tabBarLabel: ({color, children}) => (
-          <Text variant="components2" weight="medium" style={{color: color}}>
+          <Text
+            variant="components1"
+            weight="medium"
+            style={{
+              color: color,
+            }}
+          >
             {children}
           </Text>
         ),
@@ -58,7 +63,4 @@ const TopTabNavigator = () => {
   );
 };
 
-export default TopTabNavigator;
-`;
-
-export default replacePaths(code);
+export default TopTabNavigatorMedium;

@@ -1,20 +1,22 @@
 import React from 'react';
 import {ComponentMeta} from '@storybook/react-native';
-import TopTabNavigator from './index';
+import TopTabNavigatorSmall from './TopTabNavigatorSmall';
+import TopTabNavigatorMedium from './TopTabNavigatorMedium';
 import TopTabNavigatorLeftIcon from './TopTabNavigatorLeftIcon';
 import TopTabNavigatorRightIcon from './TopTabNavigatorRightIcon';
 import TopTabNavigatorIosStyle from './TopTabNavigatorIosStyle';
 import pkg from './package.json';
 import {NavigationContainer} from '@react-navigation/native';
 import {ComponentStory} from '@storybook/react';
-import code from './TopTabNavigatorCode';
+import smallCode from './TopTabNavigatorSmall/TopTabNavigatorSmallCode';
+import mediumCode from './TopTabNavigatorMedium/TopTabNavigatorMediumCode';
 import leftIconCode from './TopTabNavigatorLeftIcon/TopTabNavigatorLeftIconCode';
 import rightIconCode from './TopTabNavigatorRightIcon/TopTabNavigatorRightIconCode';
 import iosStyleCode from './TopTabNavigatorIosStyle/TopTabNavigatorIosStyleCode';
 
 export default {
   title: 'Modules/Navigation/TopTabNavigator',
-  component: TopTabNavigator,
+  component: TopTabNavigatorSmall,
   decorators: [
     Story => (
       <NavigationContainer>
@@ -29,17 +31,31 @@ export default {
     },
     viewMode: 'docs',
   },
-} as ComponentMeta<typeof TopTabNavigator>;
+} as ComponentMeta<typeof TopTabNavigatorSmall>;
 
-const TopTabNavigatorTemplate: ComponentStory<typeof TopTabNavigator> = () => (
-  <TopTabNavigator />
-);
+const TopTabNavigatorSmallTemplate: ComponentStory<
+  typeof TopTabNavigatorSmall
+> = () => <TopTabNavigatorSmall />;
 
-export const TopTab = TopTabNavigatorTemplate.bind({});
-TopTab.parameters = {
+export const TopTabSmall = TopTabNavigatorSmallTemplate.bind({});
+TopTabSmall.parameters = {
   docs: {
     source: {
-      code,
+      code: smallCode,
+      state: 'open',
+    },
+  },
+};
+
+const TopTabNavigatorMediumTemplate: ComponentStory<
+  typeof TopTabNavigatorMedium
+> = () => <TopTabNavigatorMedium />;
+
+export const TopTabMedium = TopTabNavigatorMediumTemplate.bind({});
+TopTabMedium.parameters = {
+  docs: {
+    source: {
+      code: mediumCode,
       state: 'open',
     },
   },

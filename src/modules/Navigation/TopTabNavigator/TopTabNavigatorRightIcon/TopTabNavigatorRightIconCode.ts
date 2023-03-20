@@ -42,12 +42,14 @@ const TopTabNavigatorLeftIcon = () => {
           alignItems: 'center',
         },
         tabBarStyle: {
-          borderBottomWidth: 2,
-          borderColor: theme.colors.neutralGray.medium300,
+          borderBottomWidth: 1,
+          borderColor: theme.colors.neutralGray.light200,
         },
         tabBarIndicatorStyle: {
-          height: 3,
+          height: 2,
           backgroundColor: theme.colors.primary.dark600,
+          borderRadius: 2,
+          marginBottom: -1,
         },
         tabBarIconStyle: {
           alignItems: 'center',
@@ -59,6 +61,7 @@ const TopTabNavigatorLeftIcon = () => {
           <Text
             variant="components2"
             weight="medium"
+            // eslint-disable-next-line react-native/no-inline-styles
             style={{
               color: color,
               marginRight: 8,
