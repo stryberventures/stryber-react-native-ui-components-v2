@@ -6,7 +6,8 @@ export default createUseStyles(theme => ({
   },
   dropdown: {
     position: 'absolute',
-    top: 55,
+    top: '100%',
+    marginTop: 8,
     left: 0,
     width: '100%',
     backgroundColor: '#fff',

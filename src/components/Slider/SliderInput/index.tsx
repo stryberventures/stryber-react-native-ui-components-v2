@@ -39,6 +39,7 @@ const SliderInput: React.FC<ISliderInputProps> = ({
     : initialValue;
   const [inputWidth, setInputWidth] = useState(26);
   const [inputValue, setInputValue] = useState<string>(String(value));
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState(false);
   const styles = useStyles();
 
@@ -131,12 +132,16 @@ const SliderInput: React.FC<ISliderInputProps> = ({
         Platform.OS === 'ios' &&
           setInputWidth(18 + e.nativeEvent.contentSize.width);
       }}
+      variant="labelOutside"
       value={inputValue}
       onChangeText={handleChangeText}
       onSubmitEditing={handleSubmitEditing}
       controlled
       textAlign="center"
-      error={error}
+      // Temporary hide error state since it shows the error icon
+      // and we don't have error state in this case on web
+      // and on the new design we don't have the Input in Slider at all
+      // error={error}
       keyboardType="numeric"
       returnKeyType="done"
       inputWrapperStyle={styles.inputWrapperStyle}

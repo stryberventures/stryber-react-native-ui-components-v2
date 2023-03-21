@@ -11,9 +11,15 @@ const options = [
 ];
 
 export default {
-  title: 'Components/Select',
+  title: 'Components/Select/FloatingLabel',
   component: Select,
   decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
+  args: {
+    color: 'primary',
+    label: 'Select',
+    placeholder: 'Select an option',
+    variant: 'floatingLabel',
+  },
   parameters: {
     pkg,
     controls: {
@@ -27,6 +33,7 @@ export default {
         'style',
         'hintStyle',
         'errorStyle',
+        'leftContent',
         'rightContent',
         'dropdownStyle',
         'wrapperStyle',
@@ -34,6 +41,8 @@ export default {
         'currentValueLength',
         'showLength',
         'selectedOption',
+        'isFocused',
+        'inputWrapperStyle',
       ],
     },
   },
@@ -44,22 +53,14 @@ const Template: ComponentStory<typeof Select> = ({options: _, ...args}) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Select',
-  placeholder: 'Select an option',
-};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: 'Select',
-  placeholder: 'Select an option',
   color: 'secondary',
 };
 
 export const WithValue = Template.bind({});
 WithValue.args = {
-  label: 'Select',
-  placeholder: 'Select an option',
   selectedOption: 1,
 };
 
