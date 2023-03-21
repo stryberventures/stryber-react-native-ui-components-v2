@@ -21,6 +21,9 @@ export default createUseStyles(
       width: '100%',
       height: '100%',
     },
+    text: {
+      lineHeight: 24,
+    },
     placeholderText: {
       color: theme.colors.text.tint,
     },
@@ -35,6 +38,9 @@ export default createUseStyles(
     },
     disabledText: {
       color: theme.colors.text.disabled,
+    },
+    emptyBlock: {
+      height: 24,
     },
   }),
 );

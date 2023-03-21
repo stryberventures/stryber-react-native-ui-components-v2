@@ -56,10 +56,14 @@ const FloatingLabelInputLayout = React.forwardRef<
     ref,
   ) => {
     const labelAnimValue = isFocused ? 1 : !isEmpty ? 1 : 0;
+    console.log('labelAnimValue', labelAnimValue);
+    console.log('isFocused', isFocused);
+    console.log('isEmpty', isEmpty);
     const labelAnim = useRef(new Animated.Value(labelAnimValue)).current;
     const styles = useStyles(color, isFocused, !!leftContent, !!rightContent);
 
     const animateLabel = () => {
+      console.log('animate');
       Animated.timing(labelAnim, {
         toValue: labelAnimValue,
         duration: 300,
