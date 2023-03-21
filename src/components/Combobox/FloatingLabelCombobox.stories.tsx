@@ -19,9 +19,16 @@ const cities: ISelectOption[] = [
 ];
 
 export default {
-  title: 'Components/Combobox',
+  title: 'Components/Combobox/FloatingLabel',
   component: Combobox,
   decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
+  args: {
+    color: 'primary',
+    label: 'City',
+    placeholder: 'Chose a city',
+    variant: 'floatingLabel',
+    noOptionsFoundText: 'No cities found',
+  },
   argTypes: {
     error: {control: 'text'},
   },
@@ -42,9 +49,15 @@ export default {
         'hintStyle',
         'errorStyle',
         'rightContent',
+        'leftContent',
+        'prefix',
+        'postfix',
+        'postfixStyle',
         'mask',
         'prefixStyle',
         'showLength',
+        'withRemoveButton',
+        'onRemove',
       ],
     },
   },
@@ -55,22 +68,14 @@ const Template: ComponentStory<typeof Combobox> = ({options: _, ...args}) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  label: 'City',
-  placeholder: 'Chose a city',
-};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: 'City',
-  placeholder: 'Chose a city',
   color: 'secondary',
 };
 
 export const WithValue = Template.bind({});
 WithValue.args = {
-  label: 'City',
-  placeholder: 'Chose a city',
   value: 9,
 };
 

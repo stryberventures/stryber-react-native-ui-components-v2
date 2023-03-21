@@ -18,9 +18,17 @@ const DropdownContent = () => (
 );
 
 export default {
-  title: 'Components/Dropdown',
+  title: 'Components/Dropdown/FloatingLabel',
   component: Dropdown,
   decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
+  args: {
+    color: 'primary',
+    label: 'Dropdown',
+    placeholder: 'Placeholder',
+    value: 'Text dropdown',
+    variant: 'floatingLabel',
+    children: <DropdownContent />,
+  },
   parameters: {
     pkg,
     controls: {
@@ -32,10 +40,13 @@ export default {
         'hintStyle',
         'errorStyle',
         'wrapperStyle',
+        'leftContent',
         'rightContent',
         'maxValueLength',
         'currentValueLength',
         'showLength',
+        'inputWrapperStyle',
+        'isFocused',
       ],
     },
   },
@@ -46,40 +57,25 @@ const Template: ComponentStory<typeof Dropdown> = args => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Text',
-  value: 'Text dropdown',
-  children: <DropdownContent />,
-};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: 'Text',
-  value: 'Text dropdown',
-  children: <DropdownContent />,
   color: 'secondary',
 };
 
 export const Hint = Template.bind({});
 Hint.args = {
   label: 'Hint',
-  value: 'Text dropdown',
-  children: <DropdownContent />,
   hint: 'Hint message',
 };
 
 export const Error = Template.bind({});
 Error.args = {
   label: 'Error',
-  value: 'Text dropdown',
-  children: <DropdownContent />,
   error: 'Error message',
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: 'Text',
-  value: 'Text dropdown',
-  children: <DropdownContent />,
   disabled: true,
 };
