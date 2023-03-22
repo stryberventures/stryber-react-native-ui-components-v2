@@ -131,6 +131,7 @@ const FloatingLabelInputLayout = React.forwardRef<
             maxValueLength={maxValueLength}
             currentValueLength={currentValueLength}
             disabled={disabled}
+            variant="floatingLabel"
           />
         )}
       </>

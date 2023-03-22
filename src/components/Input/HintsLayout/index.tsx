@@ -13,6 +13,7 @@ interface IHintLayoutProps {
   errorStyle?: StyleProp<ViewStyle>;
   maxValueLength?: number;
   currentValueLength?: number;
+  variant?: 'floatingLabel' | 'labelOutside';
 }
 
 const HintsLayout: React.FC<IHintLayoutProps> = props => {
@@ -25,6 +26,7 @@ const HintsLayout: React.FC<IHintLayoutProps> = props => {
     errorStyle,
     maxValueLength,
     currentValueLength,
+    variant = 'labelOutside',
   } = props;
   const styles = useStyles();
 
@@ -34,11 +36,22 @@ const HintsLayout: React.FC<IHintLayoutProps> = props => {
         <HintMessage
           message={hint}
           disabled={disabled}
-          style={[styles.message, hintStyle]}
+          style={[
+            styles.message,
+            variant === 'floatingLabel' && styles.messageWithPadding,
+            hintStyle,
+          ]}
         />
       )}
       {!!error && (
-        <ErrorMessage error={error} style={[styles.message, errorStyle]} />
+        <ErrorMessage
+          error={error}
+          style={[
+            styles.message,
+            variant === 'floatingLabel' && styles.messageWithPadding,
+            errorStyle,
+          ]}
+        />
       )}
       {!!showLength && (
         <HintMessage
