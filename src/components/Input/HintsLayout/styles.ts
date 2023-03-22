@@ -14,4 +14,7 @@ export default createUseStyles(theme => ({
     flex: 1,
     paddingRight: theme.spacing['8'],
   },
+  messageWithPadding: {
+    paddingLeft: theme.spacing['12'] + 1,
+  },
 }));
