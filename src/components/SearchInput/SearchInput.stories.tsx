@@ -13,8 +13,17 @@ export default {
     Platform.OS === 'web'
       ? null
       : [CenterViewDecorator, DismissKeyboardDecorator],
+  args: {
+    color: 'primary',
+    placeholder: 'Search',
+    size: 'medium',
+    disabled: false,
+    hint: '',
+  },
   argTypes: {
-    error: {control: 'text'},
+    size: {
+      control: {type: 'radio', options: ['medium', 'large']},
+    },
   },
   parameters: {
     pkg,
@@ -24,6 +33,8 @@ export default {
         'clearFormValueOnUnmount',
         'mask',
         'prefixStyle',
+        'postfixStyle',
+        'leftContent',
         'rightContent',
         'controlled',
         'errorStyle',
@@ -31,6 +42,12 @@ export default {
         'inputStyle',
         'inputWrapperStyle',
         'style',
+        'error',
+        'withRemoveButton',
+        'prefix',
+        'postfix',
+        'onRemove',
+        'showLength',
       ],
     },
   },
@@ -41,36 +58,25 @@ const Template: ComponentStory<typeof SearchInput> = args => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  placeholder: 'Your message',
-};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  placeholder: 'Your message',
   color: 'secondary',
 };
 
-export const WithValue = Template.bind({});
-WithValue.args = {
-  placeholder: 'Your message',
-  value: 'Lorem ipsum',
-};
-
-export const Hint = Template.bind({});
-Hint.args = {
-  placeholder: 'Hint',
-  hint: 'Hint message',
-};
-
-export const Error = Template.bind({});
-Error.args = {
-  placeholder: 'Error',
-  error: 'Error message',
+export const Large = Template.bind({});
+Large.args = {
+  size: 'large',
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   placeholder: 'Disabled',
   disabled: true,
+};
+
+export const Hint = Template.bind({});
+Hint.args = {
+  value: 'Violet bananas',
+  hint: 'No option found',
 };
