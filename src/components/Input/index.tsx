@@ -49,6 +49,7 @@ export interface IInputProps extends TextInputProps {
   showLength?: boolean;
   withRemoveButton?: boolean;
   onRemove?: () => void;
+  size?: 'medium' | 'large';
 }
 
 const Input = forwardRef<TextInput, IInputProps>(
@@ -84,6 +85,7 @@ const Input = forwardRef<TextInput, IInputProps>(
       placeholder,
       withRemoveButton,
       onRemove,
+      size,
       ...rest
     },
     ref,
@@ -181,6 +183,7 @@ const Input = forwardRef<TextInput, IInputProps>(
         maxValueLength={maxLength}
         showLength={showLength}
         currentValueLength={controlled ? value?.length : internalValue?.length}
+        size={size}
         rightContent={
           withRemoveButton ? (
             <>
@@ -192,7 +195,7 @@ const Input = forwardRef<TextInput, IInputProps>(
                 >
                   <CloseCircleIcon
                     variant="filled"
-                    fill={theme.colors.neutralGray.main500}
+                    fill={theme.colors.text.tint}
                   />
                 </Pressable>
               )}

@@ -27,6 +27,7 @@ export interface ILabelOutsideInputLayoutProps extends PressableProps {
   maxValueLength?: number;
   currentValueLength?: number;
   showLength?: boolean;
+  size?: 'medium' | 'large';
 }
 
 const LabelOutsideInputLayout = React.forwardRef<
@@ -51,11 +52,18 @@ const LabelOutsideInputLayout = React.forwardRef<
       hintStyle,
       errorStyle,
       showLength,
+      size = 'medium',
       ...rest
     },
     ref,
   ) => {
-    const styles = useStyles(color, isFocused, !!leftContent, !!rightContent);
+    const styles = useStyles(
+      color,
+      isFocused,
+      !!leftContent,
+      !!rightContent,
+      size,
+    );
     return (
       <Pressable disabled={disabled} ref={ref} style={style} {...rest}>
         {label && (
