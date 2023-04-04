@@ -10,9 +10,9 @@ interface IUseCheckbox
 
 export const useCheckbox = ({
   name = 'unnamed',
+  checked = false,
   error,
   onChange,
-  checked,
   clearFormValueOnUnmount,
 }: IUseCheckbox) => {
   const {

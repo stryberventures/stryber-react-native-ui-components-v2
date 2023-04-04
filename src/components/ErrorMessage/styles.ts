@@ -4,6 +4,7 @@ export default createUseStyles(theme => ({
   error: {
     color: theme.colors.error.dark600,
     lineHeight: 17,
+    flex: 1,
   },
   errorContainer: {
     flexDirection: 'row',
