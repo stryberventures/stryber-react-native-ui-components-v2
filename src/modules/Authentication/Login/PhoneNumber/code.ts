@@ -62,7 +62,7 @@ const useStyles = createUseStyles(theme => ({
 }));
 
 const validationSchema = yup.object().shape({
-  phoneNumber: yup.string().required(),
+  phoneNumber: yup.string().min(12, 'Invalid phone number').required(),
   password: yup.string().min(8).required(),
 });
 
