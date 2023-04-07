@@ -1,7 +1,8 @@
 import {useState} from 'react';
+import Text from '../../../components/Text';
 import Slider from '../../../components/Slider';
 import Button from '../../../components/Button';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import * as React from 'react';
 import useStyles from './styles';
 
