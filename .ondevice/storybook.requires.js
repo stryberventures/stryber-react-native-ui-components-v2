@@ -47,9 +47,9 @@ const getStories = () => {
     require("../src/components/PasswordInput/PasswordInputFloatingLabel.stories.tsx"),
     require("../src/components/PasswordInput/PasswordInputLabelOutside.stories.tsx"),
     require("../src/components/RadioButton/RadioButton.stories.tsx"),
+    require("../src/components/SearchInput/SearchInput.stories.tsx"),
     require("../src/components/Select/FloatingLabelSelect.stories.tsx"),
     require("../src/components/Select/LabelOutsideSelect.stories.tsx"),
-    require("../src/components/SearchInput/SearchInput.stories.tsx"),
     require("../src/components/Slider/Slider.stories.tsx"),
     require("../src/components/Switch/Switch.stories.tsx"),
     require("../src/components/Tag/Tag.stories.tsx"),
@@ -59,12 +59,12 @@ const getStories = () => {
     require("../src/components/TextLink/TextLink.stories.tsx"),
     require("../src/components/Theme/Theme.stories.tsx"),
     require("../src/components/Tooltip/Tooltip.stories.tsx"),
+    require("../src/modules/Authentication/ForgotPassword/ForgotPassword.stories.tsx"),
+    require("../src/modules/Authentication/Login/Login.stories.tsx"),
+    require("../src/modules/Authentication/SignUp/SignUp.stories.tsx"),
     require("../src/modules/Navigation/BottomTabNavigator/BottomTabNavigator.stories.tsx"),
     require("../src/modules/Navigation/SideNavigator/SideNavigator.stories.tsx"),
     require("../src/modules/Navigation/TopTabNavigator/TopTabNavigator.stories.tsx"),
-    require("../src/modules/Authentication/Login/Login.stories.tsx"),
-    require("../src/modules/Authentication/SignUp/SignUp.stories.tsx"),
-    require("../src/modules/Authentication/ForgotPassword/ForgotPassword.stories.tsx"),
   ];
 };
 
