@@ -1,18 +1,32 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Checkbox from '.';
-import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
+import {Platform, StyleSheet} from 'react-native';
 import {Text, View} from 'react-native';
-import * as Icons from '../Icons';
 import pkg from './package.json';
 
 export default {
-  title: 'Checkbox',
+  title: 'Components/Checkbox',
   component: Checkbox,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
+  argTypes: {
+    label: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'name',
+        'onChange',
+        'clearFormValueOnUnmount',
+        'style',
+        'pressedStyle',
+        'textStyle',
+        'labelStyle',
+        'controlled',
+      ],
+    },
   },
 } as ComponentMeta<typeof Checkbox>;
 
@@ -25,11 +39,6 @@ export const Primary = Template.bind({});
 export const Secondary = Template.bind({});
 Secondary.args = {
   color: 'secondary',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
 };
 
 export const Error = Template.bind({});
@@ -62,12 +71,16 @@ FullWidthReverse.args = {
   reverse: true,
 };
 
+const customContentStyles = StyleSheet.create({
+  wrapper: {display: 'flex', flexDirection: 'row'},
+  text: {color: 'blue', marginRight: 10, marginTop: 1.2},
+});
+
 export const CustomContent = Template.bind({});
 CustomContent.args = {
   label: (
-    <View style={{display: 'flex', flexDirection: 'row'}}>
-      <Text style={{color: 'blue', marginRight: 10}}>Custom content</Text>
-      <Icons.EyeSlashIconDeprecated />
+    <View style={customContentStyles.wrapper}>
+      <Text style={customContentStyles.text}>Custom content</Text>
     </View>
   ),
 };

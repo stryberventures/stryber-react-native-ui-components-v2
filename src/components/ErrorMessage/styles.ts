@@ -3,6 +3,15 @@ import {createUseStyles} from '../Theme';
 export default createUseStyles(theme => ({
   error: {
     color: theme.colors.error.dark600,
-    marginTop: 4,
+    lineHeight: 17,
+    flex: 1,
+  },
+  errorContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: theme.spacing['8'],
+  },
+  errorIcon: {
+    marginRight: theme.spacing['4'],
   },
 }));

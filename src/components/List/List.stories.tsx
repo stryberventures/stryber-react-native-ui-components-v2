@@ -13,16 +13,21 @@ const rightContent = <Text>01</Text>;
 const listItems: IListItem[] = new Array(4).fill({title});
 
 export default {
-  title: 'List',
+  title: 'Components/List',
   component: List,
   parameters: {
     pkg,
+    controls: {
+      exclude: ['listItems'],
+    },
   },
 } as ComponentMeta<typeof List>;
 
+const mobilePadding = {paddingTop: 200};
+
 const Template: ComponentStory<typeof List> = args => (
   <>
-    {Platform.OS !== 'web' && <View style={{paddingTop: 200}} />}
+    {Platform.OS !== 'web' && <View style={mobilePadding} />}
     <List {...args} />
   </>
 );

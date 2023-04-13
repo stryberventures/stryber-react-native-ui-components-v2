@@ -2,9 +2,9 @@ import {createUseStyles} from '../Theme';
 
 export default createUseStyles({
   textArea: {
-    height: 143,
+    height: 203,
   },
   input: {
-    height: 115,
+    height: 170,
   },
 });

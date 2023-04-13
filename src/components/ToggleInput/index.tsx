@@ -17,10 +17,10 @@ import Text from '../Text';
 export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   label?: string | ReactElement;
   checked?: boolean;
+  indeterminate?: boolean;
   onChange?: () => void;
   error?: string;
   disabled?: boolean;
-  size?: 'medium' | 'small';
   style?: StyleProp<ViewStyle>;
   hint?: string;
   variant: 'radio' | 'checkbox' | 'switch';
@@ -30,14 +30,15 @@ export interface IToggleInputProps extends Omit<PressableProps, 'onPress'> {
   labelStyle?: StyleProp<TextStyle>;
   reverse?: boolean;
   fullWidth?: boolean;
+  controlCentered?: boolean;
 }
 
 const ToggleInput: React.FC<IToggleInputProps> = ({
   checked,
+  indeterminate,
   error,
   onChange,
   disabled,
-  size = 'medium',
   label,
   hint,
   style,
@@ -48,65 +49,77 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
   labelStyle,
   reverse,
   fullWidth,
+  controlCentered = false,
   ...rest
 }) => {
-  const [isPressed, setIsPressed] = useState(false);
-  const styles = useStyles(size, variant, reverse);
-
-  const handlePressIn = () => setIsPressed(true);
-  const handlePressOut = () => setIsPressed(false);
+  const styles = useStyles(variant, reverse, controlCentered);
+  const [containerHeight, setContainerHeight] = useState(0);
 
   return (
     <Pressable
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
       onPress={onChange}
       disabled={disabled}
       hitSlop={3}
-      style={({pressed}) => [
-        disabled && styles.disabled,
-        style,
-        pressed && pressedStyle,
-      ]}
+      style={({pressed}) => [style, pressed && pressedStyle]}
       {...rest}
     >
-      <View style={[styles.toggleInputWrapper, fullWidth && styles.fullWidth]}>
-        {variant === 'switch' ? (
-          <SwitchIcon isPressed={isPressed} checked={checked} color={color} />
-        ) : (
-          <ToggleIcon
-            variant={variant}
-            checked={checked}
-            isPressed={isPressed}
-            iconVariant={iconVariant}
-            size={size}
-            color={color}
-            disabled={disabled}
-          />
-        )}
-        <View style={styles.textContainer}>
-          {!!label && typeof label === 'string' ? (
-            <Text
-              variant="components2"
-              weight="regular"
-              style={[styles.toggleInputText, labelStyle]}
-            >
-              {label}
-            </Text>
-          ) : (
-            !!label && label
-          )}
-          {!!hint && (
-            <HintMessage
-              style={styles.hint}
-              message={hint}
-              disabled={disabled}
-            />
-          )}
-        </View>
-      </View>
-      {!!error && variant !== 'radio' && (
-        <ErrorMessage style={styles.error} error={error} />
+      {({pressed}) => (
+        <>
+          <View
+            style={[styles.toggleInputWrapper, fullWidth && styles.fullWidth]}
+          >
+            <View style={[styles.toggleInput, {height: containerHeight}]}>
+              {variant === 'switch' ? (
+                <SwitchIcon
+                  isPressed={pressed}
+                  checked={checked}
+                  color={color}
+                  disabled={disabled}
+                />
+              ) : (
+                <ToggleIcon
+                  variant={variant}
+                  checked={checked}
+                  isPressed={pressed}
+                  iconVariant={iconVariant}
+                  color={color}
+                  disabled={disabled}
+                  indeterminate={indeterminate}
+                  error={error}
+                />
+              )}
+            </View>
+            <View style={styles.textContainer}>
+              {!!label && typeof label === 'string' ? (
+                <Text
+                  variant="components1"
+                  weight="regular"
+                  style={[
+                    styles.toggleInputText,
+                    disabled && styles.disabledText,
+                    labelStyle,
+                  ]}
+                  onLayout={({nativeEvent}) =>
+                    setContainerHeight(nativeEvent.layout.height)
+                  }
+                >
+                  {label}
+                </Text>
+              ) : (
+                !!label && label
+              )}
+              {!!hint && (
+                <HintMessage
+                  style={styles.hint}
+                  message={hint}
+                  disabled={disabled}
+                  variant="components2"
+                />
+              )}
+            </View>
+          </View>
+          {!!error && <ErrorMessage style={styles.error} error={error} />}
+        </>
       )}
     </Pressable>
   );

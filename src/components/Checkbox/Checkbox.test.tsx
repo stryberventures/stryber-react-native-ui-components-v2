@@ -3,6 +3,12 @@ import {fireEvent, render} from '@testing-library/react-native';
 import Checkbox from '.';
 import {Text} from 'react-native';
 
+jest.mock('react-native-shadow-2', () => {
+  return {
+    Shadow: () => 'View',
+  };
+});
+
 it('renders', () => {
   render(<Checkbox />);
 });

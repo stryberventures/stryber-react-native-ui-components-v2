@@ -15,6 +15,7 @@ export interface ITextLinkProps extends PressableProps {
   variant?: 'body1' | 'body2' | 'body3';
   visited?: boolean;
   color?: 'primary' | 'secondary';
+  weight?: 'regular' | 'medium';
   disabled?: boolean;
   iconLeft?: React.FC<any>;
   iconRight?: React.FC<any>;
@@ -31,6 +32,7 @@ const TextLink: React.FC<ITextLinkProps> = ({
   color = 'primary',
   variant = 'body2',
   visited = false,
+  weight = 'regular',
   children,
   ...rest
 }) => {
@@ -63,6 +65,7 @@ const TextLink: React.FC<ITextLinkProps> = ({
         <>
           {renderIcon('leftIcon', pressed, iconLeft)}
           <Text
+            weight={weight}
             variant={variant}
             style={[
               {color: getTextColor(pressed)},

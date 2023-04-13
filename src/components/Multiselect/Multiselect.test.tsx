@@ -2,6 +2,12 @@ import React from 'react';
 import Multiselect from '.';
 import {fireEvent, render} from '@testing-library/react-native';
 
+jest.mock('react-native-shadow-2', () => {
+  return {
+    Shadow: () => 'View',
+  };
+});
+
 const options = [
   {label: 'One', value: 'one'},
   {label: 'Two', value: 'two'},

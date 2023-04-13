@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ["../src/components/**/*.stories.tsx"],
+    stories: ["../src/components/**/*.stories.tsx", "../src/modules/**/*.stories.tsx"],
     addons: [
         "./customAddons/RTLMode",
         "@storybook/addon-ondevice-notes",

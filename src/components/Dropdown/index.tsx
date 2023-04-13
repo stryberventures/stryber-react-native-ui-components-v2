@@ -8,17 +8,21 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import BaseInputLayout, {IBaseInputLayoutProps} from '../Input/BaseInputLayout';
+import LabelOutsideInputLayout, {
+  ILabelOutsideInputLayoutProps,
+} from '../Input/LabelOutsideInputLayout';
+import FloatingLabelInputLayout from '../Input/FloatingLabelInputLayout';
 import {ArrowDownIconDeprecated} from '../Icons';
 import {useTheme} from '../Theme';
 import Text from '../Text';
 import {validateInputValueLength} from '../../utils';
 
-export interface IDropdownProps extends IBaseInputLayoutProps {
+export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
   value?: string;
   placeholder?: string;
   dropdownStyle?: StyleProp<ViewStyle>;
   onChange?: (open: boolean) => void;
+  variant?: 'floatingLabel' | 'labelOutside';
 }
 
 export interface IDropdownPosition {
@@ -42,6 +46,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       children,
       dropdownStyle,
       onChange,
+      variant = 'floatingLabel',
       ...rest
     },
     ref,
@@ -84,11 +89,17 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       close: handleClose,
     }));
 
+    const LayoutComponent =
+      variant === 'floatingLabel'
+        ? FloatingLabelInputLayout
+        : LabelOutsideInputLayout;
+
     return (
-      <BaseInputLayout
+      <LayoutComponent
         isFocused={visible}
         ref={dropdownInputRef}
         onPress={handleOpen}
+        isEmpty={!value}
         rightContent={
           <ArrowDownIconDeprecated
             fill={
@@ -103,9 +114,12 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         {...rest}
       >
         {renderDropdown()}
+        {/*This block is used to keep the label in the same position when there are no text*/}
+        {!placeholder && !value && <View style={styles.emptyBlock} />}
         <Text
-          variant="components2"
+          variant={variant === 'floatingLabel' ? 'components1' : 'components2'}
           style={[
+            styles.text,
             !!placeholder && styles.placeholderText,
             !!value && styles.valueText,
             disabled && styles.disabledText,
@@ -113,7 +127,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         >
           {(!!value && validateInputValueLength(value)) || placeholder}
         </Text>
-      </BaseInputLayout>
+      </LayoutComponent>
     );
   },
 );

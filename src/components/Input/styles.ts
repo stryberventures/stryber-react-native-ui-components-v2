@@ -4,8 +4,9 @@ export default createUseStyles(theme => ({
   input: {
     color: theme.colors.text.headline,
     padding: 0,
-    textAlignVertical: 'top',
-    height: 17,
+    textAlignVertical: 'center',
+    height: 24,
+    fontSize: 16,
     width: '100%',
     fontFamily: theme.fontFamily,
   },
@@ -16,8 +17,12 @@ export default createUseStyles(theme => ({
     display: 'flex',
     flexDirection: 'row',
   },
-  prefix: {
-    height: 17,
+  additionalText: {
     color: theme.colors.text.headline,
+    alignSelf: 'center',
+    lineHeight: 24,
+  },
+  removeButton: {
+    marginRight: theme.spacing['8'],
   },
 }));

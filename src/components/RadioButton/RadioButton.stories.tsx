@@ -1,25 +1,41 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import RadioButton from '.';
-import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
+import {Platform, StyleSheet} from 'react-native';
 import Form from '../Form';
 import {Text, View} from 'react-native';
-import * as Icons from '../Icons';
 import pkg from './package.json';
+import Divider from '../../storybook/preview/Divider';
 
 export default {
-  title: 'RadioButton',
+  title: 'Components/RadioButton',
   component: RadioButton,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
+  argTypes: {
+    label: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'name',
+        'value',
+        'clearFormValueOnUnmount',
+        'style',
+        'checked',
+        'pressedStyle',
+        'labelStyle',
+        'onChange',
+      ],
+    },
   },
 } as ComponentMeta<typeof RadioButton>;
 
 const Template: ComponentStory<typeof RadioButton> = args => (
   <Form>
     <RadioButton label="Option 1" {...args} value="option 1" />
+    <Divider />
     <RadioButton label="Option 2" {...args} value="option 2" />
   </Form>
 );
@@ -39,12 +55,12 @@ Secondary.args = {
   color: 'secondary',
 };
 
-export const Small = Template.bind({});
-Small.args = {
+export const Error = Template.bind({});
+Error.args = {
   onChange: value => {
     console.log(value);
   },
-  size: 'small',
+  error: 'Test error',
 };
 
 export const Hint = Template.bind({});
@@ -82,13 +98,16 @@ DisabledChecked.args = {
   checked: true,
 };
 
+const customContentStyles = StyleSheet.create({
+  container: {display: 'flex', flexDirection: 'row'},
+  text: {color: 'blue', marginRight: 10, marginTop: 1.2},
+});
+
 export const CustomContent = Template.bind({});
 CustomContent.args = {
-  label: '',
-  children: (
-    <View style={{display: 'flex', flexDirection: 'row'}}>
-      <Text style={{color: 'blue', marginRight: 10}}>Custom content</Text>
-      <Icons.EyeSlashIconDeprecated />
+  label: (
+    <View style={customContentStyles.container}>
+      <Text style={customContentStyles.text}>Custom content</Text>
     </View>
   ),
 };

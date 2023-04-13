@@ -1,34 +1,55 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Tooltip from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
+import useStyles from './Tooltip.styles.stories';
+
+const webPadding = {paddingTop: 70};
 
 export default {
-  title: 'Tooltip',
+  title: 'Components/Tooltip',
   component: Tooltip,
   decorators: [
-    Platform.OS === 'web' ? Story => Story() : CenterView,
+    Platform.OS === 'web' ? Story => Story() : CenterViewDecorator,
     Platform.OS === 'web'
-      ? Story => <View style={{paddingTop: 70}}>{Story()}</View>
+      ? Story => <View style={webPadding}>{Story()}</View>
       : Story => <Story />,
   ],
+  argTypes: {
+    title: {control: 'text'},
+    content: {control: 'text'},
+  },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'wrapperStyle',
+        'titleStyle',
+        'textStyle',
+        'controlled',
+        'style',
+        'visible',
+        'onChange',
+      ],
+    },
   },
 } as ComponentMeta<typeof Tooltip>;
 
-const Template: ComponentStory<typeof Tooltip> = args => (
-  <Tooltip
-    title="Tooltip title"
-    text="Tooltip inner text"
-    wrapperStyle={{alignSelf: 'center'}}
-    {...args}
-  >
-    <View style={{height: 50, width: 50, backgroundColor: 'red'}} />
-  </Tooltip>
-);
+const Template: ComponentStory<typeof Tooltip> = args => {
+  const styles = useStyles();
+  return (
+    <Tooltip
+      title="Tooltip title"
+      content="Tooltip inner text"
+      wrapperStyle={styles.wrapper}
+      {...args}
+    >
+      <View style={styles.block} />
+    </Tooltip>
+  );
+};
 
 export const Top = Template.bind({});
 
@@ -87,7 +108,12 @@ BottomEnd.args = {
   position: 'bottomEnd',
 };
 
-export const WithCloseButton = Template.bind({});
-WithCloseButton.args = {
-  withCloseButton: true,
+export const Dark = Template.bind({});
+Dark.args = {
+  variant: 'dark',
+};
+
+export const WithArrow = Template.bind({});
+WithArrow.args = {
+  arrow: true,
 };

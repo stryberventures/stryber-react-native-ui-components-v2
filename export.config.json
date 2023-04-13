@@ -25,6 +25,9 @@
     "List": "list",
     "Dialog": "dialog",
     "Elevation": "elevation",
-    "Tag": "tag"
+    "Tag": "tag",
+    "CheckboxGroup": "checkbox-group",
+    "Divider": "divider",
+    "SearchInput": "search-input"
   }
 }

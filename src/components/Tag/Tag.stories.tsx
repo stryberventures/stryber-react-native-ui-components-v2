@@ -2,38 +2,59 @@ import React, {useState} from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Tag, {TagGroup} from '.';
 import * as Icons from '../Icons';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View, ViewStyle} from 'react-native';
 import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
 import {Alert} from 'react-native';
 import Button from '../Button';
 export default {
-  title: 'Tag',
+  title: 'Components/Tag',
   component: Tag,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   args: {
     children: 'Tag Label',
   },
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'iconLeft',
+        'iconRight',
+        'value',
+        'style',
+        'onChange',
+        'onRemove',
+      ],
+    },
   },
 } as ComponentMeta<typeof Tag>;
 
 //To display properly on the web storybook
 const alignFlexStart: ViewStyle = {alignItems: 'flex-start'};
 
-const Template: ComponentStory<typeof Tag> = args => (
+const Template: ComponentStory<typeof Tag> = ({children, ...args}) => (
   <View style={alignFlexStart}>
-    <Tag size="large" {...args} />
+    <Tag size="large" {...args}>
+      {children}
+    </Tag>
     <Divider />
-    <Tag size="medium" {...args} />
+    <Tag size="medium" {...args}>
+      {children}
+    </Tag>
     <Divider />
-    <Tag size="small" {...args} />
+    <Tag size="small" {...args}>
+      {children}
+    </Tag>
   </View>
 );
 
-export const Default = Template.bind({});
+export const Primary = Template.bind({});
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  color: 'secondary',
+};
 
 export const IconLeft = Template.bind({});
 IconLeft.args = {

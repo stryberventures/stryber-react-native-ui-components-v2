@@ -1,24 +1,26 @@
 import React from 'react';
 import useStyles from './styles';
 import {TextProps} from 'react-native';
-import Text from '../Text';
+import Text, {ITextProps} from '../Text';
 
 interface IHintMessageProps extends TextProps {
   disabled?: boolean;
   message: string;
+  variant?: ITextProps['variant'];
 }
 
 const HintMessage: React.FC<IHintMessageProps> = ({
   message,
   disabled,
   style,
+  variant,
   ...rest
 }) => {
   const styles = useStyles();
 
   return (
     <Text
-      variant="components2"
+      variant={variant || 'components2'}
       style={[styles.hint, disabled && styles.disabledHint, style]}
       {...rest}
     >

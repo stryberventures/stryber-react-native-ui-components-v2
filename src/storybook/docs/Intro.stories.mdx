@@ -1,0 +1,40 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Overview/Intro" parameters={{
+  viewport: {
+    disable: true,
+  },
+}} />
+
+## Welcome to GAIA Storybook Website
+GAIA is a mobile components library based on ReactNative, where each component is a package and can be installed separately.
+
+## How to install components in your project
+
+To install components in your project:
+
+1. Chose component you need
+2. Go to `Yarn Install` tab:
+
+![Screenshot 2022-07-07 at 17 19 29](https://user-images.githubusercontent.com/17476859/177796570-7e309399-8786-410b-be13-246d9b2b26ce.png)
+
+4. Copy command to install package
+
+> **<span style={{color: 'rgb(255, 199, 30)'}}>⚠️ When installing package please take a look at the warnings in console regarding peer dependencies and install them if your project doesn't have needed package ⚠️</span>**
+
+We recommend to install this 3 packages and their peerDeps beforehand:
+
+```shell script
+yarn add @stryberventures/gaia-react-native.theme \
+@stryberventures/gaia-react-native.form \
+@stryberventures/gaia-react-native.icons \
+yup \
+react-native-svg
+```
+
+as they are used in most of the components
+
+## How to setup a Font and Theme component
+
+* [How to setup a Theme](?path=/docs/core-theme-readme--page#installation)
+* [How to setup a Font](?path=/docs/core-theme-readme--page#setup-font)

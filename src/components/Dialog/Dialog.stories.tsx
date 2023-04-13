@@ -3,17 +3,22 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Dialog, {IDialogProps} from '.';
 import Button from '../Button';
 import Text from '../Text';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import pkg from './package.json';
 
 export default {
-  title: 'Dialog',
+  title: 'Components/Dialog',
   component: Dialog,
-  decorators: [CenterView],
+  decorators: [CenterViewDecorator],
   parameters: {
     pkg,
+    controls: {
+      exclude: ['onClose', 'open', 'overlayStyle', 'disableOutsidePress'],
+    },
   },
 } as ComponentMeta<typeof Dialog>;
+
+const buttonMargin = {marginRight: 12};
 
 const DialogStory = (args: IDialogProps) => {
   const [open, setOpen] = React.useState(false);
@@ -29,7 +34,7 @@ const DialogStory = (args: IDialogProps) => {
           <Button
             variant="outlined"
             size="small"
-            style={{marginRight: 12}}
+            style={buttonMargin}
             onPress={closeDialog}
           >
             Discard

@@ -5,7 +5,7 @@ import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 
 import Input from '../Input';
 import PasswordInput from '../PasswordInput';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import Form, {IFormRef} from '.';
 import Button from '../Button';
@@ -16,17 +16,31 @@ import Multiselect, {IMultiselectOption} from '../Multiselect';
 import Slider from '../Slider';
 import Combobox from '../Combobox';
 import Select from '../Select';
+import CheckboxGroup from '../CheckboxGroup';
 
 import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
 import pkg from './package.json';
+import useStyles from './Form.styles.stories';
 
 export default {
-  title: 'Form',
+  title: 'Core/Form',
   component: Form,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'onSubmit',
+        'onReset',
+        'onError',
+        'onChange',
+        'onValidate',
+        'onValidateAsync',
+        'initialValues',
+        'validationSchema',
+      ],
+    },
   },
 } as ComponentMeta<typeof Form>;
 
@@ -39,6 +53,25 @@ const options: IMultiselectOption[] = [
   {label: 'Six', value: 'six'},
 ];
 
+const childCheckboxes = [
+  {
+    label: 'first child',
+    name: 'firstField',
+  },
+  {
+    label: 'second child',
+    name: 'secondField',
+  },
+  {
+    label: 'third child',
+    name: 'thirdField',
+  },
+  {
+    label: 'fourth child',
+    name: 'fourthField',
+  },
+];
+
 const validationSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().required(),
@@ -48,6 +81,7 @@ const validationSchema = yup.object({
   select: yup.string().required(),
   numberInput: yup.number().required(),
   combobox: yup.string().required(),
+  checkboxGroup: yup.array().min(1).required(),
 });
 
 const Template: ComponentStory<typeof Form> = ({
@@ -56,10 +90,11 @@ const Template: ComponentStory<typeof Form> = ({
   onValidate: _1,
   ...rest
 }) => {
+  const styles = useStyles();
   return (
     <Form {...rest}>
       <ScrollView
-        contentContainerStyle={{paddingHorizontal: 8}}
+        contentContainerStyle={styles.scrollViewContainer}
         nestedScrollEnabled
         keyboardShouldPersistTaps="always"
       >
@@ -93,6 +128,12 @@ const Template: ComponentStory<typeof Form> = ({
         <Checkbox name="checkbox" label="Stay logged in" />
         <Divider height={10} />
         <Switch name="switch" label="Switch" />
+        <Divider height={10} />
+        <CheckboxGroup
+          label="Checkbox Group"
+          name="checkboxGroup"
+          checkboxes={childCheckboxes}
+        />
         <Divider height={10} />
         <Input
           name="email"
@@ -163,6 +204,7 @@ WithInitialValues.args = {
     rangeSlider: [5, 8],
     numberInput: 6,
     combobox: 'six',
+    checkboxGroup: ['secondField', 'firstField'],
   },
 };
 
@@ -209,6 +251,7 @@ ResetOnSubmit.args = {
 export const ExternalControl = () => {
   const formRef = useRef<IFormRef>(null);
   const [currentFormState, updateFormState]: [any, any] = useState({});
+  const styles = useStyles();
 
   const handleSetError = () => {
     formRef.current!.setErrors({email: 'This email is already taken'});
@@ -255,13 +298,7 @@ export const ExternalControl = () => {
         <Button type="submit">Login</Button>
         <Button type="reset">Reset</Button>
       </View>
-      <View
-        style={{
-          marginTop: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-        }}
-      >
+      <View style={styles.buttonWrapper}>
         <Button onPress={handleSetError}>Set extern error</Button>
         <Button onPress={handleResetForm}>Reset externally</Button>
       </View>

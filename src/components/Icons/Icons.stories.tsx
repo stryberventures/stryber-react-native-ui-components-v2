@@ -1,16 +1,16 @@
 import React from 'react';
 import * as Icons from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View, ScrollView} from 'react-native';
 import Text from '../Text';
 import pkg from './package.json';
-import {paymentMethodVariants as paymentMethodVariantsArr} from './PaymentMethodIcon';
-import {socialVariants as socialVariantsArr} from './SocialIcon';
+import {paymentMethodVariants as paymentMethodVariantsObj} from './IconList/PaymentMethodIcon';
+import {socialVariants as socialVariantsObj} from './IconList/SocialIcon';
 import useStyles from './Icons.styles.stories';
 
 export default {
-  title: 'Icons',
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  title: 'Components/Icons',
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   parameters: {
     pkg,
   },
@@ -22,8 +22,8 @@ const countVariants = ['minus', 'plus'];
 const loadVariants = ['download', 'upload'];
 const moreVariants = ['vertical', 'horizontal'];
 const singleVariants = ['default'];
-const paymentMethodVariants = Object.keys(paymentMethodVariantsArr);
-const socialVariants = Object.keys(socialVariantsArr(''));
+const paymentMethodVariants = Object.keys(paymentMethodVariantsObj);
+const socialVariants = Object.keys(socialVariantsObj);
 const commonVariants = ['default', 'filled'];
 
 const mapIconVariants = (Icon: React.FC<any>) => (variant: string) => ({
@@ -84,26 +84,11 @@ export const AllIcons = () => {
             <View style={styles.iconVariantsWrapper}>
               {displayIcon(name as keyof typeof Icons, Icon)?.map(
                 ({variant, Icon: IconVariant}, idx) => {
-                  if ((name as keyof typeof Icons) === 'SocialIcon') {
-                    return (
-                      <View
-                        key={variant + idx}
-                        style={styles.socialVariantWrapper}
-                      >
-                        <View style={styles.socialIconVariant}>
-                          <Text variant="body3">{variant}(type color):</Text>
-                          <IconVariant variant={variant} />
-                        </View>
-                        <View style={styles.socialIconVariant}>
-                          <Text variant="body3">{variant}(type plain):</Text>
-                          <IconVariant variant={variant} type="plain" />
-                        </View>
-                      </View>
-                    );
-                  }
                   return (
                     <View style={styles.iconVariant} key={variant + idx}>
-                      <Text variant="body3">{variant}:</Text>
+                      <Text variant="body3" style={styles.iconVariantText}>
+                        {variant}:
+                      </Text>
                       <IconVariant variant={variant} />
                     </View>
                   );
@@ -114,5 +99,98 @@ export const AllIcons = () => {
         ))}
       </View>
     </ScrollView>
+  );
+};
+
+export const PaymentMethodIconVariants = () => {
+  const styles = useStyles();
+  return (
+    <>
+      <Text style={styles.title}>Payment Method Icon Variants:</Text>
+      <View style={styles.singleContainer}>
+        <View style={styles.iconsWrapper}>
+          {paymentMethodVariants.map((variant, index) => (
+            <Icons.PaymentMethodIcon
+              key={index}
+              width={60}
+              height={50}
+              variant={variant as keyof typeof paymentMethodVariantsObj}
+            />
+          ))}
+        </View>
+      </View>
+    </>
+  );
+};
+
+export const SocialIconVariants = () => {
+  const styles = useStyles();
+  return (
+    <>
+      <Text style={styles.title}>Payment Method Icon Variants:</Text>
+      <View>
+        <Text variant="body1" weight="semiBold" style={styles.subtitle}>
+          Default:
+        </Text>
+      </View>
+      <View style={styles.singleContainer}>
+        <View style={styles.iconsWrapper}>
+          {socialVariants.map((variant, index) => (
+            <View key={index} style={styles.iconVariant}>
+              <Icons.SocialIcon
+                variant={variant as keyof typeof socialVariantsObj}
+              />
+            </View>
+          ))}
+        </View>
+      </View>
+      <View>
+        <Text variant="body1" weight="semiBold" style={styles.subtitle}>
+          Filled:
+        </Text>
+      </View>
+      <View style={styles.singleContainer}>
+        <View style={styles.iconsWrapper}>
+          {socialVariants.map((variant, index) => (
+            <View key={index} style={styles.iconVariant}>
+              <Icons.SocialIcon
+                fill="#D0D5DD"
+                variant={variant as keyof typeof socialVariantsObj}
+              />
+            </View>
+          ))}
+        </View>
+        <View style={styles.iconsWrapper}>
+          {socialVariants.map((variant, index) => (
+            <View key={index} style={styles.iconVariant}>
+              <Icons.SocialIcon
+                fill="#667085"
+                variant={variant as keyof typeof socialVariantsObj}
+              />
+            </View>
+          ))}
+        </View>
+        <View style={styles.iconsWrapper}>
+          {socialVariants.map((variant, index) => (
+            <View key={index} style={styles.iconVariant}>
+              <Icons.SocialIcon
+                fill="#FFFFFF"
+                variant={variant as keyof typeof socialVariantsObj}
+              />
+            </View>
+          ))}
+        </View>
+        <View style={styles.iconsWrapper}>
+          {socialVariants.map((variant, index) => (
+            <View key={index} style={styles.iconVariant}>
+              <Icons.SocialIcon
+                fill="#E4E7EC"
+                variant={variant as keyof typeof socialVariantsObj}
+              />
+            </View>
+          ))}
+        </View>
+      </View>
+    </>
   );
 };
