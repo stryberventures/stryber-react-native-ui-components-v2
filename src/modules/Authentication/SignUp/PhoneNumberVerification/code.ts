@@ -117,6 +117,7 @@ const SignUpPhoneNumberVerification: React.FC = ({}) => {
                   name="code"
                   label="Insert SMS Verification Code"
                   maxLength={6}
+                  mask="XXXXXX"
                   errorStyle={styles.errorStyles}
                 />
               </View>
