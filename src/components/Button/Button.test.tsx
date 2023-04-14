@@ -33,7 +33,9 @@ it('should not call onPress handler when disabled', () => {
 
 it('should contain the icon', () => {
   const screen = render(
-    <Button iconRight={<Icons.InfoIcon testID="test-svg" />}>Button</Button>,
+    <Button iconRight={() => <Icons.InfoIcon testID="test-svg" />}>
+      Button
+    </Button>,
   );
   const icon = screen.getByTestId('test-svg');
   expect(icon).toBeTruthy();

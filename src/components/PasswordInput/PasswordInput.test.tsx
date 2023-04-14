@@ -7,7 +7,11 @@ it('renders with placeholder', () => {
   const label = 'Email';
   const placeholder = 'Type your email';
   const {getByText, getByPlaceholderText} = render(
-    <PasswordInput label={label} placeholder={placeholder} />,
+    <PasswordInput
+      variant="labelOutside"
+      label={label}
+      placeholder={placeholder}
+    />,
   );
 
   getByText(label);

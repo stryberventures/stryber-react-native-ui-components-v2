@@ -2,23 +2,44 @@ import * as React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 
 import Slider from './index';
-import CenterView from '../../storybook/preview/CenterView';
-import {CheckIconDeprecated, InfoIcon} from '../Icons';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
+import {CheckIcon, InfoIcon} from '../Icons';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
 import ControlledSlider from '../../storybook/preview/ControlledSlider';
 
+const webPadding = {paddingTop: 50};
+
 export default {
-  title: 'Slider',
+  title: 'Components/Slider',
   component: Slider,
   decorators: [
-    Platform.OS === 'web' ? Story => Story() : CenterView,
+    Platform.OS === 'web' ? Story => Story() : CenterViewDecorator,
     Platform.OS === 'web'
-      ? Story => <View style={{paddingTop: 50}}>{Story()}</View>
+      ? Story => <View style={webPadding}>{Story()}</View>
       : Story => <Story />,
   ],
   parameters: {
     pkg,
+    controls: {
+      exclude: [
+        'value',
+        'leftLabel',
+        'rightLabel',
+        'name',
+        'controlled',
+        'clearFormValueOnUnmount',
+        'onChange',
+        'style',
+        'errorStyle',
+        'rightContent',
+        'dropdownStyle',
+        'wrapperStyle',
+        'maxValueLength',
+        'currentValueLength',
+        'showLength',
+      ],
+    },
   },
 } as ComponentMeta<typeof Slider>;
 
@@ -89,7 +110,7 @@ export const WithIcons = Template.bind({});
 WithIcons.args = {
   max: 9,
   value: 3,
-  leftLabel: () => <CheckIconDeprecated fill="black" />,
+  leftLabel: () => <CheckIcon fill="black" />,
   rightLabel: () => <InfoIcon fill="black" />,
 };
 

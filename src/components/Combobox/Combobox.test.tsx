@@ -20,7 +20,12 @@ it('renders with placeholder', () => {
   const label = 'City';
   const placeholder = 'Choose a city';
   const {getByText, getByPlaceholderText} = render(
-    <Combobox label={label} placeholder={placeholder} options={cities} />,
+    <Combobox
+      variant="labelOutside"
+      label={label}
+      placeholder={placeholder}
+      options={cities}
+    />,
   );
 
   getByText(label);

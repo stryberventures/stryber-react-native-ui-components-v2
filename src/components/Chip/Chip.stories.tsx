@@ -1,21 +1,26 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Chip from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
-import {ArrowDownSmallIconDeprecated, CheckIconDeprecated} from '../Icons';
+import {CheckIcon} from '../Icons';
 import pkg from './package.json';
 
 export default {
-  title: 'Chip',
+  title: 'Components/Chip',
   component: Chip,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   parameters: {
     pkg,
+    controls: {
+      exclude: ['iconLeft', 'iconRight', 'style', 'textStyle'],
+    },
   },
 } as ComponentMeta<typeof Chip>;
 
-const Template: ComponentStory<typeof Chip> = args => <Chip {...args} />;
+const Template: ComponentStory<typeof Chip> = ({children, ...args}) => (
+  <Chip {...args}>{children}</Chip>
+);
 
 export const Contained = Template.bind({});
 Contained.args = {
@@ -59,26 +64,28 @@ DisabledOutlined.args = {
   variant: 'outlined',
 };
 
+const iconMargin = {marginHorizontal: 2};
+
 export const WithIcons = Template.bind({});
 WithIcons.args = {
   children: 'Icons',
-  iconRight: <ArrowDownSmallIconDeprecated style={{marginHorizontal: 3}} />,
-  iconLeft: <CheckIconDeprecated style={{marginHorizontal: 2}} />,
+  iconRight: <CheckIcon style={iconMargin} />,
+  iconLeft: <CheckIcon style={iconMargin} />,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   children: 'LeftIcon',
-  iconLeft: <CheckIconDeprecated style={{marginHorizontal: 2}} />,
+  iconLeft: <CheckIcon style={iconMargin} />,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
   children: 'RightIcon',
-  iconRight: <ArrowDownSmallIconDeprecated style={{marginHorizontal: 3}} />,
+  iconRight: <CheckIcon style={iconMargin} />,
 };
 
 export const OnlyIcon = Template.bind({});
 OnlyIcon.args = {
-  iconLeft: <CheckIconDeprecated style={{marginVertical: 2}} />,
+  iconLeft: <CheckIcon style={iconMargin} />,
 };

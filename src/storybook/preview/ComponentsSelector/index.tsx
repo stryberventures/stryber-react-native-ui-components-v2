@@ -61,12 +61,7 @@ const ComponentsSelector = () => {
         {componentsFiltered &&
           componentsFiltered.map((item, index) => (
             <View key={index} style={styles.itemContainer}>
-              <CheckBox
-                label={item}
-                name={item}
-                size="small"
-                onChange={handleChange}
-              />
+              <CheckBox label={item} name={item} onChange={handleChange} />
             </View>
           ))}
       </View>

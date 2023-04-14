@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
 import {Text as RNText, TextProps} from 'react-native';
+import {useTheme, defaultTheme} from '../Theme';
 
 export interface ITextProps extends TextProps {
   align?: 'left' | 'center' | 'right';
@@ -20,6 +21,7 @@ export interface ITextProps extends TextProps {
     | 'buttonLabelMini'
     | 'buttonLabelLarge';
   weight?: 'regular' | 'medium' | 'semiBold' | 'bold';
+  color?: keyof typeof defaultTheme.colors.text;
 }
 
 const Text: React.FC<ITextProps> = ({
@@ -28,8 +30,10 @@ const Text: React.FC<ITextProps> = ({
   variant = 'body2',
   align = 'left',
   weight = 'regular',
+  color = 'headline',
   ...rest
 }) => {
+  const {theme} = useTheme();
   const styles = useStyles();
   return (
     <RNText
@@ -38,6 +42,7 @@ const Text: React.FC<ITextProps> = ({
         styles[variant],
         styles[align],
         styles[weight],
+        {color: theme.colors.text[color]},
         style,
       ]}
       {...rest}

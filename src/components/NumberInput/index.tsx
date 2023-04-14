@@ -18,12 +18,14 @@ export interface INumberInputProps
 const NumberInput: React.FC<INumberInputProps> = ({
   value = '',
   step = 1,
-  min = 0,
-  max = 100,
+  min,
+  max,
   withQuantityCounter = true,
   name = 'number_input',
   error,
   onChange,
+  rightContent,
+  disabled,
   ...rest
 }) => {
   const {fieldError, fieldValue, updateFormValue} = useFormContext(name);
@@ -41,10 +43,10 @@ const NumberInput: React.FC<INumberInputProps> = ({
   };
 
   const checkValue = (newVal: number) => {
-    if (newVal > max) {
+    if (max && newVal > max) {
       return handleChange(String(max));
     }
-    if (newVal < min) {
+    if (min && newVal < min) {
       return handleChange(String(min));
     }
   };
@@ -55,7 +57,7 @@ const NumberInput: React.FC<INumberInputProps> = ({
     }
     const newVal =
       buttonType === 'plus' ? +internalValue! + step : +internalValue! - step;
-    if (newVal > max || newVal < min) {
+    if ((max && newVal > max) || (min && newVal < min)) {
       return checkValue(newVal);
     }
     handleChange(String(newVal));
@@ -73,19 +75,28 @@ const NumberInput: React.FC<INumberInputProps> = ({
       rightContent={
         withQuantityCounter && (
           <>
-            <CounterIcon onPress={handleMinus} testID="test_number_input_minus">
-              <View style={styles.line} />
-            </CounterIcon>
+            {rightContent && (
+              <View style={styles.rightContent}>{rightContent}</View>
+            )}
+            <CounterIcon
+              onPress={handleMinus}
+              testID="test_number_input_minus"
+              variant="minus"
+              disabled={disabled}
+            />
             <View style={styles.divider} />
-            <CounterIcon onPress={handlePlus} testID="test_number_input_plus">
-              <View style={styles.line} />
-              <View style={[styles.line, styles.rotatedLine]} />
-            </CounterIcon>
+            <CounterIcon
+              onPress={handlePlus}
+              testID="test_number_input_plus"
+              variant="plus"
+              disabled={disabled}
+            />
           </>
         )
       }
       error={errorMessage}
       onChangeText={handleChange}
+      disabled={disabled}
       controlled
       {...rest}
     />

@@ -24,7 +24,7 @@
     "outDir": "build/",
   },
   "include": [
-    "src"
+    "src/components"
   ],
   "exclude": [
     "src/components/**/*.test.tsx",

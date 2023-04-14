@@ -1,0 +1,146 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Core/Theme/README" parameters={{
+  viewport: {
+    disable: true,
+  },
+}} />
+
+## Installation
+
+To install `Theme` component run:
+```shell script
+yarn add @stryberventures/gaia-react-native.theme
+```
+
+## Setup `ThemeProvider`
+
+Wrap your app root component with `ThemeProvider`:
+
+```tsx
+<ThemeProvider theme={yourThemeObject}>
+  <App />
+</ThemeProvider>
+```
+
+## Setup theme object and types
+
+You can extend or redefine theme object:
+```typescript
+const theme = {
+  // Example how we can extend theme object:
+  margins: {
+    small: 8,
+    medium: 16,
+    large: 24,
+  },
+  // Example how we can redefine some default theme object properties:
+  colors: {
+    primary: {
+      dark600: 'grey',
+      main500: 'red',
+      light200: 'blue',
+      extraLight50: 'white',
+    },
+};
+
+// We take type from theme object:
+type ProjectThemeType = typeof theme;
+
+// And put this type to global theme interface:
+// (It is needed for getting types automatically in `useTheme` and `createUseStyles`)
+declare global {
+  namespace DesignSystem {
+    interface IProjectTheme extends ProjectThemeType {}
+  }
+}
+
+export default theme;
+```
+
+## `useTheme` hook
+
+You can use useTheme hook to get or update theme object inside components:
+
+```tsx
+const {theme, updateTheme} = useTheme();
+```
+
+`theme` object already contain all types as we defined it globally in the example above
+
+## `createUseStyles` function
+
+You can use this function to create styles for your component:
+
+* You can pass inside plain object:
+
+```typescript
+export const useStyles = createUseStyles({
+  button: {
+    backgroundColor: 'red',
+  },
+});
+```
+
+* Or you can pass function and take `theme` as first argument
+
+```typescript
+// `theme` will be default first argument but you can add your arguments as well
+// Lets add `size` argument for example
+export const useStyles = createUseStyles((theme, size: number) => ({
+  button: {
+    backgroundColor: theme.primary.main,
+    padding: size,
+  },
+}));
+```
+
+And inside component we can use styles by:
+
+```typescript
+const size = 20;
+// We only pass `size` as custom argument
+const styles = useStyles(size);
+```
+
+## Setup Font
+
+To setup default Gaia `Inter` font:
+
+### For React Native < 0.69v:
+
+1. You need to create `react-native.config.js` with code:
+
+```
+module.exports = {
+  assets: [
+    './node_modules/@stryberventures/gaia-react-native.theme/DefaultFont',
+  ],
+};
+```
+
+2. Run `react-native link` to link font to your project
+
+### For React Native >= 0.69v:
+
+1. Create a fonts directory under assets in your project:
+
+```
+PROJECT-DIRECTORY/assets/fonts
+```
+
+2. Copy font from `./node_modules/@stryberventures/gaia-react-native.theme/DefaultFont` to `PROJECT-DIRECTORY/assets/fonts`
+
+3. Run `npx react-native-asset`
+
+### Add font name to theme object
+
+To apply this font to all components:
+
+Add `fontFamily` property to your project `theme` object that you pass to `ThemeProvider`:
+
+```ts
+const theme = {
+  fontFamily: 'Inter',
+};
+```

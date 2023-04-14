@@ -1,11 +1,12 @@
 {
   "name": "@stryberventures/gaia-react-native.input",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "peerDependencies": {
     "react-native": ">=0.68.0",
     "react": ">=17.0.2",
-    "@stryberventures/gaia-react-native.form": ">=0.0.1",
-    "@stryberventures/gaia-react-native.theme": ">=0.0.1",
-    "@stryberventures/gaia-react-native.text": ">=0.0.1"
+    "@stryberventures/gaia-react-native.form": ">=0.1.0",
+    "@stryberventures/gaia-react-native.theme": ">=0.1.0",
+    "@stryberventures/gaia-react-native.text": ">=0.1.0",
+    "@stryberventures/gaia-react-native.icons": ">=0.1.0"
   }
 }

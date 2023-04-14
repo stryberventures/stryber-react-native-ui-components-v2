@@ -3,6 +3,12 @@ import {fireEvent, render} from '@testing-library/react-native';
 
 import RadioButton from '.';
 
+jest.mock('react-native-shadow-2', () => {
+  return {
+    Shadow: () => 'View',
+  };
+});
+
 it('renders', () => {
   render(<RadioButton value="option" />);
 });

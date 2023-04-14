@@ -1,0 +1,16 @@
+{
+  "peerDependencies": {
+    "react-native": ">=0.68.0",
+    "react": ">=17.0.2",
+    "yup": ">=0.32.11",
+    "@stryberventures/gaia-react-native.theme": ">=0.1.0",
+    "@stryberventures/gaia-react-native.text": ">=0.1.0",
+    "@stryberventures/gaia-react-native.input": ">=0.1.0",
+    "@stryberventures/gaia-react-native.password-input": ">=0.1.0",
+    "@stryberventures/gaia-react-native.form": ">=0.1.0",
+    "@stryberventures/gaia-react-native.checkbox": ">=0.1.0",
+    "@stryberventures/gaia-react-native.toggle-input": ">=0.1.0",
+    "@stryberventures/gaia-react-native.text-link": ">=0.1.0",
+    "@stryberventures/gaia-react-native.button": ">=0.1.0"
+  }
+}

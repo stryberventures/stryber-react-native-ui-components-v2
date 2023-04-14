@@ -1,12 +1,22 @@
 import {createUseStyles} from '../Theme';
+import {Platform} from 'react-native';
+
+// TODO: Fix android dropdown scroll behaviour
+const iosSpecificDropdownStyles =
+  Platform.OS === 'ios'
+    ? {
+        position: 'absolute' as const,
+        top: '100%',
+      }
+    : {};
 
 export default createUseStyles(theme => ({
   container: {
     zIndex: 2,
   },
   dropdown: {
-    position: 'absolute',
-    top: 55,
+    ...iosSpecificDropdownStyles,
+    marginTop: 8,
     left: 0,
     width: '100%',
     backgroundColor: '#fff',

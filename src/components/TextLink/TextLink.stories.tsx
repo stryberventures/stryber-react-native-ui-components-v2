@@ -1,34 +1,32 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import TextLink from '.';
-import CenterView from '../../storybook/preview/CenterView';
+import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import * as Icons from '../Icons';
 import pkg from './package.json';
-import Divider from '../../storybook/preview/Divider';
 
 export default {
-  title: 'TextLink',
+  title: 'Components/TextLink',
   component: TextLink,
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   parameters: {
     pkg,
+    controls: {exclude: ['iconLeft', 'iconRight', 'style', 'textStyle']},
+  },
+  args: {
+    children: 'Text link',
+    color: 'primary',
+    variant: 'body2',
+    weight: 'regular',
+    disabled: false,
+    visited: false,
   },
 } as ComponentMeta<typeof TextLink>;
 
 const Template: ComponentStory<typeof TextLink> = args => (
   <View>
-    <TextLink variant="body1" {...args}>
-      Body1
-    </TextLink>
-    <Divider />
-    <TextLink variant="body2" {...args}>
-      Body2
-    </TextLink>
-    <Divider />
-    <TextLink variant="body3" {...args}>
-      Body3
-    </TextLink>
+    <TextLink {...args} />
   </View>
 );
 

@@ -18,6 +18,7 @@ export interface ISelectProps
   clearFormValueOnUnmount?: boolean;
   onChange?: (selectedOption?: number | string) => void;
   onDropdownChange?: IDropdownProps['onChange'];
+  variant?: 'floatingLabel' | 'labelOutside';
 }
 
 const Select: React.FC<ISelectProps> = ({

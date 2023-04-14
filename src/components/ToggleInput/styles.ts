@@ -1,39 +1,40 @@
 import {createUseStyles} from '../Theme';
 import {IToggleInputProps} from './index';
-import {TOGGLE_ICON_SIZE} from './ToggleIcon/styles';
-import {SWITCH_SIZE} from './SwitchIcon/styles';
 
 export default createUseStyles(
   (
     theme,
-    size: IToggleInputProps['size'],
     variant: IToggleInputProps['variant'],
-    reverse,
+    reverse: IToggleInputProps['reverse'],
+    controlCentered: IToggleInputProps['controlCentered'],
   ) => {
     const isSwitch = variant === 'switch';
     return {
-      toggleInputText: {
-        color: theme.colors.text.secondary,
-        lineHeight: isSwitch ? SWITCH_SIZE.height : TOGGLE_ICON_SIZE[size!],
-      },
       toggleInputWrapper: {
         flexDirection: reverse ? 'row-reverse' : 'row',
         justifyContent: reverse ? 'flex-end' : 'flex-start',
-        alignItems: 'flex-start',
       },
-      hint: {
-        lineHeight: isSwitch ? SWITCH_SIZE.height : TOGGLE_ICON_SIZE[size!],
-        marginTop: 0,
+      toggleInput: {
+        justifyContent: controlCentered ? 'center' : 'flex-start',
       },
       textContainer: {
-        marginLeft: reverse ? 0 : 8,
-        marginRight: reverse ? 8 : 0,
+        marginLeft: reverse ? 0 : 12,
+        marginRight: reverse ? 12 : 0,
+        flex: 1,
       },
-      disabled: {
-        opacity: 0.45,
+      toggleInputText: {
+        color: theme.colors.text.headline,
+        lineHeight: isSwitch ? 24 : 20,
+      },
+      hint: {
+        marginTop: 0,
+        lineHeight: isSwitch ? 24 : 20,
+      },
+      disabledText: {
+        color: theme.colors.text.disabled,
       },
       error: {
-        marginTop: 8,
+        marginTop: theme.spacing['12'],
       },
       fullWidth: {
         justifyContent: 'space-between',

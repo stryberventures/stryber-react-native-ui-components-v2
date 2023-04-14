@@ -5,7 +5,7 @@ import {useCheckbox} from '../Checkbox/useCheckbox';
 export interface ISwitchProps
   extends Omit<
     IToggleInputProps,
-    'onChange' | 'variant' | 'iconVariant' | 'size'
+    'onChange' | 'variant' | 'iconVariant' | 'indeterminate'
   > {
   name?: string;
   onChange?: (checked?: boolean) => void;
