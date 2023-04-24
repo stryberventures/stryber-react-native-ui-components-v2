@@ -1,6 +1,7 @@
 import React, {useCallback, useContext, useState} from 'react';
+import {StyleSheet, I18nManager} from 'react-native';
+
 import {merge} from '../../utils/deepMerge';
-import {StyleSheet} from 'react-native';
 
 import {defaultTheme} from './defaultTheme';
 import {useEffectAfterMount} from '../../hooks/useEffectAfterMount';
@@ -22,6 +23,8 @@ export interface IThemeProvider {
   theme: Object;
   children?: React.ReactNode;
 }
+
+export const isRTL = I18nManager.isRTL;
 
 const Context = React.createContext<IThemeContext>({
   theme: defaultTheme,
