@@ -3,6 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <React/RCTI18nUtil.h>
 
 #import <React/RCTAppSetupUtils.h>
 
@@ -54,6 +55,9 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  [[RCTI18nUtil sharedInstance] allowRTL:YES];
+  
   return YES;
 }
 
