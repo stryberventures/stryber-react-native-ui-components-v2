@@ -1,4 +1,4 @@
-import {createUseStyles} from '../Theme';
+import {createUseStyles, isRTL} from '../Theme';
 
 export default createUseStyles({
   textArea: {
@@ -6,5 +6,6 @@ export default createUseStyles({
   },
   input: {
     height: 170,
+    textAlign: isRTL ? 'right' : 'left',
   },
 });
