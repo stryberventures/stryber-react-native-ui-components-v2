@@ -13,6 +13,7 @@ Explore [GAIA components](https://gaia-components-react-native.vercel.app/) for 
 * [Setup Theme and Font](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/2.-Theme)
 * [How to use Form](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/3.-Form)
 * [How to create a Story](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/4.-Create-a-Story)
+* [RTL support](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/6.-RTL-support)
 * [Build and Deploy](https://github.com/stryberventures/stryber-react-native-ui-components-v2/wiki/5.-Build-and-Deploy)
 
 ## To run the project
