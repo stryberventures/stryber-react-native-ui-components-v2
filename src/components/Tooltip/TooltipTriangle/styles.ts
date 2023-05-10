@@ -1,4 +1,4 @@
-import {createUseStyles} from '../../Theme';
+import {createUseStyles, isRTL} from '../../Theme';
 import {StyleSheet} from 'react-native';
 import {TOOLTIP_TRIANGLE_HEIGHT} from './TooltipIcon';
 
@@ -89,21 +89,21 @@ export default createUseStyles({
     transform: [{rotate: '180deg'}],
   },
   leftIcon: {
-    transform: [{rotate: '270deg'}],
+    transform: [{rotate: `${isRTL ? 90 : 270}deg`}],
   },
   leftStartIcon: {
-    transform: [{rotate: '270deg'}],
+    transform: [{rotate: `${isRTL ? 90 : 270}deg`}],
   },
   leftEndIcon: {
-    transform: [{rotate: '270deg'}],
+    transform: [{rotate: `${isRTL ? 90 : 270}deg`}],
   },
   rightIcon: {
-    transform: [{rotate: '90deg'}],
+    transform: [{rotate: `${isRTL ? 270 : 90}deg`}],
   },
   rightStartIcon: {
-    transform: [{rotate: '90deg'}],
+    transform: [{rotate: `${isRTL ? 270 : 90}deg`}],
   },
   rightEndIcon: {
-    transform: [{rotate: '90deg'}],
+    transform: [{rotate: `${isRTL ? 270 : 90}deg`}],
   },
 });
