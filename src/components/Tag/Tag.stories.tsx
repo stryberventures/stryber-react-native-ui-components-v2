@@ -7,7 +7,7 @@ import {Platform, View, ViewStyle} from 'react-native';
 import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
 import {Alert} from 'react-native';
-import Button from '../Button';
+
 export default {
   title: 'Components/Tag',
   component: Tag,
@@ -109,12 +109,6 @@ export const TagsGroup = () => {
           Tag 3
         </Tag>
       </View>
-      <Divider />
-      <Button
-        onPress={() => Alert.alert('Selected Tags:', selectedTags.join(', '))}
-      >
-        Show Selected Tags
-      </Button>
     </TagGroup>
   );
 };
