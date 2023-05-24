@@ -5,6 +5,7 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import {CheckIcon} from '../Icons';
 import pkg from './package.json';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/Chip',
@@ -24,42 +25,42 @@ const Template: ComponentStory<typeof Chip> = ({children, ...args}) => (
 
 export const Contained = Template.bind({});
 Contained.args = {
-  children: 'Contained',
+  children: vocab.components.chip.contained,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  children: 'Secondary',
+  children: vocab.components.chip.secondary,
   color: 'secondary',
 };
 
 export const Success = Template.bind({});
 Success.args = {
-  children: 'Success',
+  children: vocab.components.chip.success,
   color: 'success',
 };
 
 export const Grey = Template.bind({});
 Grey.args = {
-  children: 'Grey',
+  children: vocab.components.chip.grey,
   color: 'neutralGray',
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  children: 'Outlined',
+  children: vocab.components.chip.outlined,
   variant: 'outlined',
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  children: 'Disabled',
+  children: vocab.components.chip.disabled,
   disabled: true,
 };
 
 export const DisabledOutlined = Template.bind({});
 DisabledOutlined.args = {
-  children: 'Disabled',
+  children: vocab.components.chip.disabled,
   disabled: true,
   variant: 'outlined',
 };
@@ -68,20 +69,20 @@ const iconMargin = {marginHorizontal: 2};
 
 export const WithIcons = Template.bind({});
 WithIcons.args = {
-  children: 'Icons',
+  children: vocab.components.chip.icons,
   iconRight: <CheckIcon style={iconMargin} />,
   iconLeft: <CheckIcon style={iconMargin} />,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
-  children: 'LeftIcon',
+  children: vocab.components.chip.leftIcon,
   iconLeft: <CheckIcon style={iconMargin} />,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
-  children: 'RightIcon',
+  children: vocab.components.chip.rightIcon,
   iconRight: <CheckIcon style={iconMargin} />,
 };
 

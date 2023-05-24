@@ -5,6 +5,7 @@ import Button from '../Button';
 import Text from '../Text';
 import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import pkg from './package.json';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/Dialog',
@@ -26,10 +27,12 @@ const DialogStory = (args: IDialogProps) => {
 
   return (
     <>
-      <Button onPress={() => setOpen(true)}>Open Dialog</Button>
+      <Button onPress={() => setOpen(true)}>
+        {vocab.components.dialog.openDialog}
+      </Button>
       <Dialog {...args} onClose={closeDialog} open={open}>
-        <Dialog.Title>Discard draft?</Dialog.Title>
-        <Text>Discard draft?</Text>
+        <Dialog.Title>{vocab.components.dialog.title}</Dialog.Title>
+        <Text>{vocab.components.dialog.text}</Text>
         <Dialog.Actions>
           <Button
             variant="outlined"
@@ -37,10 +40,10 @@ const DialogStory = (args: IDialogProps) => {
             style={buttonMargin}
             onPress={closeDialog}
           >
-            Discard
+            {vocab.components.dialog.discard}
           </Button>
           <Button size="small" onPress={closeDialog}>
-            Cancel
+            {vocab.components.dialog.cancel}
           </Button>
         </Dialog.Actions>
       </Dialog>

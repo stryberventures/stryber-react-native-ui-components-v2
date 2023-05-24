@@ -7,13 +7,14 @@ import {Platform, View, ViewStyle} from 'react-native';
 import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
 import {Alert} from 'react-native';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/Tag',
   component: Tag,
   decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   args: {
-    children: 'Tag Label',
+    children: vocab.components.tag.tagLabel,
   },
   parameters: {
     pkg,
@@ -82,7 +83,7 @@ export const Removable = Template.bind({});
 Removable.args = {
   value: 23,
   onRemove: value => {
-    Alert.alert(`remove tag with id: ${value}`);
+    Alert.alert(vocab.components.tag.getAlertMessage(value));
   },
   removable: true,
 };
@@ -98,15 +99,15 @@ export const TagsGroup = () => {
     >
       <View style={alignFlexStart}>
         <Tag iconLeft={Icons.DocumentIcon} removable value={1}>
-          Tag 1
+          {vocab.components.tag.tagText1}
         </Tag>
         <Divider />
         <Tag iconLeft={Icons.LoadIcon} removable value={2}>
-          Tag 2
+          {vocab.components.tag.tagText2}
         </Tag>
         <Divider />
         <Tag iconLeft={Icons.ProfileIcon} removable value={3}>
-          Tag 3
+          {vocab.components.tag.tagText3}
         </Tag>
       </View>
     </TagGroup>

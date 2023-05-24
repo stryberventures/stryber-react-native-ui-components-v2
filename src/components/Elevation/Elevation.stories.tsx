@@ -7,6 +7,7 @@ import pkg from './package.json';
 import useStoryStyles from './Elevation.styles.stories';
 import Divider from '../../storybook/preview/Divider';
 import Text from '../Text';
+import {vocab} from '../../storybook/preview/i18n';
 
 const Card = () => {
   const storyStyles = useStoryStyles();
@@ -37,10 +38,7 @@ const Template: ComponentStory<typeof Elevation> = args => {
         <Card />
       </Elevation>
       <Divider />
-      <Text align="center">
-        Note: This component uses 2 wrappers to create multiple shadows. See
-        source code of the story how `storyStyles.borderRadius` used
-      </Text>
+      <Text align="center">{vocab.components.elevation.text}</Text>
     </View>
   );
 };
