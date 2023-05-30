@@ -4,22 +4,23 @@ import CheckboxGroup from '.';
 import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
+import {vocab} from '../../storybook/preview/i18n';
 
 const checkboxes = [
   {
-    label: 'first child',
+    label: vocab.components.checkboxGroup.label1,
     name: 'firstField',
   },
   {
-    label: 'second child',
+    label: vocab.components.checkboxGroup.label2,
     name: 'secondField',
   },
   {
-    label: 'third child',
+    label: vocab.components.checkboxGroup.label3,
     name: 'thirdField',
   },
   {
-    label: 'fourth child',
+    label: vocab.components.checkboxGroup.label4,
     name: 'fourthField',
   },
 ];
@@ -33,7 +34,7 @@ export default {
   },
   args: {
     checkboxes,
-    label: 'Checkbox Group',
+    label: vocab.components.checkboxGroup.labelGroup,
   },
   parameters: {
     pkg,
@@ -69,7 +70,10 @@ Secondary.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  label: 'Checkbox Group',
-  checkboxes: checkboxes.map(obj => ({...obj, error: 'Test error'})),
-  error: 'Test error',
+  label: vocab.components.checkboxGroup.labelGroup,
+  checkboxes: checkboxes.map(obj => ({
+    ...obj,
+    error: vocab.components.checkboxGroup.error,
+  })),
+  error: vocab.components.checkboxGroup.error,
 };

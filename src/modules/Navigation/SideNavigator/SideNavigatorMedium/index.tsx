@@ -8,6 +8,7 @@ import {Pressable, View} from 'react-native';
 import * as Icons from '../../../../components/Icons';
 import Text from '../../../../components/Text';
 import {useTheme, createUseStyles} from '../../../../components/Theme';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   itemsWrapper: {
@@ -121,19 +122,19 @@ const Drawer = createDrawerNavigator();
 
 const Home = () => (
   <View>
-    <Text>Home</Text>
+    <Text>{vocab.modules.navigation.home}</Text>
   </View>
 );
 
 const Info = () => (
   <View>
-    <Text>Info</Text>
+    <Text>{vocab.modules.navigation.info}</Text>
   </View>
 );
 
 const Profile = () => (
   <View>
-    <Text>Profile</Text>
+    <Text>{vocab.modules.navigation.profile}</Text>
   </View>
 );
 
@@ -145,7 +146,7 @@ const DrawerNavigator = () => {
       drawerContent={props => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
-        name="Home"
+        name={vocab.modules.navigation.home}
         component={Home}
         options={{
           drawerIcon: ({size, color}) => (
@@ -154,7 +155,7 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="Info"
+        name={vocab.modules.navigation.info}
         component={Info}
         options={{
           drawerIcon: ({size, color}) => (
@@ -163,7 +164,7 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="Profile"
+        name={vocab.modules.navigation.profile}
         component={Profile}
         options={{
           drawerIcon: ({size, color}) => (

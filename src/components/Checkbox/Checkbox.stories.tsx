@@ -5,6 +5,7 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, StyleSheet} from 'react-native';
 import {Text, View} from 'react-native';
 import pkg from './package.json';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/Checkbox',
@@ -31,7 +32,7 @@ export default {
 } as ComponentMeta<typeof Checkbox>;
 
 const Template: ComponentStory<typeof Checkbox> = args => (
-  <Checkbox label="Checkbox" {...args} />
+  <Checkbox label={vocab.components.checkbox.label} {...args} />
 );
 
 export const Primary = Template.bind({});
@@ -43,13 +44,13 @@ Secondary.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  error: 'Error message',
+  error: vocab.components.checkbox.error,
 };
 
 export const Hint = Template.bind({});
 Hint.args = {
   label: '',
-  hint: 'Hint message',
+  hint: vocab.components.checkbox.hint,
 };
 
 export const Disabled = Template.bind({});
@@ -80,7 +81,9 @@ export const CustomContent = Template.bind({});
 CustomContent.args = {
   label: (
     <View style={customContentStyles.wrapper}>
-      <Text style={customContentStyles.text}>Custom content</Text>
+      <Text style={customContentStyles.text}>
+        {vocab.components.checkbox.content}
+      </Text>
     </View>
   ),
 };

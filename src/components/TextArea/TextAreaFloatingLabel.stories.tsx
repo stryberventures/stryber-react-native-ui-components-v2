@@ -5,6 +5,7 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import pkg from './package.json';
 import DismissKeyboardDecorator from '../../storybook/preview/DismissKeyboardDecorator';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/TextArea/FloatingLabel',
@@ -17,8 +18,8 @@ export default {
     error: {control: 'text'},
   },
   args: {
-    label: 'Your message',
-    placeholder: 'Your message',
+    label: vocab.components.textArea.yourMessage,
+    placeholder: vocab.components.textArea.yourMessage,
     color: 'primary',
   },
   parameters: {
@@ -56,34 +57,34 @@ Secondary.args = {
 
 export const WithValue = Template.bind({});
 WithValue.args = {
-  value: 'Lorem ipsum',
+  value: vocab.components.textArea.loremIpsum,
 };
 
 export const Hint = Template.bind({});
 Hint.args = {
-  label: 'Hint',
-  placeholder: 'Hint',
-  hint: 'Hint message',
+  label: vocab.components.textArea.hint,
+  placeholder: vocab.components.textArea.hint,
+  hint: vocab.components.textArea.hintMessage,
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  label: 'Error',
-  placeholder: 'Error',
-  error: 'Error message',
+  label: vocab.components.textArea.error,
+  placeholder: vocab.components.textArea.error,
+  error: vocab.components.textArea.errorMessage,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: 'Disabled',
-  placeholder: 'Disabled',
+  label: vocab.components.textArea.disabled,
+  placeholder: vocab.components.textArea.disabled,
   disabled: true,
 };
 
 export const WithLengthIndicator = Template.bind({});
 WithLengthIndicator.args = {
-  label: 'Max length',
-  placeholder: 'Show length indicator',
+  label: vocab.components.textArea.maxLength,
+  placeholder: vocab.components.textArea.showLengthIndicator,
   maxLength: 200,
   showLength: true,
 };

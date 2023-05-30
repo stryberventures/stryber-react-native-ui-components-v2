@@ -7,6 +7,7 @@ import Form from '../Form';
 import {Text, View} from 'react-native';
 import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/RadioButton',
@@ -34,9 +35,17 @@ export default {
 
 const Template: ComponentStory<typeof RadioButton> = args => (
   <Form>
-    <RadioButton label="Option 1" {...args} value="option 1" />
+    <RadioButton
+      label={vocab.components.radioButton.label1}
+      {...args}
+      value="option 1"
+    />
     <Divider />
-    <RadioButton label="Option 2" {...args} value="option 2" />
+    <RadioButton
+      label={vocab.components.radioButton.label2}
+      {...args}
+      value="option 2"
+    />
   </Form>
 );
 
@@ -60,7 +69,7 @@ Error.args = {
   onChange: value => {
     console.log(value);
   },
-  error: 'Test error',
+  error: vocab.components.radioButton.error,
 };
 
 export const Hint = Template.bind({});
@@ -69,7 +78,7 @@ Hint.args = {
     console.log(value);
   },
   label: '',
-  hint: 'Hint message',
+  hint: vocab.components.radioButton.hint,
 };
 
 export const Disabled = Template.bind({});
@@ -107,7 +116,9 @@ export const CustomContent = Template.bind({});
 CustomContent.args = {
   label: (
     <View style={customContentStyles.container}>
-      <Text style={customContentStyles.text}>Custom content</Text>
+      <Text style={customContentStyles.text}>
+        {vocab.components.radioButton.customContent}
+      </Text>
     </View>
   ),
 };

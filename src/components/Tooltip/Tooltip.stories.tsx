@@ -5,6 +5,7 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
 import useStyles from './Tooltip.styles.stories';
+import {vocab} from '../../storybook/preview/i18n';
 
 const webPadding = {paddingTop: 70};
 
@@ -41,8 +42,8 @@ const Template: ComponentStory<typeof Tooltip> = args => {
   const styles = useStyles();
   return (
     <Tooltip
-      title="Tooltip title"
-      content="Tooltip inner text"
+      title={vocab.components.tooltip.title}
+      content={vocab.components.tooltip.content}
       wrapperStyle={styles.wrapper}
       {...args}
     >

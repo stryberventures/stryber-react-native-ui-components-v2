@@ -7,6 +7,7 @@ import pkg from './package.json';
 import Text from '../Text';
 import * as Icons from '../Icons';
 import useStyles from './Divider.styles.stories';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/Divider',
@@ -29,7 +30,7 @@ const ListItemExample = () => {
   return (
     <View style={styles.listItem}>
       <Icons.ProfileCircleIcon variant="filled" style={styles.icon} />
-      <Text>Expandable list item</Text>
+      <Text>{vocab.components.divider.listItemText}</Text>
     </View>
   );
 };
@@ -39,7 +40,7 @@ export const Examples = () => {
   return (
     <View>
       <Text variant="body1" weight="semiBold" align="center">
-        Full-bleed:
+        {vocab.components.divider.fullBleed}
       </Text>
       <ListItemExample />
       <Divider />
@@ -47,7 +48,7 @@ export const Examples = () => {
       <Divider />
       <ListItemExample />
       <Text variant="body1" weight="semiBold" align="center">
-        Middle:
+        {vocab.components.divider.middle}
       </Text>
       <ListItemExample />
       <Divider style={styles.middleDivider} />
@@ -55,7 +56,7 @@ export const Examples = () => {
       <Divider style={styles.middleDivider} />
       <ListItemExample />
       <Text variant="body1" weight="semiBold" align="center">
-        Inset:
+        {vocab.components.divider.inset}
       </Text>
       <ListItemExample />
       <Divider style={styles.insetDivider} />

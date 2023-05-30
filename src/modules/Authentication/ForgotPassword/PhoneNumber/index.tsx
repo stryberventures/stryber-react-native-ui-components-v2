@@ -8,6 +8,7 @@ import TextLink from '../../../../components/TextLink';
 import Form from '../../../../components/Form';
 import Button from '../../../../components/Button';
 import DemoLogo from '../../../../storybook/preview/DemoLogo';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   scrollContainer: {
@@ -53,7 +54,10 @@ const useStyles = createUseStyles(theme => ({
 }));
 
 const validationSchema = yup.object().shape({
-  phoneNumber: yup.string().min(12, 'Invalid phone number').required(),
+  phoneNumber: yup
+    .string()
+    .min(12, vocab.modules.auth.forgotPassword.invalidNumber)
+    .required(),
 });
 
 const ForgotPasswordPhone: React.FC = ({}) => {
@@ -67,11 +71,10 @@ const ForgotPasswordPhone: React.FC = ({}) => {
           <DemoLogo />
         </View>
         <Text variant="h4" weight="bold" style={styles.title}>
-          Reset Password
+          {vocab.modules.auth.forgotPassword.resetPassword}
         </Text>
         <Text variant="body2" color="secondary" style={styles.description}>
-          Enter the phone number associated with your account and we’ll send an
-          sms message with instructions to reset your password in no time!
+          {vocab.modules.auth.forgotPassword.phoneNumberDesc}
         </Text>
         <View style={styles.formView}>
           <Form
@@ -83,7 +86,7 @@ const ForgotPasswordPhone: React.FC = ({}) => {
               <View>
                 <Input
                   name="phoneNumber"
-                  label="Phone Number"
+                  label={vocab.modules.auth.forgotPassword.phoneNumber}
                   prefix="+49 "
                   placeholder="000 00000000"
                   mask="XXX XXXXXXXX"
@@ -101,17 +104,17 @@ const ForgotPasswordPhone: React.FC = ({}) => {
                   style={styles.submitButton}
                   disabled={disabled}
                 >
-                  Send password instructions
+                  {vocab.modules.auth.forgotPassword.sendPassword}
                 </Button>
                 <Button
                   shape="circle"
                   variant="ghost"
                   style={styles.loginButton}
                 >
-                  Login
+                  {vocab.modules.auth.forgotPassword.login}
                 </Button>
                 <TextLink style={styles.newUser}>
-                  New user? Register here
+                  {vocab.modules.auth.forgotPassword.newUserRegister}
                 </TextLink>
               </View>
             </View>

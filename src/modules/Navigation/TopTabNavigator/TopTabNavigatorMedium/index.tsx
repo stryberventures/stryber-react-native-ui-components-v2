@@ -3,24 +3,25 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {View} from 'react-native';
 import Text from '../../../../components/Text';
 import {useTheme} from '../../../../components/Theme';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const Tab = createMaterialTopTabNavigator();
 
 const Home = () => (
   <View>
-    <Text>Home</Text>
+    <Text>{vocab.modules.navigation.home}</Text>
   </View>
 );
 
 const Settings = () => (
   <View>
-    <Text>Settings</Text>
+    <Text>{vocab.modules.navigation.settings}</Text>
   </View>
 );
 
 const Profile = () => (
   <View>
-    <Text>Profile</Text>
+    <Text>{vocab.modules.navigation.profile}</Text>
   </View>
 );
 
@@ -56,9 +57,12 @@ const TopTabNavigatorMedium = () => {
         ),
       }}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Settings" component={Settings} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name={vocab.modules.navigation.home} component={Home} />
+      <Tab.Screen
+        name={vocab.modules.navigation.settings}
+        component={Settings}
+      />
+      <Tab.Screen name={vocab.modules.navigation.profile} component={Profile} />
     </Tab.Navigator>
   );
 };

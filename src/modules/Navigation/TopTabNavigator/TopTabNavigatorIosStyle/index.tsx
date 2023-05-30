@@ -5,6 +5,7 @@ import Text from '../../../../components/Text';
 import {createUseStyles} from '../../../../components/Theme';
 import {MaterialTopTabBarProps} from '@react-navigation/material-top-tabs';
 import {ParamListBase, TabNavigationState} from '@react-navigation/native';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const TAB_INDICATOR_MARGIN = 2;
 
@@ -164,28 +165,31 @@ const Tab = createMaterialTopTabNavigator();
 
 const Home = () => (
   <View>
-    <Text>Home</Text>
+    <Text>{vocab.modules.navigation.home}</Text>
   </View>
 );
 
 const Settings = () => (
   <View>
-    <Text>Settings</Text>
+    <Text>{vocab.modules.navigation.settings}</Text>
   </View>
 );
 
 const Profile = () => (
   <View>
-    <Text>Profile</Text>
+    <Text>{vocab.modules.navigation.profile}</Text>
   </View>
 );
 
 const TopTabNavigatorIosStyle = () => {
   return (
     <Tab.Navigator tabBar={props => <TopTabBar {...props} />}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Settings" component={Settings} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name={vocab.modules.navigation.home} component={Home} />
+      <Tab.Screen
+        name={vocab.modules.navigation.settings}
+        component={Settings}
+      />
+      <Tab.Screen name={vocab.modules.navigation.profile} component={Profile} />
     </Tab.Navigator>
   );
 };

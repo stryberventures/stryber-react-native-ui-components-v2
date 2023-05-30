@@ -4,9 +4,10 @@ import List, {IListItem} from '.';
 import pkg from './package.json';
 import {Text, View, Platform} from 'react-native';
 import {InfoIcon} from '../Icons';
+import {vocab} from '../../storybook/preview/i18n';
 
-const title = 'One-line Item';
-const subtitle = 'Secondary Text';
+const title = vocab.components.list.title;
+const subtitle = vocab.components.list.subtitle;
 const leftContent = <InfoIcon fill="#667085" />;
 const rightContent = <Text>01</Text>;
 

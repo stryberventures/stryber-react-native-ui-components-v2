@@ -4,24 +4,25 @@ import {View} from 'react-native';
 import Text from '../../../../components/Text';
 import * as Icons from '../../../../components/Icons';
 import {useTheme} from '../../../../components/Theme';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const Tab = createMaterialTopTabNavigator();
 
 const Home = () => (
   <View>
-    <Text>Home</Text>
+    <Text>{vocab.modules.navigation.home}</Text>
   </View>
 );
 
 const Settings = () => (
   <View>
-    <Text>Settings</Text>
+    <Text>{vocab.modules.navigation.settings}</Text>
   </View>
 );
 
 const Profile = () => (
   <View>
-    <Text>Profile</Text>
+    <Text>{vocab.modules.navigation.profile}</Text>
   </View>
 );
 
@@ -70,7 +71,7 @@ const TopTabNavigatorLeftIcon = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name={vocab.modules.navigation.home}
         options={{
           tabBarIcon: ({color}) => (
             <Icons.HomeIcon width={18} height={18} fill={color} />
@@ -79,7 +80,7 @@ const TopTabNavigatorLeftIcon = () => {
         component={Home}
       />
       <Tab.Screen
-        name="Settings"
+        name={vocab.modules.navigation.settings}
         component={Settings}
         options={{
           tabBarIcon: ({color}) => (
@@ -88,7 +89,7 @@ const TopTabNavigatorLeftIcon = () => {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name={vocab.modules.navigation.profile}
         component={Profile}
         options={{
           tabBarIcon: ({color}) => (

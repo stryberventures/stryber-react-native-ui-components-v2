@@ -5,6 +5,7 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import * as Icons from '../Icons';
 import pkg from './package.json';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/TextLink',
@@ -15,7 +16,7 @@ export default {
     controls: {exclude: ['iconLeft', 'iconRight', 'style', 'textStyle']},
   },
   args: {
-    children: 'Text link',
+    children: vocab.components.textLink.text,
     color: 'primary',
     variant: 'body2',
     weight: 'regular',
