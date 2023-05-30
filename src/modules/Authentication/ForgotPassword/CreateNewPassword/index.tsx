@@ -7,6 +7,7 @@ import PasswordInput from '../../../../components/PasswordInput';
 import Form from '../../../../components/Form';
 import Button from '../../../../components/Button';
 import DemoLogo from '../../../../storybook/preview/DemoLogo';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   scrollContainer: {
@@ -49,13 +50,16 @@ const useStyles = createUseStyles(theme => ({
 
 const passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
 const passwordHintMessage =
-  'The password should have 8 characters, lower and upper case, numbers and special characters.';
+  vocab.modules.auth.forgotPassword.passwordHintMessage;
 
 const validationSchema = yup.object().shape({
   password: yup.string().matches(passwordRegEx, passwordHintMessage).required(),
   repeatPassword: yup
     .string()
-    .oneOf([yup.ref('password')], "Passwords don't match"),
+    .oneOf(
+      [yup.ref('password')],
+      vocab.modules.auth.forgotPassword.passwordDontMatch,
+    ),
 });
 
 const CreateNewPassword: React.FC = ({}) => {
@@ -69,7 +73,7 @@ const CreateNewPassword: React.FC = ({}) => {
           <DemoLogo />
         </View>
         <Text variant="h4" weight="bold" style={styles.title}>
-          Create New Password
+          {vocab.modules.auth.forgotPassword.createNewPassword}
         </Text>
         <View style={styles.formView}>
           <Form
@@ -81,8 +85,8 @@ const CreateNewPassword: React.FC = ({}) => {
               <View>
                 <PasswordInput
                   name="password"
-                  label="Create Password"
-                  placeholder="Create Password"
+                  label={vocab.modules.auth.forgotPassword.createPassword}
+                  placeholder={vocab.modules.auth.forgotPassword.createPassword}
                   autoComplete="password-new"
                   textContentType="newPassword"
                   hint={passwordHintMessage}
@@ -92,8 +96,8 @@ const CreateNewPassword: React.FC = ({}) => {
                 />
                 <PasswordInput
                   name="repeatPassword"
-                  label="Repeat Password"
-                  placeholder="Repeat Password"
+                  label={vocab.modules.auth.forgotPassword.repeatPassword}
+                  placeholder={vocab.modules.auth.forgotPassword.repeatPassword}
                   autoComplete="password-new"
                   textContentType="newPassword"
                   hintStyle={styles.hintsStyles}
@@ -108,7 +112,7 @@ const CreateNewPassword: React.FC = ({}) => {
                   style={styles.confirmButton}
                   disabled={disabled}
                 >
-                  Confirm
+                  {vocab.modules.auth.forgotPassword.confirm}
                 </Button>
               </View>
             </View>

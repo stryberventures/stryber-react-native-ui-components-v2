@@ -8,6 +8,7 @@ import PasswordInput from '../../../../components/PasswordInput';
 import Form from '../../../../components/Form';
 import Button from '../../../../components/Button';
 import DemoLogo from '../../../../storybook/preview/DemoLogo';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   scrollContainer: {
@@ -54,15 +55,14 @@ const useStyles = createUseStyles(theme => ({
 }));
 
 const passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
-const passwordHintMessage =
-  'The password should have 8 characters, lower and upper case, numbers and special characters.';
+const passwordHintMessage = vocab.modules.auth.signup.passwordHintMessage;
 
 const validationSchema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().matches(passwordRegEx, passwordHintMessage).required(),
   repeatPassword: yup
     .string()
-    .oneOf([yup.ref('password')], "Passwords don't match"),
+    .oneOf([yup.ref('password')], vocab.modules.auth.signup.passwordDontMatch),
 });
 
 const SignUpEmail: React.FC = ({}) => {
@@ -76,10 +76,10 @@ const SignUpEmail: React.FC = ({}) => {
           <DemoLogo />
         </View>
         <Text variant="h4" weight="bold" style={styles.title}>
-          Add Account Details
+          {vocab.modules.auth.signup.addAccountDetails}
         </Text>
         <Text variant="body2" color="secondary" style={styles.description}>
-          Add your email and create a secure password, following the criteria:
+          {vocab.modules.auth.signup.addEmail}
         </Text>
         <View style={styles.formView}>
           <Form
@@ -91,8 +91,8 @@ const SignUpEmail: React.FC = ({}) => {
               <View>
                 <Input
                   name="email"
-                  label="Email"
-                  placeholder="Type your Email"
+                  label={vocab.modules.auth.signup.email}
+                  placeholder={vocab.modules.auth.signup.emailPlaceholder}
                   autoComplete="email"
                   keyboardType="email-address"
                   textContentType="emailAddress"
@@ -101,8 +101,8 @@ const SignUpEmail: React.FC = ({}) => {
                 />
                 <PasswordInput
                   name="password"
-                  label="Create Password"
-                  placeholder="Create Password"
+                  label={vocab.modules.auth.signup.createPassword}
+                  placeholder={vocab.modules.auth.signup.createPassword}
                   autoComplete="password-new"
                   textContentType="newPassword"
                   hint={passwordHintMessage}
@@ -112,8 +112,8 @@ const SignUpEmail: React.FC = ({}) => {
                 />
                 <PasswordInput
                   name="repeatPassword"
-                  label="Repeat Password"
-                  placeholder="Repeat Password"
+                  label={vocab.modules.auth.signup.repeatPassword}
+                  placeholder={vocab.modules.auth.signup.repeatPassword}
                   autoComplete="password-new"
                   textContentType="newPassword"
                   hintStyle={styles.hintsStyles}
@@ -128,14 +128,14 @@ const SignUpEmail: React.FC = ({}) => {
                   style={styles.createAccountButton}
                   disabled={disabled}
                 >
-                  Create Account
+                  {vocab.modules.auth.signup.createAccount}
                 </Button>
                 <Button
                   shape="circle"
                   variant="ghost"
                   style={styles.loginButton}
                 >
-                  Login
+                  {vocab.modules.auth.signup.login}
                 </Button>
               </View>
             </View>

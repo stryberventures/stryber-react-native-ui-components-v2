@@ -247,6 +247,89 @@ const vocab = {
       content: 'Tooltip inner text',
     },
   },
+  modules: {
+    auth: {
+      forgotPassword: {
+        passwordHintMessage:
+          'The password should have 8 characters, lower and upper case, numbers and special characters.',
+        passwordDontMatch: "Passwords don't match",
+        createNewPassword: 'Create New Password',
+        createPassword: 'Create Password',
+        repeatPassword: 'Repeat Password',
+        confirm: 'Confirm',
+        resetPassword: 'Reset Password',
+        resetPasswordDesc:
+          'Enter the email address associated with your account and we’ll send an\n' +
+          'email with instructions to reset your password in no time!',
+        email: 'Email',
+        typeEmail: 'Type your Email',
+        sendPassword: 'Send password instructions',
+        login: 'Login',
+        newUserRegister: 'New user? Register here',
+        invalidNumber: 'Invalid phone number',
+        phoneNumberDesc:
+          'Enter the phone number associated with your account and we’ll send an\n' +
+          'sms message with instructions to reset your password in no time!',
+        phoneNumber: 'Phone Number',
+      },
+      login: {
+        accountLogin: 'Account Login',
+        email: 'Email',
+        password: 'Password',
+        passwordPlaceholder: 'Insert your password',
+        rememberMe: 'Remember me',
+        forgotPassword: 'Forgot Password?',
+        login: 'Login',
+        newUserRegister: 'New user? Register here',
+        invalidPhoneNumber: 'Invalid phone number',
+        phoneNumber: 'Phone Number',
+      },
+      signup: {
+        passwordHintMessage:
+          'The password should have 8 characters, lower and upper case, numbers and special characters.',
+        passwordDontMatch: "Passwords don't match",
+        addAccountDetails: 'Add Account Details',
+        addEmail:
+          'Add your email and create a secure password, following the criteria:',
+        email: 'Email',
+        emailPlaceholder: 'Type your Email',
+        createPassword: 'Create Password',
+        repeatPassword: 'Repeat Password',
+        createAccount: 'Create Account',
+        login: 'Login',
+        codeMustHave: 'Code must have 6 digits',
+        codeIsRequired: 'Code is required',
+        emailVerificationTitle: 'Email verification',
+        emailVerificationDescription: (HOURS_VALID: any) =>
+          `Please enter the 6-digit verification code that was sent to some@mail.com. The code is valid for ${HOURS_VALID} hours.`,
+        insertVerificationCode: 'Insert Verification Code',
+        sendCodeAgain: (resendCodeIn: any) =>
+          `Send code again ${resendCodeIn ? `in ${resendCodeIn} seconds` : ''}`,
+        next: 'Next',
+        invalidPhoneNumber: 'Invalid phone number',
+        acceptTerms: 'Please accept the terms and conditions',
+        signup: 'Sign Up',
+        pleaseInsertPhone: 'Please insert your phone number in order to start:',
+        phoneNumber: 'Phone Number',
+        phoneNumberVerification: 'Phone number verification',
+        phoneNumberVerificationDesc: (HOURS_VALID: any) =>
+          `Please enter the 6-digit verification code that was sent to +49 1234 5678901. The code is valid for ${HOURS_VALID} hours. `,
+        insertSMSCode: 'Insert SMS Verification Code',
+        iAcceptTermsAndConditions: [
+          'I accept the ',
+          'Terms and Conditions',
+          ' and ',
+          'Data policy',
+        ],
+      },
+    },
+    navigation: {
+      home: 'Home',
+      settings: 'Settings',
+      profile: 'Profile',
+      info: 'Info',
+    },
+  },
 };
 
 export type TVocab = typeof vocab;

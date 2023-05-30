@@ -7,6 +7,7 @@ import Input from '../../../../components/Input';
 import Form from '../../../../components/Form';
 import Button from '../../../../components/Button';
 import DemoLogo from '../../../../storybook/preview/DemoLogo';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   scrollContainer: {
@@ -49,8 +50,8 @@ const useStyles = createUseStyles(theme => ({
 const validationSchema = yup.object().shape({
   code: yup
     .string()
-    .length(6, 'Code must have 6 digits')
-    .required('Code is required'),
+    .length(6, vocab.modules.auth.signup.codeMustHave)
+    .required(vocab.modules.auth.signup.codeIsRequired),
 });
 
 const HOURS_VALID = 24;
@@ -97,10 +98,10 @@ const SignUpPhoneNumberVerification: React.FC = ({}) => {
           <DemoLogo />
         </View>
         <Text variant="h4" weight="bold" style={styles.title}>
-          Phone number verification
+          {vocab.modules.auth.signup.phoneNumberVerification}
         </Text>
         <Text variant="body2" color="secondary" style={styles.description}>
-          {`Please enter the 6-digit verification code that was sent to +49 1234 5678901. The code is valid for ${HOURS_VALID} hours. `}
+          {vocab.modules.auth.signup.phoneNumberVerificationDesc(HOURS_VALID)}
         </Text>
         <View style={styles.formView}>
           <Form
@@ -112,7 +113,7 @@ const SignUpPhoneNumberVerification: React.FC = ({}) => {
               <View>
                 <Input
                   name="code"
-                  label="Insert SMS Verification Code"
+                  label={vocab.modules.auth.signup.insertSMSCode}
                   maxLength={6}
                   mask="XXXXXX"
                   errorStyle={styles.errorStyles}
@@ -126,16 +127,14 @@ const SignUpPhoneNumberVerification: React.FC = ({}) => {
                   onPress={requestCode}
                   style={styles.sendCodeButton}
                 >
-                  {`Send code again ${
-                    resendCodeIn ? `in ${resendCodeIn} seconds` : ''
-                  }`}
+                  {vocab.modules.auth.signup.sendCodeAgain(resendCodeIn)}
                 </Button>
                 <Button
                   shape="circle"
                   style={styles.nextButton}
                   disabled={disabledSubmit}
                 >
-                  Next
+                  {vocab.modules.auth.signup.next}
                 </Button>
               </View>
             </View>

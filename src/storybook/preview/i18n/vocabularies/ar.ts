@@ -249,6 +249,93 @@ const vocab: TVocab = {
       content: 'Tooltip inner text ar',
     },
   },
+  modules: {
+    auth: {
+      forgotPassword: {
+        passwordHintMessage:
+          'The password should have 8 characters, lower and upper case, numbers and special characters. ar',
+        passwordDontMatch: "Passwords don't match ar",
+        createNewPassword: 'Create New Password ar',
+        createPassword: 'Create Password ar',
+        repeatPassword: 'Repeat Password ar',
+        confirm: 'Confirm ar',
+
+        resetPassword: 'Reset Password ar',
+        resetPasswordDesc:
+          'AR Enter the email address associated with your account and we’ll send an\n' +
+          'email with instructions to reset your password in no time!',
+        email: 'Email ar',
+        typeEmail: 'Type your Email ar',
+        sendPassword: 'Send password instructions ar',
+        login: 'Login ar',
+        newUserRegister: 'New user? Register here ar',
+        invalidNumber: 'Invalid phone number ar',
+        phoneNumberDesc:
+          'AR Enter the phone number associated with your account and we’ll send an\n' +
+          'sms message with instructions to reset your password in no time!',
+        phoneNumber: 'Phone Number ar',
+      },
+      login: {
+        accountLogin: 'Account Login ar',
+        email: 'Email ar',
+        password: 'Password ar',
+        passwordPlaceholder: 'Insert your password ar',
+        rememberMe: 'Remember me ar',
+        forgotPassword: 'Forgot Password? ar',
+        login: 'Login ar',
+        newUserRegister: 'New user? Register here ar',
+        invalidPhoneNumber: 'Invalid phone number ar',
+        phoneNumber: 'Phone Number ar',
+      },
+      signup: {
+        passwordHintMessage:
+          'The password should have 8 characters, lower and upper case, numbers and special characters. ar',
+        passwordDontMatch: "Passwords don't match ar",
+        addAccountDetails: 'Add Account Details ar',
+        addEmail:
+          'Add your email and create a secure password, following the criteria: ar',
+        email: 'Email ar',
+        emailPlaceholder: 'Type your Email ar',
+        createPassword: 'Create Password ar',
+        repeatPassword: 'Repeat Password ar',
+        createAccount: 'Create Account ar',
+        login: 'Login ar',
+        codeMustHave: 'Code must have 6 digits ar',
+        codeIsRequired: 'Code is required ar',
+        emailVerificationTitle: 'Email verification ar',
+        emailVerificationDescription: (HOURS_VALID: any) =>
+          `AR Please enter the 6-digit verification code that was sent to some@mail.com. The code is valid for ${HOURS_VALID} hours.`,
+        insertVerificationCode: 'Insert Verification Code ar',
+        sendCodeAgain: (resendCodeIn: any) =>
+          `AR Send code again ${
+            resendCodeIn ? `in ${resendCodeIn} seconds` : ''
+          }`,
+        next: 'Next ar',
+        invalidPhoneNumber: 'Invalid phone number ar',
+        acceptTerms: 'Please accept the terms and conditions ar',
+        signup: 'Sign Up ar',
+        pleaseInsertPhone:
+          'Please insert your phone number in order to start: ar',
+        phoneNumber: 'Phone Number ar',
+        phoneNumberVerification: 'Phone number verification ar',
+        phoneNumberVerificationDesc: (HOURS_VALID: any) =>
+          `AR Please enter the 6-digit verification code that was sent to +49 1234 5678901. The code is valid for ${HOURS_VALID} hours. `,
+        insertSMSCode: 'Insert SMS Verification Code ar',
+        iAcceptTermsAndConditions: [
+          'I accept the ',
+          'Terms and Conditions',
+          ' and ',
+          'Data policy ar',
+        ],
+      },
+    },
+    navigation: {
+      home: 'Home ar',
+      settings: 'Settings ar',
+      profile: 'Profile ar',
+      info: 'Info ar',
+    },
+  },
 };
 
 export default vocab;

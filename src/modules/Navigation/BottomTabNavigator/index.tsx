@@ -4,22 +4,23 @@ import Text from '../../../components/Text';
 import {useTheme} from '../../../components/Theme';
 import * as Icons from '../../../components/Icons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {vocab} from '../../../storybook/preview/i18n';
 
 const Home = () => (
   <View>
-    <Text>Home</Text>
+    <Text>{vocab.modules.navigation.home}</Text>
   </View>
 );
 
 const Settings = () => (
   <View>
-    <Text>Settings</Text>
+    <Text>{vocab.modules.navigation.settings}</Text>
   </View>
 );
 
 const Profile = () => (
   <View>
-    <Text>Profile</Text>
+    <Text>{vocab.modules.navigation.profile}</Text>
   </View>
 );
 
@@ -42,7 +43,7 @@ const BottomTabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name={vocab.modules.navigation.home}
         component={Home}
         options={{
           tabBarIcon: ({focused, color}) =>
@@ -54,7 +55,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name={vocab.modules.navigation.profile}
         component={Profile}
         options={{
           tabBarIcon: ({focused, color}) =>
@@ -66,7 +67,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name={vocab.modules.navigation.settings}
         component={Settings}
         options={{
           tabBarIcon: ({focused, color}) =>
