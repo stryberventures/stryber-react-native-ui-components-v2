@@ -4,6 +4,7 @@ import Multiselect from '.';
 import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import pkg from './package.json';
+import {isRTL} from '../Theme';
 import {vocab} from '../../storybook/preview/i18n';
 
 const options = [
@@ -24,6 +25,7 @@ export default {
     label: vocab.components.multiselect.label,
     placeholder: vocab.components.multiselect.placeholder,
     variant: 'labelOutside',
+    separator: isRTL ? '، ' : ', ',
   },
   parameters: {
     pkg,

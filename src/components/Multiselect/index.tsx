@@ -16,6 +16,7 @@ export interface IMultiselectProps
   options: IMultiselectOption[];
   selectedOptions?: (number | string)[];
   clearFormValueOnUnmount?: boolean;
+  separator?: string;
   onChange?: (selectedOptions?: (number | string)[]) => void;
   onDropdownChange?: IDropdownProps['onChange'];
 }
@@ -32,6 +33,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   selectedOptions: initSelectedOptions = [],
   clearFormValueOnUnmount,
   color,
+  separator = ', ',
   onChange,
   onDropdownChange,
   ...rest
@@ -56,7 +58,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
         selectedOptionsText.push(option.label);
       }
     });
-    return selectedOptionsText.join(', ');
+    return selectedOptionsText.join(separator);
   };
 
   const handleBlur = (isDropdownOpen: boolean) => {
