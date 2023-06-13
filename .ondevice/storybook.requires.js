@@ -40,6 +40,7 @@ const getStories = () => {
     require("../src/components/Icons/Icons.stories.tsx"),
     require("../src/components/Input/FloatingLabelInput.stories.tsx"),
     require("../src/components/Input/LabelOutsideInput.stories.tsx"),
+    require("../src/components/LinearProgress/LinearProgress.stories.tsx"),
     require("../src/components/List/List.stories.tsx"),
     require("../src/components/Multiselect/FloatingLabelMultiselect.stories.tsx"),
     require("../src/components/Multiselect/LabelOutsideMultiselect.stories.tsx"),
