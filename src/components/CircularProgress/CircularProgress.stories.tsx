@@ -17,9 +17,31 @@ export default {
   },
 } as ComponentMeta<typeof CircularProgress>;
 
-const Template: ComponentStory<typeof CircularProgress> = ({...args}) => (
-  <CircularProgress {...args} />
-);
+const Template: ComponentStory<typeof CircularProgress> = ({...args}) => {
+  const [progress, setProgress] = React.useState(0);
+
+  React.useEffect(() => {
+    if (args.variant !== 'determinate') {
+      return;
+    }
+    const timer = setInterval(() => {
+      setProgress(prevProgress =>
+        prevProgress >= 100 ? 0 : prevProgress + 10,
+      );
+    }, 800);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  return (
+    <CircularProgress
+      {...args}
+      value={args.variant === 'determinate' ? progress : args.value}
+    />
+  );
+};
 
 export const IndeterminateFlat = Template.bind({});
 IndeterminateFlat.args = {};
@@ -32,12 +54,10 @@ IndeterminateRound.args = {
 export const DeterminateFlat = Template.bind({});
 DeterminateFlat.args = {
   variant: 'determinate',
-  value: 75,
 };
 
 export const DeterminateRound = Template.bind({});
 DeterminateRound.args = {
   variant: 'determinate',
   shape: 'round',
-  value: 75,
 };
