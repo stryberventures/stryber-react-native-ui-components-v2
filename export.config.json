@@ -28,6 +28,7 @@
     "Tag": "tag",
     "CheckboxGroup": "checkbox-group",
     "Divider": "divider",
-    "SearchInput": "search-input"
+    "SearchInput": "search-input",
+    "CircularProgress": "circular-progress"
   }
 }
