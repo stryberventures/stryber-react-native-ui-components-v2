@@ -84,10 +84,23 @@ const CircularProgress: React.FC<ICircularProgress> = argProps => {
       -1,
     ),
   );
+
+  const determinateCircleAnimationValue = useSharedValue(props.value);
+  const determinateCircleAnimatedValue = useDerivedValue(() =>
+    withTiming(determinateCircleAnimationValue.value, {
+      duration: 400,
+      easing: Easing.out(Easing.cubic),
+    }),
+  );
+
   // @ts-ignore
   const circleAnimatedProps = useAnimatedProps(() => {
     if (variant === 'determinate') {
-      return {};
+      return {
+        strokeDasharray: circumference.toFixed(3),
+        strokeDashoffset:
+          ((100 - determinateCircleAnimatedValue.value) / 100) * circumference,
+      };
     }
     return {
       strokeDasharray: [
@@ -106,20 +119,14 @@ const CircularProgress: React.FC<ICircularProgress> = argProps => {
     rootAnimationValue.value = 1;
     circleAnimationValue.value = 1;
   }, []);
+  useEffect(() => {
+    determinateCircleAnimationValue.value = props.value;
+  }, [props.value]);
 
   return (
     <Animated.View style={[styles.root, rootAnimatedStyle, style]}>
       <Svg viewBox={`${size / 2} ${size / 2} ${size} ${size}`}>
         <AnimatedSVGCircle
-          {...(variant === 'determinate'
-            ? {
-                strokeDasharray: circumference.toFixed(3),
-                strokeDashoffset: (
-                  ((100 - value) / 100) *
-                  circumference
-                ).toFixed(3),
-              }
-            : {})}
           animatedProps={circleAnimatedProps}
           cx={size}
           cy={size}
