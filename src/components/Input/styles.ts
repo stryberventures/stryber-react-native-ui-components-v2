@@ -2,12 +2,12 @@ import {createUseStyles} from '../Theme';
 
 export default createUseStyles(theme => ({
   input: {
-    color: theme.colors.text.headline,
-    padding: 0,
-    textAlignVertical: 'center',
+    flex: 1,
     height: 24,
+    padding: 0,
+    color: theme.colors.text.headline,
+    textAlignVertical: 'center',
     fontSize: 16,
-    width: '100%',
     fontFamily: theme.fontFamily,
   },
   disabledInput: {
