@@ -96,7 +96,7 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     const styles = useStyles();
 
-    const handleFocus = () => inputRef.current!.focus();
+    const handleFocus = () => inputRef.current?.focus();
 
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
