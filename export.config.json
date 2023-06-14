@@ -29,6 +29,7 @@
     "CheckboxGroup": "checkbox-group",
     "Divider": "divider",
     "SearchInput": "search-input",
-    "CircularProgress": "circular-progress"
+    "CircularProgress": "circular-progress",
+    "LinearProgress": "linear-progress"
   }
 }
