@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {View, Pressable, Animated, LayoutChangeEvent} from 'react-native';
 import Text from '../../../../components/Text';
-import {createUseStyles} from '../../../../components/Theme';
+import {createUseStyles, isRTL} from '../../../../components/Theme';
 import {MaterialTopTabBarProps} from '@react-navigation/material-top-tabs';
 import {ParamListBase, TabNavigationState} from '@react-navigation/native';
 import {vocab} from '../../../../storybook/preview/i18n';
@@ -68,7 +68,7 @@ const TabBarIndicator: React.FC<ITabBarIndicatorProps> = ({
 
   const slide = () => {
     Animated.timing(translateAnim, {
-      toValue: state.index * itemWidth + indicatorMargin,
+      toValue: (state.index * itemWidth + indicatorMargin) * (isRTL ? -1 : 1),
       duration: 300,
       useNativeDriver: true,
     }).start();
