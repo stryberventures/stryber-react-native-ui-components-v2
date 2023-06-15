@@ -37,9 +37,6 @@ export default createUseStyles(
     icon: {
       marginRight: 5,
     },
-    invertedIcon: {
-      transform: [{rotateX: '180deg'}],
-    },
     disabledText: {
       color: theme.colors.text.disabled,
     },
