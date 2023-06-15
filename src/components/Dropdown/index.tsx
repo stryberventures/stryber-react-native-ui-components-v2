@@ -8,11 +8,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import {Shadow} from 'react-native-shadow-2';
 import LabelOutsideInputLayout, {
   ILabelOutsideInputLayoutProps,
 } from '../Input/LabelOutsideInputLayout';
 import FloatingLabelInputLayout from '../Input/FloatingLabelInputLayout';
-import {ArrowDownIconDeprecated} from '../Icons';
+import {ArrowIcon, ErrorIcon} from '../Icons';
 import {useTheme} from '../Theme';
 import Text from '../Text';
 import {validateInputValueLength} from '../../utils';
@@ -23,6 +24,7 @@ export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
   dropdownStyle?: StyleProp<ViewStyle>;
   onChange?: (open: boolean) => void;
   variant?: 'floatingLabel' | 'labelOutside';
+  errorIcon?: boolean;
 }
 
 export interface IDropdownPosition {
@@ -47,6 +49,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       dropdownStyle,
       onChange,
       variant = 'floatingLabel',
+      errorIcon,
       ...rest
     },
     ref,
@@ -80,7 +83,18 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     const renderDropdown = () => (
       <Modal visible={visible} transparent animationType="none">
         <Pressable style={styles.overlay} onPress={handleClose} />
-        <View style={[styles.dropdown, dropdownStyle]}>{children}</View>
+        <View style={[styles.dropdown, dropdownStyle]}>
+          <Shadow
+            style={[styles.dropdownShadow]}
+            distance={10}
+            offset={[0, 6]}
+            startColor="rgba(102, 112, 133, 0.15)"
+            paintInside={false}
+            sides={{start: true, end: true, top: false, bottom: true}}
+          >
+            <View style={styles.dropdownInner}>{children}</View>
+          </Shadow>
+        </View>
       </Modal>
     );
 
@@ -101,14 +115,26 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         onPress={handleOpen}
         isEmpty={!value}
         rightContent={
-          <ArrowDownIconDeprecated
-            fill={
-              disabled
-                ? theme.colors.neutralGray.medium300
-                : theme.colors.neutralGray.main500
-            }
-            style={[styles.icon, visible && styles.invertedIcon]}
-          />
+          <>
+            {errorIcon && (
+              <ErrorIcon
+                variant="filled"
+                width={20}
+                height={20}
+                fill={theme.colors.error.dark600}
+                style={styles.errorIcon}
+              />
+            )}
+            <ArrowIcon
+              variant="down"
+              fill={
+                disabled
+                  ? theme.colors.neutralGray.medium300
+                  : theme.colors.neutralGray.main500
+              }
+              style={[styles.icon, visible && styles.invertedIcon]}
+            />
+          </>
         }
         disabled={disabled}
         {...rest}

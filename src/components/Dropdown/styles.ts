@@ -1,7 +1,7 @@
 import {createUseStyles} from '../Theme';
 import {IDropdownPosition} from './index';
 
-const DROPDOWN_OFFSET = 8;
+const DROPDOWN_OFFSET = 7;
 
 export default createUseStyles(
   (theme, dropdownPosition: IDropdownPosition) => ({
@@ -10,12 +10,16 @@ export default createUseStyles(
       left: dropdownPosition.left,
       width: dropdownPosition.width,
       position: 'absolute',
+    },
+    dropdownShadow: {
+      width: '100%',
       backgroundColor: '#fff',
-      borderWidth: 1,
-      borderColor: theme.colors.neutralGray.medium300,
-      borderRadius: 4,
-      paddingHorizontal: 8,
-      paddingVertical: 16,
+      borderRadius: 8,
+    },
+    dropdownInner: {
+      width: '100%',
+      paddingBottom: 2,
+      paddingTop: 8,
     },
     overlay: {
       width: '100%',
@@ -41,6 +45,9 @@ export default createUseStyles(
     },
     emptyBlock: {
       height: 24,
+    },
+    errorIcon: {
+      marginRight: theme.spacing['4'],
     },
   }),
 );

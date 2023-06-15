@@ -76,7 +76,7 @@ export const Error = Template.bind({});
 Error.args = {
   label: vocab.components.select.error,
   placeholder: vocab.components.select.error,
-  error: vocab.components.select.errorMessage,
+  error: true,
 };
 
 export const Disabled = Template.bind({});
