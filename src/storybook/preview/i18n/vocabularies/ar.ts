@@ -202,6 +202,9 @@ const vocab: TVocab = {
     select: {
       optionLabel1: 'الخيار 1',
       optionLabel2: 'الخيار 2',
+      optionLabel3: 'الخيار 3',
+      optionLabel4: 'الخيار 4',
+      optionLabel5: 'الخيار 5',
       label: 'اختر',
       placeholder: 'حدد خيارًا',
 
