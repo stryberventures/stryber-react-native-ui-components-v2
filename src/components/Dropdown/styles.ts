@@ -10,11 +10,16 @@ export default createUseStyles(
       left: dropdownPosition.left,
       width: dropdownPosition.width,
       position: 'absolute',
+      overflow: 'hidden',
     },
     dropdownShadow: {
       width: '100%',
       backgroundColor: '#fff',
       borderRadius: 8,
+    },
+    dropdownShadowContainer: {
+      marginHorizontal: 6,
+      marginBottom: 12,
     },
     dropdownInner: {
       width: '100%',

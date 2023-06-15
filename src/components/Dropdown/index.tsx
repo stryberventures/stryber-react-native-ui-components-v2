@@ -140,6 +140,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         >
           <Shadow
             style={[styles.dropdownShadow]}
+            containerStyle={styles.dropdownShadowContainer}
             distance={10}
             offset={[0, 6]}
             startColor="rgba(102, 112, 133, 0.15)"
