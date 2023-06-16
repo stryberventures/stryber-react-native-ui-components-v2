@@ -30,6 +30,7 @@
     "Divider": "divider",
     "SearchInput": "search-input",
     "CircularProgress": "circular-progress",
-    "LinearProgress": "linear-progress"
+    "LinearProgress": "linear-progress",
+    "Avatar": "avatar"
   }
 }

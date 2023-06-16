@@ -24,6 +24,7 @@ if (parameters) {
 
 const getStories = () => {
   return [
+    require("../src/components/Avatar/Avatar.stories.tsx"),
     require("../src/components/Button/Button.stories.tsx"),
     require("../src/components/Checkbox/Checkbox.stories.tsx"),
     require("../src/components/CheckboxGroup/CheckboxGroup.stories.tsx"),
