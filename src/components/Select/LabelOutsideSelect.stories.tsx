@@ -9,6 +9,9 @@ import {vocab} from '../../storybook/preview/i18n';
 const options = [
   {label: vocab.components.select.optionLabel1, value: 1},
   {label: vocab.components.select.optionLabel2, value: 2},
+  {label: vocab.components.select.optionLabel3, value: 3},
+  {label: vocab.components.select.optionLabel4, value: 4},
+  {label: vocab.components.select.optionLabel5, value: 5},
 ];
 
 export default {
@@ -76,7 +79,7 @@ export const Error = Template.bind({});
 Error.args = {
   label: vocab.components.select.error,
   placeholder: vocab.components.select.error,
-  error: vocab.components.select.errorMessage,
+  error: true,
 };
 
 export const Disabled = Template.bind({});

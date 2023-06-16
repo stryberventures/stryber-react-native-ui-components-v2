@@ -11,7 +11,7 @@ export interface ISelectOption {
 }
 
 export interface ISelectProps
-  extends Omit<IDropdownProps, 'children' | 'value' | 'onChange'> {
+  extends Omit<IDropdownProps, 'children' | 'value' | 'onChange' | 'error'> {
   name?: string;
   options: ISelectOption[];
   selectedOption?: string | number;
@@ -19,6 +19,7 @@ export interface ISelectProps
   onChange?: (selectedOption?: number | string) => void;
   onDropdownChange?: IDropdownProps['onChange'];
   variant?: 'floatingLabel' | 'labelOutside';
+  error?: string | boolean;
 }
 
 const Select: React.FC<ISelectProps> = ({
@@ -41,7 +42,7 @@ const Select: React.FC<ISelectProps> = ({
   const [selectedOption, setSelectedOption] = React.useState<string | number>(
     fieldValue || initSelectedOption,
   );
-  const errorMessage = fieldError || error;
+  const errorIcon = !!fieldError || !!error;
   const dropdownRef = React.useRef<IDropdownRef>(null);
   const styles = useStyles();
 
@@ -78,7 +79,7 @@ const Select: React.FC<ISelectProps> = ({
       value={getLabelByValue()}
       onChange={handleBlur}
       dropdownStyle={styles.dropdown}
-      error={errorMessage}
+      errorIcon={errorIcon}
       ref={dropdownRef}
       {...rest}
     >

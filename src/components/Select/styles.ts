@@ -8,7 +8,5 @@ export default createUseStyles({
   content: {
     maxHeight: 160,
   },
-  innerContent: {
-    paddingVertical: 8,
-  },
+  innerContent: {},
 });

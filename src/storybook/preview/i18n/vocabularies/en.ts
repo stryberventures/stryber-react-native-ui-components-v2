@@ -201,6 +201,9 @@ const vocab = {
     select: {
       optionLabel1: 'Option 1',
       optionLabel2: 'Option 2',
+      optionLabel3: 'Option 3',
+      optionLabel4: 'Option 4',
+      optionLabel5: 'Option 5',
       label: 'Select',
       placeholder: 'Select an option',
       hint: 'Hint',
