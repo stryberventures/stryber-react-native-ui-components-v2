@@ -11,12 +11,15 @@ export interface IMultiselectOption {
 }
 
 export interface IMultiselectProps
-  extends Omit<IDropdownProps, 'children' | 'value' | 'onChange'> {
+  extends Omit<
+    IDropdownProps,
+    'children' | 'value' | 'onChange' | 'error' | 'variant'
+  > {
   name?: string;
   options: IMultiselectOption[];
   selectedOptions?: (number | string)[];
   clearFormValueOnUnmount?: boolean;
-  separator?: string;
+  error?: string | boolean;
   onChange?: (selectedOptions?: (number | string)[]) => void;
   onDropdownChange?: IDropdownProps['onChange'];
 }
@@ -33,7 +36,6 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   selectedOptions: initSelectedOptions = [],
   clearFormValueOnUnmount,
   color,
-  separator = ', ',
   onChange,
   onDropdownChange,
   ...rest
@@ -48,7 +50,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>(
     fieldValue || initSelectedOptions,
   );
-  const errorMessage = fieldError || error;
+  const errorIcon = !!fieldError || !!error;
   const styles = useStyles();
 
   const getSelectedOptionsLabels = () => {
@@ -58,7 +60,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
         selectedOptionsText.push(option.label);
       }
     });
-    return selectedOptionsText.join(separator);
+    return selectedOptionsText;
   };
 
   const handleBlur = (isDropdownOpen: boolean) => {
@@ -91,6 +93,15 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     return initValues;
   };
 
+  const onOptionRemove = (v: string) => {
+    const currentOption = options.find(option => option.label === v);
+    if (currentOption) {
+      setSelectedOptions(
+        selectedOptions.filter(option => option !== currentOption.value),
+      );
+    }
+  };
+
   useEffect(() => {
     updateFormValue(name, selectedOptions, true);
     return () => {
@@ -101,12 +112,14 @@ const Multiselect: React.FC<IMultiselectProps> = ({
 
   return (
     <Dropdown
+      {...rest}
       color={color}
       onChange={handleBlur}
       value={getSelectedOptionsLabels()}
       dropdownStyle={[styles.dropdown, dropdownStyle]}
-      error={errorMessage}
-      {...rest}
+      errorIcon={errorIcon}
+      variant="labelOutside"
+      onOptionRemove={onOptionRemove}
     >
       <Form initialValues={getFormInitValues()} onChange={handleChange}>
         <ScrollView
