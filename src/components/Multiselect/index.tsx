@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import useStyles from './styles';
-import {ScrollView} from 'react-native';
+import {Pressable, ScrollView, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+
+import {CloseCircleIcon} from '../Icons';
+import {useTheme} from '../Theme';
 import Dropdown, {IDropdownProps} from '../Dropdown';
 import Checkbox from '../Checkbox';
 import Form, {useFormContext} from '../Form';
+import Text from '../Text';
+import useStyles from './styles';
 
 export interface IMultiselectOption {
   label: string;
@@ -51,6 +56,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     fieldValue || initSelectedOptions,
   );
   const errorIcon = !!fieldError || !!error;
+  const {theme} = useTheme();
   const styles = useStyles();
 
   const getSelectedOptionsLabels = () => {
@@ -93,13 +99,54 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     return initValues;
   };
 
-  const onOptionRemove = (v: string) => {
+  const handleRemoveOption = (v: string) => {
     const currentOption = options.find(option => option.label === v);
     if (currentOption) {
       setSelectedOptions(
         selectedOptions.filter(option => option !== currentOption.value),
       );
     }
+  };
+
+  const renderTags = () => {
+    const values = getSelectedOptionsLabels();
+
+    if (values.length === 0) {
+      return undefined;
+    }
+
+    return (
+      <View style={styles.tagsBoxContainer}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <Pressable style={styles.tagsBox}>
+            {values.map((value, index) => (
+              <View style={styles.tag} key={index}>
+                <Text variant="components1" style={styles.tagText}>
+                  {value}
+                </Text>
+                <Pressable
+                  hitSlop={5}
+                  onPress={() => handleRemoveOption(value)}
+                  style={styles.removeTagButton}
+                >
+                  <CloseCircleIcon
+                    width={20}
+                    height={20}
+                    fill={theme.colors.primary.main500}
+                  />
+                </Pressable>
+              </View>
+            ))}
+          </Pressable>
+        </ScrollView>
+        <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          colors={['rgba(255,255, 255, 0)', '#fff']}
+          style={styles.tagsBoxHideGradient}
+        />
+      </View>
+    );
   };
 
   useEffect(() => {
@@ -115,11 +162,10 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       {...rest}
       color={color}
       onChange={handleBlur}
-      value={getSelectedOptionsLabels()}
+      value={renderTags()}
       dropdownStyle={[styles.dropdown, dropdownStyle]}
       errorIcon={errorIcon}
       variant="labelOutside"
-      onOptionRemove={onOptionRemove}
     >
       <Form initialValues={getFormInitValues()} onChange={handleChange}>
         <ScrollView

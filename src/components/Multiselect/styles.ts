@@ -22,4 +22,36 @@ export default createUseStyles(theme => ({
     fontSize: 14,
     fontWeight: '400',
   },
+  tagsBoxContainer: {
+    marginVertical: -4,
+  },
+  tagsBox: {
+    display: 'flex',
+    flexDirection: 'row',
+    height: 32,
+  },
+  tagsBoxHideGradient: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    width: 25,
+  },
+  tag: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 12,
+    paddingRight: 6,
+    marginRight: 4,
+    borderRadius: 5,
+    backgroundColor: theme.colors.primary.extraLight50,
+  },
+  tagText: {
+    color: theme.colors.primary.main500,
+    lineHeight: 24,
+  },
+  removeTagButton: {
+    marginLeft: 8,
+  },
 }));

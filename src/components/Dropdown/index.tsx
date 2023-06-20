@@ -14,8 +14,6 @@ import Animated, {
   Easing,
   runOnJS,
 } from 'react-native-reanimated';
-import LinearGradient from 'react-native-linear-gradient';
-import useStyles from './styles';
 import {
   GestureResponderEvent,
   Modal,
@@ -23,26 +21,25 @@ import {
   StyleProp,
   View,
   ViewStyle,
-  ScrollView,
 } from 'react-native';
 import {Shadow} from 'react-native-shadow-2';
+import {validateInputValueLength} from '../../utils';
 import LabelOutsideInputLayout, {
   ILabelOutsideInputLayoutProps,
 } from '../Input/LabelOutsideInputLayout';
 import FloatingLabelInputLayout from '../Input/FloatingLabelInputLayout';
-import {ArrowIcon, ErrorIcon, CloseCircleIcon} from '../Icons';
+import {ArrowIcon, ErrorIcon} from '../Icons';
 import {useTheme} from '../Theme';
 import Text from '../Text';
-import {validateInputValueLength} from '../../utils';
+import useStyles from './styles';
 
 const MAX_DROPDOWN_HEIGHT = 300;
 
 export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
-  value?: string | string[];
+  value?: string | React.ReactNode;
   placeholder?: string;
   dropdownStyle?: StyleProp<ViewStyle>;
   onChange?: (open: boolean) => void;
-  onOptionRemove?: (tagValue: string) => void;
   variant?: 'floatingLabel' | 'labelOutside';
   errorIcon?: boolean;
 }
@@ -62,7 +59,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
   (
     {
       placeholder,
-      value: v,
+      value,
       onPress,
       disabled,
       children,
@@ -70,7 +67,6 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       onChange,
       variant = 'floatingLabel',
       errorIcon,
-      onOptionRemove,
       ...rest
     },
     ref,
@@ -86,8 +82,6 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         width: 0,
       },
     );
-    const multiValueMode = Array.isArray(v);
-    const values = multiValueMode ? v : [v];
     const styles = useStyles(dropdownPosition);
     const dropdownAnimatingValue = useSharedValue(0);
     const onDropdownAnimationCallback = () => {
@@ -138,12 +132,6 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       onChange && onChange(false);
     };
 
-    const handleRemoveOption = (val?: string) => {
-      if (onOptionRemove && val) {
-        onOptionRemove(val);
-      }
-    };
-
     const renderDropdown = () => (
       <Modal visible={visible} transparent animationType="none">
         <Pressable style={styles.overlay} onPress={handleClose} />
@@ -165,55 +153,6 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       </Modal>
     );
 
-    const renderTags = () => {
-      return (
-        <View style={styles.tagsBoxContainer}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <Pressable style={styles.tagsBox}>
-              {values.map((value, index) => (
-                <View style={styles.tab} key={index}>
-                  <Text variant="components1" style={styles.tabText}>
-                    {value}
-                  </Text>
-                  <Pressable
-                    hitSlop={5}
-                    onPress={() => handleRemoveOption(value)}
-                    style={styles.removeTagButton}
-                  >
-                    <CloseCircleIcon
-                      width={20}
-                      height={20}
-                      fill={theme.colors.primary.main500}
-                    />
-                  </Pressable>
-                </View>
-              ))}
-            </Pressable>
-          </ScrollView>
-          <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
-            colors={['rgba(255,255, 255, 0)', '#fff']}
-            style={styles.tagsBoxHideGradient}
-          />
-        </View>
-      );
-    };
-
-    const renderTextValue = () => (
-      <Text
-        variant={variant === 'floatingLabel' ? 'components1' : 'components2'}
-        style={[
-          styles.text,
-          !!placeholder && styles.placeholderText,
-          !!values[0] && styles.valueText,
-          disabled && styles.disabledText,
-        ]}
-      >
-        {(!!values[0] && validateInputValueLength(values[0])) || placeholder}
-      </Text>
-    );
-
     useImperativeHandle(ref, () => ({
       open: handleOpen,
       close: handleClose,
@@ -233,7 +172,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         isFocused={visible}
         ref={dropdownInputRef}
         onPress={handleOpen}
-        isEmpty={!values[0]}
+        isEmpty={!value}
         rightContent={
           <>
             {errorIcon && (
@@ -262,8 +201,24 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       >
         {renderDropdown()}
         {/*This block is used to keep the label in the same position when there are no text*/}
-        {!placeholder && !values[0] && <View style={styles.emptyBlock} />}
-        {multiValueMode && values[0] ? renderTags() : renderTextValue()}
+        {!placeholder && !value && <View style={styles.emptyBlock} />}
+        {typeof value === 'string' || typeof value === 'undefined' ? (
+          <Text
+            variant={
+              variant === 'floatingLabel' ? 'components1' : 'components2'
+            }
+            style={[
+              styles.text,
+              !!placeholder && styles.placeholderText,
+              !!value && styles.valueText,
+              disabled && styles.disabledText,
+            ]}
+          >
+            {(!!value && validateInputValueLength(value)) || placeholder}
+          </Text>
+        ) : (
+          value
+        )}
       </LayoutComponent>
     );
   },
