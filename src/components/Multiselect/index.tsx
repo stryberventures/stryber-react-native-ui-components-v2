@@ -7,6 +7,7 @@ import {useTheme} from '../Theme';
 import Dropdown, {IDropdownProps} from '../Dropdown';
 import Checkbox from '../Checkbox';
 import Form, {useFormContext} from '../Form';
+import SearchInput from '../SearchInput';
 import Text from '../Text';
 import useStyles from './styles';
 
@@ -24,6 +25,7 @@ export interface IMultiselectProps
   options: IMultiselectOption[];
   selectedOptions?: (number | string)[];
   clearFormValueOnUnmount?: boolean;
+  withSearch?: boolean;
   error?: string | boolean;
   onChange?: (selectedOptions?: (number | string)[]) => void;
   onDropdownChange?: IDropdownProps['onChange'];
@@ -41,6 +43,8 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   selectedOptions: initSelectedOptions = [],
   clearFormValueOnUnmount,
   color,
+  disabled,
+  withSearch = false,
   onChange,
   onDropdownChange,
   ...rest
@@ -55,6 +59,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>(
     fieldValue || initSelectedOptions,
   );
+  const [searchText, setSearchText] = useState<string>();
   const errorIcon = !!fieldError || !!error;
   const {theme} = useTheme();
   const styles = useStyles();
@@ -116,7 +121,10 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     }
 
     return (
-      <View style={styles.tagsBoxContainer}>
+      <View
+        pointerEvents={disabled ? 'none' : 'auto'}
+        style={styles.tagsBoxContainer}
+      >
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <Pressable style={styles.tagsBox}>
             {values.map((value, index) => (
@@ -149,12 +157,27 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     );
   };
 
+  const onChangeTextSearchInput = (t: string) => {
+    setSearchText(t);
+  };
+  const onDropdownClose = () => {
+    setSearchText('');
+  };
+
   useEffect(() => {
     updateFormValue(name, selectedOptions, true);
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };
   }, [selectedOptions]);
+
+  const filteredOptions = (() => {
+    if (!searchText) {
+      return options;
+    }
+    const regex = new RegExp(`${searchText}`, 'i');
+    return options.filter(option => option.label.match(regex));
+  })();
 
   return (
     <Dropdown
@@ -164,14 +187,21 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       value={renderTags()}
       dropdownStyle={[styles.dropdown, dropdownStyle]}
       errorIcon={errorIcon}
+      disabled={disabled}
       variant="labelOutside"
+      onClose={onDropdownClose}
     >
+      {withSearch && (
+        <View style={styles.searchContainer}>
+          <SearchInput onChangeText={onChangeTextSearchInput} />
+        </View>
+      )}
       <Form initialValues={getFormInitValues()} onChange={handleChange}>
         <ScrollView
           style={styles.content}
           contentContainerStyle={styles.innerContent}
         >
-          {options.map(option => (
+          {filteredOptions.map(option => (
             <Checkbox
               color={color}
               key={option.label}

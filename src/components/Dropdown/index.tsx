@@ -40,6 +40,7 @@ export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
   placeholder?: string;
   dropdownStyle?: StyleProp<ViewStyle>;
   onChange?: (open: boolean) => void;
+  onClose?: () => void;
   variant?: 'floatingLabel' | 'labelOutside';
   errorIcon?: boolean;
 }
@@ -65,6 +66,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       children,
       dropdownStyle,
       onChange,
+      onClose,
       variant = 'floatingLabel',
       errorIcon,
       ...rest
@@ -87,6 +89,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     const onDropdownAnimationCallback = () => {
       if (!preVisible) {
         setVisible(false);
+        onClose && onClose();
       }
     };
     const dropdownAnimatedValue = useDerivedValue(() =>

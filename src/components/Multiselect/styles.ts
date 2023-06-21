@@ -54,4 +54,8 @@ export default createUseStyles(theme => ({
   removeTagButton: {
     marginLeft: 8,
   },
+  searchContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.neutralGray.light200,
+  },
 }));
