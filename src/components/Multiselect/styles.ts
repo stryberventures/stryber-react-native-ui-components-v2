@@ -9,18 +9,18 @@ export default createUseStyles(theme => ({
     maxHeight: 160,
   },
   multiselectItem: {
-    paddingHorizontal: 8,
-    paddingVertical: 8.5,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
   multiselectItemPressed: {
     backgroundColor: theme.colors.neutralGray.light100,
   },
-  innerContent: {
-    paddingVertical: 8,
-  },
+  innerContent: {},
   checkboxText: {
-    fontSize: 14,
+    fontSize: 16,
+    lineHeight: 24,
     fontWeight: '400',
+    marginLeft: 4,
   },
   tagsBoxContainer: {
     marginVertical: -4,
