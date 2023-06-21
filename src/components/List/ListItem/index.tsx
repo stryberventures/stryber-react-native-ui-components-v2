@@ -34,12 +34,6 @@ const ListItem: React.FC<IListItemProps> = ({
 }) => {
   const styles = useStyles();
 
-  const handlePress = (event: GestureResponderEvent) => {
-    if (!disabled && onPress) {
-      onPress(event);
-    }
-  };
-
   return (
     <Pressable
       style={({pressed}) => [
@@ -51,7 +45,7 @@ const ListItem: React.FC<IListItemProps> = ({
         style,
       ]}
       disabled={disabled}
-      onPress={handlePress}
+      onPress={onPress}
       testID={testID}
     >
       <View style={styles.content}>
