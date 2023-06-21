@@ -157,6 +157,7 @@ const vocab = {
       noLabel: 'No Label',
     },
     list: {
+      label: 'label',
       title: 'One-line Item',
       subtitle: 'Secondary Text',
     },
