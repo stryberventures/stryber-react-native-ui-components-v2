@@ -154,8 +154,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedOptions]);
 
   return (
     <Dropdown

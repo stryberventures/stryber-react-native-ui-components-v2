@@ -144,7 +144,6 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
             distance={10}
             offset={[0, 6]}
             startColor="rgba(102, 112, 133, 0.15)"
-            paintInside={false}
             sides={{start: true, end: true, top: false, bottom: true}}
           >
             <View style={styles.dropdownInner}>{children}</View>
