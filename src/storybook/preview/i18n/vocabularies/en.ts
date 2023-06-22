@@ -161,6 +161,9 @@ const vocab = {
       title: 'One-line Item',
       subtitle: 'Secondary Text',
     },
+    menu: {
+      item: 'Menu item',
+    },
     multiselect: {
       label: 'Multiselect',
       placeholder: 'Select multiple options',
