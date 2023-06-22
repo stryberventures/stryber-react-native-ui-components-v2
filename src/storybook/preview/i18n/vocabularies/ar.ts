@@ -158,6 +158,7 @@ const vocab: TVocab = {
       noLabel: 'بدون تسمية',
     },
     list: {
+      label: 'قائمة',
       title: 'عنصر في سطر واحد',
       subtitle: 'نص ثانوي',
     },
