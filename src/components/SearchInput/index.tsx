@@ -20,7 +20,7 @@ const SearchInput: React.FC<ISearchInputProps> = ({disabled, ...rest}) => {
           }
         />
       }
-      variant="labelOutsideUnbounded"
+      variant="labelOutside"
       withRemoveButton={!disabled}
       disabled={disabled}
       errorStyle={styles.hintsMessage}

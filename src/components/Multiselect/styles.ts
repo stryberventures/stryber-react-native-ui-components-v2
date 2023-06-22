@@ -8,20 +8,7 @@ export default createUseStyles(theme => ({
   content: {
     maxHeight: 160,
   },
-  multiselectItem: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  multiselectItemPressed: {
-    backgroundColor: theme.colors.neutralGray.light100,
-  },
   innerContent: {},
-  checkboxText: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: '400',
-    marginLeft: 4,
-  },
   tagsBoxContainer: {
     marginVertical: -4,
   },
@@ -57,5 +44,10 @@ export default createUseStyles(theme => ({
   searchContainer: {
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.neutralGray.light200,
+  },
+  searchInput: {
+    borderWidth: 0,
+    paddingHorizontal: 12,
+    paddingVertical: 11,
   },
 }));

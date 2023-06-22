@@ -27,7 +27,7 @@ import {applyDigitMask} from './utils';
 export interface IInputProps extends TextInputProps {
   name?: string;
   label?: string;
-  variant?: 'floatingLabel' | 'labelOutside' | 'labelOutsideUnbounded';
+  variant?: 'floatingLabel' | 'labelOutside';
   clearFormValueOnUnmount?: boolean;
   hint?: string;
   error?: string | boolean;
@@ -120,7 +120,6 @@ const Input = forwardRef<TextInput, IInputProps>(
         case 'floatingLabel':
           return FloatingLabelInputLayout;
         case 'labelOutside':
-        case 'labelOutsideUnbounded':
           return LabelOutsideInputLayout;
         default:
           return FloatingLabelInputLayout;
@@ -211,7 +210,6 @@ const Input = forwardRef<TextInput, IInputProps>(
         errorStyle={errorStyle}
         isEmpty={controlled ? !value : !internalValue}
         leftContent={leftContent}
-        {...(variant === 'labelOutsideUnbounded' && {unBounded: true})}
       >
         <View style={styles.inputContainer}>
           {prefix && (

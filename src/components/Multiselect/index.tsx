@@ -2,18 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {Pressable, ScrollView, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {CloseCircleIcon} from '../Icons';
+import {CloseCircleIcon, SearchIcon} from '../Icons';
 import {useTheme} from '../Theme';
 import Dropdown, {IDropdownProps} from '../Dropdown';
-import Checkbox from '../Checkbox';
 import Form, {useFormContext} from '../Form';
-import SearchInput from '../SearchInput';
+import Input from '../Input';
 import Text from '../Text';
+import MultiselectOption from './MultiselectOption';
 import useStyles from './styles';
 
 export interface IMultiselectOption {
   label: string;
   value: string | number;
+  icon?: React.ReactNode;
 }
 
 export interface IMultiselectProps
@@ -44,7 +45,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   clearFormValueOnUnmount,
   color,
   disabled,
-  withSearch = false,
+  withSearch = true,
   onChange,
   onDropdownChange,
   ...rest
@@ -193,7 +194,19 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     >
       {withSearch && (
         <View style={styles.searchContainer}>
-          <SearchInput onChangeText={onChangeTextSearchInput} />
+          <Input
+            inputWrapperStyle={styles.searchInput}
+            withRemoveButton
+            onChangeText={onChangeTextSearchInput}
+            variant="labelOutside"
+            leftContent={
+              <SearchIcon
+                width={20}
+                height={20}
+                fill={theme.colors.text.secondary}
+              />
+            }
+          />
         </View>
       )}
       <Form initialValues={getFormInitValues()} onChange={handleChange}>
@@ -202,14 +215,12 @@ const Multiselect: React.FC<IMultiselectProps> = ({
           contentContainerStyle={styles.innerContent}
         >
           {filteredOptions.map(option => (
-            <Checkbox
+            <MultiselectOption
               color={color}
               key={option.label}
               label={option.label}
-              labelStyle={styles.checkboxText}
               name={option.label}
-              style={styles.multiselectItem}
-              pressedStyle={styles.multiselectItemPressed}
+              icon={option.icon}
             />
           ))}
         </ScrollView>

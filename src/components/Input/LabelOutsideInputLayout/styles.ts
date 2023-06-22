@@ -9,21 +9,14 @@ export default createUseStyles(
     isLeftContent: boolean,
     isRightContent: boolean,
     size: ILabelOutsideInputLayoutProps['size'],
-    unBounded: boolean,
   ) => ({
     input: {
-      borderWidth: unBounded ? 0 : 1,
+      borderWidth: 1,
       borderColor: theme.colors.neutralGray.medium300,
       borderRadius: 4,
-      paddingHorizontal: isFocused && !unBounded ? 11 : 12,
+      paddingHorizontal: isFocused ? 11 : 12,
       paddingVertical:
-        size === 'medium'
-          ? isFocused && !unBounded
-            ? 10
-            : 11
-          : isFocused && !unBounded
-          ? 14
-          : 15,
+        size === 'medium' ? (isFocused ? 10 : 11) : isFocused ? 14 : 15,
       backgroundColor: theme.colors.background.white,
       flexDirection: 'row',
       justifyContent: 'space-between',
