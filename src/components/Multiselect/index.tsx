@@ -27,6 +27,7 @@ export interface IMultiselectProps
   selectedOptions?: (number | string)[];
   clearFormValueOnUnmount?: boolean;
   withSearch?: boolean;
+  searchPlaceholder?: string;
   error?: string | boolean;
   onChange?: (selectedOptions?: (number | string)[]) => void;
   onDropdownChange?: IDropdownProps['onChange'];
@@ -46,6 +47,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   color,
   disabled,
   withSearch = true,
+  searchPlaceholder,
   onChange,
   onDropdownChange,
   ...rest
@@ -199,6 +201,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
             withRemoveButton
             onChangeText={onChangeTextSearchInput}
             variant="labelOutside"
+            placeholder={searchPlaceholder}
             leftContent={
               <SearchIcon
                 width={20}
