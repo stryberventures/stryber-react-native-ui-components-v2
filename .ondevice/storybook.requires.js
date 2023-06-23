@@ -43,6 +43,7 @@ const getStories = () => {
     require("../src/components/Input/LabelOutsideInput.stories.tsx"),
     require("../src/components/LinearProgress/LinearProgress.stories.tsx"),
     require("../src/components/List/List.stories.tsx"),
+    require("../src/components/Menu/Menu.stories.tsx"),
     require("../src/components/Multiselect/FloatingLabelMultiselect.stories.tsx"),
     require("../src/components/Multiselect/LabelOutsideMultiselect.stories.tsx"),
     require("../src/components/NumberInput/NumberInputFloatingLabel.stories.tsx"),

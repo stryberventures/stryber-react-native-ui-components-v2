@@ -162,6 +162,9 @@ const vocab: TVocab = {
       title: 'عنصر في سطر واحد',
       subtitle: 'نص ثانوي',
     },
+    menu: {
+      item: 'قائمة',
+    },
     multiselect: {
       label: 'تحديد متعدد',
       placeholder: 'اختر خيارات متعددة',
