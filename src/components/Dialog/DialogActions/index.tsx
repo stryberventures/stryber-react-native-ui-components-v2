@@ -20,10 +20,7 @@ const DialogActions: React.FC<IDialogActions> = ({
       {childElements.map((child, index) => (
         <View
           key={index}
-          style={[
-            styles.buttonWrapper,
-            shrunk ? styles.buttonWrapperShrunk : {},
-          ]}
+          style={[styles.buttonWrapper, shrunk && styles.buttonWrapperShrunk]}
         >
           {child}
         </View>
