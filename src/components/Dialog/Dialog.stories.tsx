@@ -15,6 +15,9 @@ import CenterDialogExample, {
 import ImageDialogExample, {
   ImageDialogExampleCode,
 } from '../../storybook/preview/Dialog/Image';
+import CheckboxesDialogExample, {
+  CheckboxesDialogExampleCode,
+} from '../../storybook/preview/Dialog/Checkboxes';
 
 export default {
   title: 'Components/Dialog',
@@ -57,6 +60,15 @@ ImageExample.parameters = {
   docs: {
     source: {
       code: ImageDialogExampleCode,
+    },
+  },
+};
+
+export const CheckboxesExample = () => <CheckboxesDialogExample />;
+CheckboxesExample.parameters = {
+  docs: {
+    source: {
+      code: CheckboxesDialogExampleCode,
     },
   },
 };

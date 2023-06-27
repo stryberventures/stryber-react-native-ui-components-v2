@@ -68,6 +68,7 @@ const vocab = {
       discard: 'Discard',
       cancel: 'Cancel',
       confirm: 'Confirm',
+      label: 'Venture Architect',
     },
     divider: {
       listItemText: 'Expandable list item',

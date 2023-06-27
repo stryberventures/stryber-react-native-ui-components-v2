@@ -70,6 +70,7 @@ const vocab: TVocab = {
       discard: 'تجاهل',
       cancel: 'إلغاء',
       confirm: 'يتأكد',
+      label: 'مهندس المشروع',
     },
     divider: {
       listItemText: 'عنصر قائمة قابل للتوسيع',
