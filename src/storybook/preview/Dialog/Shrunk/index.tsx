@@ -18,7 +18,7 @@ const ShrunkDialogExample = () => {
         <Dialog.Actions shrunk>
           <Button
             variant="ghost"
-            color="secondary"
+            color="primary"
             size="small"
             onPress={closeDialog}
           >
@@ -51,7 +51,7 @@ export const ShrunkDialogExampleCode = `
         <Dialog.Actions shrunk>
           <Button
             variant="ghost"
-            color="secondary"
+            color="primary"
             size="small"
             onPress={closeDialog}
           >
