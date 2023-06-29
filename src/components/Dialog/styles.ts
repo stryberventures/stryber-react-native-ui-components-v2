@@ -12,38 +12,19 @@ export default createUseStyles(theme => ({
     alignItems: 'center',
   },
   dialog: {
-    width: '80%',
-    paddingHorizontal: 24,
-    paddingVertical: 20,
+    maxWidth: 420,
+    minWidth: 320,
+    marginHorizontal: '10%',
+    padding: 24,
     backgroundColor: theme.colors.background.white,
-    borderRadius: 4,
-    shadowColor: '#000',
+    borderRadius: 12,
+    shadowColor: '#101828',
     shadowOffset: {
       width: 0,
-      height: 0,
+      height: 8,
     },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-
-    elevation: 11,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-    lineHeight: 30,
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: theme.colors.neutralGray.main500,
-  },
-  buttonWrapper: {
-    marginTop: 16,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  cancelButton: {
-    marginLeft: 12,
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
+    elevation: 8,
   },
 }));

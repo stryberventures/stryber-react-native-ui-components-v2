@@ -1,8 +1,10 @@
 import React, {FC} from 'react';
 import useStyles from './styles';
-import {Modal, Pressable, ModalProps, ViewStyle} from 'react-native';
+import {Modal, Pressable, ModalProps, ViewStyle, View} from 'react-native';
 import DialogTitle from './DialogTitle';
+import DialogText from './DialogText';
 import DialogActions from './DialogActions';
+import DialogImage from './DialogImage';
 
 export interface IDialogProps extends ModalProps {
   onClose: () => void;
@@ -13,7 +15,9 @@ export interface IDialogProps extends ModalProps {
 
 export interface IDialogStaticProps {
   Title: typeof DialogTitle;
+  Text: typeof DialogText;
   Actions: typeof DialogActions;
+  Image: typeof DialogImage;
 }
 
 const Dialog: FC<IDialogProps> & IDialogStaticProps = ({
@@ -32,13 +36,17 @@ const Dialog: FC<IDialogProps> & IDialogStaticProps = ({
         onPress={!disableOutsidePress ? onClose : null}
         style={[styles.overlay, overlayStyle]}
       >
-        <Pressable style={[styles.dialog, style]}>{children}</Pressable>
+        <Pressable style={[styles.dialog, style]}>
+          <View>{children}</View>
+        </Pressable>
       </Pressable>
     </Modal>
   );
 };
 
 Dialog.Title = DialogTitle;
+Dialog.Text = DialogText;
 Dialog.Actions = DialogActions;
+Dialog.Image = DialogImage;
 
 export default Dialog;
