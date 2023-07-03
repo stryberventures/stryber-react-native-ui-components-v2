@@ -55,6 +55,8 @@ const getStories = () => {
     require("../src/components/Select/FloatingLabelSelect.stories.tsx"),
     require("../src/components/Select/LabelOutsideSelect.stories.tsx"),
     require("../src/components/Slider/Slider.stories.tsx"),
+    require("../src/components/Snackbar/Snackbar.stories.tsx"),
+    require("../src/components/Snackbar/SnackbarContent.stories.tsx"),
     require("../src/components/Switch/Switch.stories.tsx"),
     require("../src/components/Tag/Tag.stories.tsx"),
     require("../src/components/Text/Text.stories.tsx"),
