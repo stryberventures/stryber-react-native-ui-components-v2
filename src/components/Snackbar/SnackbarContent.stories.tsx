@@ -5,6 +5,7 @@ import pkg from './package.json';
 import Divider from '../../storybook/preview/Divider';
 import {Platform} from 'react-native';
 import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/Snackbar/SnackbarContent',
@@ -39,6 +40,6 @@ const Template: ComponentStory<typeof SnackbarContent> = ({
 
 export const AllVariants = Template.bind({});
 AllVariants.args = {
-  message: 'This is a snackbar',
-  description: 'This is a description',
+  message: vocab.components.snackbar.message,
+  description: vocab.components.snackbar.description,
 };

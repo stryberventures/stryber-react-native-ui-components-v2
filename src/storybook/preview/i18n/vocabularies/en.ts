@@ -253,6 +253,10 @@ const vocab = {
       title: 'Tooltip title',
       content: 'Tooltip inner text',
     },
+    snackbar: {
+      message: 'Snackbar message',
+      description: 'Snackbar description',
+    },
   },
   modules: {
     auth: {
