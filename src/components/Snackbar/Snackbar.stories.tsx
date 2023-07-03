@@ -28,7 +28,9 @@ const Template: ComponentStory<typeof Snackbar> = ({onClose: _, ...args}) => {
 
   return (
     <>
-      <Button onPress={() => setOpen(true)}>Show snackbar</Button>
+      <Button onPress={() => setOpen(true)}>
+        {vocab.components.snackbar.message}
+      </Button>
       <Snackbar open={open} onClose={handleClose} {...args} />
     </>
   );

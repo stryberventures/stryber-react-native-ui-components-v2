@@ -256,6 +256,7 @@ const vocab = {
     snackbar: {
       message: 'Snackbar message',
       description: 'Snackbar description',
+      button: 'Show snackbar',
     },
   },
   modules: {

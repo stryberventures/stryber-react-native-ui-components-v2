@@ -257,6 +257,7 @@ const vocab: TVocab = {
     snackbar: {
       message: 'رسالة الخطأ',
       description: 'وصف الخطأ',
+      button: 'إظهار الخطأ',
     },
   },
   modules: {
