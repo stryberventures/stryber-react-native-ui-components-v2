@@ -257,6 +257,11 @@ const vocab: TVocab = {
       title: 'عنوان الأداة التوضيحية',
       content: 'نص الأداة التوضيحية',
     },
+    snackbar: {
+      message: 'رسالة الخطأ',
+      description: 'وصف الخطأ',
+      button: 'إظهار الخطأ',
+    },
   },
   modules: {
     auth: {

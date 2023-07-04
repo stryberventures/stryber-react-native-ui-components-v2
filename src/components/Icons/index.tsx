@@ -26,3 +26,4 @@ export {default as SocialIcon} from './IconList/SocialIcon';
 export {default as CloseIcon} from './IconList/CloseIcon';
 export {default as SearchIcon} from './IconList/SearchIcon';
 export {default as ErrorIcon} from './IconList/ErrorIcon';
+export {default as WarningIcon} from './IconList/WarningIcon';
