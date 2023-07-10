@@ -1,12 +1,12 @@
 import React from 'react';
 import {ICommonIconProps, TCommonIconVariants, TPathDProp} from './types';
-import Svg, {Path, Color} from 'react-native-svg';
+import Svg, {Path} from 'react-native-svg';
 import {useTheme} from '../Theme';
-import {View} from 'react-native';
+import {View, ColorValue} from 'react-native';
 
 export const createPathDComponent = (
   pathDProp: TPathDProp | TPathDProp[],
-  fill: Color,
+  fill: ColorValue,
 ) => {
   if (Array.isArray(pathDProp)) {
     return pathDProp.map((pathD, idx) => (
