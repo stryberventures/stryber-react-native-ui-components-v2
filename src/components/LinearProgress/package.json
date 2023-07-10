@@ -6,6 +6,6 @@
     "react": ">=17.0.2",
     "@stryberventures/gaia-react-native.theme": ">=0.1.0",
     "react-native-reanimated": "^2.14.4",
-    "react-native-svg": "^12.3.0"
+    "react-native-svg": "^13.10.0"
   }
 }
