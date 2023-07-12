@@ -61,13 +61,11 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
       disabled={disabled}
       hitSlop={3}
       style={({pressed}) => [style, pressed && pressedStyle]}
-      {...rest}
-    >
+      {...rest}>
       {({pressed}) => (
         <>
           <View
-            style={[styles.toggleInputWrapper, fullWidth && styles.fullWidth]}
-          >
+            style={[styles.toggleInputWrapper, fullWidth && styles.fullWidth]}>
             <View style={[styles.toggleInput, {height: containerHeight}]}>
               {variant === 'switch' ? (
                 <SwitchIcon
@@ -101,8 +99,7 @@ const ToggleInput: React.FC<IToggleInputProps> = ({
                   ]}
                   onLayout={({nativeEvent}) =>
                     setContainerHeight(nativeEvent.layout.height)
-                  }
-                >
+                  }>
                   {label}
                 </Text>
               ) : (

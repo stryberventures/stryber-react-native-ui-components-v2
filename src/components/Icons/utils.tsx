@@ -49,6 +49,7 @@ export const createCommonIcon = <Variants extends string>(
     const fillColor = fill || theme.colors.text.headline;
 
     return (
+      // @ts-ignore
       <View style={[{width, height}, style]}>
         <Svg {...rest} width="100%" height="100%" viewBox="0 0 24 24">
           {createPathDComponent(

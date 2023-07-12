@@ -211,8 +211,7 @@ const Form = forwardRef<IFormRef, IFormProps>(
           formErrors,
           formTouched,
           formActions,
-        }}
-      >
+        }}>
         {children}
       </FormContext.Provider>
     );

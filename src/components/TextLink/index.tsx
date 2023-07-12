@@ -21,6 +21,7 @@ export interface ITextLinkProps extends PressableProps {
   iconRight?: React.FC<any>;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  children?: React.ReactNode;
 }
 
 const TextLink: React.FC<ITextLinkProps> = ({
@@ -71,8 +72,7 @@ const TextLink: React.FC<ITextLinkProps> = ({
               {color: getTextColor(pressed)},
               pressed && styles.pressedText,
               textStyle,
-            ]}
-          >
+            ]}>
             {children}
           </Text>
           {renderIcon('rightIcon', pressed, iconRight)}

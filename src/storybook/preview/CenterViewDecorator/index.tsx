@@ -10,8 +10,7 @@ const CenterViewDecorator = (Story: () => StoryFnReactReturnType) => {
         justifyContent: 'center',
         height: '100%',
         paddingHorizontal: 20,
-      }}
-    >
+      }}>
       <Story />
     </View>
   );

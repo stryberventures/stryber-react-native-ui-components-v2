@@ -41,8 +41,7 @@ const Snackbar: React.FC<ISnackbarProps> = ({
       <SafeAreaView style={styles.snackbarOverlay}>
         <Pressable
           onPress={onClose}
-          style={[styles.snackbarWrapper, styles[position]]}
-        >
+          style={[styles.snackbarWrapper, styles[position]]}>
           <SnackbarContent {...rest} onClose={onClose} />
         </Pressable>
       </SafeAreaView>

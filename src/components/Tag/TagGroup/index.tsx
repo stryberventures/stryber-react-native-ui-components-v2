@@ -15,13 +15,13 @@ const defaultTagGroupContextValues: ITagGroupContext = {
   removeTag: () => {},
 };
 
-export const TagGroupContext: React.Context<ITagGroupContext> = React.createContext(
-  defaultTagGroupContextValues,
-);
+export const TagGroupContext: React.Context<ITagGroupContext> =
+  React.createContext(defaultTagGroupContextValues);
 
 interface ITagGroupProps {
   selectedTags?: TSelectedTags;
   onChange?: (selectedTags: any) => void;
+  children: React.ReactNode;
 }
 
 const TagGroup: React.FC<ITagGroupProps> = ({
@@ -46,8 +46,7 @@ const TagGroup: React.FC<ITagGroupProps> = ({
 
   return (
     <TagGroupContext.Provider
-      value={{selectedTags, addTag: handleAddTag, removeTag: handleRemoveTag}}
-    >
+      value={{selectedTags, addTag: handleAddTag, removeTag: handleRemoveTag}}>
       {children}
     </TagGroupContext.Provider>
   );

@@ -24,23 +24,20 @@ const ListItemText: React.FC<IListItemTextProps> = ({
       {!!label && (
         <Text
           variant="caption1"
-          style={[styles.label, disabled && styles.disabled]}
-        >
+          style={[styles.label, disabled && styles.disabled]}>
           {label}
         </Text>
       )}
       <Text
         variant="components1"
         weight="medium"
-        style={[styles.title, disabled && styles.disabled]}
-      >
+        style={[styles.title, disabled && styles.disabled]}>
         {primary}
       </Text>
       {!!secondary && (
         <Text
           variant="components2"
-          style={[styles.subtitle, disabled && styles.disabled]}
-        >
+          style={[styles.subtitle, disabled && styles.disabled]}>
           {secondary}
         </Text>
       )}

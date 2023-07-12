@@ -106,13 +106,11 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       value={getSelectedOptionsLabels()}
       dropdownStyle={[styles.dropdown, dropdownStyle]}
       error={errorMessage}
-      {...rest}
-    >
+      {...rest}>
       <Form initialValues={getFormInitValues()} onChange={handleChange}>
         <ScrollView
           style={styles.content}
-          contentContainerStyle={styles.innerContent}
-        >
+          contentContainerStyle={styles.innerContent}>
           {options.map(option => (
             <Checkbox
               color={color}

@@ -45,8 +45,7 @@ const Template: ComponentStory<typeof Tooltip> = args => {
       title={vocab.components.tooltip.title}
       content={vocab.components.tooltip.content}
       wrapperStyle={styles.wrapper}
-      {...args}
-    >
+      {...args}>
       <View style={styles.block} />
     </Tooltip>
   );

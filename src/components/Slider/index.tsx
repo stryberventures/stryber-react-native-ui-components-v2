@@ -68,14 +68,10 @@ const Slider: FC<ISliderProps> = ({
   const [internalValue, setInternalValue] = useState<SliderValueType>(
     fieldValue || initialValue,
   );
-  const [
-    upButtonPanResponder,
-    setUpButtonPanResponder,
-  ] = useState<PanResponderInstance | null>(null);
-  const [
-    downButtonPanResponder,
-    setDownButtonPanResponder,
-  ] = useState<PanResponderInstance | null>(null);
+  const [upButtonPanResponder, setUpButtonPanResponder] =
+    useState<PanResponderInstance | null>(null);
+  const [downButtonPanResponder, setDownButtonPanResponder] =
+    useState<PanResponderInstance | null>(null);
 
   const positionUp = useRef(new Animated.Value(0)).current;
   const positionDown = useRef(new Animated.Value(0)).current;
@@ -350,8 +346,7 @@ const Slider: FC<ISliderProps> = ({
           topButton === type && styles.topButton,
         ]}
         testID={`slider_button_${type}`}
-        {...(!disabled ? panResponder?.panHandlers : {})}
-      >
+        {...(!disabled ? panResponder?.panHandlers : {})}>
         {showTooltip && (
           <Animated.View
             style={[
@@ -369,13 +364,11 @@ const Slider: FC<ISliderProps> = ({
                         : getNumberLength(internalValue[0])
                       : getNumberLength(internalValue)),
               },
-            ]}
-          >
+            ]}>
             <Text
               numberOfLines={1}
               ellipsizeMode="clip"
-              style={styles.tooltipText}
-            >
+              style={styles.tooltipText}>
               {Array.isArray(internalValue)
                 ? isUp
                   ? internalValue[1]
@@ -389,8 +382,7 @@ const Slider: FC<ISliderProps> = ({
             style={[
               styles.buttonInputWrapper,
               {opacity: isUp ? buttonUpActive : buttonDownActive},
-            ]}
-          >
+            ]}>
             <SliderInput
               type={type}
               value={internalValue}
@@ -417,8 +409,7 @@ const Slider: FC<ISliderProps> = ({
       <>
         <View
           style={styles.rangeBarWrapper}
-          onLayout={onRangeBarContainerLayout}
-        >
+          onLayout={onRangeBarContainerLayout}>
           {stepDotsIndicator &&
             dotsArr!.map((_, i) => (
               <View
@@ -463,8 +454,10 @@ const Slider: FC<ISliderProps> = ({
 
   const renderLabel = (labelValue: number) => (
     <View
-      style={[styles.labelContainer, disabled && styles.disabledLabelContainer]}
-    >
+      style={[
+        styles.labelContainer,
+        disabled && styles.disabledLabelContainer,
+      ]}>
       <Text style={styles.tooltipText}>{labelValue}</Text>
     </View>
   );

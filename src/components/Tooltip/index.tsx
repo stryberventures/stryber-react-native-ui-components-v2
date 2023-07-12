@@ -99,24 +99,21 @@ const Tooltip: React.FC<ITooltipProps> = ({
       <Modal
         visible={controlled ? isVisible : visible}
         transparent
-        animationType="fade"
-      >
+        animationType="fade">
         <Pressable style={styles.overlay} onPress={handleClose} />
         <View
           style={[styles.tooltip, styles[position], styles[variant], style]}
           onLayout={({nativeEvent}) => {
             setTooltipSize(nativeEvent.layout);
           }}
-          {...rest}
-        >
+          {...rest}>
           {arrow && <TooltipTriangle variant={variant} position={position} />}
           <View style={styles.titleWrapper}>
             {title && typeof title === 'string' ? (
               <Text
                 variant="components2"
                 weight="medium"
-                style={[styles[`${variant}Title`], titleStyle]}
-              >
+                style={[styles[`${variant}Title`], titleStyle]}>
                 {title}
               </Text>
             ) : (
@@ -126,8 +123,7 @@ const Tooltip: React.FC<ITooltipProps> = ({
           {content && typeof content === 'string' ? (
             <Text
               variant="components2"
-              style={[styles[`${variant}Text`], textStyle]}
-            >
+              style={[styles[`${variant}Text`], textStyle]}>
               {content}
             </Text>
           ) : (
@@ -144,8 +140,7 @@ const Tooltip: React.FC<ITooltipProps> = ({
       <Pressable
         style={wrapperStyle}
         ref={childrenWrapperRef}
-        onPressOut={handleOpen}
-      >
+        onPressOut={handleOpen}>
         {children}
       </Pressable>
     </>

@@ -90,8 +90,7 @@ const SignUpPhoneNumber: React.FC = ({}) => {
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
@@ -133,15 +132,13 @@ const SignUpPhoneNumber: React.FC = ({}) => {
                   style={styles.nextButton}
                   type="submit"
                   shape="circle"
-                  disabled={disabled}
-                >
+                  disabled={disabled}>
                   {vocab.modules.auth.signup.next}
                 </Button>
                 <Button
                   shape="circle"
                   variant="ghost"
-                  style={styles.loginButton}
-                >
+                  style={styles.loginButton}>
                   {vocab.modules.auth.signup.login}
                 </Button>
               </View>

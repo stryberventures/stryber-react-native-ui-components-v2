@@ -45,10 +45,16 @@ const LinearProgress: React.FC<ILinearProgress> = argProps => {
     ),
   );
   const firstStyle = useAnimatedStyle(() => ({
-    left:
-      interpolate(firstAnimatedValue.value, [0, 0.6, 1], [-35, 100, 100]) + '%',
-    right:
-      interpolate(firstAnimatedValue.value, [0, 0.6, 1], [100, -90, -90]) + '%',
+    left: `${interpolate(
+      firstAnimatedValue.value,
+      [0, 0.6, 1],
+      [-35, 100, 100],
+    )}%`,
+    right: `${interpolate(
+      firstAnimatedValue.value,
+      [0, 0.6, 1],
+      [100, -90, -90],
+    )}%`,
   }));
 
   const secondAnimatingValue = useSharedValue(0);
@@ -62,11 +68,16 @@ const LinearProgress: React.FC<ILinearProgress> = argProps => {
     ),
   );
   const secondStyle = useAnimatedStyle(() => ({
-    left:
-      interpolate(secondAnimatedValue.value, [0, 0.6, 1], [-200, 107, 107]) +
-      '%',
-    right:
-      interpolate(secondAnimatedValue.value, [0, 0.6, 1], [100, -8, -8]) + '%',
+    left: `${interpolate(
+      secondAnimatedValue.value,
+      [0, 0.6, 1],
+      [-200, 107, 107],
+    )}%`,
+    right: `${interpolate(
+      secondAnimatedValue.value,
+      [0, 0.6, 1],
+      [100, -8, -8],
+    )}%`,
   }));
 
   const determinateAnimatingValue = useSharedValue(props.value);
@@ -78,8 +89,11 @@ const LinearProgress: React.FC<ILinearProgress> = argProps => {
   );
   const determinateStyle = useAnimatedStyle(() => ({
     left: 0,
-    right:
-      interpolate(determinateAnimatedValue.value, [0, 100], [100, 0]) + '%',
+    right: `${interpolate(
+      determinateAnimatedValue.value,
+      [0, 100],
+      [100, 0],
+    )}%`,
   }));
 
   useEffect(() => {

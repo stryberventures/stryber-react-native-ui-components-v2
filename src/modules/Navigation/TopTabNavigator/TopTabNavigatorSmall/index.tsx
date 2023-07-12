@@ -50,13 +50,11 @@ const TopTabNavigatorSmall = () => {
             weight="medium"
             style={{
               color: color,
-            }}
-          >
+            }}>
             {children}
           </Text>
         ),
-      }}
-    >
+      }}>
       <Tab.Screen name={vocab.modules.navigation.home} component={Home} />
       <Tab.Screen
         name={vocab.modules.navigation.settings}

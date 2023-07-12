@@ -58,8 +58,9 @@ const TabBarIndicator: React.FC<ITabBarIndicatorProps> = ({
   state,
   tabBarSize,
 }) => {
-  const translateAnim = useRef(new Animated.Value(TAB_INDICATOR_MARGIN))
-    .current;
+  const translateAnim = useRef(
+    new Animated.Value(TAB_INDICATOR_MARGIN),
+  ).current;
   const itemsCount = state.routes.length;
   const itemWidth = tabBarSize.width / itemsCount - TAB_INDICATOR_MARGIN;
   const indicatorMargin =
@@ -149,8 +150,7 @@ const TopTabBar: React.FC<ITopTabsProps> = ({
             onPress={onPress}
             onLongPress={onLongPress}
             style={styles.tab}
-            key={index}
-          >
+            key={index}>
             <Text variant="components2" style={styles.tabText}>
               {label}
             </Text>

@@ -16,12 +16,10 @@ const CodeBox: FC<ICodeBoxProps> = ({children}) => {
       <Tooltip title={copyString}>
         <CopyToClipboard
           text={children.join('')}
-          onCopy={() => setCopyString('Copied!')}
-        >
+          onCopy={() => setCopyString('Copied!')}>
           <div
             className="copy-container"
-            onMouseLeave={() => setCopyString('Press to Copy')}
-          >
+            onMouseLeave={() => setCopyString('Press to Copy')}>
             <CopyIcon fill="#000" />
           </div>
         </CopyToClipboard>

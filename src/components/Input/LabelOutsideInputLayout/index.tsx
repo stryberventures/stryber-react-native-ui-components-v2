@@ -28,6 +28,7 @@ export interface ILabelOutsideInputLayoutProps extends PressableProps {
   currentValueLength?: number;
   showLength?: boolean;
   size?: 'medium' | 'large';
+  children?: React.ReactNode;
 }
 
 const LabelOutsideInputLayout = React.forwardRef<
@@ -69,8 +70,7 @@ const LabelOutsideInputLayout = React.forwardRef<
         {label && (
           <Text
             variant="components2"
-            style={[styles.label, disabled && styles.disabledLabel]}
-          >
+            style={[styles.label, disabled && styles.disabledLabel]}>
             {label}
           </Text>
         )}
@@ -80,8 +80,7 @@ const LabelOutsideInputLayout = React.forwardRef<
             isFocused && styles.inputFocused,
             !!error && styles.error,
             inputWrapperStyle,
-          ]}
-        >
+          ]}>
           {leftContent}
           <View style={styles.mainContent}>{children}</View>
           {rightContent}

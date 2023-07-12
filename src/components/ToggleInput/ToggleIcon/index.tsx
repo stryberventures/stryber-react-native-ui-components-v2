@@ -54,8 +54,7 @@ const ToggleIcon: React.FC<ToggleIconProps> = ({
         disabled && checked && styles.checkedDisabled,
         style,
       ]}
-      {...rest}
-    >
+      {...rest}>
       {checked && getIcon()}
       {indeterminate && <View style={styles.indeterminate} />}
     </View>
