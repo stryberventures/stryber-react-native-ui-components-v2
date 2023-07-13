@@ -71,7 +71,7 @@
     "react-native-shadow-2": "^7.0.6",
     "react-native-svg": "^13.10.0",
     "react-native-tab-view": "^3.3.4",
-    "webpack": "^5.72.1",
+    "webpack": "^5.76.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
