@@ -22,6 +22,7 @@ import {
   StyleProp,
   View,
   ViewStyle,
+  useWindowDimensions,
 } from 'react-native';
 import {Shadow} from 'react-native-shadow-2';
 import LabelOutsideInputLayout, {
@@ -45,7 +46,8 @@ export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
 }
 
 export interface IDropdownPosition {
-  top: number;
+  top?: number;
+  bottom?: number;
   left: number;
   width: number;
 }
@@ -75,9 +77,11 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     const dropdownInputRef = useRef<View>(null);
     const [preVisible, setPreVisible] = useState(false);
     const [visible, setVisible] = useState(false);
+    const {height: screenHeight} = useWindowDimensions();
     const [dropdownPosition, setDropdownPosition] = useState<IDropdownPosition>(
       {
-        top: 0,
+        top: undefined,
+        bottom: undefined,
         left: 0,
         width: 0,
       },
@@ -119,7 +123,13 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
 
     const handleOpen = (event?: GestureResponderEvent) => {
       dropdownInputRef.current!.measure((x, y, width, height, pageX, pageY) => {
-        setDropdownPosition({top: pageY + height, left: pageX, width});
+        setDropdownPosition({
+          top: pageY > screenHeight / 2 ? undefined : pageY + height,
+          bottom:
+            pageY > screenHeight / 2 ? screenHeight - pageY - 30 : undefined,
+          left: pageX,
+          width,
+        });
       });
       setPreVisible(true);
       setVisible(true);

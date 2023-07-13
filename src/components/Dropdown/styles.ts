@@ -6,7 +6,12 @@ const DROPDOWN_OFFSET = 7;
 export default createUseStyles(
   (theme, dropdownPosition: IDropdownPosition) => ({
     dropdown: {
-      top: dropdownPosition.top + DROPDOWN_OFFSET,
+      top: dropdownPosition.top
+        ? dropdownPosition.top + DROPDOWN_OFFSET
+        : undefined,
+      bottom: dropdownPosition.bottom
+        ? dropdownPosition.bottom + DROPDOWN_OFFSET
+        : undefined,
       left: dropdownPosition.left,
       width: dropdownPosition.width,
       position: 'absolute',
@@ -16,10 +21,11 @@ export default createUseStyles(
       width: '100%',
       backgroundColor: '#fff',
       borderRadius: 8,
+      marginBottom: 12,
     },
     dropdownShadowContainer: {
       marginHorizontal: 6,
-      marginBottom: 12,
+      backgroundColor: '#fff',
     },
     dropdownInner: {
       width: '100%',
