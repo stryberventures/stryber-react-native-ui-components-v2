@@ -38,8 +38,7 @@ const SwitchIcon: React.FC<ISwitchIconProps> = ({
         checked && styles.checked,
         isPressed && checked && styles.pressedCheckedContainer,
         disabled && styles.disabled,
-      ]}
-    >
+      ]}>
       <Animated.View
         style={[
           {
@@ -48,16 +47,14 @@ const SwitchIcon: React.FC<ISwitchIconProps> = ({
               outputRange: [0, 20],
             }),
           },
-        ]}
-      >
+        ]}>
         {disabled ? (
           <View style={styles.circle} />
         ) : (
           <Elevation
             variant="light"
             style={styles.borderRadius}
-            childShadowStyle={styles.borderRadius}
-          >
+            childShadowStyle={styles.borderRadius}>
             <View style={styles.circle} />
           </Elevation>
         )}

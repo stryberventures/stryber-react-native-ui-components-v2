@@ -63,13 +63,11 @@ const TopTabNavigatorLeftIcon = () => {
             style={{
               color: color,
               marginRight: 8,
-            }}
-          >
+            }}>
             {children}
           </Text>
         ),
-      }}
-    >
+      }}>
       <Tab.Screen
         name={vocab.modules.navigation.home}
         options={{

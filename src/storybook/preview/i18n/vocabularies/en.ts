@@ -63,8 +63,7 @@ const vocab = {
     dialog: {
       openDialog: 'Open Dialog',
       title: 'Title',
-      text:
-        'Hello. This is subtext. It can be pretty long and more then 2 sentences depending on the project.',
+      text: 'Hello. This is subtext. It can be pretty long and more then 2 sentences depending on the project.',
       discard: 'Discard',
       cancel: 'Cancel',
       confirm: 'Confirm',

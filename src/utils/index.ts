@@ -12,7 +12,7 @@ export const isObjectEmpty = (obj: object) => {
 };
 
 export const getAnimatedValue = (
-  value: Animated.Value | Animated.AnimatedInterpolation,
+  value: Animated.Value | Animated.AnimatedInterpolation<number>,
 ) => {
   return Number(JSON.stringify(value));
 };

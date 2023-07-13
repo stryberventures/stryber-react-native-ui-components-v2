@@ -97,8 +97,7 @@ const Template: ComponentStory<typeof Form> = ({
       <ScrollView
         contentContainerStyle={styles.scrollViewContainer}
         nestedScrollEnabled
-        keyboardShouldPersistTaps="always"
-      >
+        keyboardShouldPersistTaps="always">
         <Multiselect
           label={vocab.components.form.multiSelect.label}
           placeholder={vocab.components.form.multiSelect.placeholder}
@@ -177,8 +176,7 @@ const Template: ComponentStory<typeof Form> = ({
             marginTop: 20,
             flexDirection: 'row',
             justifyContent: 'space-around',
-          }}
-        >
+          }}>
           <Button type="submit">{vocab.components.form.submit}</Button>
           <Button type="reset">{vocab.components.form.reset}</Button>
         </View>
@@ -288,8 +286,7 @@ export const ExternalControl = () => {
       validationSchema={yup.object({
         email: yup.string().email().required(),
         password: yup.string().required(),
-      })}
-    >
+      })}>
       <Input
         name="email"
         placeholder={vocab.components.form.email}
@@ -310,8 +307,7 @@ export const ExternalControl = () => {
           marginTop: 20,
           flexDirection: 'row',
           justifyContent: 'space-around',
-        }}
-      >
+        }}>
         <Button type="submit">{vocab.components.form.login}</Button>
         <Button type="reset">{vocab.components.form.reset}</Button>
       </View>
@@ -345,8 +341,7 @@ export const DisabledSubmitButton = () => {
       validationSchema={yup.object({
         email: yup.string().email().required(),
         password: yup.string().required(),
-      })}
-    >
+      })}>
       <Input
         name="email"
         placeholder={vocab.components.form.email}
@@ -365,8 +360,7 @@ export const DisabledSubmitButton = () => {
           marginTop: 20,
           flexDirection: 'row',
           justifyContent: 'space-around',
-        }}
-      >
+        }}>
         <Button type="submit" disabled={disabled}>
           {vocab.components.form.login}
         </Button>

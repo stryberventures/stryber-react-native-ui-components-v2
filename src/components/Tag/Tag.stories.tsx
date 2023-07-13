@@ -95,8 +95,7 @@ export const TagsGroup = () => {
       selectedTags={selectedTags}
       onChange={selectedTagsFromContext => {
         setSelectedTags(selectedTagsFromContext);
-      }}
-    >
+      }}>
       <View style={alignFlexStart}>
         <Tag iconLeft={Icons.DocumentIcon} removable value={1}>
           {vocab.components.tag.tagText1}

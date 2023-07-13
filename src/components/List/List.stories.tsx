@@ -50,8 +50,7 @@ WithDivider.args = {
     <ListItem
       divider={idx !== listItems.length - 1}
       key={item.title + Math.random()}
-      {...item}
-    >
+      {...item}>
       <ListItemText primary={item.title} />
     </ListItem>
   )),
@@ -105,8 +104,7 @@ WithLeftRightContent.args = {
       key={item.title + Math.random()}
       {...item}
       leftContent={leftContent}
-      rightContent={rightContent}
-    >
+      rightContent={rightContent}>
       <ListItemText label={label} primary={item.title} secondary={subtitle} />
     </ListItem>
   )),

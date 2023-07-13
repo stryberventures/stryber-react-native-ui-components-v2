@@ -42,6 +42,7 @@ export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
   onChange?: (open: boolean) => void;
   variant?: 'floatingLabel' | 'labelOutside';
   errorIcon?: boolean;
+  children?: React.ReactNode;
 }
 
 export interface IDropdownPosition {
@@ -136,8 +137,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       <Modal visible={visible} transparent animationType="none">
         <Pressable style={styles.overlay} onPress={handleClose} />
         <Animated.View
-          style={[styles.dropdown, dropdownAnimatedStyles, dropdownStyle]}
-        >
+          style={[styles.dropdown, dropdownAnimatedStyles, dropdownStyle]}>
           <Shadow
             style={[styles.dropdownShadow]}
             containerStyle={styles.dropdownShadowContainer}
@@ -145,8 +145,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
             offset={[0, 6]}
             startColor="rgba(102, 112, 133, 0.15)"
             paintInside={false}
-            sides={{start: true, end: true, top: false, bottom: true}}
-          >
+            sides={{start: true, end: true, top: false, bottom: true}}>
             <View style={styles.dropdownInner}>{children}</View>
           </Shadow>
         </Animated.View>
@@ -197,8 +196,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
           </>
         }
         disabled={disabled}
-        {...rest}
-      >
+        {...rest}>
         {renderDropdown()}
         {/*This block is used to keep the label in the same position when there are no text*/}
         {!placeholder && !value && <View style={styles.emptyBlock} />}
@@ -209,8 +207,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
             !!placeholder && styles.placeholderText,
             !!value && styles.valueText,
             disabled && styles.disabledText,
-          ]}
-        >
+          ]}>
           {(!!value && validateInputValueLength(value)) || placeholder}
         </Text>
       </LayoutComponent>

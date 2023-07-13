@@ -85,8 +85,7 @@ const SignUpEmail: React.FC = ({}) => {
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
@@ -126,15 +125,13 @@ const SignUpEmail: React.FC = ({}) => {
                   type="submit"
                   shape="circle"
                   style={styles.createAccountButton}
-                  disabled={disabled}
-                >
+                  disabled={disabled}>
                   {vocab.modules.auth.signup.createAccount}
                 </Button>
                 <Button
                   shape="circle"
                   variant="ghost"
-                  style={styles.loginButton}
-                >
+                  style={styles.loginButton}>
                   {vocab.modules.auth.signup.login}
                 </Button>
               </View>

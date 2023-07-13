@@ -61,8 +61,7 @@ const PasswordInput: React.FC<IPasswordInputProps> = ({
               iconLeft={
                 matched && <CheckIcon fill="#fff" width={17} height={17} />
               }
-              style={[styles.chip, chipStyle]}
-            >
+              style={[styles.chip, chipStyle]}>
               {label}
             </Chip>
           ))}

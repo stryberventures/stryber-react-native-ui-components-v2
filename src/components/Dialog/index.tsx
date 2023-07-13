@@ -34,8 +34,7 @@ const Dialog: FC<IDialogProps> & IDialogStaticProps = ({
     <Modal transparent visible={open} {...rest}>
       <Pressable
         onPress={!disableOutsidePress ? onClose : null}
-        style={[styles.overlay, overlayStyle]}
-      >
+        style={[styles.overlay, overlayStyle]}>
         <Pressable style={[styles.dialog, style]}>
           <View>{children}</View>
         </Pressable>

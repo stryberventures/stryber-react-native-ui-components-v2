@@ -20,8 +20,7 @@ const ShrunkDialogExample = () => {
             variant="ghost"
             color="primary"
             size="small"
-            onPress={closeDialog}
-          >
+            onPress={closeDialog}>
             {vocab.components.dialog.cancel}
           </Button>
           <Button size="small" onPress={closeDialog}>

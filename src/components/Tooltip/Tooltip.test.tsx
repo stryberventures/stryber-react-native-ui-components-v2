@@ -13,8 +13,7 @@ const TooltipWithChild = () => (
     title={tooltipTitle}
     content={tooltipText}
     wrapperStyle={{alignSelf: 'center'}}
-    testID={tooltipTestId}
-  >
+    testID={tooltipTestId}>
     <View
       testID={childTestId}
       style={{height: 50, width: 50, backgroundColor: 'red'}}

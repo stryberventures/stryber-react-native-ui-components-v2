@@ -6,7 +6,7 @@ const iosSpecificDropdownStyles =
   Platform.OS === 'ios'
     ? {
         position: 'absolute' as const,
-        top: '100%',
+        top: `${100}%` as const,
       }
     : {};
 

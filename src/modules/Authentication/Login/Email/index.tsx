@@ -81,8 +81,7 @@ const LoginEmail: React.FC = ({}) => {
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
@@ -116,8 +115,7 @@ const LoginEmail: React.FC = ({}) => {
                   type="submit"
                   shape="circle"
                   style={styles.button}
-                  disabled={disabled}
-                >
+                  disabled={disabled}>
                   {vocab.modules.auth.login.login}
                 </Button>
                 <TextLink style={styles.forgotPassword}>

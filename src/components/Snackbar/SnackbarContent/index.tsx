@@ -72,8 +72,7 @@ const SnackbarContent: React.FC<ISnackbarContentProps> = ({
               testID="gaia-snackbar-close-button"
               style={styles.closeIcon}
               onPress={onClose}
-              hitSlop={5}
-            >
+              hitSlop={5}>
               <Icons.CloseIcon
                 fill={theme.colors[color!]?.dark600}
                 width={20}
@@ -86,8 +85,7 @@ const SnackbarContent: React.FC<ISnackbarContentProps> = ({
       <Text
         style={[styles.text, !!description && styles.withDescription]}
         variant="components2"
-        weight="medium"
-      >
+        weight="medium">
         {message}
       </Text>
       <Text style={styles.text} variant="components2">

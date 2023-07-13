@@ -81,18 +81,15 @@ const Select: React.FC<ISelectProps> = ({
       dropdownStyle={styles.dropdown}
       errorIcon={errorIcon}
       ref={dropdownRef}
-      {...rest}
-    >
+      {...rest}>
       <ScrollView
         style={styles.content}
-        contentContainerStyle={styles.innerContent}
-      >
+        contentContainerStyle={styles.innerContent}>
         {options.map(option => (
           <SelectItem
             key={option.value}
             onPress={() => handleChange(option.value)}
-            active={selectedOption === option.value}
-          >
+            active={selectedOption === option.value}>
             {option.label}
           </SelectItem>
         ))}

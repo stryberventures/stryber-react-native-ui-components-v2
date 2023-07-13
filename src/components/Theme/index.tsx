@@ -56,7 +56,7 @@ export const useTheme = () => useContext(Context);
 
 export const createUseStyles = <
   T extends StyleSheet.NamedStyles<T> | StyleSheet.NamedStyles<any>,
-  P extends any[]
+  P extends any[],
 >(
   styles: ((theme: ThemeType, ...args: P) => T) | T,
 ) => {

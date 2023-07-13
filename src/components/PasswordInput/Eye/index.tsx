@@ -17,8 +17,7 @@ const Eye: React.FC<IEyeProps> = ({secured, disabled, ...rest}) => {
       style={styles.eye}
       disabled={disabled}
       testID="eye-test"
-      {...rest}
-    >
+      {...rest}>
       <EyeIcon
         variant={secured ? 'closed' : 'open'}
         fill={

@@ -11,8 +11,7 @@ const DialogTitle: React.FC<IDialogTitle> = ({children, style, ...rest}) => {
       style={[styles.dialogTitle, style]}
       variant="body1"
       color="headline"
-      {...rest}
-    >
+      {...rest}>
       {children}
     </Text>
   );

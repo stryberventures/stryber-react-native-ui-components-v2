@@ -45,8 +45,7 @@ const Text: React.FC<ITextProps> = ({
         {color: theme.colors.text[color]},
         style,
       ]}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </RNText>
   );
