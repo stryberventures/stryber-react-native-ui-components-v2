@@ -18,8 +18,8 @@ export default createUseStyles(
         justifyContent: controlCentered ? 'center' : 'flex-start',
       },
       textContainer: {
-        marginLeft: reverse ? 0 : 12,
-        marginRight: reverse ? 12 : 0,
+        marginLeft: reverse ? 0 : 16,
+        marginRight: reverse ? 16 : 0,
         flex: 1,
       },
       toggleInputText: {

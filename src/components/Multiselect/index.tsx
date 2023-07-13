@@ -1,22 +1,34 @@
 import React, {useEffect, useState} from 'react';
-import useStyles from './styles';
-import {ScrollView} from 'react-native';
+import {Pressable, ScrollView, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+
+import {CloseCircleIcon, SearchIcon} from '../Icons';
+import {useTheme} from '../Theme';
 import Dropdown, {IDropdownProps} from '../Dropdown';
-import Checkbox from '../Checkbox';
 import Form, {useFormContext} from '../Form';
+import Input from '../Input';
+import Text from '../Text';
+import MultiselectOption from './MultiselectOption';
+import useStyles from './styles';
 
 export interface IMultiselectOption {
   label: string;
   value: string | number;
+  icon?: React.ReactNode;
 }
 
 export interface IMultiselectProps
-  extends Omit<IDropdownProps, 'children' | 'value' | 'onChange'> {
+  extends Omit<
+    IDropdownProps,
+    'children' | 'value' | 'onChange' | 'error' | 'variant'
+  > {
   name?: string;
   options: IMultiselectOption[];
   selectedOptions?: (number | string)[];
   clearFormValueOnUnmount?: boolean;
-  separator?: string;
+  withSearch?: boolean;
+  searchPlaceholder?: string;
+  error?: string | boolean;
   onChange?: (selectedOptions?: (number | string)[]) => void;
   onDropdownChange?: IDropdownProps['onChange'];
 }
@@ -33,7 +45,9 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   selectedOptions: initSelectedOptions = [],
   clearFormValueOnUnmount,
   color,
-  separator = ', ',
+  disabled,
+  withSearch = true,
+  searchPlaceholder,
   onChange,
   onDropdownChange,
   ...rest
@@ -48,7 +62,9 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>(
     fieldValue || initSelectedOptions,
   );
-  const errorMessage = fieldError || error;
+  const [searchText, setSearchText] = useState<string>();
+  const errorIcon = !!fieldError || !!error;
+  const {theme} = useTheme();
   const styles = useStyles();
 
   const getSelectedOptionsLabels = () => {
@@ -58,7 +74,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
         selectedOptionsText.push(option.label);
       }
     });
-    return selectedOptionsText.join(separator);
+    return selectedOptionsText;
   };
 
   const handleBlur = (isDropdownOpen: boolean) => {
@@ -91,37 +107,123 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     return initValues;
   };
 
+  const handleRemoveOption = (v: string) => {
+    const currentOption = options.find(option => option.label === v);
+    if (currentOption) {
+      setSelectedOptions(
+        selectedOptions.filter(option => option !== currentOption.value),
+      );
+    }
+  };
+
+  const renderTags = () => {
+    const values = getSelectedOptionsLabels();
+
+    if (values.length === 0) {
+      return undefined;
+    }
+
+    return (
+      <View
+        pointerEvents={disabled ? 'none' : 'auto'}
+        style={styles.tagsBoxContainer}
+      >
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <Pressable style={styles.tagsBox}>
+            {values.map((value, index) => (
+              <View style={styles.tag} key={index}>
+                <Text variant="components1" style={styles.tagText}>
+                  {value}
+                </Text>
+                <Pressable
+                  hitSlop={5}
+                  onPress={() => handleRemoveOption(value)}
+                  style={styles.removeTagButton}
+                >
+                  <CloseCircleIcon
+                    width={20}
+                    height={20}
+                    fill={theme.colors.primary.main500}
+                  />
+                </Pressable>
+              </View>
+            ))}
+          </Pressable>
+        </ScrollView>
+        <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          colors={['rgba(255,255, 255, 0)', '#fff']}
+          style={styles.tagsBoxHideGradient}
+        />
+      </View>
+    );
+  };
+
+  const onChangeTextSearchInput = (t: string) => {
+    setSearchText(t);
+  };
+  const onDropdownClose = () => {
+    setSearchText('');
+  };
+
   useEffect(() => {
     updateFormValue(name, selectedOptions, true);
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedOptions]);
+
+  const filteredOptions = (() => {
+    if (!searchText) {
+      return options;
+    }
+    const regex = new RegExp(`${searchText}`, 'i');
+    return options.filter(option => option.label.match(regex));
+  })();
 
   return (
     <Dropdown
+      {...rest}
       color={color}
       onChange={handleBlur}
-      value={getSelectedOptionsLabels()}
+      value={renderTags()}
       dropdownStyle={[styles.dropdown, dropdownStyle]}
-      error={errorMessage}
-      {...rest}
+      errorIcon={errorIcon}
+      disabled={disabled}
+      variant="labelOutside"
+      onClose={onDropdownClose}
     >
+      {withSearch && (
+        <View style={styles.searchContainer}>
+          <Input
+            inputWrapperStyle={styles.searchInput}
+            withRemoveButton
+            onChangeText={onChangeTextSearchInput}
+            variant="labelOutside"
+            placeholder={searchPlaceholder}
+            leftContent={
+              <SearchIcon
+                width={20}
+                height={20}
+                fill={theme.colors.text.secondary}
+              />
+            }
+          />
+        </View>
+      )}
       <Form initialValues={getFormInitValues()} onChange={handleChange}>
         <ScrollView
           style={styles.content}
           contentContainerStyle={styles.innerContent}
         >
-          {options.map(option => (
-            <Checkbox
+          {filteredOptions.map(option => (
+            <MultiselectOption
               color={color}
               key={option.label}
               label={option.label}
-              labelStyle={styles.checkboxText}
               name={option.label}
-              style={styles.multiselectItem}
-              pressedStyle={styles.multiselectItemPressed}
+              icon={option.icon}
             />
           ))}
         </ScrollView>
