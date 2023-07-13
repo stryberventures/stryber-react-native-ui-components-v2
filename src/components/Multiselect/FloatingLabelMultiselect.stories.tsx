@@ -65,6 +65,17 @@ Secondary.args = {
   color: 'secondary',
 };
 
+export const SlideUp = Template.bind({});
+SlideUp.args = {
+  slideUp: true,
+};
+
+export const WithSearch = Template.bind({});
+WithSearch.args = {
+  withSearch: true,
+  searchPlaceholder: 'Search',
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,

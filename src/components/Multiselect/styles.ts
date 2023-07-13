@@ -1,12 +1,12 @@
 import {createUseStyles} from '../Theme';
 
-export default createUseStyles(theme => ({
+export default createUseStyles((theme, slideUp) => ({
   dropdown: {
     paddingHorizontal: 0,
     paddingVertical: 0,
   },
   content: {
-    maxHeight: 160,
+    ...(!slideUp && {maxHeight: 160}),
   },
   innerContent: {},
   tagsBoxContainer: {
@@ -28,6 +28,7 @@ export default createUseStyles(theme => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 4,
     paddingLeft: 12,
     paddingRight: 6,
     marginRight: 4,
@@ -36,7 +37,7 @@ export default createUseStyles(theme => ({
   },
   tagText: {
     color: theme.colors.primary.main500,
-    lineHeight: 24,
+    lineHeight: 22,
   },
   removeTagButton: {
     marginLeft: 8,
@@ -49,5 +50,11 @@ export default createUseStyles(theme => ({
     borderWidth: 0,
     paddingHorizontal: 12,
     paddingVertical: 11,
+  },
+  searchLabel: {
+    fontSize: 12,
+    lineHeight: 14,
+    paddingHorizontal: 12,
+    paddingTop: 12,
   },
 }));

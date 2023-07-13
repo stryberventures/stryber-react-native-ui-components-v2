@@ -35,6 +35,7 @@ export default createUseStyles(
     slideUpDropdown: {
       position: 'absolute',
       bottom: 0,
+      width: '100%',
       overflow: 'hidden',
       borderTopLeftRadius: 16,
       borderTopRightRadius: 16,

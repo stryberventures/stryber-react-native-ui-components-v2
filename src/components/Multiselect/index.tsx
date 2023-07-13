@@ -46,7 +46,8 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   clearFormValueOnUnmount,
   color,
   disabled,
-  withSearch = true,
+  withSearch = false,
+  slideUp = false,
   searchPlaceholder,
   onChange,
   onDropdownChange,
@@ -65,7 +66,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   const [searchText, setSearchText] = useState<string>();
   const errorIcon = !!fieldError || !!error;
   const {theme} = useTheme();
-  const styles = useStyles();
+  const styles = useStyles(slideUp || withSearch);
 
   const getSelectedOptionsLabels = () => {
     const selectedOptionsText: string[] = [];
@@ -191,11 +192,12 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       dropdownStyle={[styles.dropdown, dropdownStyle]}
       errorIcon={errorIcon}
       disabled={disabled}
-      variant="labelOutside"
+      slideUp={slideUp || withSearch}
       onClose={onDropdownClose}
     >
       {withSearch && (
         <View style={styles.searchContainer}>
+          <Text style={styles.searchLabel}>{rest.label}</Text>
           <Input
             inputWrapperStyle={styles.searchInput}
             withRemoveButton
