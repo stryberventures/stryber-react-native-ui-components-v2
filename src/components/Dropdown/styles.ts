@@ -32,9 +32,22 @@ export default createUseStyles(
       paddingBottom: 2,
       paddingTop: 8,
     },
+    slideUpDropdown: {
+      position: 'absolute',
+      bottom: 0,
+      overflow: 'hidden',
+      borderTopLeftRadius: 16,
+      borderTopRightRadius: 16,
+      backgroundColor: '#fff',
+    },
     overlay: {
       width: '100%',
       height: '100%',
+    },
+    grayOverlay: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(102, 112, 133, 0.8)',
     },
     text: {
       lineHeight: 24,

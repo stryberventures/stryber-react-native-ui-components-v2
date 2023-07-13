@@ -51,6 +51,9 @@ const Template: ComponentStory<typeof Dropdown> = args => (
 );
 
 export const Primary = Template.bind({});
+Primary.args = {
+  slideUp: true,
+};
 
 export const Secondary = Template.bind({});
 Secondary.args = {

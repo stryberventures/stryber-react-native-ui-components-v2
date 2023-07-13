@@ -42,6 +42,7 @@ export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
   dropdownStyle?: StyleProp<ViewStyle>;
   onChange?: (open: boolean) => void;
   variant?: 'floatingLabel' | 'labelOutside';
+  slideUp?: boolean;
   errorIcon?: boolean;
 }
 
@@ -68,6 +69,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       dropdownStyle,
       onChange,
       variant = 'floatingLabel',
+      slideUp = false,
       errorIcon,
       ...rest
     },
@@ -110,6 +112,13 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         dropdownAnimatedValue.value,
         [0, 1],
         [0, MAX_DROPDOWN_HEIGHT],
+      ),
+    }));
+    const slideUpDropdownAnimatedStyles = useAnimatedStyle(() => ({
+      height: interpolate(
+        dropdownAnimatedValue.value,
+        [0, 1],
+        [0, screenHeight * 0.75],
       ),
     }));
     const iconAnimatedStyles = useAnimatedStyle(() => ({
@@ -163,6 +172,21 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       </Modal>
     );
 
+    const renderSlideUpDropdown = () => (
+      <Modal visible={visible} transparent animationType="none">
+        <Pressable style={styles.grayOverlay} onPress={handleClose} />
+        <Animated.View
+          style={[
+            styles.slideUpDropdown,
+            slideUpDropdownAnimatedStyles,
+            dropdownStyle,
+          ]}
+        >
+          {children}
+        </Animated.View>
+      </Modal>
+    );
+
     useImperativeHandle(ref, () => ({
       open: handleOpen,
       close: handleClose,
@@ -209,7 +233,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         disabled={disabled}
         {...rest}
       >
-        {renderDropdown()}
+        {slideUp ? renderSlideUpDropdown() : renderDropdown()}
         {/*This block is used to keep the label in the same position when there are no text*/}
         {!placeholder && !value && <View style={styles.emptyBlock} />}
         <Text
