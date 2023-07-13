@@ -195,9 +195,11 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       slideUp={slideUp || withSearch}
       onClose={onDropdownClose}
     >
+      {(slideUp || withSearch) && (
+        <Text style={styles.searchLabel}>{rest.label}</Text>
+      )}
       {withSearch && (
         <View style={styles.searchContainer}>
-          <Text style={styles.searchLabel}>{rest.label}</Text>
           <Input
             inputWrapperStyle={styles.searchInput}
             withRemoveButton
