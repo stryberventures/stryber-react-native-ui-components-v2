@@ -21,6 +21,7 @@ import {
   StyleProp,
   View,
   ViewStyle,
+  Platform,
   useWindowDimensions,
 } from 'react-native';
 import {Shadow} from 'react-native-shadow-2';
@@ -32,6 +33,7 @@ import FloatingLabelInputLayout from '../Input/FloatingLabelInputLayout';
 import {ArrowIcon, ErrorIcon} from '../Icons';
 import {useTheme} from '../Theme';
 import Text from '../Text';
+import {useKeyboardHeightIOS} from './hooks';
 import useStyles from './styles';
 
 const MAX_DROPDOWN_HEIGHT = 300;
@@ -82,6 +84,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     const [preVisible, setPreVisible] = useState(false);
     const [visible, setVisible] = useState(false);
     const {height: screenHeight} = useWindowDimensions();
+    const keyboardHeightIOS = useKeyboardHeightIOS();
     const [dropdownPosition, setDropdownPosition] = useState<IDropdownPosition>(
       {
         top: undefined,
@@ -117,13 +120,17 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         [0, MAX_DROPDOWN_HEIGHT],
       ),
     }));
-    const slideUpDropdownAnimatedStyles = useAnimatedStyle(() => ({
-      height: interpolate(
-        dropdownAnimatedValue.value,
-        [0, 1],
-        [0, screenHeight * 0.75],
-      ),
-    }));
+    const slideUpDropdownAnimatedStyles = useAnimatedStyle(
+      () => ({
+        height: interpolate(dropdownAnimatedValue.value, [0, 1], [0, 75]) + '%',
+        paddingBottom: interpolate(
+          dropdownAnimatedValue.value,
+          [0, 1],
+          [0, Platform.OS === 'ios' ? keyboardHeightIOS : 0],
+        ),
+      }),
+      [keyboardHeightIOS],
+    );
     const iconAnimatedStyles = useAnimatedStyle(() => ({
       transform: [
         {
