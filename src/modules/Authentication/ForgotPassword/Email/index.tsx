@@ -77,8 +77,7 @@ const ForgotPasswordEmail: React.FC = ({}) => {
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
@@ -97,15 +96,13 @@ const ForgotPasswordEmail: React.FC = ({}) => {
                   type="submit"
                   shape="circle"
                   style={styles.submitButton}
-                  disabled={disabled}
-                >
+                  disabled={disabled}>
                   {vocab.modules.auth.forgotPassword.sendPassword}
                 </Button>
                 <Button
                   shape="circle"
                   variant="ghost"
-                  style={styles.loginButton}
-                >
+                  style={styles.loginButton}>
                   {vocab.modules.auth.forgotPassword.login}
                 </Button>
                 <TextLink style={styles.newUser}>

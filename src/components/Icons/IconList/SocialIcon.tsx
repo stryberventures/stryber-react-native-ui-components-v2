@@ -135,8 +135,7 @@ export const socialVariants = {
               y1="3.20021"
               x2="11.8978"
               y2="20.2914"
-              gradientUnits="userSpaceOnUse"
-            >
+              gradientUnits="userSpaceOnUse">
               <Stop stopColor="#57D163" />
               <Stop offset="1" stopColor="#23B33A" />
             </LinearGradient>
@@ -256,8 +255,7 @@ export const socialVariants = {
               y1="0"
               x2="12"
               y2="23.822"
-              gradientUnits="userSpaceOnUse"
-            >
+              gradientUnits="userSpaceOnUse">
               <Stop stopColor="#2AABEE" />
               <Stop offset="1" stopColor="#229ED9" />
             </LinearGradient>
@@ -304,6 +302,7 @@ const SocialIcon: React.FC<ISocialIconProps> = ({
   height = 24,
   ...rest
 }) => (
+  // @ts-ignore
   <View style={{width, height}}>
     <Svg {...rest} width="100%" height="100%" viewBox="0 0 24 24">
       {socialVariants[variant](fill)}

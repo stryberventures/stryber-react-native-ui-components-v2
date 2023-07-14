@@ -47,6 +47,7 @@ export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
   variant?: 'floatingLabel' | 'labelOutside';
   slideUp?: boolean;
   errorIcon?: boolean;
+  children?: React.ReactNode;
 }
 
 export interface IDropdownPosition {
@@ -122,6 +123,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     }));
     const slideUpDropdownAnimatedStyles = useAnimatedStyle(
       () => ({
+        // @ts-ignore
         height: interpolate(dropdownAnimatedValue.value, [0, 1], [0, 75]) + '%',
         paddingBottom: interpolate(
           dropdownAnimatedValue.value,
@@ -165,16 +167,15 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       <Modal visible={visible} transparent animationType="none">
         <Pressable style={styles.overlay} onPress={handleClose} />
         <Animated.View
-          style={[styles.dropdown, dropdownAnimatedStyles, dropdownStyle]}
-        >
+          style={[styles.dropdown, dropdownAnimatedStyles, dropdownStyle]}>
           <Shadow
             style={[styles.dropdownShadow]}
             containerStyle={styles.dropdownShadowContainer}
             distance={10}
             offset={[0, 6]}
             startColor="rgba(102, 112, 133, 0.15)"
-            sides={{start: true, end: true, top: false, bottom: true}}
-          >
+            paintInside={false}
+            sides={{start: true, end: true, top: false, bottom: true}}>
             <View style={styles.dropdownInner}>{children}</View>
           </Shadow>
         </Animated.View>
@@ -189,8 +190,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
             styles.slideUpDropdown,
             slideUpDropdownAnimatedStyles,
             dropdownStyle,
-          ]}
-        >
+          ]}>
           {children}
         </Animated.View>
       </Modal>
@@ -240,8 +240,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
           </>
         }
         disabled={disabled}
-        {...rest}
-      >
+        {...rest}>
         {slideUp ? renderSlideUpDropdown() : renderDropdown()}
         {/*This block is used to keep the label in the same position when there are no text*/}
         {!placeholder && !value && <View style={styles.emptyBlock} />}
@@ -255,8 +254,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
               !!placeholder && styles.placeholderText,
               !!value && styles.valueText,
               disabled && styles.disabledText,
-            ]}
-          >
+            ]}>
             {(!!value && validateInputValueLength(value)) || placeholder}
           </Text>
         ) : (

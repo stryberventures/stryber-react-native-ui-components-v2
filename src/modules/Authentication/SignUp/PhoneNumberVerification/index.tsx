@@ -107,8 +107,7 @@ const SignUpPhoneNumberVerification: React.FC = ({}) => {
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabledSubmit(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
@@ -125,15 +124,13 @@ const SignUpPhoneNumberVerification: React.FC = ({}) => {
                   shape="circle"
                   disabled={disabledResendCode}
                   onPress={requestCode}
-                  style={styles.sendCodeButton}
-                >
+                  style={styles.sendCodeButton}>
                   {vocab.modules.auth.signup.sendCodeAgain(resendCodeIn)}
                 </Button>
                 <Button
                   shape="circle"
                   style={styles.nextButton}
-                  disabled={disabledSubmit}
-                >
+                  disabled={disabledSubmit}>
                   {vocab.modules.auth.signup.next}
                 </Button>
               </View>

@@ -165,8 +165,7 @@ const Tag: React.FC<ITagProps> = ({
         {backgroundColor: interpolation},
         disabled && styles.tagDisabled,
         style,
-      ]}
-    >
+      ]}>
       {IconLeft && (
         <View style={styles.leftIcon}>
           <IconLeft {...iconSizeProps} fill={getTextColor(pressed)} />
@@ -177,8 +176,7 @@ const Tag: React.FC<ITagProps> = ({
         style={{
           color: getTextColor(pressed),
           lineHeight: getIconSize(size),
-        }}
-      >
+        }}>
         {children}
       </Text>
       {IconRight && (

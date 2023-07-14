@@ -26,6 +26,7 @@ export interface IButtonProps extends PressableProps {
   icon?: React.FC<any>;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  children?: React.ReactNode;
 }
 
 const getIconSize = (size: TButtonSize): number => {
@@ -106,8 +107,7 @@ const Button: React.FC<IButtonProps> = ({
       ]}
       disabled={disabled}
       onPress={handlePress}
-      {...rest}
-    >
+      {...rest}>
       {({pressed}) => (
         <>
           {Icon && <Icon {...iconSizeProps} fill={getIconColor(pressed)} />}
@@ -125,8 +125,7 @@ const Button: React.FC<IButtonProps> = ({
               pressed && styles.textPressed,
               disabled && styles.textDisabled,
               textStyle,
-            ]}
-          >
+            ]}>
             {children}
           </Text>
           {IconRight && (

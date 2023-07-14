@@ -44,8 +44,7 @@ const Chip: React.FC<IChipProps> = ({
         style,
       ]}
       disabled={disabled}
-      {...rest}
-    >
+      {...rest}>
       {iconLeft}
       {children && (
         <Text
@@ -56,8 +55,7 @@ const Chip: React.FC<IChipProps> = ({
             isOutlined && styles.outlinedText,
             disabled && styles.disabledText,
             textStyle,
-          ]}
-        >
+          ]}>
           {children}
         </Text>
       )}

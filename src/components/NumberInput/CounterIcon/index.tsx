@@ -20,8 +20,7 @@ const CounterIcon: React.FC<ICounterIconProps> = ({
         styles.container,
         pressed && styles.containerPressed,
       ]}
-      {...rest}
-    >
+      {...rest}>
       <CountIcon variant={variant} width={16} height={16} />
     </Pressable>
   );

@@ -18,6 +18,7 @@ interface IListItemProps {
   selected?: boolean;
   testID?: string;
   style?: StyleProp<ViewStyle>;
+  children?: React.ReactNode;
 }
 
 const ListItem: React.FC<IListItemProps> = ({
@@ -46,8 +47,7 @@ const ListItem: React.FC<IListItemProps> = ({
       ]}
       disabled={disabled}
       onPress={onPress}
-      testID={testID}
-    >
+      testID={testID}>
       <View style={styles.content}>
         {!!leftContent && <View style={styles.leftContent}>{leftContent}</View>}
         {children}

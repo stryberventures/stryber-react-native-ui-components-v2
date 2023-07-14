@@ -127,8 +127,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     return (
       <View
         pointerEvents={disabled ? 'none' : 'auto'}
-        style={styles.tagsBoxContainer}
-      >
+        style={styles.tagsBoxContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <Pressable style={styles.tagsBox}>
             {values.map((value, index) => (
@@ -139,8 +138,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
                 <Pressable
                   hitSlop={5}
                   onPress={() => handleRemoveOption(value)}
-                  style={styles.removeTagButton}
-                >
+                  style={styles.removeTagButton}>
                   <CloseCircleIcon
                     width={20}
                     height={20}
@@ -193,8 +191,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       errorIcon={errorIcon}
       disabled={disabled}
       slideUp={slideUp || withSearch}
-      onClose={onDropdownClose}
-    >
+      onClose={onDropdownClose}>
       {(slideUp || withSearch) && (
         <Text style={styles.searchLabel}>{rest.label}</Text>
       )}
@@ -219,8 +216,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       <Form initialValues={getFormInitValues()} onChange={handleChange}>
         <ScrollView
           style={styles.content}
-          contentContainerStyle={styles.innerContent}
-        >
+          contentContainerStyle={styles.innerContent}>
           {filteredOptions.map(option => (
             <MultiselectOption
               color={color}

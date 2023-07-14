@@ -33,8 +33,7 @@ const Template: ComponentStory<typeof Elevation> = args => {
       <Elevation
         style={storyStyles.borderRadius}
         childShadowStyle={storyStyles.borderRadius}
-        {...args}
-      >
+        {...args}>
         <Card />
       </Elevation>
       <Divider />

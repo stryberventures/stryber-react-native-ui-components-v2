@@ -112,8 +112,7 @@ const ColorCard: React.FC<IColorCard> = ({name, color, contrast = 'white'}) => {
           <Text
             weight="medium"
             variant="body1"
-            style={styles.contrastBlackColor}
-          >
+            style={styles.contrastBlackColor}>
             AAA
           </Text>
         );
@@ -125,15 +124,13 @@ const ColorCard: React.FC<IColorCard> = ({name, color, contrast = 'white'}) => {
             <Text
               weight="medium"
               variant="body1"
-              style={styles.contrastWhiteColor}
-            >
+              style={styles.contrastWhiteColor}>
               AAA /
             </Text>
             <Text
               weight="medium"
               variant="body1"
-              style={styles.contrastBlackColor}
-            >
+              style={styles.contrastBlackColor}>
               {' '}
               AAA
             </Text>
@@ -155,8 +152,7 @@ const ColorCard: React.FC<IColorCard> = ({name, color, contrast = 'white'}) => {
         style={[
           {backgroundColor: color, ...borderForWhiteColor},
           styles.cardTop,
-        ]}
-      >
+        ]}>
         {handleContrast(contrast)}
       </View>
       <View style={styles.cardBottom}>
@@ -167,169 +163,177 @@ const ColorCard: React.FC<IColorCard> = ({name, color, contrast = 'white'}) => {
   );
 };
 
-const createTemplate = (
-  type: 'colors' | 'components',
-): ComponentStory<typeof ThemeProvider> => ({theme, ...rest}) => {
-  const styles = useStyles();
-  if (type === 'colors') {
-    // @ts-ignore
-    const themeColors: ThemeType['colors'] = theme.colors;
-    const themeColorsNames = Object.keys(themeColors);
+const createTemplate =
+  (type: 'colors' | 'components'): ComponentStory<typeof ThemeProvider> =>
+  ({theme, ...rest}) => {
+    const styles = useStyles();
+    if (type === 'colors') {
+      // @ts-ignore
+      const themeColors: ThemeType['colors'] = theme.colors;
+      const themeColorsNames = Object.keys(themeColors);
+      return (
+        <ThemeProvider theme={theme} {...rest}>
+          <ScrollView contentContainerStyle={styles.contentWrapper}>
+            {themeColorsNames.map(paletteName => {
+              const colorNames = Object.keys(
+                themeColors[paletteName as keyof typeof themeColors],
+              );
+              return (
+                <View key={paletteName}>
+                  <Text
+                    weight="semiBold"
+                    variant="h1"
+                    style={styles.paletteTitle}>
+                    {paletteName}:
+                  </Text>
+                  <View style={styles.cardWrapper}>
+                    {colorNames.map(colorName => {
+                      return (
+                        <ColorCard
+                          key={colorName}
+                          name={colorName}
+                          //@ts-ignore
+                          color={themeColors[paletteName][colorName]}
+                          //@ts-ignore
+                          contrast={contrastMapping[paletteName][colorName]}
+                        />
+                      );
+                    })}
+                  </View>
+                </View>
+              );
+            })}
+          </ScrollView>
+        </ThemeProvider>
+      );
+    }
     return (
       <ThemeProvider theme={theme} {...rest}>
-        <ScrollView contentContainerStyle={styles.contentWrapper}>
-          {themeColorsNames.map(paletteName => {
-            const colorNames = Object.keys(
-              themeColors[paletteName as keyof typeof themeColors],
-            );
-            return (
-              <View key={paletteName}>
-                <Text
-                  weight="semiBold"
-                  variant="h1"
-                  style={styles.paletteTitle}
-                >
-                  {paletteName}:
-                </Text>
-                <View style={styles.cardWrapper}>
-                  {colorNames.map(colorName => {
-                    return (
-                      <ColorCard
-                        key={colorName}
-                        name={colorName}
-                        //@ts-ignore
-                        color={themeColors[paletteName][colorName]}
-                        //@ts-ignore
-                        contrast={contrastMapping[paletteName][colorName]}
-                      />
-                    );
-                  })}
-                </View>
-              </View>
-            );
-          })}
-        </ScrollView>
-      </ThemeProvider>
-    );
-  }
-  return (
-    <ThemeProvider theme={theme} {...rest}>
-      <ScrollView contentContainerStyle={styles.componentWrapper}>
-        {/* Button */}
-        <Title>Button</Title>
-        <Button>Button</Button>
-        <Divider />
-        <Button color="secondary">Button</Button>
-        <Divider />
-        <Button variant="outlined">Button</Button>
-        <Divider />
-        <Button variant="outlined" color="secondary">
-          Button
-        </Button>
-        <Divider />
+        <ScrollView contentContainerStyle={styles.componentWrapper}>
+          {/* Button */}
+          <Title>Button</Title>
+          <Button>Button</Button>
+          <Divider />
+          <Button color="secondary">Button</Button>
+          <Divider />
+          <Button variant="outlined">Button</Button>
+          <Divider />
+          <Button variant="outlined" color="secondary">
+            Button
+          </Button>
+          <Divider />
 
-        {/* Checkbox */}
-        <Title>Checkbox</Title>
-        <Checkbox label="Primary" />
-        <Divider />
-        <Checkbox checked={true} label="Checked" />
-        <Divider />
-        <Checkbox checked={true} disabled label="Disabled" />
-        <Divider />
-        <Checkbox color="secondary" label="Secondary" />
-        <Divider />
-        <Checkbox checked={true} color="secondary" label="Checked" />
-        <Divider />
-        <Checkbox checked={true} disabled color="secondary" label="Disabled" />
+          {/* Checkbox */}
+          <Title>Checkbox</Title>
+          <Checkbox label="Primary" />
+          <Divider />
+          <Checkbox checked={true} label="Checked" />
+          <Divider />
+          <Checkbox checked={true} disabled label="Disabled" />
+          <Divider />
+          <Checkbox color="secondary" label="Secondary" />
+          <Divider />
+          <Checkbox checked={true} color="secondary" label="Checked" />
+          <Divider />
+          <Checkbox
+            checked={true}
+            disabled
+            color="secondary"
+            label="Disabled"
+          />
 
-        {/* Radio button */}
-        <Title>Radio button</Title>
-        <RadioButton value={1} label="Primary" />
-        <Divider />
-        <Form>
-          <RadioButton value={1} label="Checked" checked={true} />
-        </Form>
-        <Divider />
-        <Form>
-          <RadioButton value={1} label="Disabled" checked={true} disabled />
-        </Form>
-        <Divider />
-        <RadioButton value={1} color="secondary" label="Secondary" />
-        <Divider />
-        <Form>
+          {/* Radio button */}
+          <Title>Radio button</Title>
+          <RadioButton value={1} label="Primary" />
+          <Divider />
+          <Form>
+            <RadioButton value={1} label="Checked" checked={true} />
+          </Form>
+          <Divider />
+          <Form>
+            <RadioButton value={1} label="Disabled" checked={true} disabled />
+          </Form>
+          <Divider />
+          <RadioButton value={1} color="secondary" label="Secondary" />
+          <Divider />
+          <Form>
+            <RadioButton
+              value={1}
+              checked={true}
+              color="secondary"
+              label="Checked"
+            />
+          </Form>
+          <Divider />
           <RadioButton
             value={1}
             checked={true}
+            disabled
             color="secondary"
-            label="Checked"
+            label="Disabled"
           />
-        </Form>
-        <Divider />
-        <RadioButton
-          value={1}
-          checked={true}
-          disabled
-          color="secondary"
-          label="Disabled"
-        />
 
-        {/* TextLink */}
-        <Title>TextLink</Title>
-        <TextLink>Primary</TextLink>
-        <Divider />
-        <TextLink color="secondary">Secondary</TextLink>
-        <Divider />
-        <TextLink disabled>Disabled</TextLink>
-        <Divider />
-        <TextLink iconRight={Icons.LoadIcon}>With icon</TextLink>
+          {/* TextLink */}
+          <Title>TextLink</Title>
+          <TextLink>Primary</TextLink>
+          <Divider />
+          <TextLink color="secondary">Secondary</TextLink>
+          <Divider />
+          <TextLink disabled>Disabled</TextLink>
+          <Divider />
+          <TextLink iconRight={Icons.LoadIcon}>With icon</TextLink>
 
-        {/* Input */}
-        <Title>Input</Title>
-        <Input label="Color primary" placeholder="some@mail.com" />
-        <Divider />
-        <Input
-          label="Color secondary"
-          placeholder="some@mail.com"
-          color="secondary"
-        />
-        <Divider />
-        <Input
-          label="Error state"
-          placeholder="some@mail.com"
-          error="This is an error"
-        />
-        <Divider />
-        <Input label="Hint" placeholder="some@mail.com" hint="This is a hint" />
+          {/* Input */}
+          <Title>Input</Title>
+          <Input label="Color primary" placeholder="some@mail.com" />
+          <Divider />
+          <Input
+            label="Color secondary"
+            placeholder="some@mail.com"
+            color="secondary"
+          />
+          <Divider />
+          <Input
+            label="Error state"
+            placeholder="some@mail.com"
+            error="This is an error"
+          />
+          <Divider />
+          <Input
+            label="Hint"
+            placeholder="some@mail.com"
+            hint="This is a hint"
+          />
 
-        {/* Dropdown */}
-        <Title>Dropdown</Title>
-        <Dropdown label="Dropdown" placeholder="It use Input">
-          <Text>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industrys standard dummy text
-            ever since the 1500s
-          </Text>
-        </Dropdown>
+          {/* Dropdown */}
+          <Title>Dropdown</Title>
+          <Dropdown label="Dropdown" placeholder="It use Input">
+            <Text>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industrys standard dummy text
+              ever since the 1500s
+            </Text>
+          </Dropdown>
 
-        {/* Multiselect */}
-        <Title>Multiselect</Title>
-        <Multiselect
-          label="Multiselect"
-          placeholder="Placeholder"
-          options={[
-            {label: 'One', value: 1},
-            {label: 'Two', value: 2},
-            {label: 'Three', value: 3},
-            {label: 'Four', value: 4},
-            {label: 'Five', value: 5},
-            {label: 'Six', value: 6},
-            {label: 'Seven', value: 7},
-          ]}
-        />
-      </ScrollView>
-    </ThemeProvider>
-  );
-};
+          {/* Multiselect */}
+          <Title>Multiselect</Title>
+          <Multiselect
+            label="Multiselect"
+            placeholder="Placeholder"
+            options={[
+              {label: 'One', value: 1},
+              {label: 'Two', value: 2},
+              {label: 'Three', value: 3},
+              {label: 'Four', value: 4},
+              {label: 'Five', value: 5},
+              {label: 'Six', value: 6},
+              {label: 'Seven', value: 7},
+            ]}
+          />
+        </ScrollView>
+      </ThemeProvider>
+    );
+  };
 
 export const Colors = createTemplate('colors').bind({});
 Colors.args = {

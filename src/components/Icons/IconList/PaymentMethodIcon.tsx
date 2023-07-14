@@ -205,6 +205,7 @@ const PaymentMethodIcon: React.FC<IPaymentMethodIconProps> = ({
   height = 24,
   ...rest
 }) => (
+  // @ts-ignore
   <View style={{width, height}}>
     <Svg fill="none" {...rest} width="100%" height="100%" viewBox="0 0 34 24">
       {paymentMethodVariants[variant]}

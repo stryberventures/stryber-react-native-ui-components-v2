@@ -92,8 +92,7 @@ const CustomDrawer: React.FC<ICustomDrawerProps> = props => {
                 accessibilityRole="button"
                 accessibilityState={isFocused ? {selected: true} : {}}
                 onPress={onPress}
-                style={[styles.drawerItem]}
-              >
+                style={[styles.drawerItem]}>
                 {({pressed}) => (
                   <>
                     {renderIcon(pressed)}
@@ -103,8 +102,7 @@ const CustomDrawer: React.FC<ICustomDrawerProps> = props => {
                       style={[
                         {color: getColor(pressed)},
                         isWithIcon && styles.drawerItemTextWithIcon,
-                      ]}
-                    >
+                      ]}>
                       {label}
                     </Text>
                   </>
@@ -143,8 +141,7 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       screenOptions={{drawerStyle: {width: 240}}}
       defaultStatus="open"
-      drawerContent={props => <CustomDrawer {...props} />}
-    >
+      drawerContent={props => <CustomDrawer {...props} />}>
       <Drawer.Screen
         name={vocab.modules.navigation.home}
         component={Home}

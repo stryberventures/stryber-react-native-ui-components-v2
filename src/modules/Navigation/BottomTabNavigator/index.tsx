@@ -40,8 +40,7 @@ const BottomTabNavigator = () => {
           justifyContent: 'center',
         },
         tabBarLabelStyle: {textAlign: 'center', marginLeft: 0, fontSize: 10},
-      }}
-    >
+      }}>
       <Tab.Screen
         name={vocab.modules.navigation.home}
         component={Home}

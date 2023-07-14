@@ -79,8 +79,7 @@ const CreateNewPassword: React.FC = ({}) => {
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <PasswordInput
@@ -110,8 +109,7 @@ const CreateNewPassword: React.FC = ({}) => {
                   type="submit"
                   shape="circle"
                   style={styles.confirmButton}
-                  disabled={disabled}
-                >
+                  disabled={disabled}>
                   {vocab.modules.auth.forgotPassword.confirm}
                 </Button>
               </View>

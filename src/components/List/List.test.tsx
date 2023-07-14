@@ -24,8 +24,7 @@ const ComponentWithList = () => (
       rightContent={firstItem.rightContent}
       leftContent={firstItem.leftContent}
       onPress={firstItem.onPress}
-      testID={firstItem.testID}
-    >
+      testID={firstItem.testID}>
       <ListItemText primary={firstItem.title} secondary={firstItem.subtitle} />
     </ListItem>
   </List>
