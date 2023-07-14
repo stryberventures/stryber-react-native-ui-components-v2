@@ -8,7 +8,9 @@ import pkg from './package.json';
 import {vocab} from '../../storybook/preview/i18n';
 
 const DropdownContent = () => (
-  <Text selectable>{vocab.components.dropdown.content}</Text>
+  <Text selectable style={{padding: 12}}>
+    {vocab.components.dropdown.content}
+  </Text>
 );
 
 export default {
@@ -51,13 +53,15 @@ const Template: ComponentStory<typeof Dropdown> = args => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  slideUp: true,
-};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   color: 'secondary',
+};
+
+export const SlideUp = Template.bind({});
+SlideUp.args = {
+  slideUp: true,
 };
 
 export const Hint = Template.bind({});
