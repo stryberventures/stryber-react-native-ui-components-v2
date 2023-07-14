@@ -170,6 +170,7 @@ const vocab: TVocab = {
     multiselect: {
       label: 'تحديد متعدد',
       placeholder: 'اختر خيارات متعددة',
+      searchPlaceholder: 'يبحث',
       optionLabel1: 'واحد',
       optionLabel2: 'اثنان',
       optionLabel3: 'ثلاثة لاختبار الطول',

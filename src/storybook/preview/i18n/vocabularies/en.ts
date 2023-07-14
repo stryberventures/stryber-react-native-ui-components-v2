@@ -169,6 +169,7 @@ const vocab = {
     multiselect: {
       label: 'Multiselect',
       placeholder: 'Select multiple options',
+      searchPlaceholder: 'Search',
       optionLabel1: 'One',
       optionLabel2: 'Two',
       optionLabel3: 'Three for length testing',

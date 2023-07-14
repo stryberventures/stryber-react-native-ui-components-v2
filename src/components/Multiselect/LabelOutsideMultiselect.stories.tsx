@@ -73,7 +73,7 @@ SlideUp.args = {
 export const WithSearch = Template.bind({});
 WithSearch.args = {
   withSearch: true,
-  searchPlaceholder: 'Search',
+  searchPlaceholder: vocab.components.multiselect.searchPlaceholder,
 };
 
 export const Disabled = Template.bind({});
