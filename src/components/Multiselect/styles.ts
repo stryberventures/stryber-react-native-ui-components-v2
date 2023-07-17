@@ -1,25 +1,60 @@
 import {createUseStyles} from '../Theme';
 
-export default createUseStyles(theme => ({
+export default createUseStyles((theme, slideUp) => ({
   dropdown: {
     paddingHorizontal: 0,
     paddingVertical: 0,
   },
   content: {
-    maxHeight: 160,
+    ...(!slideUp && {maxHeight: 160}),
   },
-  multiselectItem: {
-    paddingHorizontal: 8,
-    paddingVertical: 8.5,
+  innerContent: {},
+  tagsBoxContainer: {
+    marginVertical: -4,
   },
-  multiselectItemPressed: {
-    backgroundColor: theme.colors.neutralGray.light100,
+  tagsBox: {
+    display: 'flex',
+    flexDirection: 'row',
+    height: 32,
   },
-  innerContent: {
-    paddingVertical: 8,
+  tagsBoxHideGradient: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    width: 25,
   },
-  checkboxText: {
-    fontSize: 14,
-    fontWeight: '400',
+  tag: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 4,
+    paddingLeft: 12,
+    paddingRight: 6,
+    marginRight: 4,
+    borderRadius: 5,
+    backgroundColor: theme.colors.primary.extraLight50,
+  },
+  tagText: {
+    color: theme.colors.primary.main500,
+    lineHeight: 22,
+  },
+  removeTagButton: {
+    marginLeft: 8,
+  },
+  searchContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.neutralGray.light200,
+  },
+  searchInput: {
+    borderWidth: 0,
+    paddingHorizontal: 12,
+    paddingVertical: 11,
+  },
+  searchLabel: {
+    fontSize: 12,
+    lineHeight: 14,
+    paddingHorizontal: 12,
+    paddingTop: 12,
   },
 }));

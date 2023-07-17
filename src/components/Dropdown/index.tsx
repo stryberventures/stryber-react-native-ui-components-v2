@@ -14,7 +14,6 @@ import Animated, {
   Easing,
   runOnJS,
 } from 'react-native-reanimated';
-import useStyles from './styles';
 import {
   GestureResponderEvent,
   Modal,
@@ -22,8 +21,11 @@ import {
   StyleProp,
   View,
   ViewStyle,
+  Platform,
+  useWindowDimensions,
 } from 'react-native';
 import {Shadow} from 'react-native-shadow-2';
+import {validateInputValueLength} from '../../utils';
 import LabelOutsideInputLayout, {
   ILabelOutsideInputLayoutProps,
 } from '../Input/LabelOutsideInputLayout';
@@ -31,22 +33,26 @@ import FloatingLabelInputLayout from '../Input/FloatingLabelInputLayout';
 import {ArrowIcon, ErrorIcon} from '../Icons';
 import {useTheme} from '../Theme';
 import Text from '../Text';
-import {validateInputValueLength} from '../../utils';
+import {useKeyboardHeightIOS} from './hooks';
+import useStyles from './styles';
 
 const MAX_DROPDOWN_HEIGHT = 300;
 
 export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
-  value?: string;
+  value?: string | React.ReactNode;
   placeholder?: string;
   dropdownStyle?: StyleProp<ViewStyle>;
   onChange?: (open: boolean) => void;
+  onClose?: () => void;
   variant?: 'floatingLabel' | 'labelOutside';
+  slideUp?: boolean;
   errorIcon?: boolean;
   children?: React.ReactNode;
 }
 
 export interface IDropdownPosition {
-  top: number;
+  top?: number;
+  bottom?: number;
   left: number;
   width: number;
 }
@@ -66,7 +72,9 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       children,
       dropdownStyle,
       onChange,
+      onClose,
       variant = 'floatingLabel',
+      slideUp = false,
       errorIcon,
       ...rest
     },
@@ -76,9 +84,12 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     const dropdownInputRef = useRef<View>(null);
     const [preVisible, setPreVisible] = useState(false);
     const [visible, setVisible] = useState(false);
+    const {height: screenHeight} = useWindowDimensions();
+    const keyboardHeightIOS = useKeyboardHeightIOS();
     const [dropdownPosition, setDropdownPosition] = useState<IDropdownPosition>(
       {
-        top: 0,
+        top: undefined,
+        bottom: undefined,
         left: 0,
         width: 0,
       },
@@ -88,6 +99,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     const onDropdownAnimationCallback = () => {
       if (!preVisible) {
         setVisible(false);
+        onClose && onClose();
       }
     };
     const dropdownAnimatedValue = useDerivedValue(() =>
@@ -109,6 +121,17 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         [0, MAX_DROPDOWN_HEIGHT],
       ),
     }));
+    const slideUpDropdownAnimatedStyles = useAnimatedStyle(
+      () => ({
+        height: `${interpolate(dropdownAnimatedValue.value, [0, 1], [0, 75])}%`,
+        paddingBottom: interpolate(
+          dropdownAnimatedValue.value,
+          [0, 1],
+          [0, Platform.OS === 'ios' ? keyboardHeightIOS : 0],
+        ),
+      }),
+      [keyboardHeightIOS],
+    );
     const iconAnimatedStyles = useAnimatedStyle(() => ({
       transform: [
         {
@@ -120,7 +143,13 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
 
     const handleOpen = (event?: GestureResponderEvent) => {
       dropdownInputRef.current!.measure((x, y, width, height, pageX, pageY) => {
-        setDropdownPosition({top: pageY + height, left: pageX, width});
+        setDropdownPosition({
+          top: pageY > screenHeight / 2 ? undefined : pageY + height,
+          bottom:
+            pageY > screenHeight / 2 ? screenHeight - pageY - 30 : undefined,
+          left: pageX,
+          width,
+        });
       });
       setPreVisible(true);
       setVisible(true);
@@ -148,6 +177,20 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
             sides={{start: true, end: true, top: false, bottom: true}}>
             <View style={styles.dropdownInner}>{children}</View>
           </Shadow>
+        </Animated.View>
+      </Modal>
+    );
+
+    const renderSlideUpDropdown = () => (
+      <Modal visible={visible} transparent animationType="none">
+        <Pressable style={styles.grayOverlay} onPress={handleClose} />
+        <Animated.View
+          style={[
+            styles.slideUpDropdown,
+            slideUpDropdownAnimatedStyles,
+            dropdownStyle,
+          ]}>
+          {children}
         </Animated.View>
       </Modal>
     );
@@ -197,19 +240,25 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
         }
         disabled={disabled}
         {...rest}>
-        {renderDropdown()}
+        {slideUp ? renderSlideUpDropdown() : renderDropdown()}
         {/*This block is used to keep the label in the same position when there are no text*/}
         {!placeholder && !value && <View style={styles.emptyBlock} />}
-        <Text
-          variant={variant === 'floatingLabel' ? 'components1' : 'components2'}
-          style={[
-            styles.text,
-            !!placeholder && styles.placeholderText,
-            !!value && styles.valueText,
-            disabled && styles.disabledText,
-          ]}>
-          {(!!value && validateInputValueLength(value)) || placeholder}
-        </Text>
+        {typeof value === 'string' || typeof value === 'undefined' ? (
+          <Text
+            variant={
+              variant === 'floatingLabel' ? 'components1' : 'components2'
+            }
+            style={[
+              styles.text,
+              !!placeholder && styles.placeholderText,
+              !!value && styles.valueText,
+              disabled && styles.disabledText,
+            ]}>
+            {(!!value && validateInputValueLength(value)) || placeholder}
+          </Text>
+        ) : (
+          value
+        )}
       </LayoutComponent>
     );
   },
