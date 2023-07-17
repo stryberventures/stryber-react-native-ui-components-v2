@@ -123,8 +123,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
     }));
     const slideUpDropdownAnimatedStyles = useAnimatedStyle(
       () => ({
-        // @ts-ignore
-        height: interpolate(dropdownAnimatedValue.value, [0, 1], [0, 75]) + '%',
+        height: `${interpolate(dropdownAnimatedValue.value, [0, 1], [0, 75])}%`,
         paddingBottom: interpolate(
           dropdownAnimatedValue.value,
           [0, 1],
