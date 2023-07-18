@@ -166,6 +166,14 @@ const vocab: TVocab = {
     },
     menu: {
       item: 'قائمة',
+      cities: {
+        newYork: 'نيويورك',
+        losAngeles: 'لوس أنجلوس',
+        chicago: 'شيكاغو',
+        houston: 'هيوستن',
+        philadelphia: 'فيلادلفيا',
+      },
+      searchPlaceholder: 'يبحث',
     },
     multiselect: {
       label: 'تحديد متعدد',
