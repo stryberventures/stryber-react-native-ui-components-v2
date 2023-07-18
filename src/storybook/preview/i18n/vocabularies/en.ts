@@ -165,6 +165,14 @@ const vocab = {
     },
     menu: {
       item: 'Menu item',
+      cities: {
+        newYork: 'New York',
+        losAngeles: 'Los Angeles',
+        chicago: 'Chicago',
+        houston: 'Houston',
+        philadelphia: 'Philadelphia',
+      },
+      searchPlaceholder: 'Search',
     },
     multiselect: {
       label: 'Multiselect',

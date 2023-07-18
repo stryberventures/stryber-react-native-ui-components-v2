@@ -66,20 +66,17 @@ WithLeftContent.args = {
 
 export const WithSearch = () => {
   const [search, setSearch] = React.useState('');
-  const cities = [
-    'New York',
-    'Los Angeles',
-    'Chicago',
-    'Houston',
-    'Philadelphia',
-  ];
+  const cities = Object.values(vocab.components.menu.cities);
   const filteredItems = cities.filter(item =>
     item.toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
     <Menu size="large">
-      <MenuSearch onChangeText={text => setSearch(text)} />
+      <MenuSearch
+        placeholder={vocab.components.menu.searchPlaceholder}
+        onChangeText={text => setSearch(text)}
+      />
       {filteredItems.map((item, index) => (
         <MenuItem key={index}>
           <MenuItemText primary={item} />
