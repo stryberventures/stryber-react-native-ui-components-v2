@@ -1,4 +1,4 @@
-import {createUseStyles} from '../Theme';
+import {createUseStyles, isRTL} from '../Theme';
 
 export default createUseStyles(theme => ({
   input: {
@@ -15,7 +15,7 @@ export default createUseStyles(theme => ({
   },
   inputContainer: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: isRTL ? 'row-reverse' : 'row',
   },
   additionalText: {
     color: theme.colors.text.headline,
