@@ -137,6 +137,12 @@ const Combobox: React.FC<IComboboxProps> = ({
       <SelectItem disabled>{noOptionsFoundText}</SelectItem>
     );
 
+  const onArrowDownPress = () => {
+    if (visible) {
+      handleDismiss();
+    }
+  };
+
   useEffect(() => {
     updateFormValue(name, selectedOption?.value, true);
     return () => {
@@ -169,14 +175,16 @@ const Combobox: React.FC<IComboboxProps> = ({
                 hitSlop={5}
               />
             )}
-            <ArrowDownIconDeprecated
-              fill={
-                disabled
-                  ? theme.colors.neutralGray.medium300
-                  : theme.colors.neutralGray.main500
-              }
-              style={[styles.icon, visible && styles.invertedIcon]}
-            />
+            <Pressable onPress={onArrowDownPress}>
+              <ArrowDownIconDeprecated
+                fill={
+                  disabled
+                    ? theme.colors.neutralGray.medium300
+                    : theme.colors.neutralGray.main500
+                }
+                style={[styles.icon, visible && styles.invertedIcon]}
+              />
+            </Pressable>
           </>
         }
         style={inputStyle}
