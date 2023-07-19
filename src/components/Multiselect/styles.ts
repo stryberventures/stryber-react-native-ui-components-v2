@@ -5,17 +5,31 @@ export default createUseStyles((theme, slideUp) => ({
     paddingHorizontal: 0,
     paddingVertical: 0,
   },
+  layoutFloatingLabel: {
+    height: 64,
+  },
   content: {
     ...(!slideUp && {maxHeight: 160}),
   },
   innerContent: {},
+  dropdownTextFloatingLabel: {
+    lineHeight: 24,
+    marginTop: 8,
+  },
+  labelContainerFloatingLabel: {
+    top: 0,
+  },
   tagsBoxContainer: {
     marginVertical: -4,
+  },
+  tagsBoxContainerFloatingLabel: {
+    marginTop: 4,
+    marginBottom: 0,
   },
   tagsBox: {
     display: 'flex',
     flexDirection: 'row',
-    height: 32,
+    height: 28,
   },
   tagsBoxHideGradient: {
     position: 'absolute',

@@ -21,6 +21,7 @@ import {
   StyleProp,
   View,
   ViewStyle,
+  TextStyle,
   Platform,
   useWindowDimensions,
 } from 'react-native';
@@ -42,6 +43,7 @@ export interface IDropdownProps extends ILabelOutsideInputLayoutProps {
   value?: string | React.ReactNode;
   placeholder?: string;
   dropdownStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
   onChange?: (open: boolean) => void;
   onClose?: () => void;
   variant?: 'floatingLabel' | 'labelOutside';
@@ -71,6 +73,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
       disabled,
       children,
       dropdownStyle,
+      textStyle,
       onChange,
       onClose,
       variant = 'floatingLabel',
@@ -250,6 +253,7 @@ const Dropdown = forwardRef<IDropdownRef, IDropdownProps>(
             }
             style={[
               styles.text,
+              textStyle,
               !!placeholder && styles.placeholderText,
               !!value && styles.valueText,
               disabled && styles.disabledText,

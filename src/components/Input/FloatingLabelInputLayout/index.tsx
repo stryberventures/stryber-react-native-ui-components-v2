@@ -17,6 +17,7 @@ export interface IFloatingLabelInputLayoutProps extends PressableProps {
   isEmpty?: boolean;
   style?: StyleProp<ViewStyle>;
   hintStyle?: StyleProp<TextStyle>;
+  labelContainerStyle?: StyleProp<ViewStyle>;
   errorStyle?: StyleProp<ViewStyle>;
   color?: 'primary' | 'secondary';
   error?: string;
@@ -52,6 +53,7 @@ const FloatingLabelInputLayout = React.forwardRef<
       hintStyle,
       errorStyle,
       showLength,
+      labelContainerStyle,
       ...rest
     },
     ref,
@@ -104,6 +106,7 @@ const FloatingLabelInputLayout = React.forwardRef<
               <Animated.View
                 style={[
                   styles.animatedLabelContainer,
+                  labelContainerStyle,
                   {transform: [{translateY: translateYLabel}]},
                 ]}>
                 <Animated.Text

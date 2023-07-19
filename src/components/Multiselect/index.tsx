@@ -18,10 +18,7 @@ export interface IMultiselectOption {
 }
 
 export interface IMultiselectProps
-  extends Omit<
-    IDropdownProps,
-    'children' | 'value' | 'onChange' | 'error' | 'variant'
-  > {
+  extends Omit<IDropdownProps, 'children' | 'value' | 'onChange' | 'error'> {
   name?: string;
   options: IMultiselectOption[];
   selectedOptions?: (number | string)[];
@@ -127,7 +124,11 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     return (
       <View
         pointerEvents={disabled ? 'none' : 'auto'}
-        style={styles.tagsBoxContainer}>
+        style={[
+          styles.tagsBoxContainer,
+          rest.variant === 'floatingLabel' &&
+            styles.tagsBoxContainerFloatingLabel,
+        ]}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <Pressable style={styles.tagsBox}>
             {values.map((value, index) => (
@@ -188,6 +189,16 @@ const Multiselect: React.FC<IMultiselectProps> = ({
       onChange={handleBlur}
       value={renderTags()}
       dropdownStyle={[styles.dropdown, dropdownStyle]}
+      style={[
+        rest.variant === 'floatingLabel' && styles.layoutFloatingLabel,
+        rest.style,
+      ]}
+      labelContainerStyle={
+        rest.variant === 'floatingLabel' && styles.labelContainerFloatingLabel
+      }
+      textStyle={
+        rest.variant === 'floatingLabel' && styles.dropdownTextFloatingLabel
+      }
       errorIcon={errorIcon}
       disabled={disabled}
       slideUp={slideUp || withSearch}

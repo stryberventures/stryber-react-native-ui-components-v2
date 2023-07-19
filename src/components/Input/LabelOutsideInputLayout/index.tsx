@@ -16,6 +16,7 @@ export interface ILabelOutsideInputLayoutProps extends PressableProps {
   isFocused?: boolean;
   style?: StyleProp<ViewStyle>;
   inputWrapperStyle?: StyleProp<ViewStyle>;
+  labelContainerStyle?: StyleProp<ViewStyle>;
   hintStyle?: StyleProp<TextStyle>;
   errorStyle?: StyleProp<ViewStyle>;
   color?: 'primary' | 'secondary';
