@@ -14,5 +14,9 @@ module.exports = {
     "./customAddons/yarnInstall/preset.ts",
     "storybook-addon-rtl",
   ],
-  "framework": "@storybook/react"
+  "framework": "@storybook/react",
+  webpackFinal: async (config) => {
+    config.resolve.alias['react-native-linear-gradient'] = require.resolve('react-native-web-linear-gradient');
+    return config;
+  },
 }
