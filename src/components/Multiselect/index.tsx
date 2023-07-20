@@ -1,5 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {Pressable, ScrollView, View} from 'react-native';
+import React, {useEffect, useState, useRef} from 'react';
+import {
+  Pressable,
+  ScrollView,
+  View,
+  LayoutChangeEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {CloseCircleIcon, SearchIcon} from '../Icons';
@@ -64,6 +71,9 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   const errorIcon = !!fieldError || !!error;
   const {theme} = useTheme();
   const styles = useStyles(slideUp || withSearch);
+  const tagsScrollRef = useRef<ScrollView>(null);
+  let tagsScrollPosition = useRef(0).current;
+  let tagsScrollBoxWidth = useRef(0).current;
 
   const getSelectedOptionsLabels = () => {
     const selectedOptionsText: string[] = [];
@@ -116,6 +126,18 @@ const Multiselect: React.FC<IMultiselectProps> = ({
 
   const renderTags = () => {
     const values = getSelectedOptionsLabels();
+    const onScrollViewLayout = (e: LayoutChangeEvent) =>
+      (tagsScrollBoxWidth = e.nativeEvent.layout.width);
+    const onScrollViewScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) =>
+      (tagsScrollPosition = e.nativeEvent.contentOffset.x);
+    const onTagsBoxLayout = (e: LayoutChangeEvent) => {
+      if (
+        tagsScrollBoxWidth <
+        e.nativeEvent.layout.width - tagsScrollPosition
+      ) {
+        tagsScrollRef.current?.scrollToEnd({animated: true});
+      }
+    };
 
     if (values.length === 0) {
       return undefined;
@@ -132,8 +154,11 @@ const Multiselect: React.FC<IMultiselectProps> = ({
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.tagsScrollBox}>
-          <Pressable style={styles.tagsBox}>
+          contentContainerStyle={styles.tagsScrollBox}
+          onLayout={onScrollViewLayout}
+          onScroll={onScrollViewScroll}
+          ref={tagsScrollRef}>
+          <Pressable style={styles.tagsBox} onLayout={onTagsBoxLayout}>
             {values.map((value, index) => (
               <View style={styles.tag} key={index}>
                 <Text variant="components1" style={styles.tagText}>
