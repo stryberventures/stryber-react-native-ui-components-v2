@@ -10,7 +10,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 import {CloseCircleIcon, SearchIcon} from '../Icons';
-import {useTheme} from '../Theme';
+import {useTheme, isRTL} from '../Theme';
 import Dropdown, {IDropdownProps} from '../Dropdown';
 import Form, {useFormContext} from '../Form';
 import Input from '../Input';
@@ -154,6 +154,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.tagsScrollBox}
           onLayout={onScrollViewLayout}
           onScroll={onScrollViewScroll}
           ref={tagsScrollRef}>
@@ -178,8 +179,8 @@ const Multiselect: React.FC<IMultiselectProps> = ({
           </Pressable>
         </ScrollView>
         <LinearGradient
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 0}}
+          start={{x: isRTL ? 1 : 0, y: 0}}
+          end={{x: isRTL ? 0 : 1, y: 0}}
           colors={['rgba(255,255, 255, 0)', '#fff']}
           style={styles.tagsBoxHideGradient}
         />

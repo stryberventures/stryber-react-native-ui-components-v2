@@ -22,6 +22,9 @@ export default createUseStyles((theme, slideUp) => ({
   tagsBoxContainer: {
     marginVertical: -4,
   },
+  tagsScrollBox: {
+    paddingRight: 21,
+  },
   tagsBoxContainerFloatingLabel: {
     marginTop: 4,
     marginBottom: 0,
