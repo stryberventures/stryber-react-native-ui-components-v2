@@ -9,6 +9,7 @@ export default createUseStyles(theme => ({
     textAlignVertical: 'center',
     fontSize: 16,
     fontFamily: theme.fontFamily,
+    textAlign: isRTL ? 'right' : 'left',
   },
   disabledInput: {
     color: theme.colors.text.disabled,
