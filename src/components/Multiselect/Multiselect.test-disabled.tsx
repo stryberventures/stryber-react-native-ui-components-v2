@@ -43,7 +43,7 @@ it('shows hint message', () => {
 it('shows multiselect value', () => {
   const value = ['one', 4];
   const {getByText} = render(
-    <Multiselect options={options} selectedOptions={value} />,
+    <Multiselect options={options} selectedValues={value} />,
   );
   getByText('One, Four');
 });

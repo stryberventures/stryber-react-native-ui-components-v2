@@ -28,7 +28,7 @@ export interface IMultiselectProps
   extends Omit<IDropdownProps, 'children' | 'value' | 'onChange' | 'error'> {
   name?: string;
   options: IMultiselectOption[];
-  selectedOptions?: (number | string)[];
+  selectedValues?: (number | string)[];
   clearFormValueOnUnmount?: boolean;
   withSearch?: boolean;
   searchPlaceholder?: string;
@@ -46,7 +46,7 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   options,
   dropdownStyle,
   error,
-  selectedOptions: initSelectedOptions = [],
+  selectedValues: initSelectedValues = [],
   clearFormValueOnUnmount,
   color,
   disabled,
@@ -64,8 +64,8 @@ const Multiselect: React.FC<IMultiselectProps> = ({
     updateFormValue,
     updateFormTouched,
   } = useFormContext(name);
-  const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>(
-    fieldValue || initSelectedOptions,
+  const [selectedValues, setSelectedValues] = useState<(string | number)[]>(
+    fieldValue || initSelectedValues,
   );
   const [searchText, setSearchText] = useState<string>();
   const errorIcon = !!fieldError || !!error;
@@ -78,8 +78,11 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   const getSelectedOptionsLabels = () => {
     const selectedOptionsText: string[] = [];
     options.forEach(option => {
-      if (selectedOptions.includes(option.value)) {
-        selectedOptionsText.push(option.label);
+      const indexSelectedValue = selectedValues.findIndex(
+        value => value === option.value,
+      );
+      if (indexSelectedValue > -1) {
+        selectedOptionsText[indexSelectedValue] = option.label;
       }
     });
     return selectedOptionsText;
@@ -93,22 +96,31 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   };
 
   const handleChange = (formValues: FormValuesType) => {
-    const pickedOptions: (string | number)[] = [];
+    let updatedSelectedValues: (string | number)[] = selectedValues.concat([]);
     for (const key in formValues) {
-      if (formValues[key]) {
-        const selectedOption = options.find(option => option.label === key);
-        pickedOptions.push(selectedOption!.value);
+      const selectedOption = options.find(option => option.label === key);
+      const valueIndex = updatedSelectedValues.findIndex(
+        value => value === selectedOption!.value,
+      );
+
+      if (formValues[key] && valueIndex === -1) {
+        updatedSelectedValues.push(selectedOption!.value);
+      } else if (!formValues[key] && valueIndex > -1) {
+        updatedSelectedValues = [].concat.call(
+          updatedSelectedValues.slice(0, valueIndex),
+          updatedSelectedValues.slice(valueIndex + 1) as any,
+        ) as (string | number)[];
       }
     }
-    setSelectedOptions(pickedOptions);
-    updateFormValue(name, pickedOptions);
-    onChange && onChange(pickedOptions);
+    setSelectedValues(updatedSelectedValues);
+    updateFormValue(name, updatedSelectedValues);
+    onChange && onChange(updatedSelectedValues);
   };
 
   const getFormInitValues = () => {
     const initValues: FormValuesType = {};
     options.forEach(option => {
-      if (selectedOptions.includes(option.value)) {
+      if (selectedValues.includes(option.value)) {
         initValues[option.label] = true;
       }
     });
@@ -118,8 +130,8 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   const handleRemoveOption = (v: string) => {
     const currentOption = options.find(option => option.label === v);
     if (currentOption) {
-      setSelectedOptions(
-        selectedOptions.filter(option => option !== currentOption.value),
+      setSelectedValues(
+        selectedValues.filter(value => value !== currentOption.value),
       );
     }
   };
@@ -196,11 +208,11 @@ const Multiselect: React.FC<IMultiselectProps> = ({
   };
 
   useEffect(() => {
-    updateFormValue(name, selectedOptions, true);
+    updateFormValue(name, selectedValues, true);
     return () => {
       clearFormValueOnUnmount && unsetFormValue(name);
     };
-  }, [selectedOptions]);
+  }, [selectedValues]);
 
   const filteredOptions = (() => {
     if (!searchText) {
