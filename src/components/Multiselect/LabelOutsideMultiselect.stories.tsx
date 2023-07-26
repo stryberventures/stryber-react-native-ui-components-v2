@@ -93,5 +93,5 @@ Hint.args = {
 
 export const WithSelectedOptions = Template.bind({});
 WithSelectedOptions.args = {
-  selectedOptions: ['two', 4],
+  selectedValues: ['two', 4],
 };
