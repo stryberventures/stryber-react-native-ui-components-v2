@@ -5,6 +5,7 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import pkg from './package.json';
 import DismissKeyboardDecorator from '../../storybook/preview/DismissKeyboardDecorator';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/SearchInput',
@@ -15,7 +16,7 @@ export default {
       : [CenterViewDecorator, DismissKeyboardDecorator],
   args: {
     color: 'primary',
-    placeholder: 'Search',
+    placeholder: vocab.components.searchInput.placeholder,
     size: 'medium',
     disabled: false,
     hint: '',
@@ -71,12 +72,12 @@ Large.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  placeholder: 'Disabled',
+  placeholder: vocab.components.searchInput.disabled,
   disabled: true,
 };
 
 export const Hint = Template.bind({});
 Hint.args = {
-  value: 'Violet bananas',
-  hint: 'No option found',
+  value: vocab.components.searchInput.hintValue,
+  hint: vocab.components.searchInput.hintMessage,
 };

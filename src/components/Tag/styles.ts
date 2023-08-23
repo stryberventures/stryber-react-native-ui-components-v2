@@ -15,7 +15,7 @@ const tagSizes: Record<TTagSize, TTagSizePadding> = {
   },
   medium: {
     paddingHorizontal: 8,
-    paddingVertical: 3.5,
+    paddingVertical: 4,
   },
   small: {
     paddingHorizontal: 6,
@@ -36,12 +36,6 @@ export default createUseStyles(
       alignItems: 'center',
       borderRadius: 100,
       ...tagSizes[size],
-    },
-    tagPressed: {
-      paddingHorizontal: tagSizes[size].paddingHorizontal - 1,
-      paddingVertical: tagSizes[size].paddingVertical - 1,
-      borderWidth: 1,
-      borderColor: theme.colors[color].medium300,
     },
     tagSelected: {
       backgroundColor: theme.colors[color].light200,

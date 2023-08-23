@@ -4,14 +4,16 @@ import Multiselect from '.';
 import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import pkg from './package.json';
+import {isRTL} from '../Theme';
+import {vocab} from '../../storybook/preview/i18n';
 
 const options = [
-  {label: 'One', value: 'one'},
-  {label: 'Two', value: 'two'},
-  {label: 'Three for length testing', value: 'three'},
-  {label: 'Four', value: 4},
-  {label: 'Five', value: 'five'},
-  {label: 'Six', value: 6},
+  {label: vocab.components.multiselect.optionLabel1, value: 'one'},
+  {label: vocab.components.multiselect.optionLabel2, value: 'two'},
+  {label: vocab.components.multiselect.optionLabel3, value: 'three'},
+  {label: vocab.components.multiselect.optionLabel4, value: 4},
+  {label: vocab.components.multiselect.optionLabel5, value: 'five'},
+  {label: vocab.components.multiselect.optionLabel6, value: 6},
 ];
 
 export default {
@@ -20,9 +22,10 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   args: {
     color: 'primary',
-    label: 'Multiselect',
-    placeholder: 'Select multiple options',
+    label: vocab.components.multiselect.label,
+    placeholder: vocab.components.multiselect.placeholder,
     variant: 'floatingLabel',
+    separator: isRTL ? '، ' : ', ',
   },
   parameters: {
     pkg,
@@ -62,6 +65,17 @@ Secondary.args = {
   color: 'secondary',
 };
 
+export const SlideUp = Template.bind({});
+SlideUp.args = {
+  slideUp: true,
+};
+
+export const WithSearch = Template.bind({});
+WithSearch.args = {
+  withSearch: true,
+  searchPlaceholder: vocab.components.multiselect.searchPlaceholder,
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
@@ -69,15 +83,15 @@ Disabled.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  error: 'Error message',
+  error: vocab.components.multiselect.errorMessage,
 };
 
 export const Hint = Template.bind({});
 Hint.args = {
-  hint: 'Hint message',
+  hint: vocab.components.multiselect.hintMessage,
 };
 
 export const WithSelectedOptions = Template.bind({});
 WithSelectedOptions.args = {
-  selectedOptions: ['two', 4],
+  selectedValues: ['two', 4],
 };

@@ -24,10 +24,12 @@ if (parameters) {
 
 const getStories = () => {
   return [
+    require("../src/components/Avatar/Avatar.stories.tsx"),
     require("../src/components/Button/Button.stories.tsx"),
     require("../src/components/Checkbox/Checkbox.stories.tsx"),
     require("../src/components/CheckboxGroup/CheckboxGroup.stories.tsx"),
     require("../src/components/Chip/Chip.stories.tsx"),
+    require("../src/components/CircularProgress/CircularProgress.stories.tsx"),
     require("../src/components/Combobox/FloatingLabelCombobox.stories.tsx"),
     require("../src/components/Combobox/LabelOutsideCombobox.stories.tsx"),
     require("../src/components/Dialog/Dialog.stories.tsx"),
@@ -39,7 +41,9 @@ const getStories = () => {
     require("../src/components/Icons/Icons.stories.tsx"),
     require("../src/components/Input/FloatingLabelInput.stories.tsx"),
     require("../src/components/Input/LabelOutsideInput.stories.tsx"),
+    require("../src/components/LinearProgress/LinearProgress.stories.tsx"),
     require("../src/components/List/List.stories.tsx"),
+    require("../src/components/Menu/Menu.stories.tsx"),
     require("../src/components/Multiselect/FloatingLabelMultiselect.stories.tsx"),
     require("../src/components/Multiselect/LabelOutsideMultiselect.stories.tsx"),
     require("../src/components/NumberInput/NumberInputFloatingLabel.stories.tsx"),
@@ -51,6 +55,8 @@ const getStories = () => {
     require("../src/components/Select/FloatingLabelSelect.stories.tsx"),
     require("../src/components/Select/LabelOutsideSelect.stories.tsx"),
     require("../src/components/Slider/Slider.stories.tsx"),
+    require("../src/components/Snackbar/Snackbar.stories.tsx"),
+    require("../src/components/Snackbar/SnackbarContent.stories.tsx"),
     require("../src/components/Switch/Switch.stories.tsx"),
     require("../src/components/Tag/Tag.stories.tsx"),
     require("../src/components/Text/Text.stories.tsx"),

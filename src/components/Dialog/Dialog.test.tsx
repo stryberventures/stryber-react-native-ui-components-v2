@@ -18,8 +18,7 @@ it('should be rendered with title, text and buttons if opened', () => {
           variant="outlined"
           size="small"
           style={{marginRight: 12}}
-          onPress={() => {}}
-        >
+          onPress={() => {}}>
           {successButton}
         </Button>
         <Button size="small" onPress={() => {}}>
@@ -44,8 +43,7 @@ it("shouldn't render Dialog if closed", () => {
           variant="outlined"
           size="small"
           style={{marginRight: 12}}
-          onPress={() => {}}
-        >
+          onPress={() => {}}>
           Success
         </Button>
         <Button size="small" onPress={() => {}}>
@@ -69,8 +67,7 @@ it('should fire success and cancel functions on buttons press', () => {
           variant="outlined"
           size="small"
           style={{marginRight: 12}}
-          onPress={onConfirm}
-        >
+          onPress={onConfirm}>
           {successBtnText}
         </Button>
         <Button size="small" onPress={onCancel}>

@@ -27,12 +27,8 @@ const RadioButton: React.FC<IRadioButtonProps> = ({
   fullWidth,
   ...rest
 }) => {
-  const {
-    fieldValue,
-    updateFormValue,
-    unsetFormValue,
-    updateFormTouched,
-  } = useFormContext(name);
+  const {fieldValue, updateFormValue, unsetFormValue, updateFormTouched} =
+    useFormContext(name);
 
   const checkedValue = fieldValue === value;
 

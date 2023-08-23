@@ -8,6 +8,7 @@ import TextLink from '../../../../components/TextLink';
 import Form from '../../../../components/Form';
 import Button from '../../../../components/Button';
 import DemoLogo from '../../../../storybook/preview/DemoLogo';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   scrollContainer: {
@@ -67,24 +68,22 @@ const ForgotPasswordEmail: React.FC = ({}) => {
           <DemoLogo />
         </View>
         <Text variant="h4" weight="bold" style={styles.title}>
-          Reset Password
+          {vocab.modules.auth.forgotPassword.resetPassword}
         </Text>
         <Text variant="body2" color="secondary" style={styles.description}>
-          Enter the email address associated with your account and we’ll send an
-          email with instructions to reset your password in no time!
+          {vocab.modules.auth.forgotPassword.resetPasswordDesc}
         </Text>
         <View style={styles.formView}>
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
                   name="email"
-                  label="Email"
-                  placeholder="Type your Email"
+                  label={vocab.modules.auth.forgotPassword.email}
+                  placeholder={vocab.modules.auth.forgotPassword.typeEmail}
                   autoComplete="email"
                   keyboardType="email-address"
                   textContentType="emailAddress"
@@ -97,19 +96,17 @@ const ForgotPasswordEmail: React.FC = ({}) => {
                   type="submit"
                   shape="circle"
                   style={styles.submitButton}
-                  disabled={disabled}
-                >
-                  Send password instructions
+                  disabled={disabled}>
+                  {vocab.modules.auth.forgotPassword.sendPassword}
                 </Button>
                 <Button
                   shape="circle"
                   variant="ghost"
-                  style={styles.loginButton}
-                >
-                  Login
+                  style={styles.loginButton}>
+                  {vocab.modules.auth.forgotPassword.login}
                 </Button>
                 <TextLink style={styles.newUser}>
-                  New user? Register here
+                  {vocab.modules.auth.forgotPassword.newUserRegister}
                 </TextLink>
               </View>
             </View>

@@ -9,6 +9,7 @@ import Form from '../../../../components/Form';
 import Button from '../../../../components/Button';
 import DemoLogo from '../../../../storybook/preview/DemoLogo';
 import Checkbox from '../../../../components/Checkbox';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   scrollContainer: {
@@ -60,10 +61,13 @@ const useStyles = createUseStyles(theme => ({
 }));
 
 const validationSchema = yup.object().shape({
-  phoneNumber: yup.string().min(12, 'Invalid phone number').required(),
+  phoneNumber: yup
+    .string()
+    .min(12, vocab.modules.auth.signup.invalidPhoneNumber)
+    .required(),
   termsAndConditions: yup
     .boolean()
-    .oneOf([true], 'Please accept the terms and conditions'),
+    .oneOf([true], vocab.modules.auth.signup.acceptTerms),
 });
 
 const SignUpPhoneNumber: React.FC = ({}) => {
@@ -77,22 +81,21 @@ const SignUpPhoneNumber: React.FC = ({}) => {
           <DemoLogo />
         </View>
         <Text variant="h4" weight="bold" style={styles.title}>
-          Sign Up
+          {vocab.modules.auth.signup.signup}
         </Text>
         <Text variant="body2" color="secondary" style={styles.description}>
-          Please insert your phone number in order to start:
+          {vocab.modules.auth.signup.pleaseInsertPhone}
         </Text>
         <View style={styles.formView}>
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
                   name="phoneNumber"
-                  label="Phone Number"
+                  label={vocab.modules.auth.signup.phoneNumber}
                   prefix="+49 "
                   placeholder="000 00000000"
                   mask="XXX XXXXXXXX"
@@ -109,14 +112,17 @@ const SignUpPhoneNumber: React.FC = ({}) => {
                   label={
                     <View style={styles.checkboxContent}>
                       <Text variant="body2" color="secondary">
-                        I accept the{' '}
+                        {vocab.modules.auth.signup.iAcceptTermsAndConditions[0]}
                       </Text>
-                      <TextLink>Terms and Conditions</TextLink>
+                      <TextLink>
+                        {vocab.modules.auth.signup.iAcceptTermsAndConditions[1]}
+                      </TextLink>
                       <Text variant="body2" color="secondary">
-                        {' '}
-                        and{' '}
+                        {vocab.modules.auth.signup.iAcceptTermsAndConditions[2]}
                       </Text>
-                      <TextLink>Data Policy</TextLink>
+                      <TextLink>
+                        {vocab.modules.auth.signup.iAcceptTermsAndConditions[3]}
+                      </TextLink>
                     </View>
                   }
                 />
@@ -126,16 +132,14 @@ const SignUpPhoneNumber: React.FC = ({}) => {
                   style={styles.nextButton}
                   type="submit"
                   shape="circle"
-                  disabled={disabled}
-                >
-                  Next
+                  disabled={disabled}>
+                  {vocab.modules.auth.signup.next}
                 </Button>
                 <Button
                   shape="circle"
                   variant="ghost"
-                  style={styles.loginButton}
-                >
-                  Login
+                  style={styles.loginButton}>
+                  {vocab.modules.auth.signup.login}
                 </Button>
               </View>
             </View>

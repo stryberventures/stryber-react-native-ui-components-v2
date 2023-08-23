@@ -5,6 +5,7 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import pkg from './package.json';
 import DismissKeyboardDecorator from '../../storybook/preview/DismissKeyboardDecorator';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/PasswordInput/LabelOutside',
@@ -45,8 +46,8 @@ export default {
 const Template: ComponentStory<typeof PasswordInput> = args => (
   <PasswordInput
     variant="labelOutside"
-    label="Password"
-    placeholder="Enter password"
+    label={vocab.components.passwordInput.label}
+    placeholder={vocab.components.passwordInput.placeholder}
     {...args}
   />
 );
@@ -60,12 +61,12 @@ Secondary.args = {
 
 export const Hint = Template.bind({});
 Hint.args = {
-  hint: 'Hint message',
+  hint: vocab.components.passwordInput.hint,
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  error: 'Error message',
+  error: vocab.components.passwordInput.error,
 };
 
 export const Disabled = Template.bind({});

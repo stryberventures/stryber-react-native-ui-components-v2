@@ -5,15 +5,11 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform} from 'react-native';
 import {Text} from 'react-native';
 import pkg from './package.json';
+import {vocab} from '../../storybook/preview/i18n';
 
 const DropdownContent = () => (
-  <Text selectable>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <Text selectable style={{padding: 12}}>
+    {vocab.components.dropdown.content}
   </Text>
 );
 
@@ -23,9 +19,9 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterViewDecorator],
   args: {
     color: 'primary',
-    label: 'Dropdown',
-    placeholder: 'Placeholder',
-    value: 'Text dropdown',
+    label: vocab.components.dropdown.label,
+    placeholder: vocab.components.dropdown.placeholder,
+    value: vocab.components.dropdown.value,
     variant: 'floatingLabel',
     children: <DropdownContent />,
   },
@@ -63,16 +59,21 @@ Secondary.args = {
   color: 'secondary',
 };
 
+export const SlideUp = Template.bind({});
+SlideUp.args = {
+  slideUp: true,
+};
+
 export const Hint = Template.bind({});
 Hint.args = {
-  label: 'Hint',
-  hint: 'Hint message',
+  label: vocab.components.dropdown.hint,
+  hint: vocab.components.dropdown.hintMessage,
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  label: 'Error',
-  error: 'Error message',
+  label: vocab.components.dropdown.error,
+  error: vocab.components.dropdown.errorMessage,
 };
 
 export const Disabled = Template.bind({});

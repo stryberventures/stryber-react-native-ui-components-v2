@@ -10,6 +10,7 @@ import Button from '../../../../components/Button';
 import Checkbox from '../../../../components/Checkbox';
 import TextLink from '../../../../components/TextLink';
 import DemoLogo from '../../../../storybook/preview/DemoLogo';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   scrollContainer: {
@@ -74,19 +75,18 @@ const LoginEmail: React.FC = ({}) => {
           <DemoLogo />
         </View>
         <Text variant="h4" weight="bold" style={styles.title}>
-          Account Login
+          {vocab.modules.auth.login.accountLogin}
         </Text>
         <View style={styles.formView}>
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
                   name="email"
-                  label="Email"
+                  label={vocab.modules.auth.login.email}
                   placeholder="olivia@example.com"
                   autoComplete="email"
                   keyboardType="email-address"
@@ -96,8 +96,8 @@ const LoginEmail: React.FC = ({}) => {
                 />
                 <PasswordInput
                   name="password"
-                  label="Password"
-                  placeholder="Insert your password"
+                  label={vocab.modules.auth.login.password}
+                  placeholder={vocab.modules.auth.login.passwordPlaceholder}
                   autoComplete="password"
                   textContentType="password"
                   style={styles.inputPassword}
@@ -106,7 +106,7 @@ const LoginEmail: React.FC = ({}) => {
                 />
                 <Checkbox
                   name="remember"
-                  label="Remember me"
+                  label={vocab.modules.auth.login.rememberMe}
                   style={styles.checkbox}
                 />
               </View>
@@ -115,15 +115,14 @@ const LoginEmail: React.FC = ({}) => {
                   type="submit"
                   shape="circle"
                   style={styles.button}
-                  disabled={disabled}
-                >
-                  Login
+                  disabled={disabled}>
+                  {vocab.modules.auth.login.login}
                 </Button>
                 <TextLink style={styles.forgotPassword}>
-                  Forgot Password?
+                  {vocab.modules.auth.login.forgotPassword}
                 </TextLink>
                 <TextLink style={styles.newUser}>
-                  New user? Register here
+                  {vocab.modules.auth.login.newUserRegister}
                 </TextLink>
               </View>
             </View>

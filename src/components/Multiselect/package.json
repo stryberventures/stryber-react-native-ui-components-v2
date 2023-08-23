@@ -1,9 +1,10 @@
 {
   "name": "@stryberventures/gaia-react-native.multiselect",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "peerDependencies": {
     "react-native": ">=0.68.0",
     "react": ">=17.0.2",
+    "react-native-linear-gradient": ">=2.7.3",
     "@stryberventures/gaia-react-native.form": ">=0.1.0",
     "@stryberventures/gaia-react-native.theme": ">=0.1.0",
     "@stryberventures/gaia-react-native.dropdown": ">=0.1.0",

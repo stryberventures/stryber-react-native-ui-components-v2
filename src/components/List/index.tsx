@@ -1,68 +1,14 @@
 import React from 'react';
-import useStyles from './styles';
-import {
-  FlatListProps,
-  FlatList,
-  ListRenderItem,
-  Pressable,
-  View,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
-import Text from '../Text';
+import ListItem from './ListItem';
+import ListItemText from './ListItemText';
+import {ScrollView, ScrollViewProps} from 'react-native';
 
-export interface IListItem {
-  title: string;
-  subtitle?: string;
-  leftContent?: React.ReactNode;
-  rightContent?: React.ReactNode;
-  onPress?: () => void;
-  testID?: string;
-  style?: StyleProp<ViewStyle>;
-}
+export interface IListProps extends ScrollViewProps {}
 
-export interface IListProps
-  extends Omit<FlatListProps<IListItem>, 'data' | 'renderItem'> {
-  listItems: IListItem[];
-}
-
-const List: React.FC<IListProps> = ({listItems, ...rest}) => {
-  const styles = useStyles();
-
-  const renderItem: ListRenderItem<IListItem> = ({
-    item: {
-      title,
-      subtitle,
-      rightContent,
-      leftContent,
-      onPress,
-      ...restItemProps
-    },
-  }) => (
-    <Pressable style={styles.listItem} onPress={onPress} {...restItemProps}>
-      <View style={styles.content}>
-        {!!leftContent && <View style={styles.leftContent}>{leftContent}</View>}
-        <View>
-          <Text variant="components2" weight="medium" style={styles.title}>
-            {title}
-          </Text>
-          <Text variant="components2" style={styles.subtitle}>
-            {subtitle}
-          </Text>
-        </View>
-      </View>
-      {rightContent}
-    </Pressable>
-  );
-
-  return (
-    <FlatList
-      keyExtractor={(_, index) => index.toString()}
-      data={listItems}
-      renderItem={renderItem}
-      {...rest}
-    />
-  );
+const List: React.FC<IListProps> = ({children, ...rest}) => {
+  return <ScrollView {...rest}>{children}</ScrollView>;
 };
+
+export {ListItem, ListItemText};
 
 export default List;

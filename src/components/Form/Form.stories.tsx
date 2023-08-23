@@ -22,6 +22,7 @@ import Divider from '../../storybook/preview/Divider';
 import NumberInput from '../NumberInput';
 import pkg from './package.json';
 import useStyles from './Form.styles.stories';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Core/Form',
@@ -45,29 +46,29 @@ export default {
 } as ComponentMeta<typeof Form>;
 
 const options: IMultiselectOption[] = [
-  {label: 'One', value: 'one'},
-  {label: 'Two', value: 'two'},
-  {label: 'Three for length testing', value: 'three'},
-  {label: 'Four', value: 'four'},
-  {label: 'Five', value: 'five'},
-  {label: 'Six', value: 'six'},
+  {label: vocab.components.form.multiSelect.option1, value: 'one'},
+  {label: vocab.components.form.multiSelect.option2, value: 'two'},
+  {label: vocab.components.form.multiSelect.option3, value: 'three'},
+  {label: vocab.components.form.multiSelect.option4, value: 'four'},
+  {label: vocab.components.form.multiSelect.option5, value: 'five'},
+  {label: vocab.components.form.multiSelect.option6, value: 'six'},
 ];
 
 const childCheckboxes = [
   {
-    label: 'first child',
+    label: vocab.components.form.checkboxes.label1,
     name: 'firstField',
   },
   {
-    label: 'second child',
+    label: vocab.components.form.checkboxes.label2,
     name: 'secondField',
   },
   {
-    label: 'third child',
+    label: vocab.components.form.checkboxes.label3,
     name: 'thirdField',
   },
   {
-    label: 'fourth child',
+    label: vocab.components.form.checkboxes.label4,
     name: 'fourthField',
   },
 ];
@@ -96,11 +97,10 @@ const Template: ComponentStory<typeof Form> = ({
       <ScrollView
         contentContainerStyle={styles.scrollViewContainer}
         nestedScrollEnabled
-        keyboardShouldPersistTaps="always"
-      >
+        keyboardShouldPersistTaps="always">
         <Multiselect
-          label="Multiselect"
-          placeholder="multiselect"
+          label={vocab.components.form.multiSelect.label}
+          placeholder={vocab.components.form.multiSelect.placeholder}
           name="multiselect"
           options={options}
         />
@@ -108,45 +108,57 @@ const Template: ComponentStory<typeof Form> = ({
         <Select
           options={options}
           name="select"
-          label="Select"
-          placeholder="Select"
+          label={vocab.components.form.select.label}
+          placeholder={vocab.components.form.select.placeholder}
         />
         <Divider height={10} />
         <Combobox
           name="combobox"
           options={options}
-          label="Combobox"
-          placeholder="Chose number"
+          label={vocab.components.form.combobox.label}
+          placeholder={vocab.components.form.combobox.placeholder}
         />
         <Divider height={10} />
-        <RadioButton name="radio" value="option 1" label="Option 1" />
+        <RadioButton
+          name="radio"
+          value="option 1"
+          label={vocab.components.form.radioButton.label1}
+        />
         <Divider height={10} />
-        <RadioButton name="radio" value="option 2" label="Option 2" />
+        <RadioButton
+          name="radio"
+          value="option 2"
+          label={vocab.components.form.radioButton.label2}
+        />
         <Divider height={10} />
-        <RadioButton name="radio" value="option 3" label="Option 3" />
+        <RadioButton
+          name="radio"
+          value="option 3"
+          label={vocab.components.form.radioButton.label3}
+        />
         <Divider height={10} />
-        <Checkbox name="checkbox" label="Stay logged in" />
+        <Checkbox name="checkbox" label={vocab.components.form.stayLoggedIn} />
         <Divider height={10} />
-        <Switch name="switch" label="Switch" />
+        <Switch name="switch" label={vocab.components.form.switch} />
         <Divider height={10} />
         <CheckboxGroup
-          label="Checkbox Group"
+          label={vocab.components.form.checkboxGroup}
           name="checkboxGroup"
           checkboxes={childCheckboxes}
         />
         <Divider height={10} />
         <Input
           name="email"
-          placeholder="Email"
-          label="Email"
+          placeholder={vocab.components.form.email}
+          label={vocab.components.form.email}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{marginVertical: 20}}
         />
         <Divider height={10} />
         <PasswordInput
           name="password"
-          placeholder="Password"
-          label="Password"
+          placeholder={vocab.components.form.password}
+          label={vocab.components.form.password}
         />
         <Divider height={10} />
         <Slider name="slider" value={5} max={10} />
@@ -155,8 +167,8 @@ const Template: ComponentStory<typeof Form> = ({
         <Divider height={10} />
         <NumberInput
           name="numberInput"
-          label="Number"
-          placeholder="Number Input"
+          label={vocab.components.form.number}
+          placeholder={vocab.components.form.numberInput}
         />
         <View
           // eslint-disable-next-line react-native/no-inline-styles
@@ -164,10 +176,9 @@ const Template: ComponentStory<typeof Form> = ({
             marginTop: 20,
             flexDirection: 'row',
             justifyContent: 'space-around',
-          }}
-        >
-          <Button type="submit">Submit</Button>
-          <Button type="reset">Reset</Button>
+          }}>
+          <Button type="submit">{vocab.components.form.submit}</Button>
+          <Button type="reset">{vocab.components.form.reset}</Button>
         </View>
       </ScrollView>
     </Form>
@@ -235,7 +246,7 @@ export const ErrorOnSubmit = Template.bind({});
 ErrorOnSubmit.args = {
   onSubmit: (formData: any, {setErrors}) => {
     console.log('onSubmit external', formData);
-    setErrors({email: 'This email is already taken'});
+    setErrors({email: vocab.components.form.takenEmailError});
   },
   validationSchema,
 };
@@ -254,7 +265,7 @@ export const ExternalControl = () => {
   const styles = useStyles();
 
   const handleSetError = () => {
-    formRef.current!.setErrors({email: 'This email is already taken'});
+    formRef.current!.setErrors({email: vocab.components.form.takenEmailError});
   };
 
   const handleResetForm = () => {
@@ -275,17 +286,20 @@ export const ExternalControl = () => {
       validationSchema={yup.object({
         email: yup.string().email().required(),
         password: yup.string().required(),
-      })}
-    >
+      })}>
       <Input
         name="email"
-        placeholder="Email"
-        label="Email"
+        placeholder={vocab.components.form.email}
+        label={vocab.components.form.email}
         // eslint-disable-next-line react-native/no-inline-styles
         style={{marginBottom: 20}}
       />
       {!!currentFormState.email && (
-        <Input name="password" placeholder="Password" label="Password" />
+        <Input
+          name="password"
+          placeholder={vocab.components.form.password}
+          label={vocab.components.form.password}
+        />
       )}
       <View
         // eslint-disable-next-line react-native/no-inline-styles
@@ -293,14 +307,17 @@ export const ExternalControl = () => {
           marginTop: 20,
           flexDirection: 'row',
           justifyContent: 'space-around',
-        }}
-      >
-        <Button type="submit">Login</Button>
-        <Button type="reset">Reset</Button>
+        }}>
+        <Button type="submit">{vocab.components.form.login}</Button>
+        <Button type="reset">{vocab.components.form.reset}</Button>
       </View>
       <View style={styles.buttonWrapper}>
-        <Button onPress={handleSetError}>Set extern error</Button>
-        <Button onPress={handleResetForm}>Reset externally</Button>
+        <Button onPress={handleSetError}>
+          {vocab.components.form.setExternalError}
+        </Button>
+        <Button onPress={handleResetForm}>
+          {vocab.components.form.resetExternally}
+        </Button>
       </View>
     </Form>
   );
@@ -324,28 +341,30 @@ export const DisabledSubmitButton = () => {
       validationSchema={yup.object({
         email: yup.string().email().required(),
         password: yup.string().required(),
-      })}
-    >
+      })}>
       <Input
         name="email"
-        placeholder="Email"
-        label="Email"
+        placeholder={vocab.components.form.email}
+        label={vocab.components.form.email}
         // eslint-disable-next-line react-native/no-inline-styles
         style={{marginBottom: 20}}
       />
-      <Input name="password" placeholder="Password" label="Password" />
+      <Input
+        name="password"
+        placeholder={vocab.components.form.password}
+        label={vocab.components.form.password}
+      />
       <View
         // eslint-disable-next-line react-native/no-inline-styles
         style={{
           marginTop: 20,
           flexDirection: 'row',
           justifyContent: 'space-around',
-        }}
-      >
+        }}>
         <Button type="submit" disabled={disabled}>
-          Login
+          {vocab.components.form.login}
         </Button>
-        <Button type="reset">Reset</Button>
+        <Button type="reset">{vocab.components.form.reset}</Button>
       </View>
     </Form>
   );

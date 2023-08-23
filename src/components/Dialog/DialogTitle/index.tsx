@@ -7,7 +7,11 @@ interface IDialogTitle extends ITextProps {}
 const DialogTitle: React.FC<IDialogTitle> = ({children, style, ...rest}) => {
   const styles = useStyles();
   return (
-    <Text style={[styles.dialogTitle, style]} variant="h4" {...rest}>
+    <Text
+      style={[styles.dialogTitle, style]}
+      variant="body1"
+      color="headline"
+      {...rest}>
       {children}
     </Text>
   );

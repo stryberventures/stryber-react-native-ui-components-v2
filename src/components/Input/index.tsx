@@ -96,7 +96,7 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     const styles = useStyles();
 
-    const handleFocus = () => inputRef.current!.focus();
+    const handleFocus = () => inputRef.current?.focus();
 
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
@@ -191,8 +191,7 @@ const Input = forwardRef<TextInput, IInputProps>(
                 <Pressable
                   style={!!rightContent && styles.removeButton}
                   onPress={handleRemoveValue}
-                  disabled={disabled}
-                >
+                  disabled={disabled}>
                   <CloseCircleIcon
                     variant="filled"
                     fill={theme.colors.text.tint}
@@ -209,14 +208,12 @@ const Input = forwardRef<TextInput, IInputProps>(
         hintStyle={hintStyle}
         errorStyle={errorStyle}
         isEmpty={controlled ? !value : !internalValue}
-        leftContent={leftContent}
-      >
+        leftContent={leftContent}>
         <View style={styles.inputContainer}>
           {prefix && (
             <Text
               variant="components1"
-              style={[styles.additionalText, prefixStyle]}
-            >
+              style={[styles.additionalText, prefixStyle]}>
               {prefix}
             </Text>
           )}
@@ -240,8 +237,7 @@ const Input = forwardRef<TextInput, IInputProps>(
           {postfix && (
             <Text
               variant="components1"
-              style={[styles.additionalText, postfixStyle]}
-            >
+              style={[styles.additionalText, postfixStyle]}>
               {postfix}
             </Text>
           )}

@@ -5,6 +5,7 @@ import * as Icons from '../Icons';
 import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View, ViewStyle} from 'react-native';
 import pkg from './package.json';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/Button',
@@ -32,7 +33,7 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
 export const Contained = Template.bind({});
 Contained.args = {
-  children: 'Primary',
+  children: vocab.components.button.primary,
   color: 'primary',
   size: 'medium',
   shape: 'round',
@@ -41,74 +42,74 @@ Contained.args = {
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  children: 'Outlined',
+  children: vocab.components.button.outlined,
   variant: 'outlined',
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
-  children: 'Ghost',
+  children: vocab.components.button.ghost,
   variant: 'ghost',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  children: 'Secondary',
+  children: vocab.components.button.secondary,
   color: 'secondary',
 };
 
 export const Mini = Template.bind({});
 Mini.args = {
-  children: 'Mini',
+  children: vocab.components.button.mini,
   size: 'mini',
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  children: 'Small',
+  children: vocab.components.button.small,
   size: 'small',
 };
 
 export const Large = Template.bind({});
 Large.args = {
-  children: 'Large',
+  children: vocab.components.button.large,
   size: 'large',
 };
 
 export const Circle = Template.bind({});
 Circle.args = {
-  children: 'Circle',
+  children: vocab.components.button.circle,
   shape: 'circle',
 };
 
 export const Flat = Template.bind({});
 Flat.args = {
-  children: 'Flat',
+  children: vocab.components.button.flat,
   shape: 'flat',
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
-  children: 'Left Icon',
+  children: vocab.components.button.leftIcon,
   iconLeft: Icons.InfoIcon,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
-  children: 'Right Icon',
+  children: vocab.components.button.rightIcon,
   iconRight: Icons.InfoIcon,
 };
 
 export const LeftRightIcons = Template.bind({});
 LeftRightIcons.args = {
-  children: 'Left and Right Icons',
+  children: vocab.components.button.leftRightIcons,
   iconLeft: Icons.InfoIcon,
   iconRight: Icons.InfoIcon,
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  children: 'Error',
+  children: vocab.components.button.error,
   color: 'error',
 };
 
@@ -130,6 +131,6 @@ Icon.decorators = [
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  children: 'Disabled',
+  children: vocab.components.button.disabled,
   disabled: true,
 };

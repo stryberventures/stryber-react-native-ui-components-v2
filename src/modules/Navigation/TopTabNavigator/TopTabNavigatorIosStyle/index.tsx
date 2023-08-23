@@ -2,9 +2,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {View, Pressable, Animated, LayoutChangeEvent} from 'react-native';
 import Text from '../../../../components/Text';
-import {createUseStyles} from '../../../../components/Theme';
+import {createUseStyles, isRTL} from '../../../../components/Theme';
 import {MaterialTopTabBarProps} from '@react-navigation/material-top-tabs';
 import {ParamListBase, TabNavigationState} from '@react-navigation/native';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const TAB_INDICATOR_MARGIN = 2;
 
@@ -57,8 +58,9 @@ const TabBarIndicator: React.FC<ITabBarIndicatorProps> = ({
   state,
   tabBarSize,
 }) => {
-  const translateAnim = useRef(new Animated.Value(TAB_INDICATOR_MARGIN))
-    .current;
+  const translateAnim = useRef(
+    new Animated.Value(TAB_INDICATOR_MARGIN),
+  ).current;
   const itemsCount = state.routes.length;
   const itemWidth = tabBarSize.width / itemsCount - TAB_INDICATOR_MARGIN;
   const indicatorMargin =
@@ -67,7 +69,7 @@ const TabBarIndicator: React.FC<ITabBarIndicatorProps> = ({
 
   const slide = () => {
     Animated.timing(translateAnim, {
-      toValue: state.index * itemWidth + indicatorMargin,
+      toValue: (state.index * itemWidth + indicatorMargin) * (isRTL ? -1 : 1),
       duration: 300,
       useNativeDriver: true,
     }).start();
@@ -148,8 +150,7 @@ const TopTabBar: React.FC<ITopTabsProps> = ({
             onPress={onPress}
             onLongPress={onLongPress}
             style={styles.tab}
-            key={index}
-          >
+            key={index}>
             <Text variant="components2" style={styles.tabText}>
               {label}
             </Text>
@@ -164,28 +165,31 @@ const Tab = createMaterialTopTabNavigator();
 
 const Home = () => (
   <View>
-    <Text>Home</Text>
+    <Text>{vocab.modules.navigation.home}</Text>
   </View>
 );
 
 const Settings = () => (
   <View>
-    <Text>Settings</Text>
+    <Text>{vocab.modules.navigation.settings}</Text>
   </View>
 );
 
 const Profile = () => (
   <View>
-    <Text>Profile</Text>
+    <Text>{vocab.modules.navigation.profile}</Text>
   </View>
 );
 
 const TopTabNavigatorIosStyle = () => {
   return (
     <Tab.Navigator tabBar={props => <TopTabBar {...props} />}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Settings" component={Settings} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name={vocab.modules.navigation.home} component={Home} />
+      <Tab.Screen
+        name={vocab.modules.navigation.settings}
+        component={Settings}
+      />
+      <Tab.Screen name={vocab.modules.navigation.profile} component={Profile} />
     </Tab.Navigator>
   );
 };

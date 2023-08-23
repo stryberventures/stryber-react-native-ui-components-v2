@@ -30,7 +30,13 @@ type TOnChangeArgument = {
 export interface ITagProps extends Omit<PressableProps, 'onPress'> {
   value?: TTagValue;
   children: string;
-  color?: 'primary' | 'secondary';
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'neutralGray';
   size?: TTagSize;
   shape?: 'square' | 'round';
   selected?: boolean;
@@ -155,13 +161,11 @@ const Tag: React.FC<ITagProps> = ({
       style={[
         styles.tag,
         styles[shape],
-        pressed && styles.tagPressed,
         selected && styles.tagSelected,
         {backgroundColor: interpolation},
         disabled && styles.tagDisabled,
         style,
-      ]}
-    >
+      ]}>
       {IconLeft && (
         <View style={styles.leftIcon}>
           <IconLeft {...iconSizeProps} fill={getTextColor(pressed)} />
@@ -169,8 +173,10 @@ const Tag: React.FC<ITagProps> = ({
       )}
       <Text
         variant={getTextVariant(size)}
-        style={{color: getTextColor(pressed)}}
-      >
+        style={{
+          color: getTextColor(pressed),
+          lineHeight: getIconSize(size),
+        }}>
         {children}
       </Text>
       {IconRight && (

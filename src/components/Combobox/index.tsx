@@ -47,12 +47,8 @@ const Combobox: React.FC<IComboboxProps> = ({
   noOptionsFoundText = 'No options found',
   ...rest
 }) => {
-  const {
-    fieldError,
-    fieldValue,
-    unsetFormValue,
-    updateFormValue,
-  } = useFormContext(name);
+  const {fieldError, fieldValue, unsetFormValue, updateFormValue} =
+    useFormContext(name);
 
   const getOptionByValue = (optionValue: string | number) => {
     const option = options.find(optionItem => optionItem.value === optionValue);
@@ -131,8 +127,7 @@ const Combobox: React.FC<IComboboxProps> = ({
       onPress={() => handleSelectOption(item)}
       active={
         selectedOption ? selectedOption.label === item.label : index === 0
-      }
-    >
+      }>
       {item.label}
     </SelectItem>
   );
@@ -141,6 +136,12 @@ const Combobox: React.FC<IComboboxProps> = ({
     !filterOptionsByInputValue().length && (
       <SelectItem disabled>{noOptionsFoundText}</SelectItem>
     );
+
+  const onArrowDownPress = () => {
+    if (visible) {
+      handleDismiss();
+    }
+  };
 
   useEffect(() => {
     updateFormValue(name, selectedOption?.value, true);
@@ -154,8 +155,7 @@ const Combobox: React.FC<IComboboxProps> = ({
     <Pressable
       hitSlop={visible ? 10000 : 0}
       onPress={handleOutsidePress}
-      style={[styles.container, style]}
-    >
+      style={[styles.container, style]}>
       <Input
         name={name}
         onFocus={handleFocus}
@@ -175,14 +175,16 @@ const Combobox: React.FC<IComboboxProps> = ({
                 hitSlop={5}
               />
             )}
-            <ArrowDownIconDeprecated
-              fill={
-                disabled
-                  ? theme.colors.neutralGray.medium300
-                  : theme.colors.neutralGray.main500
-              }
-              style={[styles.icon, visible && styles.invertedIcon]}
-            />
+            <Pressable onPress={onArrowDownPress}>
+              <ArrowDownIconDeprecated
+                fill={
+                  disabled
+                    ? theme.colors.neutralGray.medium300
+                    : theme.colors.neutralGray.main500
+                }
+                style={[styles.icon, visible && styles.invertedIcon]}
+              />
+            </Pressable>
           </>
         }
         style={inputStyle}
@@ -196,8 +198,7 @@ const Combobox: React.FC<IComboboxProps> = ({
             horizontal
             contentContainerStyle={styles.scrollView}
             keyboardShouldPersistTaps="always"
-            nestedScrollEnabled
-          >
+            nestedScrollEnabled>
             <FlatList
               data={filterOptionsByInputValue()}
               renderItem={renderComboboxItem}

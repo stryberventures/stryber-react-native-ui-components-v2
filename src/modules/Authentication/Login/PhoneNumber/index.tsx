@@ -10,6 +10,7 @@ import Button from '../../../../components/Button';
 import Checkbox from '../../../../components/Checkbox';
 import TextLink from '../../../../components/TextLink';
 import DemoLogo from '../../../../storybook/preview/DemoLogo';
+import {vocab} from '../../../../storybook/preview/i18n';
 
 const useStyles = createUseStyles(theme => ({
   scrollContainer: {
@@ -59,7 +60,10 @@ const useStyles = createUseStyles(theme => ({
 }));
 
 const validationSchema = yup.object().shape({
-  phoneNumber: yup.string().min(12, 'Invalid phone number').required(),
+  phoneNumber: yup
+    .string()
+    .min(12, vocab.modules.auth.login.invalidPhoneNumber)
+    .required(),
   password: yup.string().min(8).required(),
 });
 
@@ -74,19 +78,18 @@ const LoginPhoneNumber: React.FC = ({}) => {
           <DemoLogo />
         </View>
         <Text variant="h4" weight="bold" style={styles.title}>
-          Account Login
+          {vocab.modules.auth.login.accountLogin}
         </Text>
         <View style={styles.formView}>
           <Form
             validationSchema={validationSchema}
             onChange={(_, {isValid}) => setDisabled(!isValid)}
-            onSubmit={values => console.log(values)}
-          >
+            onSubmit={values => console.log(values)}>
             <View style={styles.formContent}>
               <View>
                 <Input
                   name="phoneNumber"
-                  label="Phone Number"
+                  label={vocab.modules.auth.login.phoneNumber}
                   prefix="+49 "
                   placeholder="000 00000000"
                   mask="XXX XXXXXXXX"
@@ -98,8 +101,8 @@ const LoginPhoneNumber: React.FC = ({}) => {
                 />
                 <PasswordInput
                   name="password"
-                  label="Password"
-                  placeholder="Insert your password"
+                  label={vocab.modules.auth.login.password}
+                  placeholder={vocab.modules.auth.login.passwordPlaceholder}
                   autoComplete="password"
                   textContentType="password"
                   style={styles.inputPassword}
@@ -108,7 +111,7 @@ const LoginPhoneNumber: React.FC = ({}) => {
                 />
                 <Checkbox
                   name="remember"
-                  label="Remember me"
+                  label={vocab.modules.auth.login.rememberMe}
                   style={styles.checkbox}
                 />
               </View>
@@ -117,15 +120,14 @@ const LoginPhoneNumber: React.FC = ({}) => {
                   type="submit"
                   shape="circle"
                   style={styles.button}
-                  disabled={disabled}
-                >
-                  Login
+                  disabled={disabled}>
+                  {vocab.modules.auth.login.login}
                 </Button>
                 <TextLink style={styles.forgotPassword}>
-                  Forgot Password?
+                  {vocab.modules.auth.login.forgotPassword}
                 </TextLink>
                 <TextLink style={styles.newUser}>
-                  New user? Register here
+                  {vocab.modules.auth.login.newUserRegister}
                 </TextLink>
               </View>
             </View>

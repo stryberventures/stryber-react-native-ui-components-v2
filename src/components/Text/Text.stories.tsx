@@ -5,6 +5,7 @@ import CenterViewDecorator from '../../storybook/preview/CenterViewDecorator';
 import {Platform, View} from 'react-native';
 import pkg from './package.json';
 import useStyles from './Text.styles.stories';
+import {vocab} from '../../storybook/preview/i18n';
 
 export default {
   title: 'Components/Text',
@@ -40,7 +41,7 @@ const Template: ComponentStory<typeof Text> = args => {
   return (
     <>
       <Text align="center" variant="h2" style={styles.title}>
-        All text variants:
+        {vocab.components.text.allTextVariants}
       </Text>
       {textVariants.map(variant => (
         <Text key={variant} style={styles.text} variant={variant} {...args}>
